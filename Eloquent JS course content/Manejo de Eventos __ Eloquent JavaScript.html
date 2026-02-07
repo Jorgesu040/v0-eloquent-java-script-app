@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://www.eloquentjavascript.es/15_event.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manejo de Eventos :: Eloquent JavaScript</title>
+  <link rel="stylesheet" href="./Manejo de Eventos __ Eloquent JavaScript_files/ejs.css"><script>
+      var page = {"type":"chapter","number":15}</script><style>.swal2-popup.swal2-toast{box-sizing:border-box;grid-column:1/4 !important;grid-row:1/4 !important;grid-template-columns:min-content auto min-content;padding:1em;overflow-y:hidden;background:#fff;box-shadow:0 0 1px rgba(0,0,0,.075),0 1px 2px rgba(0,0,0,.075),1px 2px 4px rgba(0,0,0,.075),1px 3px 8px rgba(0,0,0,.075),2px 4px 16px rgba(0,0,0,.075);pointer-events:all}.swal2-popup.swal2-toast>*{grid-column:2}.swal2-popup.swal2-toast .swal2-title{margin:.5em 1em;padding:0;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-loading{justify-content:center}.swal2-popup.swal2-toast .swal2-input{height:2em;margin:.5em;font-size:1em}.swal2-popup.swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{grid-column:3/3;grid-row:1/99;align-self:center;width:.8em;height:.8em;margin:0;font-size:2em}.swal2-popup.swal2-toast .swal2-html-container{margin:.5em 1em;padding:0;overflow:initial;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-html-container:empty{padding:0}.swal2-popup.swal2-toast .swal2-loader{grid-column:1;grid-row:1/99;align-self:center;width:2em;height:2em;margin:.25em}.swal2-popup.swal2-toast .swal2-icon{grid-column:1;grid-row:1/99;align-self:center;width:2em;min-width:2em;height:2em;margin:0 .5em 0 0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:bold}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{justify-content:flex-start;height:auto;margin:0;margin-top:.5em;padding:0 .5em}.swal2-popup.swal2-toast .swal2-styled{margin:.25em .5em;padding:.4em .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.8em;left:-0.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{animation:swal2-toast-hide .1s forwards}div:where(.swal2-container){display:grid;position:fixed;z-index:1060;inset:0;box-sizing:border-box;grid-template-areas:"top-start     top            top-end" "center-start  center         center-end" "bottom-start  bottom-center  bottom-end";grid-template-rows:minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);height:100%;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}div:where(.swal2-container).swal2-backdrop-show,div:where(.swal2-container).swal2-noanimation{background:rgba(0,0,0,.4)}div:where(.swal2-container).swal2-backdrop-hide{background:rgba(0,0,0,0) !important}div:where(.swal2-container).swal2-top-start,div:where(.swal2-container).swal2-center-start,div:where(.swal2-container).swal2-bottom-start{grid-template-columns:minmax(0, 1fr) auto auto}div:where(.swal2-container).swal2-top,div:where(.swal2-container).swal2-center,div:where(.swal2-container).swal2-bottom{grid-template-columns:auto minmax(0, 1fr) auto}div:where(.swal2-container).swal2-top-end,div:where(.swal2-container).swal2-center-end,div:where(.swal2-container).swal2-bottom-end{grid-template-columns:auto auto minmax(0, 1fr)}div:where(.swal2-container).swal2-top-start>.swal2-popup{align-self:start}div:where(.swal2-container).swal2-top>.swal2-popup{grid-column:2;align-self:start;justify-self:center}div:where(.swal2-container).swal2-top-end>.swal2-popup,div:where(.swal2-container).swal2-top-right>.swal2-popup{grid-column:3;align-self:start;justify-self:end}div:where(.swal2-container).swal2-center-start>.swal2-popup,div:where(.swal2-container).swal2-center-left>.swal2-popup{grid-row:2;align-self:center}div:where(.swal2-container).swal2-center>.swal2-popup{grid-column:2;grid-row:2;align-self:center;justify-self:center}div:where(.swal2-container).swal2-center-end>.swal2-popup,div:where(.swal2-container).swal2-center-right>.swal2-popup{grid-column:3;grid-row:2;align-self:center;justify-self:end}div:where(.swal2-container).swal2-bottom-start>.swal2-popup,div:where(.swal2-container).swal2-bottom-left>.swal2-popup{grid-column:1;grid-row:3;align-self:end}div:where(.swal2-container).swal2-bottom>.swal2-popup{grid-column:2;grid-row:3;justify-self:center;align-self:end}div:where(.swal2-container).swal2-bottom-end>.swal2-popup,div:where(.swal2-container).swal2-bottom-right>.swal2-popup{grid-column:3;grid-row:3;align-self:end;justify-self:end}div:where(.swal2-container).swal2-grow-row>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-column:1/4;width:100%}div:where(.swal2-container).swal2-grow-column>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-row:1/4;align-self:stretch}div:where(.swal2-container).swal2-no-transition{transition:none !important}div:where(.swal2-container) div:where(.swal2-popup){display:none;position:relative;box-sizing:border-box;grid-template-columns:minmax(0, 100%);width:32em;max-width:100%;padding:0 0 1.25em;border:none;border-radius:5px;background:#fff;color:#545454;font-family:inherit;font-size:1rem}div:where(.swal2-container) div:where(.swal2-popup):focus{outline:none}div:where(.swal2-container) div:where(.swal2-popup).swal2-loading{overflow-y:hidden}div:where(.swal2-container) h2:where(.swal2-title){position:relative;max-width:100%;margin:0;padding:.8em 1em 0;color:inherit;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}div:where(.swal2-container) div:where(.swal2-actions){display:flex;z-index:1;box-sizing:border-box;flex-wrap:wrap;align-items:center;justify-content:center;width:auto;margin:1.25em auto 0;padding:0}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))}div:where(.swal2-container) div:where(.swal2-loader){display:none;align-items:center;justify-content:center;width:2.2em;height:2.2em;margin:0 1.875em;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border-width:.25em;border-style:solid;border-radius:100%;border-color:#2778c4 rgba(0,0,0,0) #2778c4 rgba(0,0,0,0)}div:where(.swal2-container) button:where(.swal2-styled){margin:.3125em;padding:.625em 1.1em;transition:box-shadow .1s;box-shadow:0 0 0 3px rgba(0,0,0,0);font-weight:500}div:where(.swal2-container) button:where(.swal2-styled):not([disabled]){cursor:pointer}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#7066e0;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus{box-shadow:0 0 0 3px rgba(112,102,224,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny{border:0;border-radius:.25em;background:initial;background-color:#dc3741;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny:focus{box-shadow:0 0 0 3px rgba(220,55,65,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#6e7881;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel:focus{box-shadow:0 0 0 3px rgba(110,120,129,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:focus{box-shadow:0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-styled):focus{outline:none}div:where(.swal2-container) button:where(.swal2-styled)::-moz-focus-inner{border:0}div:where(.swal2-container) div:where(.swal2-footer){margin:1em 0 0;padding:1em 1em 0;border-top:1px solid #eee;color:inherit;font-size:1em;text-align:center}div:where(.swal2-container) .swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;grid-column:auto !important;overflow:hidden;border-bottom-right-radius:5px;border-bottom-left-radius:5px}div:where(.swal2-container) div:where(.swal2-timer-progress-bar){width:100%;height:.25em;background:rgba(0,0,0,.2)}div:where(.swal2-container) img:where(.swal2-image){max-width:100%;margin:2em auto 1em}div:where(.swal2-container) button:where(.swal2-close){z-index:2;align-items:center;justify-content:center;width:1.2em;height:1.2em;margin-top:0;margin-right:0;margin-bottom:-1.2em;padding:0;overflow:hidden;transition:color .1s,box-shadow .1s;border:none;border-radius:5px;background:rgba(0,0,0,0);color:#ccc;font-family:monospace;font-size:2.5em;cursor:pointer;justify-self:end}div:where(.swal2-container) button:where(.swal2-close):hover{transform:none;background:rgba(0,0,0,0);color:#f27474}div:where(.swal2-container) button:where(.swal2-close):focus{outline:none;box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-close)::-moz-focus-inner{border:0}div:where(.swal2-container) .swal2-html-container{z-index:1;justify-content:center;margin:1em 1.6em .3em;padding:0;overflow:auto;color:inherit;font-size:1.125em;font-weight:normal;line-height:normal;text-align:center;word-wrap:break-word;word-break:break-word}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea),div:where(.swal2-container) select:where(.swal2-select),div:where(.swal2-container) div:where(.swal2-radio),div:where(.swal2-container) label:where(.swal2-checkbox){margin:1em 2em 3px}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea){box-sizing:border-box;width:auto;transition:border-color .1s,box-shadow .1s;border:1px solid #d9d9d9;border-radius:.1875em;background:rgba(0,0,0,0);box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) input:where(.swal2-input).swal2-inputerror,div:where(.swal2-container) input:where(.swal2-file).swal2-inputerror,div:where(.swal2-container) textarea:where(.swal2-textarea).swal2-inputerror{border-color:#f27474 !important;box-shadow:0 0 2px #f27474 !important}div:where(.swal2-container) input:where(.swal2-input):focus,div:where(.swal2-container) input:where(.swal2-file):focus,div:where(.swal2-container) textarea:where(.swal2-textarea):focus{border:1px solid #b4dbed;outline:none;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) input:where(.swal2-input)::placeholder,div:where(.swal2-container) input:where(.swal2-file)::placeholder,div:where(.swal2-container) textarea:where(.swal2-textarea)::placeholder{color:#ccc}div:where(.swal2-container) .swal2-range{margin:1em 2em 3px;background:#fff}div:where(.swal2-container) .swal2-range input{width:80%}div:where(.swal2-container) .swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}div:where(.swal2-container) .swal2-range input,div:where(.swal2-container) .swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}div:where(.swal2-container) .swal2-input{height:2.625em;padding:0 .75em}div:where(.swal2-container) .swal2-file{width:75%;margin-right:auto;margin-left:auto;background:rgba(0,0,0,0);font-size:1.125em}div:where(.swal2-container) .swal2-textarea{height:6.75em;padding:.75em}div:where(.swal2-container) .swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) .swal2-radio,div:where(.swal2-container) .swal2-checkbox{align-items:center;justify-content:center;background:#fff;color:inherit}div:where(.swal2-container) .swal2-radio label,div:where(.swal2-container) .swal2-checkbox label{margin:0 .6em;font-size:1.125em}div:where(.swal2-container) .swal2-radio input,div:where(.swal2-container) .swal2-checkbox input{flex-shrink:0;margin:0 .4em}div:where(.swal2-container) label:where(.swal2-input-label){display:flex;justify-content:center;margin:1em auto 0}div:where(.swal2-container) div:where(.swal2-validation-message){align-items:center;justify-content:center;margin:1em 0 0;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}div:where(.swal2-container) div:where(.swal2-validation-message)::before{content:"!";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}div:where(.swal2-container) .swal2-progress-steps{flex-wrap:wrap;align-items:center;max-width:100%;margin:1.25em auto;padding:0;background:rgba(0,0,0,0);font-weight:600}div:where(.swal2-container) .swal2-progress-steps li{display:inline-block;position:relative}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step{z-index:20;flex-shrink:0;width:2em;height:2em;border-radius:2em;background:#2778c4;color:#fff;line-height:2em;text-align:center}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#2778c4}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step-line{z-index:10;flex-shrink:0;width:2.5em;height:.4em;margin:0 -1px;background:#2778c4}div:where(.swal2-icon){position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:2.5em auto .6em;border:0.25em solid rgba(0,0,0,0);border-radius:50%;border-color:#000;font-family:inherit;line-height:5em;cursor:default;user-select:none}div:where(.swal2-icon) .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}div:where(.swal2-icon).swal2-error{border-color:#f27474;color:#f27474}div:where(.swal2-icon).swal2-error .swal2-x-mark{position:relative;flex-grow:1}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-error.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-error.swal2-icon-show .swal2-x-mark{animation:swal2-animate-error-x-mark .5s}div:where(.swal2-icon).swal2-warning{border-color:#facea8;color:#f8bb86}div:where(.swal2-icon).swal2-warning.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-warning.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .5s}div:where(.swal2-icon).swal2-info{border-color:#9de0f6;color:#3fc3ee}div:where(.swal2-icon).swal2-info.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-info.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .8s}div:where(.swal2-icon).swal2-question{border-color:#c9dae1;color:#87adbd}div:where(.swal2-icon).swal2-question.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-question.swal2-icon-show .swal2-icon-content{animation:swal2-animate-question-mark .8s}div:where(.swal2-icon).swal2-success{border-color:#a5dc86;color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;transform:rotate(45deg);border-radius:50%}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}div:where(.swal2-icon).swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-0.25em;left:-0.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}div:where(.swal2-icon).swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-animate-success-line-tip .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-animate-success-line-long .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-line-right{animation:swal2-rotate-success-circular-line 4.25s ease-in}[class^=swal2]{-webkit-tap-highlight-color:rgba(0,0,0,0)}.swal2-show{animation:swal2-show .3s}.swal2-hide{animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{margin-right:initial;margin-left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}@keyframes swal2-toast-show{0%{transform:translateY(-0.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(0.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0deg)}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-0.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-show{0%{transform:scale(0.7)}45%{transform:scale(1.05)}80%{transform:scale(0.95)}100%{transform:scale(1)}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(0.5);opacity:0}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-0.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(0.4);opacity:0}50%{margin-top:1.625em;transform:scale(0.4);opacity:0}80%{margin-top:-0.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0deg);opacity:1}}@keyframes swal2-rotate-loading{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}@keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto !important}body.swal2-no-backdrop .swal2-container{background-color:rgba(0,0,0,0) !important;pointer-events:none}body.swal2-no-backdrop .swal2-container .swal2-popup{pointer-events:all}body.swal2-no-backdrop .swal2-container .swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll !important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static !important}}body.swal2-toast-shown .swal2-container{box-sizing:border-box;width:360px;max-width:100%;background-color:rgba(0,0,0,0);pointer-events:none}body.swal2-toast-shown .swal2-container.swal2-top{inset:0 auto auto 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{inset:0 0 auto auto}body.swal2-toast-shown .swal2-container.swal2-top-start,body.swal2-toast-shown .swal2-container.swal2-top-left{inset:0 auto auto 0}body.swal2-toast-shown .swal2-container.swal2-center-start,body.swal2-toast-shown .swal2-container.swal2-center-left{inset:50% auto auto 0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{inset:50% auto auto 50%;transform:translate(-50%, -50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{inset:50% 0 auto auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-start,body.swal2-toast-shown .swal2-container.swal2-bottom-left{inset:auto auto 0 0}body.swal2-toast-shown .swal2-container.swal2-bottom{inset:auto auto 0 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{inset:auto 0 0 auto}</style></head>
+
+<body><article>
+<nav><a href="https://www.eloquentjavascript.es/14_dom.html" title="previous chapter" aria-label="previous chapter">◂</a>&nbsp;<a href="https://www.eloquentjavascript.es/index.html" title="cover" aria-label="cover">●</a>&nbsp;<a href="https://www.eloquentjavascript.es/16_game.html" title="next chapter" aria-label="next chapter">▸</a>&nbsp;<button class="help" title="help" aria-label="help" style="display: inline;"><strong>?</strong></button>
+</nav>
+
+<h1>Manejo de Eventos</h1>
+
+<blockquote>
+
+<p><a class="p_ident" id="p-VUZeGAxBS+" href="https://www.eloquentjavascript.es/15_event.html#p-VUZeGAxBS+" tabindex="-1" role="presentation"></a>Tienes poder sobre tu mente, no sobre los eventos externos. Date cuenta de esto y encontrarás fuerza.</p>
+
+<footer>Marco Aurelio, <cite>Meditaciones</cite></footer>
+
+</blockquote><figure class="chapter framed"><img src="./Manejo de Eventos __ Eloquent JavaScript_files/chapter_picture_15.jpg" alt="Ilustración que muestra una máquina de Rube Goldberg que involucra una pelota, una balanza, un par de tijeras y un martillo, los cuales se afectan en una reacción en cadena que enciende una bombilla."></figure>
+
+<p><a class="p_ident" id="p-7buioHYYih" href="https://www.eloquentjavascript.es/15_event.html#p-7buioHYYih" tabindex="-1" role="presentation"></a>Algunos programas trabajan con la entrada directa del usuario, como acciones del ratón y del teclado. Ese tipo de entrada no está disponible de antemano, como una estructura de datos bien organizada, llega pieza por pieza, en tiempo real, y el programa debe responder a medida que sucede.</p>
+
+<h2><a class="h_ident" id="h-FRSr58jqPG" href="https://www.eloquentjavascript.es/15_event.html#h-FRSr58jqPG" tabindex="-1" role="presentation"></a>Controladores de Eventos</h2>
+
+<p><a class="p_ident" id="p-8Rhq4iuO+f" href="https://www.eloquentjavascript.es/15_event.html#p-8Rhq4iuO+f" tabindex="-1" role="presentation"></a>Imagina una interfaz donde la única forma de saber si una tecla en el teclado está siendo presionada es leyendo el estado actual de esa tecla. Para poder reaccionar a las pulsaciones de teclas, tendrías que leer constantemente el estado de la tecla para capturarla antes de que se libere nuevamente. Sería peligroso realizar otras computaciones intensivas en tiempo, ya que podrías perder una pulsación de tecla.</p>
+
+<p><a class="p_ident" id="p-VP41tPOvsN" href="https://www.eloquentjavascript.es/15_event.html#p-VP41tPOvsN" tabindex="-1" role="presentation"></a>Algunas máquinas primitivas manejan la entrada de esa manera. Un paso adelante sería que el hardware o el sistema operativo noten la pulsación de tecla y la pongan en una cola. Un programa puede luego verificar periódicamente la cola en busca de nuevos eventos y reaccionar a lo que encuentre allí.</p>
+
+<p><a class="p_ident" id="p-OA4r/1sP4t" href="https://www.eloquentjavascript.es/15_event.html#p-OA4r/1sP4t" tabindex="-1" role="presentation"></a>Por supuesto, tiene que recordar mirar la cola y hacerlo a menudo, porque cualquier tiempo transcurrido entre la presión de la tecla y la notificación del evento por parte del programa hará que el software se sienta sin respuesta. Este enfoque se llama <em>sondeo</em>. La mayoría de los programadores prefieren evitarlo.</p>
+
+<p><a class="p_ident" id="p-2XkwGPIiX5" href="https://www.eloquentjavascript.es/15_event.html#p-2XkwGPIiX5" tabindex="-1" role="presentation"></a>Un mecanismo mejor es que el sistema notifique activamente a nuestro código cuando ocurre un evento. Los navegadores hacen esto al permitirnos registrar funciones como <em>manejadores</em> para eventos específicos.</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-oVekYvwKVN" href="https://www.eloquentjavascript.es/15_event.html#c-oVekYvwKVN" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">p</span>&gt;Haz clic en este documento para activar el manejador.&lt;/<span class="tok-typeName">p</span>&gt;
+&lt;<span class="tok-typeName">script</span>&gt;
+  window.addEventListener(<span class="tok-string">"click"</span>, () =&gt; {
+    console.log(<span class="tok-string">"¿Llamaste?"</span>);
+  });
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<p><a class="p_ident" id="p-sMSFJq6kop" href="https://www.eloquentjavascript.es/15_event.html#p-sMSFJq6kop" tabindex="-1" role="presentation"></a>La asignación <code>window</code> se refiere a un objeto integrado proporcionado por el navegador. Representa la ventana del navegador que contiene el documento. Llamar a su método <code>addEventListener</code> registra el segundo argumento para que se llame cada vez que ocurra el evento descrito por su primer argumento.</p>
+
+<h2><a class="h_ident" id="h-i1TmEKGPGX" href="https://www.eloquentjavascript.es/15_event.html#h-i1TmEKGPGX" tabindex="-1" role="presentation"></a>Eventos y nodos DOM</h2>
+
+<p><a class="p_ident" id="p-KozqhnfqX8" href="https://www.eloquentjavascript.es/15_event.html#p-KozqhnfqX8" tabindex="-1" role="presentation"></a>Cada controlador de eventos del navegador se registra en un contexto. En el ejemplo anterior llamamos a <code>addEventListener</code> en el objeto <code>window</code> para registrar un controlador para toda la ventana. Un método similar también se encuentra en elementos del DOM y algunos otros tipos de objetos. Los escuchas de eventos solo se llaman cuando el evento ocurre en el contexto del objeto en el que están registrados.</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-cgGEoZtMBf" href="https://www.eloquentjavascript.es/15_event.html#c-cgGEoZtMBf" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">button</span>&gt;Haz clic&lt;/<span class="tok-typeName">button</span>&gt;
+&lt;<span class="tok-typeName">p</span>&gt;No hay manejador aquí.&lt;/<span class="tok-typeName">p</span>&gt;
+&lt;<span class="tok-typeName">script</span>&gt;
+  <span class="tok-keyword">let</span> <span class="tok-definition">button</span> = document.querySelector(<span class="tok-string">"button"</span>);
+  button.addEventListener(<span class="tok-string">"click"</span>, () =&gt; {
+    console.log(<span class="tok-string">"Botón clickeado."</span>);
+  });
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<p><a class="p_ident" id="p-qcV8LJi52o" href="https://www.eloquentjavascript.es/15_event.html#p-qcV8LJi52o" tabindex="-1" role="presentation"></a>Ese ejemplo adjunta un manejador al nodo del botón. Los clics en el botón hacen que se ejecute ese manejador, pero los clics en el resto del documento no lo hacen.</p>
+
+<p><a class="p_ident" id="p-ULEZ9TcmUH" href="https://www.eloquentjavascript.es/15_event.html#p-ULEZ9TcmUH" tabindex="-1" role="presentation"></a>Darle a un nodo un atributo <code>onclick</code> tiene un efecto similar. Esto funciona para la mayoría de tipos de eventos: puedes adjuntar un manejador a través del atributo cuyo nombre es el nombre del evento con <code>on</code> al inicio.</p>
+
+<p><a class="p_ident" id="p-jwX/IrUZx/" href="https://www.eloquentjavascript.es/15_event.html#p-jwX/IrUZx/" tabindex="-1" role="presentation"></a>Pero un nodo solo puede tener un atributo <code>onclick</code>, por lo que solo puedes registrar un manejador por nodo de esa manera. El método <code>addEventListener</code> te permite agregar cualquier cantidad de manejadores, por lo que es seguro agregar manejadores incluso si ya hay otro manejador en el elemento.</p>
+
+<p><a class="p_ident" id="p-/4LnTySpGj" href="https://www.eloquentjavascript.es/15_event.html#p-/4LnTySpGj" tabindex="-1" role="presentation"></a>El método <code>removeEventListener</code>, llamado con argumentos similares a <code>addEventListener</code>, remueve un manejador.</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-BYy+V/MPJt" href="https://www.eloquentjavascript.es/15_event.html#c-BYy+V/MPJt" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">button</span>&gt;Botón de acción única&lt;/<span class="tok-typeName">button</span>&gt;
+&lt;<span class="tok-typeName">script</span>&gt;
+  <span class="tok-keyword">let</span> <span class="tok-definition">button</span> = document.querySelector(<span class="tok-string">"button"</span>);
+  <span class="tok-keyword">function</span> <span class="tok-definition">unaVez</span>() {
+    console.log(<span class="tok-string">"¡Hecho!"</span>);
+    button.removeEventListener(<span class="tok-string">"click"</span>, unaVez);
+  }
+  button.addEventListener(<span class="tok-string">"click"</span>, unaVez);
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<p><a class="p_ident" id="p-8jkibmkt7W" href="https://www.eloquentjavascript.es/15_event.html#p-8jkibmkt7W" tabindex="-1" role="presentation"></a>La función proporcionada a <code>removeEventListener</code> debe ser el mismo valor de función que se proporcionó a <code>addEventListener</code>. Por lo tanto, para anular el registro de un manejador, querrás darle un nombre a la función (<code>unaVez</code>, en el ejemplo) para poder pasar el mismo valor de función a ambos métodos.</p>
+
+<h2><a class="h_ident" id="h-KlpBrbTtf/" href="https://www.eloquentjavascript.es/15_event.html#h-KlpBrbTtf/" tabindex="-1" role="presentation"></a>Objetos de eventos</h2>
+
+<p><a class="p_ident" id="p-EfRG8R9jxW" href="https://www.eloquentjavascript.es/15_event.html#p-EfRG8R9jxW" tabindex="-1" role="presentation"></a>Aunque lo hemos ignorado hasta ahora, las funciones de manejadores de eventos reciben un argumento: el <em>objeto de evento</em>. Este objeto contiene información adicional sobre el evento. Por ejemplo, si queremos saber <em>cuál</em> botón del mouse se presionó, podemos mirar la propiedad <code>button</code> del objeto de evento.</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-1XU8X2K94Z" href="https://www.eloquentjavascript.es/15_event.html#c-1XU8X2K94Z" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">button</span>&gt;Haz clic como quieras&lt;/<span class="tok-typeName">button</span>&gt;
+&lt;<span class="tok-typeName">script</span>&gt;
+  <span class="tok-keyword">let</span> <span class="tok-definition">button</span> = document.querySelector(<span class="tok-string">"button"</span>);
+  button.addEventListener(<span class="tok-string">"mousedown"</span>, <span class="tok-definition">event</span> =&gt; {
+    <span class="tok-keyword">if</span> (event.button == <span class="tok-number">0</span>) {
+      console.log(<span class="tok-string">"Botón izquierdo"</span>);
+    } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (event.button == <span class="tok-number">1</span>) {
+      console.log(<span class="tok-string">"Botón del medio"</span>);
+    } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (event.button == <span class="tok-number">2</span>) {
+      console.log(<span class="tok-string">"Botón derecho"</span>);
+    }
+  });
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<p><a class="p_ident" id="p-HlzOSkQJuU" href="https://www.eloquentjavascript.es/15_event.html#p-HlzOSkQJuU" tabindex="-1" role="presentation"></a>La información almacenada en un objeto de evento difiere según el tipo de evento. Discutiremos diferentes tipos más adelante en el capítulo. La propiedad <code>type</code> del objeto siempre contiene una cadena que identifica el evento (como <code>"click"</code> o <code>"mousedown"</code>).</p>
+
+<h2><a class="h_ident" id="h-4NLRTYLmHH" href="https://www.eloquentjavascript.es/15_event.html#h-4NLRTYLmHH" tabindex="-1" role="presentation"></a>Propagación</h2>
+
+<p><a class="p_ident" id="p-eiMQVYI0Vr" href="https://www.eloquentjavascript.es/15_event.html#p-eiMQVYI0Vr" tabindex="-1" role="presentation"></a>Para la mayoría de tipos de evento, los manejadores registrados en nodos con hijos también recibirán eventos que ocurran en los hijos. Si se hace clic en un botón dentro de un párrafo, los manejadores de eventos en el párrafo también verán el evento de clic.</p>
+
+<p><a class="p_ident" id="p-LrSHxLbszG" href="https://www.eloquentjavascript.es/15_event.html#p-LrSHxLbszG" tabindex="-1" role="presentation"></a>Pero si tanto el párrafo como el botón tienen un controlador, el controlador más específico —el del botón— tiene prioridad para ejecutarse primero. Se dice que el evento <em>se propaga</em> hacia afuera, desde el nodo donde ocurrió hacia el nodo padre de ese nodo y hasta la raíz del documento. Finalmente, después de que todos los controladores registrados en un nodo específico hayan tenido su turno, los controladores registrados en toda la ventana tienen la oportunidad de responder al evento.</p>
+
+<p><a class="p_ident" id="p-bLFObMVe5V" href="https://www.eloquentjavascript.es/15_event.html#p-bLFObMVe5V" tabindex="-1" role="presentation"></a>En cualquier momento, un controlador de eventos puede llamar al método <code>stopPropagation</code> en el objeto de evento para evitar que los controladores superiores reciban el evento. Esto puede ser útil cuando, por ejemplo, tienes un botón dentro de otro elemento clickeable y no quieres que los clics en el botón activen el comportamiento de click del elemento externo.</p>
+
+<p><a class="p_ident" id="p-VouwaRKuxI" href="https://www.eloquentjavascript.es/15_event.html#p-VouwaRKuxI" tabindex="-1" role="presentation"></a>El siguiente ejemplo registra controladores de <code>"mousedown"</code> tanto en un botón como en el párrafo que lo rodea. Cuando se hace clic con el botón derecho del ratón, el controlador del botón llama a <code>stopPropagation</code>, lo que evitará que se ejecute el controlador en el párrafo. Cuando el botón se hace clic con otro botón del ratón, ambos controladores se ejecutarán.</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-VU+8jIYijA" href="https://www.eloquentjavascript.es/15_event.html#c-VU+8jIYijA" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">p</span>&gt;Un párrafo con un &lt;<span class="tok-typeName">button</span>&gt;botón&lt;/<span class="tok-typeName">button</span>&gt;.&lt;/<span class="tok-typeName">p</span>&gt;
+&lt;<span class="tok-typeName">script</span>&gt;
+  <span class="tok-keyword">let</span> <span class="tok-definition">para</span> = document.querySelector(<span class="tok-string">"p"</span>);
+  <span class="tok-keyword">let</span> <span class="tok-definition">button</span> = document.querySelector(<span class="tok-string">"button"</span>);
+  para.addEventListener(<span class="tok-string">"mousedown"</span>, () =&gt; {
+    console.log(<span class="tok-string">"Controlador para el párrafo."</span>);
+  });
+  button.addEventListener(<span class="tok-string">"mousedown"</span>, <span class="tok-definition">event</span> =&gt; {
+    console.log(<span class="tok-string">"Controlador para el botón."</span>);
+    <span class="tok-keyword">if</span> (event.button == <span class="tok-number">2</span>) event.stopPropagation();
+  });
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<p><a class="p_ident" id="p-5Nvc1U9zZK" href="https://www.eloquentjavascript.es/15_event.html#p-5Nvc1U9zZK" tabindex="-1" role="presentation"></a>La mayoría de los objetos de eventos tienen una propiedad <code>target</code> que se refiere al nodo donde se originaron. Puedes usar esta propiedad para asegurarte de que no estás manejando accidentalmente algo que se propagó desde un nodo que no deseas manejar.</p>
+
+<p><a class="p_ident" id="p-AV6INcWyLH" href="https://www.eloquentjavascript.es/15_event.html#p-AV6INcWyLH" tabindex="-1" role="presentation"></a>También es posible usar la propiedad <code>target</code> para abarcar un amplio rango para un tipo específico de evento. Por ejemplo, si tienes un nodo que contiene una larga lista de botones, puede ser más conveniente registrar un único controlador de clic en el nodo externo y hacer que utilice la propiedad <code>target</code> para averiguar si se hizo clic en un botón, en lugar de registrar controladores individuales en todos los botones.</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-prAkJsIl5b" href="https://www.eloquentjavascript.es/15_event.html#c-prAkJsIl5b" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">button</span>&gt;A&lt;/<span class="tok-typeName">button</span>&gt;
+&lt;<span class="tok-typeName">button</span>&gt;B&lt;/<span class="tok-typeName">button</span>&gt;
+&lt;<span class="tok-typeName">button</span>&gt;C&lt;/<span class="tok-typeName">button</span>&gt;
+&lt;<span class="tok-typeName">script</span>&gt;
+  document.body.addEventListener(<span class="tok-string">"click"</span>, <span class="tok-definition">event</span> =&gt; {
+    <span class="tok-keyword">if</span> (event.target.nodeName == <span class="tok-string">"BUTTON"</span>) {
+      console.log(<span class="tok-string">"Clic en"</span>, event.target.textContent);
+    }
+  });
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<h2><a class="h_ident" id="h-6R7Ptf/aVU" href="https://www.eloquentjavascript.es/15_event.html#h-6R7Ptf/aVU" tabindex="-1" role="presentation"></a>Acciones predeterminadas</h2>
+
+<p><a class="p_ident" id="p-R2pr2N9dn+" href="https://www.eloquentjavascript.es/15_event.html#p-R2pr2N9dn+" tabindex="-1" role="presentation"></a>Muchos eventos tienen una acción predeterminada asociada a ellos. Si haces clic en un enlace, serás llevado al destino del enlace. Si presionas la flecha hacia abajo, el navegador desplazará la página hacia abajo. Si haces clic derecho, obtendrás un menú contextual. Y así sucesivamente.</p>
+
+<p><a class="p_ident" id="p-eCArhCpoYq" href="https://www.eloquentjavascript.es/15_event.html#p-eCArhCpoYq" tabindex="-1" role="presentation"></a>Para la mayoría de los tipos de eventos, los controladores de eventos de JavaScript se ejecutan <em>antes</em> de que ocurra el comportamiento predeterminado. Si el controlador no desea que este comportamiento normal ocurra, típicamente porque ya se encargó de manejar el evento, puede llamar al método <code>preventDefault</code> en el objeto de evento.</p>
+
+<p><a class="p_ident" id="p-RY97vdby+n" href="https://www.eloquentjavascript.es/15_event.html#p-RY97vdby+n" tabindex="-1" role="presentation"></a>Esto se puede utilizar para implementar tus propios atajos de teclado o menús contextuales. También se puede usar para interferir de manera molesta con el comportamiento que los usuarios esperan. Por ejemplo, aquí hay un enlace que no se puede seguir:</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-sGqQCQuHVQ" href="https://www.eloquentjavascript.es/15_event.html#c-sGqQCQuHVQ" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">a</span> href=<span class="tok-string">"https://developer.mozilla.org/"</span>&gt;MDN&lt;/<span class="tok-typeName">a</span>&gt;
+&lt;<span class="tok-typeName">script</span>&gt;
+  <span class="tok-keyword">let</span> <span class="tok-definition">link</span> = document.querySelector(<span class="tok-string">"a"</span>);
+  link.addEventListener(<span class="tok-string">"click"</span>, <span class="tok-definition">event</span> =&gt; {
+    console.log(<span class="tok-string">"¡Incorrecto!"</span>);
+    event.preventDefault();
+  });
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<p><a class="p_ident" id="p-H9L0J5B5xg" href="https://www.eloquentjavascript.es/15_event.html#p-H9L0J5B5xg" tabindex="-1" role="presentation"></a>Trata de no hacer este tipo de cosas a menos que tengas una razón realmente válida. Será desagradable para las personas que utilicen tu página cuando se rompa el comportamiento esperado.</p>
+
+<p><a class="p_ident" id="p-eCmiVPHlxu" href="https://www.eloquentjavascript.es/15_event.html#p-eCmiVPHlxu" tabindex="-1" role="presentation"></a>Dependiendo del navegador, algunos eventos no se pueden interceptar en absoluto. En Chrome, por ejemplo, el atajo de teclado para cerrar la pestaña actual (control-W o command-W) no se puede manejar con JavaScript.</p>
+
+<h2><a class="h_ident" id="h-eLNw0KdiHA" href="https://www.eloquentjavascript.es/15_event.html#h-eLNw0KdiHA" tabindex="-1" role="presentation"></a>Eventos de teclado</h2>
+
+<p><a class="p_ident" id="p-wp8+LsBC/U" href="https://www.eloquentjavascript.es/15_event.html#p-wp8+LsBC/U" tabindex="-1" role="presentation"></a>Cuando se presiona una tecla en el teclado, tu navegador dispara un evento <code>"keydown"</code>. Cuando se suelta, obtienes un evento <code>"keyup"</code>.</p>
+
+<pre tabindex="0" class="snippet" data-language="html" data-focus="true"><a class="c_ident" id="c-lRps+rMLij" href="https://www.eloquentjavascript.es/15_event.html#c-lRps+rMLij" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">p</span>&gt;Esta página se vuelve violeta cuando mantienes presionada la tecla V.&lt;/<span class="tok-typeName">p</span>&gt;
+&lt;<span class="tok-typeName">script</span>&gt;
+  window.addEventListener(<span class="tok-string">"keydown"</span>, <span class="tok-definition">event</span> =&gt; {
+    <span class="tok-keyword">if</span> (event.key == <span class="tok-string">"v"</span>) {
+      document.body.style.background = <span class="tok-string">"violet"</span>;
+    }
+  });
+  window.addEventListener(<span class="tok-string">"keyup"</span>, <span class="tok-definition">event</span> =&gt; {
+    <span class="tok-keyword">if</span> (event.key == <span class="tok-string">"v"</span>) {
+      document.body.style.background = <span class="tok-string">""</span>;
+    }
+  });
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<p><a class="p_ident" id="p-/uBKiqvFy0" href="https://www.eloquentjavascript.es/15_event.html#p-/uBKiqvFy0" tabindex="-1" role="presentation"></a>A pesar de su nombre, <code>"keydown"</code> se dispara no solo cuando la tecla se presiona físicamente hacia abajo. Cuando se presiona y se mantiene una tecla, el evento se vuelve a disparar cada vez que la tecla <em>se repite</em>. A veces tienes que tener cuidado con esto. Por ejemplo, si agregas un botón al DOM cuando se presiona una tecla y lo eliminas de nuevo cuando se suelta la tecla, podrías agregar accidentalmente cientos de botones cuando se mantiene presionada la tecla durante más tiempo.</p>
+
+<p><a class="p_ident" id="p-I4C4KO6VjA" href="https://www.eloquentjavascript.es/15_event.html#p-I4C4KO6VjA" tabindex="-1" role="presentation"></a>El ejemplo observó la propiedad <code>key</code> del objeto evento para ver sobre qué tecla es el evento. Esta propiedad contiene una cadena que, para la mayoría de las teclas, corresponde a lo que escribirías al presionar esa tecla. Para teclas especiales como <span class="keyname">enter</span>, contiene una cadena que nombra la tecla (<code>"Enter"</code>, en este caso). Si mantienes presionado <span class="keyname">shift</span> mientras presionas una tecla, eso también puede influir en el nombre de la tecla: <code>"v"</code> se convierte en <code>"V"</code>, y <code>"1"</code> puede convertirse en <code>"!"</code>, si eso es lo que produce al presionar <span class="keyname">shift</span>-1 en tu teclado.</p>
+
+<p><a class="p_ident" id="p-GTiYNx18vJ" href="https://www.eloquentjavascript.es/15_event.html#p-GTiYNx18vJ" tabindex="-1" role="presentation"></a>Las teclas modificadoras como <span class="keyname">shift</span>, <span class="keyname">control</span>, <span class="keyname">alt</span> y <span class="keyname">meta</span> (command en Mac) generan eventos de tecla igual que las teclas normales. Pero al buscar combinaciones de teclas, también puedes averiguar si estas teclas se mantienen presionadas mirando las propiedades <code>shiftKey</code>, <code>ctrlKey</code>, <code>altKey</code> y <code>metaKey</code> de los eventos de teclado y ratón.</p>
+
+<pre tabindex="0" class="snippet" data-language="html" data-focus="true"><a class="c_ident" id="c-8SxxAoGtUO" href="https://www.eloquentjavascript.es/15_event.html#c-8SxxAoGtUO" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">p</span>&gt;Pulsa Control-Espacio para continuar.&lt;/<span class="tok-typeName">p</span>&gt;
+&lt;<span class="tok-typeName">script</span>&gt;
+  window.addEventListener(<span class="tok-string">"keydown"</span>, <span class="tok-definition">event</span> =&gt; {
+    <span class="tok-keyword">if</span> (event.key == <span class="tok-string">" "</span> &amp;&amp; event.ctrlKey) {
+      console.log(<span class="tok-string">"¡Continuando!"</span>);
+    }
+  });
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<p><a class="p_ident" id="p-2tFLOxDicw" href="https://www.eloquentjavascript.es/15_event.html#p-2tFLOxDicw" tabindex="-1" role="presentation"></a>El nodo del DOM donde se origina un evento de teclado depende del elemento que tiene foco cuando se presiona la tecla. La mayoría de los nodos no pueden tener foco a menos que les des un atributo <code>tabindex</code>, pero cosas como los enlaces, botones y campos de formulario pueden. Volveremos a los campos de formulario en el <a href="https://www.eloquentjavascript.es/18_http.html#forms">Capítulo 18</a>. Cuando nada en particular tiene foco, <code>document.body</code> actúa como el nodo objetivo de los eventos de teclado.</p>
+
+<p><a class="p_ident" id="p-24lfblPn/F" href="https://www.eloquentjavascript.es/15_event.html#p-24lfblPn/F" tabindex="-1" role="presentation"></a>Cuando el usuario está escribiendo texto, utilizar eventos de teclado para averiguar qué se está escribiendo es problemático. Algunas plataformas, especialmente el teclado virtual en teléfonos Android, no disparan eventos de teclado. Pero incluso cuando se tiene un teclado tradicional, algunos tipos de entrada de texto no coinciden con las pulsaciones de teclas de manera directa, como el software de <em>editor de método de entrada</em> (IME) utilizado por personas cuyos guiones no caben en un teclado, donde múltiples pulsaciones de teclas se combinan para crear caracteres.</p>
+
+<p><a class="p_ident" id="p-PQJVGZpm4G" href="https://www.eloquentjavascript.es/15_event.html#p-PQJVGZpm4G" tabindex="-1" role="presentation"></a>Para detectar cuando se ha escrito algo, los elementos en los que se puede escribir, como las etiquetas <code>&lt;input&gt;</code> y <code>&lt;textarea&gt;</code>, activan eventos <code>"input"</code> cada vez que el usuario cambia su contenido. Para obtener el contenido real que se ha escrito, lo mejor es leerlo directamente del campo enfocado. <a href="https://www.eloquentjavascript.es/18_http.html#forms">Capítulo 18</a> mostrará cómo hacerlo.</p>
+
+<h2><a class="h_ident" id="h-AYhl2kjrOW" href="https://www.eloquentjavascript.es/15_event.html#h-AYhl2kjrOW" tabindex="-1" role="presentation"></a>Eventos de puntero</h2>
+
+<p><a class="p_ident" id="p-6Y0Y9AhTlQ" href="https://www.eloquentjavascript.es/15_event.html#p-6Y0Y9AhTlQ" tabindex="-1" role="presentation"></a>Actualmente existen dos formas ampliamente utilizadas de señalar cosas en una pantalla: los ratones (incluyendo dispositivos que actúan como ratones, como touchpads y trackballs) y las pantallas táctiles. Estas producen diferentes tipos de eventos.</p>
+
+<h3><a class="i_ident" id="i-ld4kHyEZCM" href="https://www.eloquentjavascript.es/15_event.html#i-ld4kHyEZCM" tabindex="-1" role="presentation"></a>Clics de ratón</h3>
+
+<p><a class="p_ident" id="p-6QIvunU/eA" href="https://www.eloquentjavascript.es/15_event.html#p-6QIvunU/eA" tabindex="-1" role="presentation"></a>Presionar un botón de ratón provoca que se disparen varios eventos. Los eventos <code>"mousedown"</code> y <code>"mouseup"</code> son similares a <code>"keydown"</code> y <code>"keyup"</code> y se activan cuando se presiona y se suelta el botón. Estos eventos ocurren en los nodos del DOM que están inmediatamente debajo del puntero del ratón cuando se produce el evento.</p>
+
+<p><a class="p_ident" id="p-gHgOyxznTg" href="https://www.eloquentjavascript.es/15_event.html#p-gHgOyxznTg" tabindex="-1" role="presentation"></a>Después del evento <code>"mouseup"</code>, se dispara un evento <code>"click"</code> en el nodo más específico que contenía tanto la pulsación como la liberación del botón. Por ejemplo, si presiono el botón del ratón en un párrafo y luego muevo el puntero a otro párrafo y suelto el botón, el evento <code>"click"</code> ocurrirá en el elemento que contiene ambos párrafos.</p>
+
+<p><a class="p_ident" id="p-VTiFjJPIru" href="https://www.eloquentjavascript.es/15_event.html#p-VTiFjJPIru" tabindex="-1" role="presentation"></a>Si dos clics ocurren cerca uno del otro, también se dispara un evento <code>"dblclick"</code> (doble clic), después del segundo evento de clic.</p>
+
+<p><a class="p_ident" id="p-bCo6gVY4HL" href="https://www.eloquentjavascript.es/15_event.html#p-bCo6gVY4HL" tabindex="-1" role="presentation"></a>Para obtener información precisa sobre el lugar donde ocurrió un evento de ratón, puedes mirar sus propiedades <code>clientX</code> y <code>clientY</code>, que contienen las coordenadas del evento (en píxeles) relativas a la esquina superior izquierda de la ventana, o <code>pageX</code> y <code>pageY</code>, que son relativas a la esquina superior izquierda de todo el documento (lo cual puede ser diferente cuando la ventana ha sido desplazada).</p>
+
+<p id="dibujo con ratón"><a class="p_ident" id="p-u6ObYcInxf" href="https://www.eloquentjavascript.es/15_event.html#p-u6ObYcInxf" tabindex="-1" role="presentation"></a>El siguiente programa implementa una aplicación de dibujo primitiva. Cada vez que haces clic en el documento, agrega un punto bajo el puntero de tu ratón. Ver <a href="https://www.eloquentjavascript.es/19_paint.html">Capítulo 19</a> para una aplicación de dibujo menos primitiva.</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-vLkN71+z+e" href="https://www.eloquentjavascript.es/15_event.html#c-vLkN71+z+e" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">style</span>&gt;
+  <span class="tok-typeName">body</span> {
+    height: <span class="tok-number">200</span><span class="tok-keyword">px</span>;
+    background: <span class="tok-atom">beige</span>;
+  }
+  .dot {
+    height: <span class="tok-number">8</span><span class="tok-keyword">px</span>; width: <span class="tok-number">8</span><span class="tok-keyword">px</span>;
+    border-radius: <span class="tok-number">4</span><span class="tok-keyword">px</span>; <span class="tok-comment">/* redondea las esquinas */</span>
+    background: <span class="tok-atom">teal</span>;
+    position: <span class="tok-atom">absolute</span>;
+  }
+&lt;/<span class="tok-typeName">style</span>&gt;
+&lt;<span class="tok-typeName">script</span>&gt;
+  window.addEventListener(<span class="tok-string">"click"</span>, <span class="tok-definition">event</span> =&gt; {
+    <span class="tok-keyword">let</span> <span class="tok-definition">dot</span> = document.createElement(<span class="tok-string">"div"</span>);
+    dot.className = <span class="tok-string">"dot"</span>;
+    dot.style.left = (event.pageX - <span class="tok-number">4</span>) + <span class="tok-string">"px"</span>;
+    dot.style.top = (event.pageY - <span class="tok-number">4</span>) + <span class="tok-string">"px"</span>;
+    document.body.appendChild(dot);
+  });
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<h3><a class="i_ident" id="i-uAoy9QjKsj" href="https://www.eloquentjavascript.es/15_event.html#i-uAoy9QjKsj" tabindex="-1" role="presentation"></a>Movimiento del ratón</h3>
+
+<p><a class="p_ident" id="p-wmFbB/1fGJ" href="https://www.eloquentjavascript.es/15_event.html#p-wmFbB/1fGJ" tabindex="-1" role="presentation"></a>Cada vez que el puntero del ratón se mueve, se dispara un evento <code>"mousemove"</code>. Este evento se puede usar para rastrear la posición del ratón. Una situación común en la que esto es útil es al implementar algún tipo de funcionalidad de arrastrar y soltar con el ratón.</p>
+
+<p><a class="p_ident" id="p-2QDCAMGt0z" href="https://www.eloquentjavascript.es/15_event.html#p-2QDCAMGt0z" tabindex="-1" role="presentation"></a>Como ejemplo, el siguiente programa muestra una barra y configura controladores de eventos para que al arrastrar hacia la izquierda o hacia la derecha en esta barra, se haga más estrecha o más ancha:</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-UTKlG/Tbre" href="https://www.eloquentjavascript.es/15_event.html#c-UTKlG/Tbre" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">p</span>&gt;Arrastra la barra para cambiar su anchura:&lt;/<span class="tok-typeName">p</span>&gt;
+&lt;<span class="tok-typeName">div</span> style=<span class="tok-string">"</span>background: <span class="tok-atom">orange</span>; width: <span class="tok-number">60</span><span class="tok-keyword">px</span>; height: <span class="tok-number">20</span><span class="tok-keyword">px</span><span class="tok-string">"</span>&gt;
+&lt;/<span class="tok-typeName">div</span>&gt;
+&lt;<span class="tok-typeName">script</span>&gt;
+  <span class="tok-keyword">let</span> <span class="tok-definition">lastX</span>; <span class="tok-comment">// Rastrea la última posición X del ratón observada</span>
+  <span class="tok-keyword">let</span> <span class="tok-definition">bar</span> = document.querySelector(<span class="tok-string">"div"</span>);
+  bar.addEventListener(<span class="tok-string">"mousedown"</span>, <span class="tok-definition">event</span> =&gt; {
+    <span class="tok-keyword">if</span> (event.button == <span class="tok-number">0</span>) {
+      lastX = event.clientX;
+      window.addEventListener(<span class="tok-string">"mousemove"</span>, moved);
+      event.preventDefault(); <span class="tok-comment">// Prevenir selección</span>
+    }
+  });
+
+  <span class="tok-keyword">function</span> <span class="tok-definition">moved</span>(<span class="tok-definition">event</span>) {
+    <span class="tok-keyword">if</span> (event.buttons == <span class="tok-number">0</span>) {
+      window.removeEventListener(<span class="tok-string">"mousemove"</span>, moved);
+    } <span class="tok-keyword">else</span> {
+      <span class="tok-keyword">let</span> <span class="tok-definition">dist</span> = event.clientX - lastX;
+      <span class="tok-keyword">let</span> <span class="tok-definition">newWidth</span> = Math.max(<span class="tok-number">10</span>, bar.offsetWidth + dist);
+      bar.style.width = newWidth + <span class="tok-string">"px"</span>;
+      lastX = event.clientX;
+    }
+  }
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<p><a class="p_ident" id="p-fI+m6ASEUA" href="https://www.eloquentjavascript.es/15_event.html#p-fI+m6ASEUA" tabindex="-1" role="presentation"></a>Ten en cuenta que el controlador <code>"mousemove"</code> está registrado en toda la window. Incluso si el ratón sale de la barra durante el cambio de tamaño, mientras el botón se mantenga presionado todavía queremos actualizar su tamaño.</p>
+
+<p><a class="p_ident" id="p-khR2v5y/R0" href="https://www.eloquentjavascript.es/15_event.html#p-khR2v5y/R0" tabindex="-1" role="presentation"></a>Debemos detener el cambio de tamaño de la barra cuando se libere el botón del ratón. Para eso, podemos usar la propiedad <code>buttons</code> (notar el plural), que nos indica qué botones están actualmente presionados. Cuando este valor es cero, ningún botón está presionado. Cuando se mantienen presionados botones, su valor es la suma de los códigos de esos botones—el botón izquierdo tiene el código 1, el derecho 2 y el central 4. Con el botón izquierdo y el derecho presionados, por ejemplo, el valor de <code>buttons</code> será 3.</p>
+
+<p><a class="p_ident" id="p-lvY87c8VFr" href="https://www.eloquentjavascript.es/15_event.html#p-lvY87c8VFr" tabindex="-1" role="presentation"></a>Es importante destacar que el orden de estos códigos es diferente al utilizado por <code>button</code>, donde el botón central venía antes que el derecho. Como se mencionó, la consistencia no es realmente un punto fuerte de la interfaz de programación del navegador.</p>
+
+<h3><a class="i_ident" id="i-QH29N+27Jo" href="https://www.eloquentjavascript.es/15_event.html#i-QH29N+27Jo" tabindex="-1" role="presentation"></a>Eventos táctiles</h3>
+
+<p><a class="p_ident" id="p-3qJEJXxC/X" href="https://www.eloquentjavascript.es/15_event.html#p-3qJEJXxC/X" tabindex="-1" role="presentation"></a>El estilo de navegador gráfico que usamos fue diseñado pensando en interfaces de ratón, en una época donde las pantallas táctiles eran raras. Para hacer que la web “funcione” en los primeros teléfonos con pantalla táctil, los navegadores de esos dispositivos fingían, hasta cierto punto, que los eventos táctiles eran eventos de ratón. Si tocas la pantalla, recibirás eventos de <code>"mousedown"</code>, <code>"mouseup"</code> y <code>"click"</code>.</p>
+
+<p><a class="p_ident" id="p-FMkG1NPMsu" href="https://www.eloquentjavascript.es/15_event.html#p-FMkG1NPMsu" tabindex="-1" role="presentation"></a>Pero esta ilusión no es muy robusta. Una pantalla táctil funciona de manera diferente a un ratón: no tiene múltiples botones, no se puede rastrear el dedo cuando no está en la pantalla (para simular <code>"mousemove"</code>), y permite que varios dedos estén en la pantalla al mismo tiempo.</p>
+
+<p><a class="p_ident" id="p-h68paN5HEy" href="https://www.eloquentjavascript.es/15_event.html#p-h68paN5HEy" tabindex="-1" role="presentation"></a>Los eventos de ratón solo cubren la interacción táctil en casos sencillos: si agregas un controlador de <code>"click"</code> a un botón, los usuarios táctiles aún podrán usarlo. Pero algo como la barra redimensionable del ejemplo anterior no funciona en una pantalla táctil.</p>
+
+<p><a class="p_ident" id="p-n2OW5CUnrz" href="https://www.eloquentjavascript.es/15_event.html#p-n2OW5CUnrz" tabindex="-1" role="presentation"></a>Existen tipos específicos de eventos disparados por la interacción táctil. Cuando un dedo comienza a tocar la pantalla, se genera un evento <code>"touchstart"</code>. Cuando se mueve mientras toca, se generan eventos <code>"touchmove"</code>. Finalmente, cuando deja de tocar la pantalla, verás un evento <code>"touchend"</code>.</p>
+
+<p><a class="p_ident" id="p-RgqmyZVECT" href="https://www.eloquentjavascript.es/15_event.html#p-RgqmyZVECT" tabindex="-1" role="presentation"></a>Debido a que muchas pantallas táctiles pueden detectar varios dedos al mismo tiempo, estos eventos no tienen un único conjunto de coordenadas asociadas. Más bien, sus objetos de eventos tienen una propiedad <code>touches</code>, que contiene un objeto similar a un array de puntos, cada uno con sus propias propiedades <code>clientX</code>, <code>clientY</code>, <code>pageX</code> y <code>pageY</code>.</p>
+
+<p><a class="p_ident" id="p-ye0cXsCzXJ" href="https://www.eloquentjavascript.es/15_event.html#p-ye0cXsCzXJ" tabindex="-1" role="presentation"></a>Podrías hacer algo como esto para mostrar círculos rojos alrededor de cada dedo que toca:</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-o5U4LM42M9" href="https://www.eloquentjavascript.es/15_event.html#c-o5U4LM42M9" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">style</span>&gt;
+  <span class="tok-typeName">dot</span> { position: <span class="tok-atom">absolute</span>; display: <span class="tok-atom">block</span>;
+        border: <span class="tok-number">2</span><span class="tok-keyword">px</span> <span class="tok-atom">solid</span> <span class="tok-atom">red</span>; border-radius: <span class="tok-number">50</span><span class="tok-keyword">px</span>;
+        height: <span class="tok-number">100</span><span class="tok-keyword">px</span>; width: <span class="tok-number">100</span><span class="tok-keyword">px</span>; }
+&lt;/<span class="tok-typeName">style</span>&gt;
+&lt;<span class="tok-typeName">p</span>&gt;Toca esta página&lt;/<span class="tok-typeName">p</span>&gt;
+&lt;<span class="tok-typeName">script</span>&gt;
+  <span class="tok-keyword">function</span> <span class="tok-definition">update</span>(<span class="tok-definition">event</span>) {
+    <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">dot</span>; dot = document.querySelector(<span class="tok-string">"dot"</span>);) {
+      dot.remove();
+    }
+    <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">i</span> = <span class="tok-number">0</span>; i &lt; event.touches.length; i++) {
+      <span class="tok-keyword">let</span> {pageX, pageY} = event.touches[i];
+      <span class="tok-keyword">let</span> <span class="tok-definition">dot</span> = document.createElement(<span class="tok-string">"dot"</span>);
+      dot.style.left = (pageX - <span class="tok-number">50</span>) + <span class="tok-string">"px"</span>;
+      dot.style.top = (pageY - <span class="tok-number">50</span>) + <span class="tok-string">"px"</span>;
+      document.body.appendChild(dot);
+    }
+  }
+  window.addEventListener(<span class="tok-string">"touchstart"</span>, update);
+  window.addEventListener(<span class="tok-string">"touchmove"</span>, update);
+  window.addEventListener(<span class="tok-string">"touchend"</span>, update);
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<p><a class="p_ident" id="p-3HLdUVc1+r" href="https://www.eloquentjavascript.es/15_event.html#p-3HLdUVc1+r" tabindex="-1" role="presentation"></a>A menudo querrás llamar a <code>preventDefault</code> en los controladores de eventos táctiles para anular el comportamiento predeterminado del navegador (que puede incluir desplazar la página al deslizar) y evitar que se generen eventos de ratón, para los cuales también puedes tener un controlador.</p>
+
+<h2><a class="h_ident" id="h-GirMfi5LMB" href="https://www.eloquentjavascript.es/15_event.html#h-GirMfi5LMB" tabindex="-1" role="presentation"></a>Eventos de desplazamiento</h2>
+
+<p><a class="p_ident" id="p-53ahV1ZLJz" href="https://www.eloquentjavascript.es/15_event.html#p-53ahV1ZLJz" tabindex="-1" role="presentation"></a>Cada vez que un elemento se desplaza, se dispara un evento <code>"scroll"</code>. Esto tiene varios usos, como saber qué está viendo actualmente el usuario (para desactivar animaciones fuera de la pantalla o enviar informes de vigilancia a tu malvada sede) o mostrar alguna indicación de progreso (resaltando parte de una tabla de contenidos o mostrando un número de página).El siguiente ejemplo dibuja una barra de progreso sobre el documento y la actualiza para llenarla a medida que se desplaza hacia abajo:</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-7tyBZD/B1O" href="https://www.eloquentjavascript.es/15_event.html#c-7tyBZD/B1O" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">style</span>&gt;
+  #progress {
+    border-bottom: <span class="tok-number">2</span><span class="tok-keyword">px</span> <span class="tok-atom">solid</span> <span class="tok-atom">blue</span>;
+    width: <span class="tok-number">0</span>;
+    position: <span class="tok-atom">fixed</span>;
+    top: <span class="tok-number">0</span>; left: <span class="tok-number">0</span>;
+  }
+&lt;/<span class="tok-typeName">style</span>&gt;
+&lt;<span class="tok-typeName">div</span> id=<span class="tok-string">"progress"</span>&gt;&lt;/<span class="tok-typeName">div</span>&gt;
+&lt;<span class="tok-typeName">script</span>&gt;
+  <span class="tok-comment">// Create some content</span>
+  document.body.appendChild(document.createTextNode(
+    <span class="tok-string">"supercalifragilisticexpialidocious "</span>.repeat(<span class="tok-number">1000</span>)));
+
+  <span class="tok-keyword">let</span> <span class="tok-definition">bar</span> = document.querySelector(<span class="tok-string">"#progress"</span>);
+  window.addEventListener(<span class="tok-string">"scroll"</span>, () =&gt; {
+    <span class="tok-keyword">let</span> <span class="tok-definition">max</span> = document.body.scrollHeight - innerHeight;
+    bar.style.width = <span class="tok-string2">`</span>${(pageYOffset / max) * <span class="tok-number">100</span>}<span class="tok-string2">%`</span>;
+  });
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<p><a class="p_ident" id="p-wyaK3qXoPQ" href="https://www.eloquentjavascript.es/15_event.html#p-wyaK3qXoPQ" tabindex="-1" role="presentation"></a>Darle a un elemento una <code>position</code> de <code>fixed</code> actúa de manera similar a una posición <code>absolute</code>, pero también evita que se desplace junto con el resto del documento. El efecto es hacer que nuestra barra de progreso permanezca en la parte superior. Su ancho se cambia para indicar el progreso actual. Usamos <code>%</code>, en lugar de <code>px</code>, como unidad al establecer el ancho para que el elemento tenga un tamaño relativo al ancho de la página.</p>
+
+<p><a class="p_ident" id="p-ZC4hff5qkY" href="https://www.eloquentjavascript.es/15_event.html#p-ZC4hff5qkY" tabindex="-1" role="presentation"></a>El enlace global <code>innerHeight</code> nos da la altura de la ventana, que debemos restar de la altura total desplazable, ya que no se puede seguir desplazando cuando se llega al final del documento. También existe un <code>innerWidth</code> para el ancho de la ventana. Al dividir <code>pageYOffset</code>, la posición actual de desplazamiento, por la posición máxima de desplazamiento y multiplicar por 100, obtenemos el porcentaje para la barra de progreso.</p>
+
+<p><a class="p_ident" id="p-+d2fsgi/S8" href="https://www.eloquentjavascript.es/15_event.html#p-+d2fsgi/S8" tabindex="-1" role="presentation"></a>Llamar a <code>preventDefault</code> en un evento de desplazamiento no impide que ocurra el desplazamiento. De hecho, el controlador de eventos se llama solo <em>después</em> de que ocurre el desplazamiento.</p>
+
+<h2><a class="h_ident" id="h-Hax528+TkG" href="https://www.eloquentjavascript.es/15_event.html#h-Hax528+TkG" tabindex="-1" role="presentation"></a>Eventos de enfoque</h2>
+
+<p><a class="p_ident" id="p-PRA9P1NtZm" href="https://www.eloquentjavascript.es/15_event.html#p-PRA9P1NtZm" tabindex="-1" role="presentation"></a>Cuando un elemento recibe el enfoque, el navegador dispara un evento <code>"focus"</code> en él. Cuando pierde el enfoque, el elemento recibe un evento <code>"blur"</code>.</p>
+
+<p><a class="p_ident" id="p-8kzN7NKw/2" href="https://www.eloquentjavascript.es/15_event.html#p-8kzN7NKw/2" tabindex="-1" role="presentation"></a>A diferencia de los eventos discutidos anteriormente, estos dos eventos no se propagan. Un controlador en un elemento padre no recibe notificaciones cuando un elemento hijo recibe o pierde el enfoque.</p>
+
+<p><a class="p_ident" id="p-D8wyq1oJ5u" href="https://www.eloquentjavascript.es/15_event.html#p-D8wyq1oJ5u" tabindex="-1" role="presentation"></a>El siguiente ejemplo muestra texto de ayuda para el campo de texto que actualmente tiene el foco:</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-WCzW7hyh0Y" href="https://www.eloquentjavascript.es/15_event.html#c-WCzW7hyh0Y" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">p</span>&gt;Nombre: &lt;<span class="tok-typeName">input</span> type=<span class="tok-string">"text"</span> data-help=<span class="tok-string">"Tu nombre completo"</span>&gt;&lt;/<span class="tok-typeName">p</span>&gt;
+&lt;<span class="tok-typeName">p</span>&gt;Edad: &lt;<span class="tok-typeName">input</span> type=<span class="tok-string">"text"</span> data-help=<span class="tok-string">"Tu edad en años"</span>&gt;&lt;/<span class="tok-typeName">p</span>&gt;
+&lt;<span class="tok-typeName">p</span> id=<span class="tok-string">"help"</span>&gt;&lt;/<span class="tok-typeName">p</span>&gt;
+
+&lt;<span class="tok-typeName">script</span>&gt;
+  <span class="tok-keyword">let</span> <span class="tok-definition">help</span> = document.querySelector(<span class="tok-string">"#help"</span>);
+  <span class="tok-keyword">let</span> <span class="tok-definition">fields</span> = document.querySelectorAll(<span class="tok-string">"input"</span>);
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">field</span> <span class="tok-keyword">of</span> Array.from(fields)) {
+    field.addEventListener(<span class="tok-string">"focus"</span>, <span class="tok-definition">event</span> =&gt; {
+      <span class="tok-keyword">let</span> <span class="tok-definition">text</span> = event.target.getAttribute(<span class="tok-string">"data-help"</span>);
+      help.textContent = text;
+    });
+    field.addEventListener(<span class="tok-string">"blur"</span>, <span class="tok-definition">event</span> =&gt; {
+      help.textContent = <span class="tok-string">""</span>;
+    });
+  }
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<h2><a class="h_ident" id="h-FDJa9FAIT3" href="https://www.eloquentjavascript.es/15_event.html#h-FDJa9FAIT3" tabindex="-1" role="presentation"></a>Evento de carga</h2>
+
+<p><a class="p_ident" id="p-9w6U0pMvKv" href="https://www.eloquentjavascript.es/15_event.html#p-9w6U0pMvKv" tabindex="-1" role="presentation"></a>Cuando una página termina de cargarse, se dispara el evento <code>"load"</code> en los objetos ventana y cuerpo del documento. Esto se usa a menudo para programar acciones de inicialización que requieren que todo el documento haya sido construido. Recuerda que el contenido de las etiquetas <code>&lt;script&gt;</code> se ejecuta inmediatamente cuando se encuentra la etiqueta. Esto puede ser demasiado pronto, por ejemplo, cuando el script necesita hacer algo con partes del documento que aparecen después de la etiqueta <code>&lt;script&gt;</code>.</p>
+
+<p><a class="p_ident" id="p-p/L0xopzQf" href="https://www.eloquentjavascript.es/15_event.html#p-p/L0xopzQf" tabindex="-1" role="presentation"></a>Elementos como imágenes y etiquetas de script que cargan un archivo externo también tienen un evento <code>"load"</code> que indica que se cargaron los archivos a los que hacen referencia. Al igual que los eventos relacionados con el enfoque, los eventos de carga no se propagan.</p>
+
+<p><a class="p_ident" id="p-UoAZklI9NR" href="https://www.eloquentjavascript.es/15_event.html#p-UoAZklI9NR" tabindex="-1" role="presentation"></a>Cuando se cierra una página o se navega lejos de ella (por ejemplo, al seguir un enlace), se dispara un evento <code>"beforeunload"</code>. El uso principal de este evento es evitar que el usuario pierda accidentalmente su trabajo al cerrar un documento. Si previenes el comportamiento predeterminado en este evento <em>y</em> estableces la propiedad <code>returnValue</code> en el objeto de evento a una cadena, el navegador mostrará al usuario un cuadro de diálogo preguntando si realmente desea abandonar la página. Ese cuadro de diálogo podría incluir tu cadena, pero debido a que algunos sitios maliciosos intentan usar estos cuadros de diálogo para confundir a las personas y hacer que se queden en su página para ver anuncios de pérdida de peso dudosos, la mayoría de los navegadores ya no los muestran.</p>
+
+<h2 id="timeline"><a class="h_ident" id="h-h3a3U37DpR" href="https://www.eloquentjavascript.es/15_event.html#h-h3a3U37DpR" tabindex="-1" role="presentation"></a>Eventos y el bucle de eventos</h2>
+
+<p><a class="p_ident" id="p-XL+MT1/Um5" href="https://www.eloquentjavascript.es/15_event.html#p-XL+MT1/Um5" tabindex="-1" role="presentation"></a>En el contexto del bucle de eventos, como se discutió en el <a href="https://www.eloquentjavascript.es/11_async.html">Capítulo 11</a>, los controladores de eventos del navegador se comportan como otras notificaciones asíncronas. Se programan cuando ocurre el evento pero deben esperar a que otros scripts que se estén ejecutando terminen antes de tener la oportunidad de ejecutarse.</p>
+
+<p><a class="p_ident" id="p-5QVtRn61a1" href="https://www.eloquentjavascript.es/15_event.html#p-5QVtRn61a1" tabindex="-1" role="presentation"></a>El hecho de que los eventos solo se puedan procesar cuando no hay nada más en ejecución significa que, si el bucle de eventos está ocupado con otro trabajo, cualquier interacción con la página (que ocurre a través de eventos) se retrasará hasta que haya tiempo para procesarla. Entonces, si programas demasiado trabajo, ya sea con controladores de eventos de larga duración o con muchos que se ejecutan rápidamente, la página se volverá lenta y pesada de usar.</p>
+
+<p><a class="p_ident" id="p-hFlipe/nM6" href="https://www.eloquentjavascript.es/15_event.html#p-hFlipe/nM6" tabindex="-1" role="presentation"></a>Para casos en los que <em>realmente</em> quieres hacer algo que consume mucho tiempo en segundo plano sin congelar la página, los navegadores proporcionan algo llamado <em>web workers</em>. Un worker es un proceso de JavaScript que se ejecuta junto al script principal, en su propia línea de tiempo.</p>
+
+<p><a class="p_ident" id="p-ES+9mz3Jrf" href="https://www.eloquentjavascript.es/15_event.html#p-ES+9mz3Jrf" tabindex="-1" role="presentation"></a>Imagina que elevar al cuadrado un número es una computación pesada y de larga duración que queremos realizar en un hilo separado. Podríamos escribir un archivo llamado <code>code/<wbr>squareworker.<wbr>js</code> que responda a mensajes calculando un cuadrado y enviando un mensaje de vuelta.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-FgmodjGwd9" href="https://www.eloquentjavascript.es/15_event.html#c-FgmodjGwd9" tabindex="-1" role="presentation"></a>addEventListener(<span class="tok-string">"message"</span>, <span class="tok-definition">event</span> =&gt; {
+  postMessage(event.data * event.data);
+});</pre>
+
+<p><a class="p_ident" id="p-Ir+TqGr7+e" href="https://www.eloquentjavascript.es/15_event.html#p-Ir+TqGr7+e" tabindex="-1" role="presentation"></a>Para evitar los problemas de tener múltiples hilos tocando los mismos datos, los workers no comparten su alcance global ni ningún otro dato con el entorno del script principal. En cambio, debes comunicarte con ellos enviando mensajes de ida y vuelta.</p>
+
+<p><a class="p_ident" id="p-N2CbRaMg8i" href="https://www.eloquentjavascript.es/15_event.html#p-N2CbRaMg8i" tabindex="-1" role="presentation"></a>Este código genera un worker que ejecuta ese script, le envía algunos mensajes y muestra las respuestas.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-KE8jyaemjH" href="https://www.eloquentjavascript.es/15_event.html#c-KE8jyaemjH" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">squareWorker</span> = <span class="tok-keyword">new</span> Worker(<span class="tok-string">"code/squareworker.js"</span>);
+squareWorker.addEventListener(<span class="tok-string">"message"</span>, <span class="tok-definition">event</span> =&gt; {
+  console.log(<span class="tok-string">"El worker respondió:"</span>, event.data);
+});
+squareWorker.postMessage(<span class="tok-number">10</span>);
+squareWorker.postMessage(<span class="tok-number">24</span>);</pre>
+
+<p><a class="p_ident" id="p-i0wlZOt8Mj" href="https://www.eloquentjavascript.es/15_event.html#p-i0wlZOt8Mj" tabindex="-1" role="presentation"></a>La función <code>postMessage</code> envía un mensaje, lo que causará que se dispare un evento <code>"message"</code> en el receptor. El script que creó el worker envía y recibe mensajes a través del objeto <code>Worker</code>, mientras que el worker se comunica con el script que lo creó enviando y escuchando directamente en su alcance global. Solo se pueden enviar como mensajes valores que puedan representarse como JSON; el otro lado recibirá una <em>copia</em> de ellos en lugar del valor en sí mismo.</p>
+
+<h2><a class="h_ident" id="h-5Aaz8MIkVH" href="https://www.eloquentjavascript.es/15_event.html#h-5Aaz8MIkVH" tabindex="-1" role="presentation"></a>Temporizadores</h2>
+
+<p><a class="p_ident" id="p-WV11KfB182" href="https://www.eloquentjavascript.es/15_event.html#p-WV11KfB182" tabindex="-1" role="presentation"></a>Vimos la función <code>setTimeout</code> en el <a href="https://www.eloquentjavascript.es/11_async.html">Capítulo 11</a>. Programa otra función para que se llame más tarde, después de un cierto número de milisegundos.</p>
+
+<p><a class="p_ident" id="p-s28yPKVQrw" href="https://www.eloquentjavascript.es/15_event.html#p-s28yPKVQrw" tabindex="-1" role="presentation"></a>A veces necesitas cancelar una función que has programado. Esto se hace almacenando el valor devuelto por <code>setTimeout</code> y llamando a <code>clearTimeout</code> sobre él.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-KtFpcnxPz3" href="https://www.eloquentjavascript.es/15_event.html#c-KtFpcnxPz3" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">bombTimer</span> = setTimeout(() =&gt; {
+  console.log(<span class="tok-string">"¡BOOM!"</span>);
+}, <span class="tok-number">500</span>);
+
+<span class="tok-keyword">if</span> (Math.random() &lt; <span class="tok-number">0.5</span>) { <span class="tok-comment">// 50% de probabilidad</span>
+  console.log(<span class="tok-string">"Desactivado."</span>);
+  clearTimeout(bombTimer);
+}</pre>
+
+<p><a class="p_ident" id="p-FuxjnPqka7" href="https://www.eloquentjavascript.es/15_event.html#p-FuxjnPqka7" tabindex="-1" role="presentation"></a>La función <code>cancelAnimationFrame</code> funciona de la misma manera que <code>clearTimeout</code>; llamarla en un valor devuelto por <code>requestAnimationFrame</code> cancelará ese fotograma (si no se ha llamado ya).</p>
+
+<p><a class="p_ident" id="p-et73hwNMcb" href="https://www.eloquentjavascript.es/15_event.html#p-et73hwNMcb" tabindex="-1" role="presentation"></a>Un conjunto similar de funciones, <code>setInterval</code> y <code>clearInterval</code>, se utilizan para programar temporizadores que deben <em>repetirse</em> cada <em>X</em> milisegundos.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-TYDPdAHQd3" href="https://www.eloquentjavascript.es/15_event.html#c-TYDPdAHQd3" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">ticks</span> = <span class="tok-number">0</span>;
+<span class="tok-keyword">let</span> <span class="tok-definition">reloj</span> = setInterval(() =&gt; {
+  console.log(<span class="tok-string">"tic"</span>, ticks++);
+  <span class="tok-keyword">if</span> (ticks == <span class="tok-number">10</span>) {
+    clearInterval(reloj);
+    console.log(<span class="tok-string">"¡Detener!"</span>);
+  }
+}, <span class="tok-number">200</span>);</pre>
+
+<h2><a class="h_ident" id="h-AOVmaqj10I" href="https://www.eloquentjavascript.es/15_event.html#h-AOVmaqj10I" tabindex="-1" role="presentation"></a>Debouncing</h2>
+
+<p><a class="p_ident" id="p-5gp2VkgPZ9" href="https://www.eloquentjavascript.es/15_event.html#p-5gp2VkgPZ9" tabindex="-1" role="presentation"></a>Algunos tipos de eventos pueden activarse rápidamente, muchas veces seguidas (como los eventos <code>"mousemove"</code> y <code>"scroll"</code>, por ejemplo). Al manejar tales eventos, debes tener cuidado de no hacer nada que consuma demasiado tiempo, ya que tu controlador tomará tanto tiempo que la interacción con el documento comenzará a sentirse lenta.</p>
+
+<p><a class="p_ident" id="p-7uuS+8eiFw" href="https://www.eloquentjavascript.es/15_event.html#p-7uuS+8eiFw" tabindex="-1" role="presentation"></a>Si necesitas hacer algo importante en un controlador de este tipo, puedes usar <code>setTimeout</code> para asegurarte de que no lo estás haciendo con demasiada frecuencia. Esto suele llamarse <em>debouncing</em> el evento. Hay varios enfoques ligeramente diferentes para esto.</p>
+
+<p><a class="p_ident" id="p-+/dVlFxtVJ" href="https://www.eloquentjavascript.es/15_event.html#p-+/dVlFxtVJ" tabindex="-1" role="presentation"></a>En el primer ejemplo, queremos reaccionar cuando el usuario ha escrito algo, pero no queremos hacerlo inmediatamente para cada evento de entrada. Cuando están escribiendo rápidamente, solo queremos esperar hasta que ocurra una pausa. En lugar de realizar inmediatamente una acción en el controlador de eventos, establecemos un tiempo de espera. También limpiamos el tiempo de espera anterior (si existe) para que cuando los eventos ocurran cerca uno del otro (más cerca de nuestro retraso de tiempo de espera), el tiempo de espera del evento anterior se cancele.</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-3gKPMnlx9a" href="https://www.eloquentjavascript.es/15_event.html#c-3gKPMnlx9a" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">textarea</span>&gt;Escribe algo aquí...&lt;/<span class="tok-typeName">textarea</span>&gt;
+&lt;<span class="tok-typeName">script</span>&gt;
+  <span class="tok-keyword">let</span> <span class="tok-definition">textarea</span> = document.querySelector(<span class="tok-string">"textarea"</span>);
+  <span class="tok-keyword">let</span> <span class="tok-definition">timeout</span>;
+  textarea.addEventListener(<span class="tok-string">"input"</span>, () =&gt; {
+    clearTimeout(timeout);
+    timeout = setTimeout(() =&gt; console.log(<span class="tok-string">"¡Escrito!"</span>), <span class="tok-number">500</span>);
+  });
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<p><a class="p_ident" id="p-ryGxTuda6B" href="https://www.eloquentjavascript.es/15_event.html#p-ryGxTuda6B" tabindex="-1" role="presentation"></a>Dar un valor no definido a <code>clearTimeout</code> o llamarlo en un tiempo de espera que ya ha pasado no tiene efecto. Por lo tanto, no tenemos que tener cuidado de cuándo llamarlo, y simplemente lo hacemos para cada evento.</p>
+
+<p><a class="p_ident" id="p-XG0GpvZAFO" href="https://www.eloquentjavascript.es/15_event.html#p-XG0GpvZAFO" tabindex="-1" role="presentation"></a>Podemos usar un patrón ligeramente diferente si queremos espaciar las respuestas para que estén separadas por al menos una cierta longitud de tiempo, pero queremos activarlas <em>durante</em> una serie de eventos, no solo después. Por ejemplo, podríamos querer responder a eventos <code>"mousemove"</code> mostrando las coordenadas actuales del mouse pero solo cada 250 milisegundos.</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-iNs9SdbBE1" href="https://www.eloquentjavascript.es/15_event.html#c-iNs9SdbBE1" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">script</span>&gt;
+  <span class="tok-keyword">let</span> <span class="tok-definition">programado</span> = <span class="tok-keyword">null</span>;
+  window.addEventListener(<span class="tok-string">"mousemove"</span>, <span class="tok-definition">event</span> =&gt; {
+    <span class="tok-keyword">if</span> (!programado) {
+      setTimeout(() =&gt; {
+        document.body.textContent =
+          <span class="tok-string2">`Ratón en </span>${programado.pageX}<span class="tok-string2">, </span>${programado.pageY}<span class="tok-string2">`</span>;
+        programado = <span class="tok-keyword">null</span>;
+      }, <span class="tok-number">250</span>);
+    }
+    programado = event;
+  });
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<h2><a class="h_ident" id="h-NUFOUyK+lw" href="https://www.eloquentjavascript.es/15_event.html#h-NUFOUyK+lw" tabindex="-1" role="presentation"></a>Resumen</h2>
+
+<p><a class="p_ident" id="p-DHLQ6WkIIW" href="https://www.eloquentjavascript.es/15_event.html#p-DHLQ6WkIIW" tabindex="-1" role="presentation"></a>Los controladores de eventos hacen posible detectar y reaccionar a eventos que ocurren en nuestra página web. El método <code>addEventListener</code> se utiliza para registrar dicho controlador.</p>
+
+<p><a class="p_ident" id="p-BqgD0KonPh" href="https://www.eloquentjavascript.es/15_event.html#p-BqgD0KonPh" tabindex="-1" role="presentation"></a>Cada evento tiene un tipo (<code>"keydown"</code>, <code>"focus"</code>, y así sucesivamente) que lo identifica. La mayoría de los eventos se activan en un elemento DOM específico y luego se <em>propagan</em> a los ancestros de ese elemento, lo que permite que los controladores asociados a esos elementos los manejen.</p>
+
+<p><a class="p_ident" id="p-h/n+rs4rlN" href="https://www.eloquentjavascript.es/15_event.html#p-h/n+rs4rlN" tabindex="-1" role="presentation"></a>Cuando se llama a un controlador de eventos, se le pasa un objeto de evento con información adicional sobre el evento. Este objeto también tiene métodos que nos permiten detener una mayor propagación (<code>stopPropagation</code>) y evitar el manejo predeterminado del evento por parte del navegador (<code>preventDefault</code>).</p>
+
+<p><a class="p_ident" id="p-AyW1QVWdzT" href="https://www.eloquentjavascript.es/15_event.html#p-AyW1QVWdzT" tabindex="-1" role="presentation"></a>Presionar una tecla dispara eventos <code>"keydown"</code> y <code>"keyup"</code>. Presionar un botón del mouse dispara eventos <code>"mousedown"</code>, <code>"mouseup"</code> y <code>"click"</code>. Mover el mouse dispara eventos <code>"mousemove"</code>. La interacción con pantallas táctiles dará lugar a eventos <code>"touchstart"</code>, <code>"touchmove"</code> y <code>"touchend"</code>.</p>
+
+<p><a class="p_ident" id="p-wWkn17Vg91" href="https://www.eloquentjavascript.es/15_event.html#p-wWkn17Vg91" tabindex="-1" role="presentation"></a>El desplazamiento se puede detectar con el evento <code>"scroll"</code>, y los cambios de enfoque se pueden detectar con los eventos <code>"focus"</code> y <code>"blur"</code>. Cuando el documento ha terminado de cargarse, se activa un evento <code>"load"</code> en la ventana.</p>
+
+<h2><a class="h_ident" id="h-tkm7ntLto1" href="https://www.eloquentjavascript.es/15_event.html#h-tkm7ntLto1" tabindex="-1" role="presentation"></a>Ejercicios</h2>
+
+<h3><a class="i_ident" id="i-NaqVfjsbAA" href="https://www.eloquentjavascript.es/15_event.html#i-NaqVfjsbAA" tabindex="-1" role="presentation"></a>Globo</h3>
+
+<p><a class="p_ident" id="p-b3Hqo7husK" href="https://www.eloquentjavascript.es/15_event.html#p-b3Hqo7husK" tabindex="-1" role="presentation"></a>Escribe una página que muestre un globo (usando el emoji de globo, 🎈). Cuando presiones la flecha hacia arriba, debería inflarse (crecer) un 10 por ciento, y cuando presiones la flecha hacia abajo, debería desinflarse (encoger) un 10 por ciento.</p>
+
+<p><a class="p_ident" id="p-IEP4Bro5Ql" href="https://www.eloquentjavascript.es/15_event.html#p-IEP4Bro5Ql" tabindex="-1" role="presentation"></a>Puedes controlar el tamaño del texto (los emoji son texto) estableciendo la propiedad CSS <code>font-size</code> (<code>style.fontSize</code>) en su elemento padre. Recuerda incluir una unidad en el valor, por ejemplo, píxeles (<code>10px</code>).</p>
+
+<p><a class="p_ident" id="p-SyLfo0cRkh" href="https://www.eloquentjavascript.es/15_event.html#p-SyLfo0cRkh" tabindex="-1" role="presentation"></a>Los nombres de las teclas de flecha son <code>"ArrowUp"</code> y <code>"ArrowDown"</code>. Asegúrate de que las teclas cambien solo el globo, sin hacer scroll en la página.</p>
+
+<p><a class="p_ident" id="p-HG8VwrW20W" href="https://www.eloquentjavascript.es/15_event.html#p-HG8VwrW20W" tabindex="-1" role="presentation"></a>Cuando eso funcione, añade una característica en la que, si inflas el globo más allá de un cierto tamaño, explote. En este caso, explotar significa que se reemplace con un emoji de 💥, y el manejador de eventos se elimine (para que no se pueda inflar o desinflar la explosión).</p>
+
+<pre tabindex="0" class="snippet" data-language="html" data-focus="true"><a class="c_ident" id="c-ptg6udB2Yi" href="https://www.eloquentjavascript.es/15_event.html#c-ptg6udB2Yi" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">p</span>&gt;🎈&lt;/<span class="tok-typeName">p</span>&gt;
+
+&lt;<span class="tok-typeName">script</span>&gt;
+  <span class="tok-comment">// Tu código aquí</span>
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<details class="solution"><summary>Mostrar pistas...</summary><div class="solution-text">
+
+<p><a class="p_ident" id="p-GvD67qYWif" href="https://www.eloquentjavascript.es/15_event.html#p-GvD67qYWif" tabindex="-1" role="presentation"></a>Querrás registrar un manejador para el evento <code>"keydown"</code> y mirar <code>event.key</code> para saber si se presionó la tecla de flecha hacia arriba o hacia abajo.</p>
+
+<p><a class="p_ident" id="p-FChVTGCUI7" href="https://www.eloquentjavascript.es/15_event.html#p-FChVTGCUI7" tabindex="-1" role="presentation"></a>El tamaño actual se puede mantener en un enlace para que puedas basarte en él para el nuevo tamaño. Será útil definir una función que actualice el tamaño, tanto el enlace como el estilo del globo en el DOM, para que puedas llamarla desde tu manejador de eventos, y posiblemente también una vez al inicio, para establecer el tamaño inicial.</p>
+
+<p><a class="p_ident" id="p-CMyziBQORi" href="https://www.eloquentjavascript.es/15_event.html#p-CMyziBQORi" tabindex="-1" role="presentation"></a>Puedes cambiar el globo por una explosión reemplazando el nodo de texto por otro (usando <code>replaceChild</code>) o estableciendo la propiedad <code>textContent</code> de su nodo padre en una nueva cadena.</p>
+
+</div></details>
+
+<h3><a class="i_ident" id="i-TacKwba7GU" href="https://www.eloquentjavascript.es/15_event.html#i-TacKwba7GU" tabindex="-1" role="presentation"></a>Estela del ratón</h3>
+
+<p><a class="p_ident" id="p-NWvuUYSxYN" href="https://www.eloquentjavascript.es/15_event.html#p-NWvuUYSxYN" tabindex="-1" role="presentation"></a>En los primeros días de JavaScript, que fue la época dorada de las páginas de inicio estridentes con un montón de imágenes animadas, la gente ideó formas verdaderamente inspiradoras de usar el lenguaje.</p>
+
+<p><a class="p_ident" id="p-SIIG63wuy4" href="https://www.eloquentjavascript.es/15_event.html#p-SIIG63wuy4" tabindex="-1" role="presentation"></a>Una de estas era la <em>estela del ratón</em> —una serie de elementos que seguirían al puntero del ratón mientras lo movías por la página.</p>
+
+<p><a class="p_ident" id="p-o0XuQJDBDN" href="https://www.eloquentjavascript.es/15_event.html#p-o0XuQJDBDN" tabindex="-1" role="presentation"></a>En este ejercicio, quiero que implementes una estela del ratón. Utiliza elementos <code>&lt;div&gt;</code> con posición absoluta y un tamaño fijo y color de fondo (consulta el <a href="https://www.eloquentjavascript.es/15_event.html#mouse_drawing">código</a> en la sección de “Clics de ratón” para un ejemplo). Crea un montón de estos elementos y, al mover el ratón, muéstralos en la estela del puntero del ratón.</p>
+
+<p><a class="p_ident" id="p-bPEwHFdsMX" href="https://www.eloquentjavascript.es/15_event.html#p-bPEwHFdsMX" tabindex="-1" role="presentation"></a>Hay varias aproximaciones posibles aquí. Puedes hacer tu solución tan simple o tan compleja como desees. Una solución simple para empezar es mantener un número fijo de elementos de estela y recorrerlos, moviendo el siguiente a la posición actual del ratón cada vez que ocurra un evento <code>"mousemove"</code>.</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-KdGRA3qkq2" href="https://www.eloquentjavascript.es/15_event.html#c-KdGRA3qkq2" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">style</span>&gt;
+  .trail { <span class="tok-comment">/* nombre de clase para los elementos de la estela */</span>
+    position: <span class="tok-atom">absolute</span>;
+    height: <span class="tok-number">6</span><span class="tok-keyword">px</span>; width: <span class="tok-number">6</span><span class="tok-keyword">px</span>;
+    border-radius: <span class="tok-number">3</span><span class="tok-keyword">px</span>;
+    background: <span class="tok-atom">teal</span>;
+  }
+  <span class="tok-typeName">body</span> {
+    height: <span class="tok-number">300</span><span class="tok-keyword">px</span>;
+  }
+&lt;/<span class="tok-typeName">style</span>&gt;
+
+```html
+&lt;<span class="tok-typeName">script</span>&gt;
+  <span class="tok-comment">// Tu código aquí.</span>
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<details class="solution"><summary>Mostrar pistas...</summary><div class="solution-text">
+
+<p><a class="p_ident" id="p-4AFLKpPOlK" href="https://www.eloquentjavascript.es/15_event.html#p-4AFLKpPOlK" tabindex="-1" role="presentation"></a>Crear los elementos es mejor hacerlo con un bucle. Adjúntalos al documento para que aparezcan. Para poder acceder a ellos más tarde y cambiar su posición, querrás almacenar los elementos en un array.</p>
+
+<p><a class="p_ident" id="p-O7Vg4b4/gp" href="https://www.eloquentjavascript.es/15_event.html#p-O7Vg4b4/gp" tabindex="-1" role="presentation"></a>Recorrerlos se puede hacer manteniendo una variable de contador y sumándole 1 cada vez que se dispare el evento <code>"mousemove"</code>. Luego se puede usar el operador de resto (<code>% elementos.<wbr>length</code>) para obtener un índice de array válido para elegir el elemento que deseas posicionar durante un evento dado.</p>
+
+<p><a class="p_ident" id="p-sJ/RGv4SnV" href="https://www.eloquentjavascript.es/15_event.html#p-sJ/RGv4SnV" tabindex="-1" role="presentation"></a>Otro efecto interesante se puede lograr modelando un simple sistema de física. Usa el evento <code>"mousemove"</code> solo para actualizar un par de enlaces que siguen la posición del ratón. Luego utiliza <code>requestAnimationFrame</code> para simular que los elementos rastreadores son atraídos a la posición del puntero del ratón. En cada paso de animación, actualiza su posición basándote en su posición relativa al puntero (y, opcionalmente, una velocidad que está almacenada para cada elemento). Descubrir una buena forma de hacer esto queda a tu cargo.</p>
+
+</div></details>
+
+<h3><a class="i_ident" id="i-FBlz6I/AHB" href="https://www.eloquentjavascript.es/15_event.html#i-FBlz6I/AHB" tabindex="-1" role="presentation"></a>Pestañas</h3>
+
+<p><a class="p_ident" id="p-GiuPPAqneR" href="https://www.eloquentjavascript.es/15_event.html#p-GiuPPAqneR" tabindex="-1" role="presentation"></a>Los paneles con pestañas son ampliamente utilizados en interfaces de usuario. Te permiten seleccionar un panel de interfaz eligiendo entre varias pestañas que sobresalen por encima de un elemento.</p>
+
+<p><a class="p_ident" id="p-oCfJg8pvnS" href="https://www.eloquentjavascript.es/15_event.html#p-oCfJg8pvnS" tabindex="-1" role="presentation"></a>En este ejercicio debes implementar una interfaz de pestañas simple. Escribe una función, <code>asTabs</code>, que tome un nodo DOM y cree una interfaz de pestañas que muestre los elementos secundarios de ese nodo. Debería insertar una lista de elementos <code>&lt;button&gt;</code> en la parte superior del nodo, uno por cada elemento secundario, conteniendo el texto recuperado del atributo <code>data-tabname</code> del hijo. Todos los hijos originales excepto uno deben estar ocultos (con un estilo <code>display</code> de <code>none</code>). El nodo actualmente visible se puede seleccionar haciendo clic en los botones.</p>
+
+<p><a class="p_ident" id="p-A5yNkNAmF9" href="https://www.eloquentjavascript.es/15_event.html#p-A5yNkNAmF9" tabindex="-1" role="presentation"></a>Cuando funcione, extiéndelo para dar estilo al botón de la pestaña actualmente seleccionada de manera diferente para que sea obvio cuál pestaña está seleccionada.</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-IPOlbViOlf" href="https://www.eloquentjavascript.es/15_event.html#c-IPOlbViOlf" tabindex="-1" role="presentation"></a>&lt;<span class="tok-typeName">tab-panel</span>&gt;
+  &lt;<span class="tok-typeName">div</span> data-tabname=<span class="tok-string">"one"</span>&gt;Pestaña uno&lt;/<span class="tok-typeName">div</span>&gt;
+  &lt;<span class="tok-typeName">div</span> data-tabname=<span class="tok-string">"two"</span>&gt;Pestaña dos&lt;/<span class="tok-typeName">div</span>&gt;
+  &lt;<span class="tok-typeName">div</span> data-tabname=<span class="tok-string">"three"</span>&gt;Pestaña tres&lt;/<span class="tok-typeName">div</span>&gt;
+&lt;/<span class="tok-typeName">tab-panel</span>&gt;
+
+&lt;<span class="tok-typeName">script</span>&gt;
+  <span class="tok-keyword">function</span> <span class="tok-definition">asTabs</span>(<span class="tok-definition">node</span>) {
+    <span class="tok-comment">// Tu código aquí.</span>
+  }
+  asTabs(document.querySelector(<span class="tok-string">"tab-panel"</span>));
+&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<details class="solution"><summary>Mostrar pistas...</summary><div class="solution-text">
+
+<p><a class="p_ident" id="p-S/jD91+7re" href="https://www.eloquentjavascript.es/15_event.html#p-S/jD91+7re" tabindex="-1" role="presentation"></a>Un error en el que podrías caer es que no puedes usar directamente la propiedad <code>childNodes</code> del nodo como una colección de nodos de pestaña. Por un lado, cuando agregas los botones, también se convertirán en nodos secundarios y terminarán en este objeto porque es una estructura de datos en vivo. Por otro lado, los nodos de texto creados para el espacio en blanco entre los nodos también están en <code>childNodes</code> pero no deberían tener sus propias pestañas. Puedes usar <code>children</code> en lugar de <code>childNodes</code> para ignorar los nodos de texto.</p>
+
+<p><a class="p_ident" id="p-kghgg4c48e" href="https://www.eloquentjavascript.es/15_event.html#p-kghgg4c48e" tabindex="-1" role="presentation"></a>Podrías empezar construyendo un array de pestañas para tener fácil acceso a ellas. Para implementar el estilo de los botones, podrías almacenar objetos que contengan tanto el panel de la pestaña como su botón.</p>
+
+<p><a class="p_ident" id="p-wCOFQx+NM/" href="https://www.eloquentjavascript.es/15_event.html#p-wCOFQx+NM/" tabindex="-1" role="presentation"></a>Recomiendo escribir una función separada para cambiar las pestañas. Puedes almacenar la pestaña seleccionada previamente y cambiar solo los estilos necesarios para ocultarla y mostrar la nueva, o puedes actualizar el estilo de todas las pestañas cada vez que se seleccione una nueva pestaña.</p>
+
+<p><a class="p_ident" id="p-snuxXmN8m+" href="https://www.eloquentjavascript.es/15_event.html#p-snuxXmN8m+" tabindex="-1" role="presentation"></a>Quizás quieras llamar a esta función inmediatamente para que la interfaz comience con la primera pestaña visible.</p>
+
+</div></details><nav><a href="https://www.eloquentjavascript.es/14_dom.html" title="previous chapter" aria-label="previous chapter">◂</a>&nbsp;<a href="https://www.eloquentjavascript.es/index.html" title="cover" aria-label="cover">●</a>&nbsp;<a href="https://www.eloquentjavascript.es/16_game.html" title="next chapter" aria-label="next chapter">▸</a>&nbsp;<button class="help" title="help" aria-label="help" style="display: inline;"><strong>?</strong></button>
+</nav>
+</article>
+
+<script src="./Manejo de Eventos __ Eloquent JavaScript_files/ejs.js.descarga"></script>
+<div><template shadowrootmode="closed"><link rel="stylesheet" href="chrome-extension://lilckelmopbcffmglfmfhelaajhjpcff/assets/index.css"><link rel="stylesheet" href="chrome-extension://lilckelmopbcffmglfmfhelaajhjpcff/assets/anything-copilot.css"><div id="app" data-v-app="" class="dark"><!----><!----><!----><!----><!----><!----><!----><!----></div></template></div></body></html>

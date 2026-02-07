@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://www.eloquentjavascript.es/09_regexp.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Expresiones regulares :: Eloquent JavaScript</title>
+  <link rel="stylesheet" href="./Expresiones regulares __ Eloquent JavaScript_files/ejs.css"><script>
+      var page = {"type":"chapter","number":9}</script><style>.swal2-popup.swal2-toast{box-sizing:border-box;grid-column:1/4 !important;grid-row:1/4 !important;grid-template-columns:min-content auto min-content;padding:1em;overflow-y:hidden;background:#fff;box-shadow:0 0 1px rgba(0,0,0,.075),0 1px 2px rgba(0,0,0,.075),1px 2px 4px rgba(0,0,0,.075),1px 3px 8px rgba(0,0,0,.075),2px 4px 16px rgba(0,0,0,.075);pointer-events:all}.swal2-popup.swal2-toast>*{grid-column:2}.swal2-popup.swal2-toast .swal2-title{margin:.5em 1em;padding:0;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-loading{justify-content:center}.swal2-popup.swal2-toast .swal2-input{height:2em;margin:.5em;font-size:1em}.swal2-popup.swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{grid-column:3/3;grid-row:1/99;align-self:center;width:.8em;height:.8em;margin:0;font-size:2em}.swal2-popup.swal2-toast .swal2-html-container{margin:.5em 1em;padding:0;overflow:initial;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-html-container:empty{padding:0}.swal2-popup.swal2-toast .swal2-loader{grid-column:1;grid-row:1/99;align-self:center;width:2em;height:2em;margin:.25em}.swal2-popup.swal2-toast .swal2-icon{grid-column:1;grid-row:1/99;align-self:center;width:2em;min-width:2em;height:2em;margin:0 .5em 0 0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:bold}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{justify-content:flex-start;height:auto;margin:0;margin-top:.5em;padding:0 .5em}.swal2-popup.swal2-toast .swal2-styled{margin:.25em .5em;padding:.4em .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.8em;left:-0.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{animation:swal2-toast-hide .1s forwards}div:where(.swal2-container){display:grid;position:fixed;z-index:1060;inset:0;box-sizing:border-box;grid-template-areas:"top-start     top            top-end" "center-start  center         center-end" "bottom-start  bottom-center  bottom-end";grid-template-rows:minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);height:100%;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}div:where(.swal2-container).swal2-backdrop-show,div:where(.swal2-container).swal2-noanimation{background:rgba(0,0,0,.4)}div:where(.swal2-container).swal2-backdrop-hide{background:rgba(0,0,0,0) !important}div:where(.swal2-container).swal2-top-start,div:where(.swal2-container).swal2-center-start,div:where(.swal2-container).swal2-bottom-start{grid-template-columns:minmax(0, 1fr) auto auto}div:where(.swal2-container).swal2-top,div:where(.swal2-container).swal2-center,div:where(.swal2-container).swal2-bottom{grid-template-columns:auto minmax(0, 1fr) auto}div:where(.swal2-container).swal2-top-end,div:where(.swal2-container).swal2-center-end,div:where(.swal2-container).swal2-bottom-end{grid-template-columns:auto auto minmax(0, 1fr)}div:where(.swal2-container).swal2-top-start>.swal2-popup{align-self:start}div:where(.swal2-container).swal2-top>.swal2-popup{grid-column:2;align-self:start;justify-self:center}div:where(.swal2-container).swal2-top-end>.swal2-popup,div:where(.swal2-container).swal2-top-right>.swal2-popup{grid-column:3;align-self:start;justify-self:end}div:where(.swal2-container).swal2-center-start>.swal2-popup,div:where(.swal2-container).swal2-center-left>.swal2-popup{grid-row:2;align-self:center}div:where(.swal2-container).swal2-center>.swal2-popup{grid-column:2;grid-row:2;align-self:center;justify-self:center}div:where(.swal2-container).swal2-center-end>.swal2-popup,div:where(.swal2-container).swal2-center-right>.swal2-popup{grid-column:3;grid-row:2;align-self:center;justify-self:end}div:where(.swal2-container).swal2-bottom-start>.swal2-popup,div:where(.swal2-container).swal2-bottom-left>.swal2-popup{grid-column:1;grid-row:3;align-self:end}div:where(.swal2-container).swal2-bottom>.swal2-popup{grid-column:2;grid-row:3;justify-self:center;align-self:end}div:where(.swal2-container).swal2-bottom-end>.swal2-popup,div:where(.swal2-container).swal2-bottom-right>.swal2-popup{grid-column:3;grid-row:3;align-self:end;justify-self:end}div:where(.swal2-container).swal2-grow-row>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-column:1/4;width:100%}div:where(.swal2-container).swal2-grow-column>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-row:1/4;align-self:stretch}div:where(.swal2-container).swal2-no-transition{transition:none !important}div:where(.swal2-container) div:where(.swal2-popup){display:none;position:relative;box-sizing:border-box;grid-template-columns:minmax(0, 100%);width:32em;max-width:100%;padding:0 0 1.25em;border:none;border-radius:5px;background:#fff;color:#545454;font-family:inherit;font-size:1rem}div:where(.swal2-container) div:where(.swal2-popup):focus{outline:none}div:where(.swal2-container) div:where(.swal2-popup).swal2-loading{overflow-y:hidden}div:where(.swal2-container) h2:where(.swal2-title){position:relative;max-width:100%;margin:0;padding:.8em 1em 0;color:inherit;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}div:where(.swal2-container) div:where(.swal2-actions){display:flex;z-index:1;box-sizing:border-box;flex-wrap:wrap;align-items:center;justify-content:center;width:auto;margin:1.25em auto 0;padding:0}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))}div:where(.swal2-container) div:where(.swal2-loader){display:none;align-items:center;justify-content:center;width:2.2em;height:2.2em;margin:0 1.875em;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border-width:.25em;border-style:solid;border-radius:100%;border-color:#2778c4 rgba(0,0,0,0) #2778c4 rgba(0,0,0,0)}div:where(.swal2-container) button:where(.swal2-styled){margin:.3125em;padding:.625em 1.1em;transition:box-shadow .1s;box-shadow:0 0 0 3px rgba(0,0,0,0);font-weight:500}div:where(.swal2-container) button:where(.swal2-styled):not([disabled]){cursor:pointer}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#7066e0;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus{box-shadow:0 0 0 3px rgba(112,102,224,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny{border:0;border-radius:.25em;background:initial;background-color:#dc3741;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny:focus{box-shadow:0 0 0 3px rgba(220,55,65,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#6e7881;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel:focus{box-shadow:0 0 0 3px rgba(110,120,129,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:focus{box-shadow:0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-styled):focus{outline:none}div:where(.swal2-container) button:where(.swal2-styled)::-moz-focus-inner{border:0}div:where(.swal2-container) div:where(.swal2-footer){margin:1em 0 0;padding:1em 1em 0;border-top:1px solid #eee;color:inherit;font-size:1em;text-align:center}div:where(.swal2-container) .swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;grid-column:auto !important;overflow:hidden;border-bottom-right-radius:5px;border-bottom-left-radius:5px}div:where(.swal2-container) div:where(.swal2-timer-progress-bar){width:100%;height:.25em;background:rgba(0,0,0,.2)}div:where(.swal2-container) img:where(.swal2-image){max-width:100%;margin:2em auto 1em}div:where(.swal2-container) button:where(.swal2-close){z-index:2;align-items:center;justify-content:center;width:1.2em;height:1.2em;margin-top:0;margin-right:0;margin-bottom:-1.2em;padding:0;overflow:hidden;transition:color .1s,box-shadow .1s;border:none;border-radius:5px;background:rgba(0,0,0,0);color:#ccc;font-family:monospace;font-size:2.5em;cursor:pointer;justify-self:end}div:where(.swal2-container) button:where(.swal2-close):hover{transform:none;background:rgba(0,0,0,0);color:#f27474}div:where(.swal2-container) button:where(.swal2-close):focus{outline:none;box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-close)::-moz-focus-inner{border:0}div:where(.swal2-container) .swal2-html-container{z-index:1;justify-content:center;margin:1em 1.6em .3em;padding:0;overflow:auto;color:inherit;font-size:1.125em;font-weight:normal;line-height:normal;text-align:center;word-wrap:break-word;word-break:break-word}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea),div:where(.swal2-container) select:where(.swal2-select),div:where(.swal2-container) div:where(.swal2-radio),div:where(.swal2-container) label:where(.swal2-checkbox){margin:1em 2em 3px}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea){box-sizing:border-box;width:auto;transition:border-color .1s,box-shadow .1s;border:1px solid #d9d9d9;border-radius:.1875em;background:rgba(0,0,0,0);box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) input:where(.swal2-input).swal2-inputerror,div:where(.swal2-container) input:where(.swal2-file).swal2-inputerror,div:where(.swal2-container) textarea:where(.swal2-textarea).swal2-inputerror{border-color:#f27474 !important;box-shadow:0 0 2px #f27474 !important}div:where(.swal2-container) input:where(.swal2-input):focus,div:where(.swal2-container) input:where(.swal2-file):focus,div:where(.swal2-container) textarea:where(.swal2-textarea):focus{border:1px solid #b4dbed;outline:none;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) input:where(.swal2-input)::placeholder,div:where(.swal2-container) input:where(.swal2-file)::placeholder,div:where(.swal2-container) textarea:where(.swal2-textarea)::placeholder{color:#ccc}div:where(.swal2-container) .swal2-range{margin:1em 2em 3px;background:#fff}div:where(.swal2-container) .swal2-range input{width:80%}div:where(.swal2-container) .swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}div:where(.swal2-container) .swal2-range input,div:where(.swal2-container) .swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}div:where(.swal2-container) .swal2-input{height:2.625em;padding:0 .75em}div:where(.swal2-container) .swal2-file{width:75%;margin-right:auto;margin-left:auto;background:rgba(0,0,0,0);font-size:1.125em}div:where(.swal2-container) .swal2-textarea{height:6.75em;padding:.75em}div:where(.swal2-container) .swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) .swal2-radio,div:where(.swal2-container) .swal2-checkbox{align-items:center;justify-content:center;background:#fff;color:inherit}div:where(.swal2-container) .swal2-radio label,div:where(.swal2-container) .swal2-checkbox label{margin:0 .6em;font-size:1.125em}div:where(.swal2-container) .swal2-radio input,div:where(.swal2-container) .swal2-checkbox input{flex-shrink:0;margin:0 .4em}div:where(.swal2-container) label:where(.swal2-input-label){display:flex;justify-content:center;margin:1em auto 0}div:where(.swal2-container) div:where(.swal2-validation-message){align-items:center;justify-content:center;margin:1em 0 0;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}div:where(.swal2-container) div:where(.swal2-validation-message)::before{content:"!";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}div:where(.swal2-container) .swal2-progress-steps{flex-wrap:wrap;align-items:center;max-width:100%;margin:1.25em auto;padding:0;background:rgba(0,0,0,0);font-weight:600}div:where(.swal2-container) .swal2-progress-steps li{display:inline-block;position:relative}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step{z-index:20;flex-shrink:0;width:2em;height:2em;border-radius:2em;background:#2778c4;color:#fff;line-height:2em;text-align:center}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#2778c4}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step-line{z-index:10;flex-shrink:0;width:2.5em;height:.4em;margin:0 -1px;background:#2778c4}div:where(.swal2-icon){position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:2.5em auto .6em;border:0.25em solid rgba(0,0,0,0);border-radius:50%;border-color:#000;font-family:inherit;line-height:5em;cursor:default;user-select:none}div:where(.swal2-icon) .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}div:where(.swal2-icon).swal2-error{border-color:#f27474;color:#f27474}div:where(.swal2-icon).swal2-error .swal2-x-mark{position:relative;flex-grow:1}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-error.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-error.swal2-icon-show .swal2-x-mark{animation:swal2-animate-error-x-mark .5s}div:where(.swal2-icon).swal2-warning{border-color:#facea8;color:#f8bb86}div:where(.swal2-icon).swal2-warning.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-warning.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .5s}div:where(.swal2-icon).swal2-info{border-color:#9de0f6;color:#3fc3ee}div:where(.swal2-icon).swal2-info.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-info.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .8s}div:where(.swal2-icon).swal2-question{border-color:#c9dae1;color:#87adbd}div:where(.swal2-icon).swal2-question.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-question.swal2-icon-show .swal2-icon-content{animation:swal2-animate-question-mark .8s}div:where(.swal2-icon).swal2-success{border-color:#a5dc86;color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;transform:rotate(45deg);border-radius:50%}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}div:where(.swal2-icon).swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-0.25em;left:-0.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}div:where(.swal2-icon).swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-animate-success-line-tip .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-animate-success-line-long .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-line-right{animation:swal2-rotate-success-circular-line 4.25s ease-in}[class^=swal2]{-webkit-tap-highlight-color:rgba(0,0,0,0)}.swal2-show{animation:swal2-show .3s}.swal2-hide{animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{margin-right:initial;margin-left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}@keyframes swal2-toast-show{0%{transform:translateY(-0.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(0.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0deg)}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-0.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-show{0%{transform:scale(0.7)}45%{transform:scale(1.05)}80%{transform:scale(0.95)}100%{transform:scale(1)}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(0.5);opacity:0}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-0.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(0.4);opacity:0}50%{margin-top:1.625em;transform:scale(0.4);opacity:0}80%{margin-top:-0.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0deg);opacity:1}}@keyframes swal2-rotate-loading{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}@keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto !important}body.swal2-no-backdrop .swal2-container{background-color:rgba(0,0,0,0) !important;pointer-events:none}body.swal2-no-backdrop .swal2-container .swal2-popup{pointer-events:all}body.swal2-no-backdrop .swal2-container .swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll !important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static !important}}body.swal2-toast-shown .swal2-container{box-sizing:border-box;width:360px;max-width:100%;background-color:rgba(0,0,0,0);pointer-events:none}body.swal2-toast-shown .swal2-container.swal2-top{inset:0 auto auto 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{inset:0 0 auto auto}body.swal2-toast-shown .swal2-container.swal2-top-start,body.swal2-toast-shown .swal2-container.swal2-top-left{inset:0 auto auto 0}body.swal2-toast-shown .swal2-container.swal2-center-start,body.swal2-toast-shown .swal2-container.swal2-center-left{inset:50% auto auto 0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{inset:50% auto auto 50%;transform:translate(-50%, -50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{inset:50% 0 auto auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-start,body.swal2-toast-shown .swal2-container.swal2-bottom-left{inset:auto auto 0 0}body.swal2-toast-shown .swal2-container.swal2-bottom{inset:auto auto 0 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{inset:auto 0 0 auto}</style></head>
+
+<body><article>
+<nav><a href="https://www.eloquentjavascript.es/08_error.html" title="previous chapter" aria-label="previous chapter">◂</a>&nbsp;<a href="https://www.eloquentjavascript.es/index.html" title="cover" aria-label="cover">●</a>&nbsp;<a href="https://www.eloquentjavascript.es/10_modules.html" title="next chapter" aria-label="next chapter">▸</a>&nbsp;<button class="help" title="help" aria-label="help" style="display: inline;"><strong>?</strong></button>
+</nav>
+
+<h1>Expresiones regulares</h1>
+
+<blockquote>
+
+<p><a class="p_ident" id="p-48rajKViXI" href="https://www.eloquentjavascript.es/09_regexp.html#p-48rajKViXI" tabindex="-1" role="presentation"></a>Algunas personas, cuando se enfrentan a un problema, piensan '¡Ya sé, usaré expresiones regulares!’ Ahora tienen dos problemas.</p>
+
+<footer>Jamie Zawinski</footer>
+
+</blockquote>
+
+<blockquote>
+
+<p><a class="p_ident" id="p-93M9wGPUIB" href="https://www.eloquentjavascript.es/09_regexp.html#p-93M9wGPUIB" tabindex="-1" role="presentation"></a>Cuando cortas en contra de la veta de la madera, se necesita mucha fuerza. Cuando programas en contra de la veta del problema, se necesita mucho código.</p>
+
+<footer>Master Yuan-Ma, <cite>El Libro de la Programación</cite></footer>
+
+</blockquote><figure class="chapter framed"><img src="./Expresiones regulares __ Eloquent JavaScript_files/chapter_picture_9.jpg" alt="Ilustración de un sistema de ferrocarril que representa la estructura sintáctica de las expresiones regulares"></figure>
+
+<p><a class="p_ident" id="p-cUW+3W7fmu" href="https://www.eloquentjavascript.es/09_regexp.html#p-cUW+3W7fmu" tabindex="-1" role="presentation"></a>Las herramientas y técnicas de programación sobreviven y se propagan de manera caótica y evolutiva. No siempre ganan las mejores o brillantes, sino aquellas que funcionan lo suficientemente bien dentro del nicho correcto o que se integran con otra pieza exitosa de tecnología.</p>
+
+<p><a class="p_ident" id="p-DXsuW+HRzs" href="https://www.eloquentjavascript.es/09_regexp.html#p-DXsuW+HRzs" tabindex="-1" role="presentation"></a>En este capítulo, discutiré una de esas herramientas, <em>expresiones regulares</em>. Las expresiones regulares son una forma de describir patrónes en datos de cadena. Forman un pequeño lenguaje separado que es parte de JavaScript y muchos otros lenguajes y sistemas.</p>
+
+<p><a class="p_ident" id="p-7XhIkGJNrR" href="https://www.eloquentjavascript.es/09_regexp.html#p-7XhIkGJNrR" tabindex="-1" role="presentation"></a>Las expresiones regulares son tanto terriblemente incómodas como extremadamente útiles. Su sintaxis es críptica y la interfaz de programación que JavaScript proporciona para ellas es torpe. Pero son una herramienta poderosa para inspeccionar y procesar cadenas. Comprender adecuadamente las expresiones regulares te hará un programador más efectivo.</p>
+
+<h2><a class="h_ident" id="h-SxIVkReIo1" href="https://www.eloquentjavascript.es/09_regexp.html#h-SxIVkReIo1" tabindex="-1" role="presentation"></a>Creando una expresión regular</h2>
+
+<p><a class="p_ident" id="p-Xg1xoCrnF5" href="https://www.eloquentjavascript.es/09_regexp.html#p-Xg1xoCrnF5" tabindex="-1" role="presentation"></a>Una expresión regular es un tipo de objeto. Puede ser construido con el constructor <code>RegExp</code> o escrito como un valor literal al encerrar un patrón entre caracteres de barra diagonal (<code>/</code>).</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-O1I2rl+HTy" href="https://www.eloquentjavascript.es/09_regexp.html#c-O1I2rl+HTy" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">re1</span> = <span class="tok-keyword">new</span> RegExp(<span class="tok-string">"abc"</span>);
+<span class="tok-keyword">let</span> <span class="tok-definition">re2</span> = <span class="tok-string2">/abc/</span>;</pre>
+
+<p><a class="p_ident" id="p-Fz6ODF3XJG" href="https://www.eloquentjavascript.es/09_regexp.html#p-Fz6ODF3XJG" tabindex="-1" role="presentation"></a>Ambos objetos de expresión regular representan el mismo patrón: un carácter <em>a</em> seguido de un <em>b</em> seguido de un <em>c</em>.</p>
+
+<p><a class="p_ident" id="p-AD2f7pq4at" href="https://www.eloquentjavascript.es/09_regexp.html#p-AD2f7pq4at" tabindex="-1" role="presentation"></a>Cuando se utiliza el constructor <code>RegExp</code>, el patrón se escribe como una cadena normal, por lo que se aplican las reglas habituales para las barras invertidas.</p>
+
+<p><a class="p_ident" id="p-KZsxzenKjx" href="https://www.eloquentjavascript.es/09_regexp.html#p-KZsxzenKjx" tabindex="-1" role="presentation"></a>La segunda notación, donde el patrón aparece entre caracteres de barra diagonal, trata las barras invertidas de manera un poco diferente. Primero, dado que una barra diagonal termina el patrón, debemos poner una barra invertida antes de cualquier barra diagonal que queramos que sea <em>parte</em> del patrón. Además, las barras invertidas que no forman parte de códigos de caracteres especiales (como <code>\n</code>) serán <em>preservadas</em>, en lugar de ser ignoradas como lo son en las cadenas, y cambian el significado del patrón. Algunos caracteres, como signos de interrogación y signos de más, tienen significados especiales en las expresiones regulares y deben ser precedidos por una barra invertida si se desea representar el propio carácter.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-QdJ95//DRD" href="https://www.eloquentjavascript.es/09_regexp.html#c-QdJ95//DRD" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">aPlus</span> = <span class="tok-string2">/A\+/</span>;</pre>
+
+<h2><a class="h_ident" id="h-s5v2OAvvFA" href="https://www.eloquentjavascript.es/09_regexp.html#h-s5v2OAvvFA" tabindex="-1" role="presentation"></a>Pruebas de coincidencias</h2>
+
+<p><a class="p_ident" id="p-VTSToxvyfB" href="https://www.eloquentjavascript.es/09_regexp.html#p-VTSToxvyfB" tabindex="-1" role="presentation"></a>Los objetos de expresiones regulares tienen varios métodos. El más simple es <code>test</code>. Si le pasas una cadena, devolverá un Booleano indicándote si la cadena contiene una coincidencia con el patrón de la expresión.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-Szn1CmrIV5" href="https://www.eloquentjavascript.es/09_regexp.html#c-Szn1CmrIV5" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string2">/abc/</span>.test(<span class="tok-string">"abcde"</span>));
+<span class="tok-comment">// → true</span>
+console.log(<span class="tok-string2">/abc/</span>.test(<span class="tok-string">"abxde"</span>));
+<span class="tok-comment">// → false</span></pre>
+
+<p><a class="p_ident" id="p-I9d7+CqxO+" href="https://www.eloquentjavascript.es/09_regexp.html#p-I9d7+CqxO+" tabindex="-1" role="presentation"></a>Una expresión regular que consiste solo en caracteres no especiales simplemente representa esa secuencia de caracteres. Si <em>abc</em> aparece en cualquier parte de la cadena contra la cual estamos probando (no solo al principio), <code>test</code> devolverá <code>true</code>.</p>
+
+<h2><a class="h_ident" id="h-JdVGOTeHyG" href="https://www.eloquentjavascript.es/09_regexp.html#h-JdVGOTeHyG" tabindex="-1" role="presentation"></a>Conjuntos de caracteres</h2>
+
+<p><a class="p_ident" id="p-z3JS3xx91L" href="https://www.eloquentjavascript.es/09_regexp.html#p-z3JS3xx91L" tabindex="-1" role="presentation"></a>Descubrir si una cadena contiene <em>abc</em> también se podría hacer con una llamada a <code>indexOf</code>. Las expresiones regulares son útiles porque nos permiten describir patrones más complicados.</p>
+
+<p><a class="p_ident" id="p-Eh18fULy+Q" href="https://www.eloquentjavascript.es/09_regexp.html#p-Eh18fULy+Q" tabindex="-1" role="presentation"></a>Digamos que queremos hacer coincidir cualquier número. En una expresión regular, poner un conjunto de caracteres entre corchetes hace que esa parte de la expresión coincida con cualquiera de los caracteres entre los corchetes.</p>
+
+<p><a class="p_ident" id="p-kRrDHyV1gb" href="https://www.eloquentjavascript.es/09_regexp.html#p-kRrDHyV1gb" tabindex="-1" role="presentation"></a>Ambas expresiones siguientes hacen coincidir todas las cadenas que contienen un dígito:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-Z3UJdL//cY" href="https://www.eloquentjavascript.es/09_regexp.html#c-Z3UJdL//cY" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string2">/[0123456789]/</span>.test(<span class="tok-string">"in 1992"</span>));
+<span class="tok-comment">// → true</span>
+console.log(<span class="tok-string2">/[0-9]/</span>.test(<span class="tok-string">"in 1992"</span>));
+<span class="tok-comment">// → true</span></pre>
+
+<p><a class="p_ident" id="p-5qaMU7hqLJ" href="https://www.eloquentjavascript.es/09_regexp.html#p-5qaMU7hqLJ" tabindex="-1" role="presentation"></a>Dentro de corchetes, un guion (<code>-</code>) entre dos caracteres se puede usar para indicar un rango de caracteres, donde el orden es determinado por el número del carácter en el Unicode. Los caracteres del 0 al 9 están uno al lado del otro en este orden (códigos 48 a 57), por lo que <code>[0-9]</code> abarca todos ellos y coincide con cualquier dígito.</p>
+
+<p><a class="p_ident" id="p-lrGSB7/f6l" href="https://www.eloquentjavascript.es/09_regexp.html#p-lrGSB7/f6l" tabindex="-1" role="presentation"></a>Varios grupos comunes de caracteres tienen sus propias abreviaturas incorporadas. Los dígitos son uno de ellos: <code>\d</code> significa lo mismo que <code>[0-9]</code>.</p>
+
+<table>
+
+<tbody><tr><td><code>\d</code></td><td>Cualquier carácter dígito</td>
+
+</tr>
+
+<tr><td><code>\w</code></td><td>Un carácter alfanumérico (“carácter de palabra”)</td>
+
+</tr>
+
+<tr><td><code>\s</code></td><td>Cualquier carácter de espacio en blanco (espacio, tabulación, nueva línea, y similares)</td>
+
+</tr>
+
+<tr><td><code>\D</code></td><td>Un carácter que <em>no</em> es un dígito</td>
+
+</tr>
+
+<tr><td><code>\W</code></td><td>Un carácter no alfanumérico</td>
+
+</tr>
+
+<tr><td><code>\S</code></td><td>Un carácter que no es de espacio en blanco</td>
+
+</tr>
+
+<tr><td><code>.</code></td><td>Cualquier carácter excepto nueva línea</td>
+
+</tr>
+
+</tbody></table>
+
+<p><a class="p_ident" id="p-kqSlU9BE3X" href="https://www.eloquentjavascript.es/09_regexp.html#p-kqSlU9BE3X" tabindex="-1" role="presentation"></a>Así que podrías hacer coincidir un formato de fecha y hora como 01-30-2003 15:20 con la siguiente expresión:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-wJvOGyKwyj" href="https://www.eloquentjavascript.es/09_regexp.html#c-wJvOGyKwyj" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">dateTime</span> = <span class="tok-string2">/\d\d-\d\d-\d\d\d\d \d\d:\d\d/</span>;
+console.log(dateTime.test(<span class="tok-string">"01-30-2003 15:20"</span>));
+<span class="tok-comment">// → true</span>
+console.log(dateTime.test(<span class="tok-string">"30-ene-2003 15:20"</span>));
+<span class="tok-comment">// → false</span></pre>
+
+<p><a class="p_ident" id="p-1mBi7vFTKu" href="https://www.eloquentjavascript.es/09_regexp.html#p-1mBi7vFTKu" tabindex="-1" role="presentation"></a>¡Eso se ve completamente horrible, ¿verdad? La mitad son barras invertidas, produciendo un ruido de fondo que dificulta identificar el patrón expresado. Veremos una versión ligeramente mejorada de esta expresión <a href="https://www.eloquentjavascript.es/09_regexp.html#date_regexp_counted">más adelante</a>.</p>
+
+<p><a class="p_ident" id="p-qWhaV0LfTF" href="https://www.eloquentjavascript.es/09_regexp.html#p-qWhaV0LfTF" tabindex="-1" role="presentation"></a>Estos códigos de barra invertida también se pueden usar dentro de corchetes. Por ejemplo, <code>[\d.]</code> significa cualquier dígito o un carácter de punto. Pero el punto en sí, entre corchetes, pierde su significado especial. Lo mismo ocurre con otros caracteres especiales, como <code>+</code>.</p>
+
+<p><a class="p_ident" id="p-UfEuOyZI/2" href="https://www.eloquentjavascript.es/09_regexp.html#p-UfEuOyZI/2" tabindex="-1" role="presentation"></a>Para <em>invertir</em> un conjunto de caracteres, es decir, expresar que deseas hacer coincidir cualquier carácter <em>excepto</em> los que están en el conjunto, puedes escribir un carácter circunflejo (<code>^</code>) después del corchete de apertura.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-jj4NG87MXv" href="https://www.eloquentjavascript.es/09_regexp.html#c-jj4NG87MXv" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">nonBinary</span> = <span class="tok-string2">/[^01]/</span>;
+console.log(nonBinary.test(<span class="tok-string">"1100100010100110"</span>));
+<span class="tok-comment">// → false</span>
+console.log(nonBinary.test(<span class="tok-string">"0111010112101001"</span>));
+<span class="tok-comment">// → true</span></pre>
+
+<h2><a class="h_ident" id="h-z2+P4EyKss" href="https://www.eloquentjavascript.es/09_regexp.html#h-z2+P4EyKss" tabindex="-1" role="presentation"></a>Caracteres internacionales</h2>
+
+<p><a class="p_ident" id="p-vKYjSGxrpB" href="https://www.eloquentjavascript.es/09_regexp.html#p-vKYjSGxrpB" tabindex="-1" role="presentation"></a>Debido a la implementación simplista inicial de JavaScript y al hecho de que este enfoque simplista luego se estableció como comportamiento estándar, las expresiones regulares de JavaScript son bastante simples en lo que respecta a los caracteres que no aparecen en el idioma inglés. Por ejemplo, según las expresiones regulares de JavaScript, un “carácter de palabra” es solo uno de los 26 caracteres del alfabeto latino (mayúsculas o minúsculas), dígitos decimales y, por alguna razón, el guion bajo. Cosas como <em>é</em> o <em>β</em>, que definitivamente son caracteres de palabra, no coincidirán con <code>\w</code> (y <em>sí</em> coincidirán con <code>\W</code> en mayúsculas, la categoría de no palabras).</p>
+
+<p><a class="p_ident" id="p-1RUMuhSGvB" href="https://www.eloquentjavascript.es/09_regexp.html#p-1RUMuhSGvB" tabindex="-1" role="presentation"></a>Por un extraño accidente histórico, <code>\s</code> (espacio en blanco) no tiene este problema y coincide con todos los caracteres que el estándar Unicode considera espacios en blanco, incluidos elementos como el espacio sin ruptura y el separador de vocal mongol.</p>
+
+<p><a class="p_ident" id="p-osUhjAOwQC" href="https://www.eloquentjavascript.es/09_regexp.html#p-osUhjAOwQC" tabindex="-1" role="presentation"></a>Es posible usar <code>\p</code> en una expresión regular para hacer coincidir todos los caracteres a los que el estándar Unicode asigna una propiedad dada. Esto nos permite hacer coincidir cosas como letras de una manera más cosmopolita. Sin embargo, nuevamente debido a la compatibilidad con los estándares originales del lenguaje, estos solo se reconocen cuando se coloca un carácter <code>u</code> (por Unicode) después de la expresión regular.</p>
+
+<table>
+
+<tbody><tr><td><code>\p{L}</code></td><td>Cualquier letra</td>
+
+</tr>
+
+<tr><td><code>\p{N}</code></td><td>Cualquier carácter numérico</td>
+
+</tr>
+
+<tr><td><code>\p{P}</code></td><td>Cualquier carácter de puntuación</td>
+
+</tr>
+
+<tr><td><code>\P{L}</code></td><td>Cualquier no letra (la P en mayúsculas invierte)</td>
+
+</tr>
+
+<tr><td><code>\p{Script=Hangul}</code></td><td>Cualquier carácter del guion dado (ver <a href="https://www.eloquentjavascript.es/05_higher_order.html#scripts">Capítulo 5</a>)</td>
+
+</tr>
+
+</tbody></table>
+
+<p><a class="p_ident" id="p-ArOE+RMcya" href="https://www.eloquentjavascript.es/09_regexp.html#p-ArOE+RMcya" tabindex="-1" role="presentation"></a>Usar <code>\w</code> para el procesamiento de texto que puede necesitar manejar texto no inglés (o incluso texto en inglés con palabras prestadas como “cliché") es una desventaja, ya que no tratará caracteres como "é" como letras. Aunque tienden a ser un poco más verbosos, los grupos de propiedades <code>\p</code> son más robustos.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-s9MXvH0LEh" href="https://www.eloquentjavascript.es/09_regexp.html#c-s9MXvH0LEh" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string2">/\p{L}/u</span>.test(<span class="tok-string">"α"</span>));
+<span class="tok-comment">// → true</span>
+console.log(<span class="tok-string2">/\p{L}/u</span>.test(<span class="tok-string">"!"</span>));
+<span class="tok-comment">// → false</span>
+console.log(<span class="tok-string2">/\p{Script=Greek}/u</span>.test(<span class="tok-string">"α"</span>));
+<span class="tok-comment">// → true</span>
+console.log(<span class="tok-string2">/\p{Script=Arabic}/u</span>.test(<span class="tok-string">"α"</span>));
+<span class="tok-comment">// → false</span></pre>
+
+<p><a class="p_ident" id="p-oTgMYVkQhW" href="https://www.eloquentjavascript.es/09_regexp.html#p-oTgMYVkQhW" tabindex="-1" role="presentation"></a>Por otro lado, si estás haciendo coincidir números para hacer algo con ellos, a menudo querrás usar <code>\d</code> para dígitos, ya que convertir caracteres numéricos arbitrarios en un número de JavaScript no es algo que una función como <code>Number</code> pueda hacer por ti.</p>
+
+<h2><a class="h_ident" id="h-jw7Q3yVJ5U" href="https://www.eloquentjavascript.es/09_regexp.html#h-jw7Q3yVJ5U" tabindex="-1" role="presentation"></a>Repetir partes de un patrón</h2>
+
+<p><a class="p_ident" id="p-Rewuh7bsSI" href="https://www.eloquentjavascript.es/09_regexp.html#p-Rewuh7bsSI" tabindex="-1" role="presentation"></a>Ahora sabemos cómo hacer coincidir un solo dígito. ¿Qué tal si queremos hacer coincidir un número entero, una secuencia de uno o más dígitos?</p>
+
+<p><a class="p_ident" id="p-wGrdJKTgSN" href="https://www.eloquentjavascript.es/09_regexp.html#p-wGrdJKTgSN" tabindex="-1" role="presentation"></a>Cuando colocas un signo más (<code>+</code>) después de algo en una expresión regular, indica que el elemento puede repetirse más de una vez. Así, <code>/\d+/</code> hace coincidir uno o más caracteres de dígitos.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-9/5mFF4Ih4" href="https://www.eloquentjavascript.es/09_regexp.html#c-9/5mFF4Ih4" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string2">/'\d+'/</span>.test(<span class="tok-string">"'123'"</span>));
+<span class="tok-comment">// → true</span>
+console.log(<span class="tok-string2">/'\d+'/</span>.test(<span class="tok-string">"''"</span>));
+<span class="tok-comment">// → false</span>
+console.log(<span class="tok-string2">/'\d*'/</span>.test(<span class="tok-string">"'123'"</span>));
+<span class="tok-comment">// → true</span>
+console.log(<span class="tok-string2">/'\d*'/</span>.test(<span class="tok-string">"''"</span>));
+<span class="tok-comment">// → true</span></pre>
+
+<p><a class="p_ident" id="p-s2rQiOFAes" href="https://www.eloquentjavascript.es/09_regexp.html#p-s2rQiOFAes" tabindex="-1" role="presentation"></a>El asterisco (<code>*</code>) tiene un significado similar pero también permite que el patrón coincida cero veces. Algo con un asterisco después nunca impide que un patrón coincida, simplemente coincidirá cero veces si no puede encontrar ningún texto adecuado para hacer coincidir.</p>
+
+<p><a class="p_ident" id="p-z8tNT58Jv0" href="https://www.eloquentjavascript.es/09_regexp.html#p-z8tNT58Jv0" tabindex="-1" role="presentation"></a>Un signo de interrogación hace que una parte de un patrón sea <em>opcional</em>, lo que significa que puede ocurrir cero veces o una vez. En el siguiente ejemplo, se permite que el carácter <em>u</em> ocurra, pero el patrón también coincide cuando falta.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-EiCIowdq+d" href="https://www.eloquentjavascript.es/09_regexp.html#c-EiCIowdq+d" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">neighbor</span> = <span class="tok-string2">/neighbou?r/</span>;
+console.log(neighbor.test(<span class="tok-string">"neighbour"</span>));
+<span class="tok-comment">// → true</span>
+console.log(neighbor.test(<span class="tok-string">"neighbor"</span>));
+<span class="tok-comment">// → true</span></pre>
+
+<p><a class="p_ident" id="p-pQrIOoMzrK" href="https://www.eloquentjavascript.es/09_regexp.html#p-pQrIOoMzrK" tabindex="-1" role="presentation"></a>Para indicar que un patrón debe ocurrir un número preciso de veces, utiliza llaves. Colocar <code>{4}</code> después de un elemento, por ejemplo, requiere que ocurra exactamente cuatro veces. También es posible especificar un rango de esta manera: <code>{2,4}</code> significa que el elemento debe ocurrir al menos dos veces y como máximo cuatro veces.</p>
+
+<p id="date_regexp_counted"><a class="p_ident" id="p-lup45v+KG+" href="https://www.eloquentjavascript.es/09_regexp.html#p-lup45v+KG+" tabindex="-1" role="presentation"></a>Aquí tienes otra versión del patrón de fecha y hora que permite días, meses y horas de uno o dos dígitos. También es un poco más fácil de entender.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-Tw+K6Mxe45" href="https://www.eloquentjavascript.es/09_regexp.html#c-Tw+K6Mxe45" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">dateTime</span> = <span class="tok-string2">/\d{1,2}-\d{1,2}-\d{4} \d{1,2}:\d{2}/</span>;
+console.log(dateTime.test(<span class="tok-string">"1-30-2003 8:45"</span>));
+<span class="tok-comment">// → true</span></pre>
+
+<p><a class="p_ident" id="p-PBrmor3xzD" href="https://www.eloquentjavascript.es/09_regexp.html#p-PBrmor3xzD" tabindex="-1" role="presentation"></a>También puedes especificar rangos abiertos al utilizar llaves omitiendo el número después de la coma. Así, <code>{5,}</code> significa cinco o más veces.</p>
+
+<h2><a class="h_ident" id="h-ajNAW/IU6r" href="https://www.eloquentjavascript.es/09_regexp.html#h-ajNAW/IU6r" tabindex="-1" role="presentation"></a>Agrupación de subexpresiones</h2>
+
+<p><a class="p_ident" id="p-v3uf4iDeF4" href="https://www.eloquentjavascript.es/09_regexp.html#p-v3uf4iDeF4" tabindex="-1" role="presentation"></a>Para usar un operador como <code>*</code> o <code>+</code> en más de un elemento a la vez, debes utilizar paréntesis. Una parte de una expresión regular que está encerrada entre paréntesis cuenta como un solo elemento en lo que respecta a los operadores que le siguen.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-P/f6a65XwI" href="https://www.eloquentjavascript.es/09_regexp.html#c-P/f6a65XwI" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">cartoonCrying</span> = <span class="tok-string2">/boo+(hoo+)+/i</span>;
+console.log(cartoonCrying.test(<span class="tok-string">"Boohoooohoohooo"</span>));
+<span class="tok-comment">// → true</span></pre>
+
+<p><a class="p_ident" id="p-1LZtgULsIM" href="https://www.eloquentjavascript.es/09_regexp.html#p-1LZtgULsIM" tabindex="-1" role="presentation"></a>Los primeros y segundos caracteres <code>+</code> aplican solo al segundo <em>o</em> en <em>boo</em> y <em>hoo</em>, respectivamente. El tercer <code>+</code> se aplica a todo el grupo <code>(hoo+)</code>, haciendo coincidir una o más secuencias como esa.</p>
+
+<p><a class="p_ident" id="p-uBIcF0MS0l" href="https://www.eloquentjavascript.es/09_regexp.html#p-uBIcF0MS0l" tabindex="-1" role="presentation"></a>La <code>i</code> al final de la expresión en el ejemplo hace que esta expresión regular ignore mayúsculas y minúsculas, lo que le permite hacer coincidir la <em>B</em> mayúscula en la cadena de entrada, aunque el patrón en sí está completamente en minúsculas.</p>
+
+<h2><a class="h_ident" id="h-G8LUB/KGbs" href="https://www.eloquentjavascript.es/09_regexp.html#h-G8LUB/KGbs" tabindex="-1" role="presentation"></a>Coincidencias y grupos</h2>
+
+<p><a class="p_ident" id="p-4/Ykf8h2Ls" href="https://www.eloquentjavascript.es/09_regexp.html#p-4/Ykf8h2Ls" tabindex="-1" role="presentation"></a>El método <code>test</code> es la forma más simple de hacer coincidir una expresión regular. Solo te indica si hubo coincidencia y nada más. Las expresiones regulares también tienen un método <code>exec</code> (ejecutar) que devolverá <code>null</code> si no se encontró ninguna coincidencia y devolverá un objeto con información sobre la coincidencia en caso contrario.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-geq7uRLZVm" href="https://www.eloquentjavascript.es/09_regexp.html#c-geq7uRLZVm" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">coincidencia</span> = <span class="tok-string2">/\d+/</span>.exec(<span class="tok-string">"uno dos 100"</span>);
+console.log(coincidencia);
+<span class="tok-comment">// → ["100"]</span>
+console.log(coincidencia.index);
+<span class="tok-comment">// → 8</span></pre>
+
+<p><a class="p_ident" id="p-MEyBiymd+J" href="https://www.eloquentjavascript.es/09_regexp.html#p-MEyBiymd+J" tabindex="-1" role="presentation"></a>Un objeto devuelto por <code>exec</code> tiene una propiedad de <code>index</code> que nos dice <em>dónde</em> en la cadena comienza la coincidencia exitosa. Aparte de eso, el objeto parece (y de hecho es) un array de strings, cuyo primer elemento es la cadena que coincidió. En el ejemplo anterior, esta es la secuencia de dígitos que estábamos buscando.</p>
+
+<p><a class="p_ident" id="p-e2o3R6JZyN" href="https://www.eloquentjavascript.es/09_regexp.html#p-e2o3R6JZyN" tabindex="-1" role="presentation"></a>Los valores de tipo string tienen un método <code>match</code> que se comporta de manera similar.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-KCEzXI85eI" href="https://www.eloquentjavascript.es/09_regexp.html#c-KCEzXI85eI" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string">"uno dos 100"</span>.match(<span class="tok-string2">/\d+/</span>));
+<span class="tok-comment">// → ["100"]</span></pre>
+
+<p><a class="p_ident" id="p-mvGBAzey4W" href="https://www.eloquentjavascript.es/09_regexp.html#p-mvGBAzey4W" tabindex="-1" role="presentation"></a>Cuando la expresión regular contiene subexpresiones agrupadas con paréntesis, el texto que coincidió con esos grupos también aparecerá en el array. La coincidencia completa es siempre el primer elemento. El siguiente elemento es la parte coincidente con el primer grupo (el que tiene el paréntesis de apertura primero en la expresión), luego el segundo grupo, y así sucesivamente.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-DhEu3yj+hp" href="https://www.eloquentjavascript.es/09_regexp.html#c-DhEu3yj+hp" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">textoEntreComillas</span> = <span class="tok-string2">/'([^']*)'/</span>;
+console.log(textoEntreComillas.exec(<span class="tok-string">"ella dijo 'hola'"</span>));
+<span class="tok-comment">// → ["'hola'", "hola"]</span></pre>
+
+<p><a class="p_ident" id="p-mesWUfRxLZ" href="https://www.eloquentjavascript.es/09_regexp.html#p-mesWUfRxLZ" tabindex="-1" role="presentation"></a>Cuando un grupo no termina coincidiendo en absoluto (por ejemplo, cuando está seguido por un signo de pregunta), su posición en el array de salida contendrá <code>undefined</code>. Y cuando un grupo coincide múltiples veces (por ejemplo, cuando está seguido por un <code>+</code>), solo la última coincidencia termina en el array.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-SEbCBydGa3" href="https://www.eloquentjavascript.es/09_regexp.html#c-SEbCBydGa3" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string2">/mal(mente)?/</span>.exec(<span class="tok-string">"mal"</span>));
+<span class="tok-comment">// → ["mal", undefined]</span>
+console.log(<span class="tok-string2">/(\d)+/</span>.exec(<span class="tok-string">"123"</span>));
+<span class="tok-comment">// → ["123", "3"]</span></pre>
+
+<p><a class="p_ident" id="p-SAuB3/3lpK" href="https://www.eloquentjavascript.es/09_regexp.html#p-SAuB3/3lpK" tabindex="-1" role="presentation"></a>Si quieres utilizar paréntesis puramente para agrupar, sin que aparezcan en el array de coincidencias, puedes colocar <code>?:</code> después del paréntesis de apertura.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-JYRtOm6gNP" href="https://www.eloquentjavascript.es/09_regexp.html#c-JYRtOm6gNP" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string2">/(?:na)+/</span>.exec(<span class="tok-string">"banana"</span>));
+<span class="tok-comment">// → ["nana"]</span></pre>
+
+<p><a class="p_ident" id="p-kh0zXCIbfV" href="https://www.eloquentjavascript.es/09_regexp.html#p-kh0zXCIbfV" tabindex="-1" role="presentation"></a>Los grupos pueden ser útiles para extraer partes de una cadena. Si no solo queremos verificar si una cadena contiene una fecha sino también extraerla y construir un objeto que la represente, podemos envolver paréntesis alrededor de los patrones de dígitos y seleccionar directamente la fecha del resultado de <code>exec</code>.</p>
+
+<p><a class="p_ident" id="p-YRmJQbp4Jt" href="https://www.eloquentjavascript.es/09_regexp.html#p-YRmJQbp4Jt" tabindex="-1" role="presentation"></a>Pero primero haremos un breve desvío, en el que discutiremos la forma incorporada de representar fechas y horas en JavaScript.</p>
+
+<h2><a class="h_ident" id="h-Mi5NWDyYJW" href="https://www.eloquentjavascript.es/09_regexp.html#h-Mi5NWDyYJW" tabindex="-1" role="presentation"></a>La clase Date</h2>
+
+<p><a class="p_ident" id="p-iS/kDBNVYY" href="https://www.eloquentjavascript.es/09_regexp.html#p-iS/kDBNVYY" tabindex="-1" role="presentation"></a>JavaScript tiene una clase estándar para representar fechas—o, más bien, puntos en tiempo. Se llama <code>Date</code>. Si simplemente creas un objeto de fecha usando <code>new</code>, obtendrás la fecha y hora actuales.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-pkHhVmn87o" href="https://www.eloquentjavascript.es/09_regexp.html#c-pkHhVmn87o" tabindex="-1" role="presentation"></a>console.log(<span class="tok-keyword">new</span> Date());
+<span class="tok-comment">// → Fri Feb 02 2024 18:03:06 GMT+0100 (CET)</span></pre>
+
+<p><a class="p_ident" id="p-WBNfYVwKZS" href="https://www.eloquentjavascript.es/09_regexp.html#p-WBNfYVwKZS" tabindex="-1" role="presentation"></a>También puedes crear un objeto para un momento específico.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-FkAc42qjrU" href="https://www.eloquentjavascript.es/09_regexp.html#c-FkAc42qjrU" tabindex="-1" role="presentation"></a>console.log(<span class="tok-keyword">new</span> Date(<span class="tok-number">2009</span>, <span class="tok-number">11</span>, <span class="tok-number">9</span>));
+<span class="tok-comment">// → Mié Dec 09 2009 00:00:00 GMT+0100 (CET)</span>
+console.log(<span class="tok-keyword">new</span> Date(<span class="tok-number">2009</span>, <span class="tok-number">11</span>, <span class="tok-number">9</span>, <span class="tok-number">12</span>, <span class="tok-number">59</span>, <span class="tok-number">59</span>, <span class="tok-number">999</span>));
+<span class="tok-comment">// → Mié Dec 09 2009 12:59:59 GMT+0100 (CET)</span></pre>
+
+<p><a class="p_ident" id="p-Bw0MeCio5N" href="https://www.eloquentjavascript.es/09_regexp.html#p-Bw0MeCio5N" tabindex="-1" role="presentation"></a>JavaScript utiliza una convención donde los números de mes empiezan en cero (por lo que diciembre es 11), pero los números de día comienzan en uno. Esto es confuso y tonto. Ten cuidado.</p>
+
+<p><a class="p_ident" id="p-HgiufDrqlL" href="https://www.eloquentjavascript.es/09_regexp.html#p-HgiufDrqlL" tabindex="-1" role="presentation"></a>Los últimos cuatro argumentos (horas, minutos, segundos y milisegundos) son opcionales y se consideran cero cuando no se proporcionan.</p>
+
+<p><a class="p_ident" id="p-gxwZAuY3o1" href="https://www.eloquentjavascript.es/09_regexp.html#p-gxwZAuY3o1" tabindex="-1" role="presentation"></a>Las marcas de tiempo se almacenan como el número de milisegundos desde el comienzo de 1970, en UTC (zona horaria). Esto sigue una convención establecida por “tiempo de Unix”, que fue inventado alrededor de esa época. Puedes usar números negativos para tiempos antes de 1970. El método <code>getTime</code> en un objeto de fecha retorna este número. Es grande, como te puedes imaginar.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-Lj+Qss3ZWD" href="https://www.eloquentjavascript.es/09_regexp.html#c-Lj+Qss3ZWD" tabindex="-1" role="presentation"></a>console.log(<span class="tok-keyword">new</span> Date(<span class="tok-number">2013</span>, <span class="tok-number">11</span>, <span class="tok-number">19</span>).getTime());
+<span class="tok-comment">// → 1387407600000</span>
+console.log(<span class="tok-keyword">new</span> Date(<span class="tok-number">1387407600000</span>));
+<span class="tok-comment">// → Jue Dec 19 2013 00:00:00 GMT+0100 (CET)</span></pre>
+
+<p><a class="p_ident" id="p-nCAtjqvFCh" href="https://www.eloquentjavascript.es/09_regexp.html#p-nCAtjqvFCh" tabindex="-1" role="presentation"></a>Si le proporcionas un único argumento al constructor <code>Date</code>, ese argumento se tratará como un recuento de milisegundos. Puedes obtener el recuento actual de milisegundos creando un nuevo objeto <code>Date</code> y llamando a <code>getTime</code> en él o llamando a la función <code>Date.now</code>.</p>
+
+<p><a class="p_ident" id="p-VscGabP21e" href="https://www.eloquentjavascript.es/09_regexp.html#p-VscGabP21e" tabindex="-1" role="presentation"></a>Los objetos de fecha proporcionan métodos como <code>getFullYear</code>, <code>getMonth</code>, <code>getDate</code>, <code>getHours</code>, <code>getMinutes</code> y <code>getSeconds</code> para extraer sus componentes. Además de <code>getFullYear</code>, también existe <code>getYear</code>, que te da el año menos 1900 (<code>98</code> o <code>119</code>) y es en su mayoría inútil.</p>
+
+<p><a class="p_ident" id="p-eA5U6lb8Dx" href="https://www.eloquentjavascript.es/09_regexp.html#p-eA5U6lb8Dx" tabindex="-1" role="presentation"></a>Poniendo paréntesis alrededor de las partes de la expresión que nos interesan, podemos crear un objeto de fecha a partir de una cadena.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-SU0rTpHzGn" href="https://www.eloquentjavascript.es/09_regexp.html#c-SU0rTpHzGn" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">getDate</span>(<span class="tok-definition">string</span>) {
+  <span class="tok-keyword">let</span> [<span class="tok-definition">_</span>, <span class="tok-definition">month</span>, <span class="tok-definition">day</span>, <span class="tok-definition">year</span>] =
+    <span class="tok-string2">/(\d{1,2})-(\d{1,2})-(\d{4})/</span>.exec(string);
+  <span class="tok-keyword">return</span> <span class="tok-keyword">new</span> Date(year, month - <span class="tok-number">1</span>, day);
+}
+console.log(getDate(<span class="tok-string">"1-30-2003"</span>));
+<span class="tok-comment">// → Jue Ene 30 2003 00:00:00 GMT+0100 (CET)</span></pre>
+
+<p><a class="p_ident" id="p-rkfkh1qvgb" href="https://www.eloquentjavascript.es/09_regexp.html#p-rkfkh1qvgb" tabindex="-1" role="presentation"></a>La vinculación <code>_</code> (guion bajo) se ignora y se utiliza solo para omitir el elemento de coincidencia completa en el array devuelto por <code>exec</code>.</p>
+
+<h2><a class="h_ident" id="h-tNtw4L7Y+r" href="https://www.eloquentjavascript.es/09_regexp.html#h-tNtw4L7Y+r" tabindex="-1" role="presentation"></a>Límites y anticipación</h2>
+
+<p><a class="p_ident" id="p-qbV1DRyGh9" href="https://www.eloquentjavascript.es/09_regexp.html#p-qbV1DRyGh9" tabindex="-1" role="presentation"></a>Desafortunadamente, <code>getDate</code> también extraerá felizmente una fecha de la cadena <code>"100-1-30000"</code>. Una coincidencia puede ocurrir en cualquier parte de la cadena, por lo que en este caso, simplemente empezará en el segundo carácter y terminará en el antepenúltimo carácter.</p>
+
+<p><a class="p_ident" id="p-Mynhxs9BJv" href="https://www.eloquentjavascript.es/09_regexp.html#p-Mynhxs9BJv" tabindex="-1" role="presentation"></a>Si queremos asegurar que la coincidencia abarque toda la cadena, podemos agregar los marcadores <code>^</code> y <code>$</code>. El circunflejo coincide con el inicio de la cadena de entrada, mientras que el signo de dólar coincide con el final. Por lo tanto, <code>/^\d+$/</code> coincide con una cadena que consiste completamente de uno o más dígitos, <code>/^!/</code> coincide con cualquier cadena que comience con un signo de exclamación y <code>/x^/</code> no coincide con ninguna cadena (no puede haber una <em>x</em> antes del inicio de la cadena).</p>
+
+<p><a class="p_ident" id="p-LrT5oRdCQy" href="https://www.eloquentjavascript.es/09_regexp.html#p-LrT5oRdCQy" tabindex="-1" role="presentation"></a>También existe un marcador <code>\b</code>, que coincide con los “límites de palabra”, posiciones que tienen un carácter de palabra a un lado y un carácter que no es de palabra al otro. Desafortunadamente, estos utilizan el mismo concepto simplista de caracteres de palabra que <code>\w</code>, por lo que no son muy confiables.</p>
+
+<p><a class="p_ident" id="p-RfgTmK5+t/" href="https://www.eloquentjavascript.es/09_regexp.html#p-RfgTmK5+t/" tabindex="-1" role="presentation"></a>Ten en cuenta que estos marcadores no coinciden con ningún carácter real. Simplemente aseguran que se cumpla una condición determinada en el lugar donde aparecen en el patrón.</p>
+
+<p><a class="p_ident" id="p-HmSpm3FjH9" href="https://www.eloquentjavascript.es/09_regexp.html#p-HmSpm3FjH9" tabindex="-1" role="presentation"></a>Las pruebas de <em>mirar adelante</em> hacen algo similar. Proporcionan un patrón y harán que la coincidencia falle si la entrada no coincide con ese patrón, pero en realidad no mueven la posición de la coincidencia hacia adelante. Se escriben entre <code>(?=</code> y <code>)</code>.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-ryfOqCgM06" href="https://www.eloquentjavascript.es/09_regexp.html#c-ryfOqCgM06" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string2">/a(?=e)/</span>.exec(<span class="tok-string">"braeburn"</span>));
+<span class="tok-comment">// → ["a"]</span>
+console.log(<span class="tok-string2">/a(?! )/</span>.exec(<span class="tok-string">"a b"</span>));
+<span class="tok-comment">// → null</span></pre>
+
+<p><a class="p_ident" id="p-RuQb3z5Mwx" href="https://www.eloquentjavascript.es/09_regexp.html#p-RuQb3z5Mwx" tabindex="-1" role="presentation"></a>Observa cómo la <code>e</code> en el primer ejemplo es necesaria para coincidir, pero no forma parte de la cadena coincidente. La notación <code>(?! )</code> expresa un mirar adelante <em>negativo</em>. Esto solo coincide si el patrón entre paréntesis <em>no</em> coincide, lo que hace que el segundo ejemplo solo coincida con caracteres “a” que no tienen un espacio después de ellos.</p>
+
+<h2><a class="h_ident" id="h-TUSc554JnM" href="https://www.eloquentjavascript.es/09_regexp.html#h-TUSc554JnM" tabindex="-1" role="presentation"></a>Patrones de elección</h2>
+
+<p><a class="p_ident" id="p-g+0lsX1IVo" href="https://www.eloquentjavascript.es/09_regexp.html#p-g+0lsX1IVo" tabindex="-1" role="presentation"></a>Digamos que queremos saber si un texto contiene no solo un número, sino un número seguido de una de las palabras <em>pig</em>, <em>cow</em> o <em>chicken</em>, o cualquiera de sus formas en plural.</p>
+
+<p><a class="p_ident" id="p-faCL6B9cwG" href="https://www.eloquentjavascript.es/09_regexp.html#p-faCL6B9cwG" tabindex="-1" role="presentation"></a>Podríamos escribir tres expresiones regulares y probarlas sucesivamente, pero hay una forma más sencilla. El carácter de barra vertical (<code>|</code>) denota una elección entre el patrón a su izquierda y el patrón a su derecha. Así que puedo decir esto:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-tEyQxhonoR" href="https://www.eloquentjavascript.es/09_regexp.html#c-tEyQxhonoR" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">animalCount</span> = <span class="tok-string2">/\d+ (pig|cow|chicken)s?/</span>;
+console.log(animalCount.test(<span class="tok-string">"15 pigs"</span>));
+<span class="tok-comment">// → true</span>
+console.log(animalCount.test(<span class="tok-string">"15 pugs"</span>));
+<span class="tok-comment">// → false</span></pre>
+
+<p><a class="p_ident" id="p-o/w2hW+vwa" href="https://www.eloquentjavascript.es/09_regexp.html#p-o/w2hW+vwa" tabindex="-1" role="presentation"></a>Los paréntesis se pueden utilizar para limitar la parte del patrón a la que se aplica el operador de barra, y puedes colocar varios de estos operadores uno al lado del otro para expresar una elección entre más de dos alternativas.</p>
+
+<h2><a class="h_ident" id="h-LDlMA55Hgg" href="https://www.eloquentjavascript.es/09_regexp.html#h-LDlMA55Hgg" tabindex="-1" role="presentation"></a>La mecánica de la coincidencia</h2>
+
+<p><a class="p_ident" id="p-yKsAs46XQh" href="https://www.eloquentjavascript.es/09_regexp.html#p-yKsAs46XQh" tabindex="-1" role="presentation"></a>Conceptualmente, cuando utilizas <code>exec</code> o <code>test</code>, el motor de expresiones regulares busca una coincidencia en tu cadena tratando de ajustar primero la expresión desde el comienzo de la cadena, luego desde el segundo carácter, y así sucesivamente, hasta que encuentra una coincidencia o llega al final de la cadena. Devolverá la primera coincidencia que encuentre o fracasará en encontrar cualquier coincidencia.</p>
+
+<p><a class="p_ident" id="p-F6uLAaHlXA" href="https://www.eloquentjavascript.es/09_regexp.html#p-F6uLAaHlXA" tabindex="-1" role="presentation"></a>Para hacer la coincidencia real, el motor trata a una expresión regular algo así como un diagrama de flujo. Este es el diagrama para la expresión de ganado en el ejemplo anterior:</p><figure><img src="./Expresiones regulares __ Eloquent JavaScript_files/re_pigchickens.svg" alt="Diagrama de ferrocarril que primero pasa por un recuadro etiquetado &#39;dígito&#39;, que tiene un bucle que regresa desde después de él a antes de él, y luego un recuadro para un carácter de espacio. Después de eso, el ferrocarril se divide en tres, pasando por cuadros para &#39;pig&#39;, &#39;cow&#39; y &#39;chicken&#39;. Después de estos, se reúne de nuevo y pasa por un cuadro etiquetado &#39;s&#39;, que, al ser opcional, también tiene un ferrocarril que lo pasa por alto. Finalmente, la línea llega al estado de aceptación."></figure>
+
+<p><a class="p_ident" id="p-6KuJyUkARn" href="https://www.eloquentjavascript.es/09_regexp.html#p-6KuJyUkARn" tabindex="-1" role="presentation"></a>Nuestra expresión coincide si podemos encontrar un camino desde el lado izquierdo del diagrama hasta el lado derecho. Mantenemos una posición actual en la cadena, y cada vez que avanzamos a través de un recuadro, verificamos que la parte de la cadena después de nuestra posición actual coincida con ese recuadro.</p>
+
+<h2 id="retroceso"><a class="h_ident" id="h-nmeiqrCjN8" href="https://www.eloquentjavascript.es/09_regexp.html#h-nmeiqrCjN8" tabindex="-1" role="presentation"></a>Retroceso</h2>
+
+<p><a class="p_ident" id="p-QOY2sD8j/J" href="https://www.eloquentjavascript.es/09_regexp.html#p-QOY2sD8j/J" tabindex="-1" role="presentation"></a>La expresión regular <code>/<wbr>^([01]+b|[\da-f]+h|\d+)$/<wbr></code> coincide ya sea con un número binario seguido de una <em>b</em>, un número hexadecimal (es decir, base 16, con las letras <em>a</em> a <em>f</em> representando los dígitos del 10 al 15) seguido de un <em>h</em>, o un número decimal regular sin un carácter de sufijo. Este es el diagrama correspondiente:</p><figure><img src="./Expresiones regulares __ Eloquent JavaScript_files/re_number.svg" alt="Diagrama de ferrocarril para la expresión regular &#39;^([01]+b|\d+|[\da-f]+h)$&#39;"></figure>
+
+<p><a class="p_ident" id="p-F8PggnyHoN" href="https://www.eloquentjavascript.es/09_regexp.html#p-F8PggnyHoN" tabindex="-1" role="presentation"></a>Al coincidir con esta expresión, a menudo sucede que se ingresa por la rama superior (binaria) aunque la entrada en realidad no contenga un número binario. Al coincidir con la cadena <code>"103"</code>, por ejemplo, solo se aclara en el 3 que estamos en la rama incorrecta. La cadena <em>coincide</em> con la expresión, simplemente no con la rama en la que nos encontramos actualmente.</p>
+
+<p><a class="p_ident" id="p-7qbjzwRdSE" href="https://www.eloquentjavascript.es/09_regexp.html#p-7qbjzwRdSE" tabindex="-1" role="presentation"></a>Entonces, el coincidente <em>retrocede</em>. Al ingresar a una rama, recuerda su posición actual (en este caso, al principio de la cadena, justo después del primer cuadro de límite en el diagrama) para poder retroceder y probar otra rama si la actual no funciona. Para la cadena <code>"103"</code>, después de encontrar el carácter 3, intentará la rama para los números hexadecimales, lo cual también falla porque no hay un <em>h</em> después del número. Entonces intenta la rama para los números decimales. Esta encaja, y se informa una coincidencia después de todo.</p>
+
+<p><a class="p_ident" id="p-0RSYS7890V" href="https://www.eloquentjavascript.es/09_regexp.html#p-0RSYS7890V" tabindex="-1" role="presentation"></a>El coincidente se detiene tan pronto como encuentra una coincidencia completa. Esto significa que si varias ramas podrían coincidir potencialmente con una cadena, solo se usa la primera (ordenada por dónde aparecen las ramas en la expresión regular).</p>
+
+<p><a class="p_ident" id="p-G1JkUqppfY" href="https://www.eloquentjavascript.es/09_regexp.html#p-G1JkUqppfY" tabindex="-1" role="presentation"></a>El retroceso también ocurre para los operadores de repetición como + y <code>*</code>. Si coincide con <code>/^.*x/</code> contra <code>"abcxe"</code>, la parte <code>.*</code> intentará primero consumir toda la cadena. Luego el motor se dará cuenta de que necesita una <em>x</em> para que coincida con el patrón. Dado que no hay una <em>x</em> más allá del final de la cadena, el operador estrella intentará coincidir con un carácter menos. Pero el coincidente no encuentra una <em>x</em> después de <code>abcx</code> tampoco, por lo que retrocede nuevamente, coincidiendo con el operador estrella solo con <code>abc</code>. <em>Ahora</em> encuentra una <em>x</em> donde la necesita y reporta una coincidencia exitosa desde las posiciones 0 a 4.</p>
+
+<p><a class="p_ident" id="p-PFas9MdMqI" href="https://www.eloquentjavascript.es/09_regexp.html#p-PFas9MdMqI" tabindex="-1" role="presentation"></a>Es posible escribir expresiones regulares que realizarán <em>mucho</em> retroceso. Este problema ocurre cuando un patrón puede coincidir con una parte de la entrada de muchas formas diferentes. Por ejemplo, si nos confundimos al escribir una expresión regular para los números binarios, podríamos escribir accidentalmente algo como <code>/([01]+)+b/</code>.</p><figure><img src="./Expresiones regulares __ Eloquent JavaScript_files/re_slow.svg" alt="Diagrama de ferrocarril para la expresión regular &#39;([01]+)+b&#39;"></figure>
+
+<p><a class="p_ident" id="p-jqlLoLqI3m" href="https://www.eloquentjavascript.es/09_regexp.html#p-jqlLoLqI3m" tabindex="-1" role="presentation"></a>Si intenta hacer coincidir una serie larga de ceros y unos sin un caracter <em>b</em> al final, el analizador primero pasa por el bucle interno hasta que se queda sin dígitos. Luego se da cuenta de que no hay <em>b</em>, por lo que retrocede una posición, pasa por el bucle externo una vez y vuelve a darse por vencido, intentando retroceder nuevamente fuera del bucle interno. Continuará intentando todas las rutas posibles a través de estos dos bucles. Esto significa que la cantidad de trabajo se <em>duplica</em> con cada carácter adicional. Incluso con apenas unas pocas docenas de caracteres, la coincidencia resultante tomará prácticamente para siempre.</p>
+
+<h2><a class="h_ident" id="h-f49QceigRC" href="https://www.eloquentjavascript.es/09_regexp.html#h-f49QceigRC" tabindex="-1" role="presentation"></a>El método replace</h2>
+
+<p><a class="p_ident" id="p-1ySwSsfW/X" href="https://www.eloquentjavascript.es/09_regexp.html#p-1ySwSsfW/X" tabindex="-1" role="presentation"></a>Los valores de cadena tienen un método <code>replace</code> que se puede utilizar para reemplazar parte de la cadena con otra cadena.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-dPdIdK/Wyi" href="https://www.eloquentjavascript.es/09_regexp.html#c-dPdIdK/Wyi" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string">"papa"</span>.replace(<span class="tok-string">"p"</span>, <span class="tok-string">"m"</span>));
+<span class="tok-comment">// → mapa</span></pre>
+
+<p><a class="p_ident" id="p-jRLNNW4/Hs" href="https://www.eloquentjavascript.es/09_regexp.html#p-jRLNNW4/Hs" tabindex="-1" role="presentation"></a>El primer argumento también puede ser una expresión regular, en cuyo caso se reemplaza la primera coincidencia de la expresión regular. Cuando se agrega una opción <code>g</code> (para <em>global</em>) después de la expresión regular, <em>todas</em> las coincidencias en la cadena serán reemplazadas, no solo la primera.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-ztGnSKyKy1" href="https://www.eloquentjavascript.es/09_regexp.html#c-ztGnSKyKy1" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string">"Borobudur"</span>.replace(<span class="tok-string2">/[ou]/</span>, <span class="tok-string">"a"</span>));
+<span class="tok-comment">// → Barobudur</span>
+console.log(<span class="tok-string">"Borobudur"</span>.replace(<span class="tok-string2">/[ou]/g</span>, <span class="tok-string">"a"</span>));
+<span class="tok-comment">// → Barabadar</span></pre>
+
+<p><a class="p_ident" id="p-mDtLRf/Jcr" href="https://www.eloquentjavascript.es/09_regexp.html#p-mDtLRf/Jcr" tabindex="-1" role="presentation"></a>El verdadero poder de usar expresiones regulares con <code>replace</code> proviene del hecho de que podemos hacer referencia a grupos coincidentes en la cadena de reemplazo. Por ejemplo, digamos que tenemos una cadena larga que contiene los nombres de personas, un nombre por línea, en el formato <code>Apellido, Nombre</code>. Si queremos intercambiar estos nombres y eliminar la coma para obtener un formato <code>Nombre Apellido</code>, podemos usar el siguiente código:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-Kb7uk2ah9L" href="https://www.eloquentjavascript.es/09_regexp.html#c-Kb7uk2ah9L" tabindex="-1" role="presentation"></a>console.log(
+  <span class="tok-string">"Liskov, Barbara</span><span class="tok-string2">\n</span><span class="tok-string">McCarthy, John</span><span class="tok-string2">\n</span><span class="tok-string">Milner, Robin"</span>
+    .replace(<span class="tok-string2">/(\p{L}+), (\p{L}+)/gu</span>, <span class="tok-string">"$2 $1"</span>));
+<span class="tok-comment">// → Barbara Liskov</span>
+<span class="tok-comment">//   John McCarthy</span>
+<span class="tok-comment">//   Robin Milner</span></pre>
+
+<p><a class="p_ident" id="p-p2f8BR4+jy" href="https://www.eloquentjavascript.es/09_regexp.html#p-p2f8BR4+jy" tabindex="-1" role="presentation"></a>Los <code>$1</code> y <code>$2</code> en la cadena de reemplazo se refieren a los grupos entre paréntesis en el patrón. <code>$1</code> es reemplazado por el texto que coincidió con el primer grupo, <code>$2</code> por el segundo, y así sucesivamente, hasta <code>$9</code>. Toda la coincidencia se puede referenciar con <code>$&amp;</code>.</p>
+
+<p><a class="p_ident" id="p-7Dj3BhD29k" href="https://www.eloquentjavascript.es/09_regexp.html#p-7Dj3BhD29k" tabindex="-1" role="presentation"></a>Es posible pasar una función, en lugar de una cadena, como segundo argumento a <code>replace</code>. Para cada reemplazo, la función se llamará con los grupos coincidentes (así como la coincidencia completa) como argumentos, y su valor de retorno se insertará en la nueva cadena.</p>
+
+<p><a class="p_ident" id="p-Od/5LHikVf" href="https://www.eloquentjavascript.es/09_regexp.html#p-Od/5LHikVf" tabindex="-1" role="presentation"></a>Aquí tienes un ejemplo:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-uAXkxyRZne" href="https://www.eloquentjavascript.es/09_regexp.html#c-uAXkxyRZne" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">stock</span> = <span class="tok-string">"1 limón, 2 repollos y 101 huevos"</span>;
+<span class="tok-keyword">function</span> <span class="tok-definition">menosUno</span>(<span class="tok-definition">match</span>, <span class="tok-definition">cantidad</span>, <span class="tok-definition">unidad</span>) {
+  cantidad = Number(cantidad) - <span class="tok-number">1</span>;
+  <span class="tok-keyword">if</span> (cantidad == <span class="tok-number">1</span>) { <span class="tok-comment">// solo queda uno, se elimina la 's'</span>
+    unidad = unidad.slice(<span class="tok-number">0</span>, unidad.length - <span class="tok-number">1</span>);
+  } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (cantidad == <span class="tok-number">0</span>) {
+    cantidad = <span class="tok-string">"ningún"</span>;
+  }
+  <span class="tok-keyword">return</span> cantidad + <span class="tok-string">" "</span> + unidad;
+}
+console.log(stock.replace(<span class="tok-string2">/(\d+) (\p{L}+)/gu</span>, menosUno));
+<span class="tok-comment">// → ningún limón, 1 repollo y 100 huevos</span></pre>
+
+<p><a class="p_ident" id="p-VHv2obV4AF" href="https://www.eloquentjavascript.es/09_regexp.html#p-VHv2obV4AF" tabindex="-1" role="presentation"></a>Esta función toma una cadena, encuentra todas las ocurrencias de un número seguido de una palabra alfanumérica, y devuelve una cadena que tiene una cantidad menos de cada una de esas ocurrencias.</p>
+
+<p><a class="p_ident" id="p-ni452X7vOx" href="https://www.eloquentjavascript.es/09_regexp.html#p-ni452X7vOx" tabindex="-1" role="presentation"></a>El grupo <code>(\d+)</code> termina siendo el argumento <code>amount</code> de la función, y el grupo <code>(\p{L}+)</code> se asigna a <code>unit</code>. La función convierte <code>amount</code> a un número, lo cual siempre funciona ya que coincide con <code>\d+</code>, y realiza algunos ajustes en caso de que solo quede uno o ninguno.</p>
+
+<h2><a class="h_ident" id="h-cI0ExIcqOA" href="https://www.eloquentjavascript.es/09_regexp.html#h-cI0ExIcqOA" tabindex="-1" role="presentation"></a>Avaricia</h2>
+
+<p><a class="p_ident" id="p-xH5+BJjvA9" href="https://www.eloquentjavascript.es/09_regexp.html#p-xH5+BJjvA9" tabindex="-1" role="presentation"></a>Es posible usar <code>replace</code> para escribir una función que elimine todos los comentarios de un fragmento de código JavaScript. Aquí tienes un primer intento:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-hqiQQzO7k6" href="https://www.eloquentjavascript.es/09_regexp.html#c-hqiQQzO7k6" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">stripComments</span>(<span class="tok-definition">code</span>) {
+  <span class="tok-keyword">return</span> code.replace(<span class="tok-string2">/\/\/.*|\/\*[^]*\*\//g</span>, <span class="tok-string">""</span>);
+}
+console.log(stripComments(<span class="tok-string">"1 + /* 2 */3"</span>));
+<span class="tok-comment">// → 1 + 3</span>
+console.log(stripComments(<span class="tok-string">"x = 10;// ¡diez!"</span>));
+<span class="tok-comment">// → x = 10;</span>
+console.log(stripComments(<span class="tok-string">"1 /* a */+/* b */ 1"</span>));
+<span class="tok-comment">// → 1  1</span></pre>
+
+<p><a class="p_ident" id="p-lareD54U0I" href="https://www.eloquentjavascript.es/09_regexp.html#p-lareD54U0I" tabindex="-1" role="presentation"></a>La parte antes del operador <em>or</em> coincide con dos caracteres de barra seguidos por cualquier cantidad de caracteres que no sean de nueva línea. La parte de comentarios de varias líneas es más compleja. Utilizamos <code>[^]</code> (cualquier carácter que no esté en el conjunto vacío de caracteres) como una forma de coincidir con cualquier carácter. No podemos usar simplemente un punto aquí porque los comentarios de bloque pueden continuar en una nueva línea, y el carácter de punto no coincide con caracteres de nueva línea.</p>
+
+<p><a class="p_ident" id="p-mxzz/dlHK7" href="https://www.eloquentjavascript.es/09_regexp.html#p-mxzz/dlHK7" tabindex="-1" role="presentation"></a>Pero la salida para la última línea parece haber salido mal. ¿Por qué?</p>
+
+<p><a class="p_ident" id="p-KYpv5oZkiP" href="https://www.eloquentjavascript.es/09_regexp.html#p-KYpv5oZkiP" tabindex="-1" role="presentation"></a>La parte <code>[^]*</code> de la expresión, como describí en la sección sobre retroceso, primero intentará coincidir con todo lo que pueda. Si esto hace que la siguiente parte del patrón falle, el coincidente retrocede un carácter y vuelve a intentar desde ahí. En el ejemplo, el coincidente intenta primero coincidir con el resto completo de la cadena y luego retrocede desde allí. Encontrará una ocurrencia de <code>*/</code> después de retroceder cuatro caracteres y coincidirá con eso. Esto no es lo que queríamos, la intención era coincidir con un único comentario, no llegar hasta el final del código y encontrar el final del último comentario de bloque.</p>
+
+<p><a class="p_ident" id="p-fC+SPfUUr7" href="https://www.eloquentjavascript.es/09_regexp.html#p-fC+SPfUUr7" tabindex="-1" role="presentation"></a>Debido a este comportamiento, decimos que los operadores de repetición (<code>+</code>, <code>*</code>, <code>?</code>, y <code>{}</code>) son <em>avariciosos</em>, lo que significa que coinciden con todo lo que pueden y retroceden desde allí. Si colocas un signo de interrogación después de ellos (<code>+?</code>, <code>*?</code>, <code>??</code>, <code>{}?</code>), se vuelven no avariciosos y comienzan coincidiendo con la menor cantidad posible, coincidiendo más solo cuando el patrón restante no encaja con la coincidencia más pequeña.</p>
+
+<p><a class="p_ident" id="p-MUXpQzArez" href="https://www.eloquentjavascript.es/09_regexp.html#p-MUXpQzArez" tabindex="-1" role="presentation"></a>Y eso es exactamente lo que queremos en este caso. Al hacer que el asterisco coincida con la menor cantidad de caracteres que nos lleva a <code>*/</code>, consumimos un comentario de bloque y nada más.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-MCNF7GxfR1" href="https://www.eloquentjavascript.es/09_regexp.html#c-MCNF7GxfR1" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">stripComments</span>(<span class="tok-definition">code</span>) {
+  <span class="tok-keyword">return</span> code.replace(<span class="tok-string2">/\/\/.*|\/\*[^]*?\*\//g</span>, <span class="tok-string">""</span>);
+}
+console.log(stripComments(<span class="tok-string">"1 /* a */+/* b */ 1"</span>));
+<span class="tok-comment">// → 1 + 1</span></pre>
+
+<p><a class="p_ident" id="p-ALsLlfRqmw" href="https://www.eloquentjavascript.es/09_regexp.html#p-ALsLlfRqmw" tabindex="-1" role="presentation"></a>Muchos errors en programas de expresión regular pueden rastrearse hasta el uso no intencionado de un operador avaricioso donde uno no avaricioso funcionaría mejor. Cuando uses un operador de repetición, prefiere la variante no avariciosa.</p>
+
+<h2><a class="h_ident" id="h-iuSjEFI6BB" href="https://www.eloquentjavascript.es/09_regexp.html#h-iuSjEFI6BB" tabindex="-1" role="presentation"></a>Creación dinámica de objetos RegExp</h2>
+
+<p><a class="p_ident" id="p-VeBLJxBP+2" href="https://www.eloquentjavascript.es/09_regexp.html#p-VeBLJxBP+2" tabindex="-1" role="presentation"></a>Hay casos en los que es posible que no sepas el patrón exacto que necesitas para hacer coincidir cuando estás escribiendo tu código. Digamos que quieres probar el nombre de usuario en un fragmento de texto. Puedes construir una cadena y usar el <code>constructor</code> <code>RegExp</code> en ello. Aquí tienes un ejemplo:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-WfHBCcn+gy" href="https://www.eloquentjavascript.es/09_regexp.html#c-WfHBCcn+gy" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">name</span> = <span class="tok-string">"harry"</span>;
+<span class="tok-keyword">let</span> <span class="tok-definition">regexp</span> = <span class="tok-keyword">new</span> RegExp(<span class="tok-string">"(^|</span><span class="tok-string2">\\</span><span class="tok-string">s)"</span> + name + <span class="tok-string">"($|</span><span class="tok-string2">\\</span><span class="tok-string">s)"</span>, <span class="tok-string">"gi"</span>);
+console.log(regexp.test(<span class="tok-string">"Harry es un personaje dudoso."</span>));
+<span class="tok-comment">// → true</span></pre>
+
+<p><a class="p_ident" id="p-t/sBXmwE44" href="https://www.eloquentjavascript.es/09_regexp.html#p-t/sBXmwE44" tabindex="-1" role="presentation"></a>Al crear la parte <code>\s</code> de la cadena, tenemos que usar dos barras invertidas porque las estamos escribiendo en una cadena normal, no en una expresión regular entre barras. El segundo argumento del constructor <code>RegExp</code> contiene las opciones para la expresión regular, en este caso, <code>"gi"</code> para global e insensible a mayúsculas y minúsculas.</p>
+
+<p><a class="p_ident" id="p-kTObyW6aHr" href="https://www.eloquentjavascript.es/09_regexp.html#p-kTObyW6aHr" tabindex="-1" role="presentation"></a>Pero ¿qué pasa si el nombre es <code>"dea+hl[]rd"</code> porque nuestro usuario es un adolescente nerd? Eso resultaría en una expresión regular absurda que en realidad no coincidiría con el nombre del usuario.</p>
+
+<p><a class="p_ident" id="p-PLgFCFdANG" href="https://www.eloquentjavascript.es/09_regexp.html#p-PLgFCFdANG" tabindex="-1" role="presentation"></a>Para solucionar esto, podemos agregar barras invertidas antes de cualquier carácter que tenga un significado especial.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-E6w+CZN7CT" href="https://www.eloquentjavascript.es/09_regexp.html#c-E6w+CZN7CT" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">name</span> = <span class="tok-string">"dea+hl[]rd"</span>;
+<span class="tok-keyword">let</span> <span class="tok-definition">escaped</span> = name.replace(<span class="tok-string2">/[\\[.+*?(){|^$]/g</span>, <span class="tok-string">"</span><span class="tok-string2">\\</span><span class="tok-string">$&amp;"</span>);
+<span class="tok-keyword">let</span> <span class="tok-definition">regexp</span> = <span class="tok-keyword">new</span> RegExp(<span class="tok-string">"(^|</span><span class="tok-string2">\\</span><span class="tok-string">s)"</span> + escaped + <span class="tok-string">"($|</span><span class="tok-string2">\\</span><span class="tok-string">s)"</span>,
+                        <span class="tok-string">"gi"</span>);
+<span class="tok-keyword">let</span> <span class="tok-definition">text</span> = <span class="tok-string">"Este chico dea+hl[]rd es súper molesto."</span>;
+console.log(regexp.test(text));
+<span class="tok-comment">// → true</span></pre>
+
+<h2><a class="h_ident" id="h-uCPhVoLsMf" href="https://www.eloquentjavascript.es/09_regexp.html#h-uCPhVoLsMf" tabindex="-1" role="presentation"></a>El método search</h2>
+
+<p><a class="p_ident" id="p-3qxpU8WQEB" href="https://www.eloquentjavascript.es/09_regexp.html#p-3qxpU8WQEB" tabindex="-1" role="presentation"></a>El método <code>indexOf</code> en las cadenas no puede ser llamado con una expresión regular. Pero hay otro método, <code>search</code>, que espera una expresión regular. Al igual que <code>indexOf</code>, devuelve el primer índice en el que se encontró la expresión, o -1 cuando no se encontró.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-hINt/qpuxG" href="https://www.eloquentjavascript.es/09_regexp.html#c-hINt/qpuxG" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string">"  palabra"</span>.search(<span class="tok-string2">/\S/</span>));
+<span class="tok-comment">// → 2</span>
+console.log(<span class="tok-string">"    "</span>.search(<span class="tok-string2">/\S/</span>));
+<span class="tok-comment">// → -1</span></pre>
+
+<p><a class="p_ident" id="p-bCpmiIwqTW" href="https://www.eloquentjavascript.es/09_regexp.html#p-bCpmiIwqTW" tabindex="-1" role="presentation"></a>Desafortunadamente, no hay una forma de indicar que la coincidencia debería comenzar en un offset dado (como se puede hacer con el segundo argumento de <code>indexOf</code>), lo cual a menudo sería útil.</p>
+
+<h2><a class="h_ident" id="h-61OHLlWPwV" href="https://www.eloquentjavascript.es/09_regexp.html#h-61OHLlWPwV" tabindex="-1" role="presentation"></a>La propiedad lastIndex</h2>
+
+<p><a class="p_ident" id="p-OpmhI72Qfi" href="https://www.eloquentjavascript.es/09_regexp.html#p-OpmhI72Qfi" tabindex="-1" role="presentation"></a>El método <code>exec</code> de manera similar no proporciona una forma conveniente de comenzar a buscar desde una posición dada en la cadena. Pero sí proporciona una forma <em>in</em>conveniente.</p>
+
+<p><a class="p_ident" id="p-JYAjlYrL9h" href="https://www.eloquentjavascript.es/09_regexp.html#p-JYAjlYrL9h" tabindex="-1" role="presentation"></a>Los objetos de expresión regular tienen propiedades. Una de esas propiedades es <code>source</code>, que contiene la cadena de la que se creó la expresión. Otra propiedad es <code>lastIndex</code>, que controla, en algunas circunstancias limitadas, desde dónde comenzará la siguiente coincidencia.</p>
+
+<p><a class="p_ident" id="p-59IpNLm2WF" href="https://www.eloquentjavascript.es/09_regexp.html#p-59IpNLm2WF" tabindex="-1" role="presentation"></a>Estas circunstancias implican que la expresión regular debe tener la opción global (<code>g</code>) o pegajosa (<code>y</code>) activada, y la coincidencia debe ocurrir a través del método <code>exec</code>. Nuevamente, una solución menos confusa habría sido simplemente permitir que se pase un argumento adicional a <code>exec</code>, pero la confusión es una característica esencial de la interfaz de expresiones regulares de JavaScript.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-nXsHtqIJdF" href="https://www.eloquentjavascript.es/09_regexp.html#c-nXsHtqIJdF" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">pattern</span> = <span class="tok-string2">/y/g</span>;
+pattern.lastIndex = <span class="tok-number">3</span>;
+<span class="tok-keyword">let</span> <span class="tok-definition">match</span> = pattern.exec(<span class="tok-string">"xyzzy"</span>);
+console.log(match.index);
+<span class="tok-comment">// → 4</span>
+console.log(pattern.lastIndex);
+<span class="tok-comment">// → 5</span></pre>
+
+<p><a class="p_ident" id="p-0DBtft8C4S" href="https://www.eloquentjavascript.es/09_regexp.html#p-0DBtft8C4S" tabindex="-1" role="presentation"></a>Si la coincidencia tuvo éxito, la llamada a <code>exec</code> actualiza automáticamente la propiedad <code>lastIndex</code> para que apunte después de la coincidencia. Si no se encontró ninguna coincidencia, <code>lastIndex</code> se restablece a cero, que es también el valor que tiene en un objeto de expresión regular recién construido.</p>
+
+<p><a class="p_ident" id="p-1u3O8Smqjw" href="https://www.eloquentjavascript.es/09_regexp.html#p-1u3O8Smqjw" tabindex="-1" role="presentation"></a>La diferencia entre las opciones global y sticky es que, cuando se habilita sticky, la coincidencia solo se producirá si comienza directamente en <code>lastIndex</code>, mientras que con global se buscará una posición donde pueda comenzar una coincidencia.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-98GwGRIMj8" href="https://www.eloquentjavascript.es/09_regexp.html#c-98GwGRIMj8" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">global</span> = <span class="tok-string2">/abc/g</span>;
+console.log(global.exec(<span class="tok-string">"xyz abc"</span>));
+<span class="tok-comment">// → ["abc"]</span>
+<span class="tok-keyword">let</span> <span class="tok-definition">sticky</span> = <span class="tok-string2">/abc/y</span>;
+console.log(sticky.exec(<span class="tok-string">"xyz abc"</span>));
+<span class="tok-comment">// → null</span></pre>
+
+<p><a class="p_ident" id="p-SPnGt76q5R" href="https://www.eloquentjavascript.es/09_regexp.html#p-SPnGt76q5R" tabindex="-1" role="presentation"></a>Al usar un valor de expresión regular compartido para múltiples llamadas a <code>exec</code>, estas actualizaciones automáticas a la propiedad <code>lastIndex</code> pueden causar problemas. Es posible que tu expresión regular comience accidentalmente en un índice que quedó de una llamada previa.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-kE2WKkyjwG" href="https://www.eloquentjavascript.es/09_regexp.html#c-kE2WKkyjwG" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">digit</span> = <span class="tok-string2">/\d/g</span>;
+console.log(digit.exec(<span class="tok-string">"aquí está: 1"</span>));
+<span class="tok-comment">// → ["1"]</span>
+console.log(digit.exec(<span class="tok-string">"ahora: 1"</span>));
+<span class="tok-comment">// → null</span></pre>
+
+<p><a class="p_ident" id="p-M58YL9ghmR" href="https://www.eloquentjavascript.es/09_regexp.html#p-M58YL9ghmR" tabindex="-1" role="presentation"></a>Otro efecto interesante de la opción global es que cambia la forma en que funciona el método <code>match</code> en las cadenas. Cuando se llama con una expresión global, en lugar de devolver una matriz similar a la devuelta por <code>exec</code>, <code>match</code> encontrará <em>todas</em> las coincidencias del patrón en la cadena y devolverá una matriz que contiene las cadenas coincidentes.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-weT/d5+8vE" href="https://www.eloquentjavascript.es/09_regexp.html#c-weT/d5+8vE" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string">"Banana"</span>.match(<span class="tok-string2">/an/g</span>));
+<span class="tok-comment">// → ["an", "an"]</span></pre>
+
+<p><a class="p_ident" id="p-P0n0q5qqiM" href="https://www.eloquentjavascript.es/09_regexp.html#p-P0n0q5qqiM" tabindex="-1" role="presentation"></a>Así que ten cuidado con las expresiones regulares globales. Los casos en los que son necesarias, como las llamadas a <code>replace</code> y los lugares donde quieres usar explícitamente <code>lastIndex</code>, son típicamente los únicos lugares donde las deseas utilizar.</p>
+
+<h3><a class="i_ident" id="i-vqvHDgpGfT" href="https://www.eloquentjavascript.es/09_regexp.html#i-vqvHDgpGfT" tabindex="-1" role="presentation"></a>Obteniendo todas las coincidencias</h3>
+
+<p><a class="p_ident" id="p-2/FZJ5j0h9" href="https://www.eloquentjavascript.es/09_regexp.html#p-2/FZJ5j0h9" tabindex="-1" role="presentation"></a>Algo común que se hace es encontrar todas las coincidencias de una expresión regular en una cadena. Podemos hacer esto usando el método <code>matchAll</code>.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-otfl+S6eNg" href="https://www.eloquentjavascript.es/09_regexp.html#c-otfl+S6eNg" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">input</span> = <span class="tok-string">"Una cadena con 3 números... 42 y 88."</span>;
+<span class="tok-keyword">let</span> <span class="tok-definition">matches</span> = input.matchAll(<span class="tok-string2">/\d+/g</span>);
+<span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">match</span> <span class="tok-keyword">of</span> matches) {
+  console.log(<span class="tok-string">"Encontrado"</span>, match[<span class="tok-number">0</span>], <span class="tok-string">"en"</span>, match.index);
+}
+<span class="tok-comment">// → Encontrado 3 en 14</span>
+<span class="tok-comment">//   Encontrado 42 en 33</span>
+<span class="tok-comment">//   Encontrado 88 en 40</span></pre>
+
+<p><a class="p_ident" id="p-+4Amv+gHld" href="https://www.eloquentjavascript.es/09_regexp.html#p-+4Amv+gHld" tabindex="-1" role="presentation"></a>Este método devuelve una matriz de matrices de coincidencias. La expresión regular que se le proporciona <em>debe</em> tener <code>g</code> habilitado.</p>
+
+<h2 id="ini"><a class="h_ident" id="h-aqUstUx5TS" href="https://www.eloquentjavascript.es/09_regexp.html#h-aqUstUx5TS" tabindex="-1" role="presentation"></a>Analizando un archivo INI</h2>
+
+<p><a class="p_ident" id="p-sGp7Jxx2uG" href="https://www.eloquentjavascript.es/09_regexp.html#p-sGp7Jxx2uG" tabindex="-1" role="presentation"></a>Para concluir el capítulo, analizaremos un problema que requiere expresiones regulares. Imagina que estamos escribiendo un programa para recopilar automáticamente información sobre nuestros enemigos desde Internet. (En realidad, no escribiremos ese programa aquí, solo la parte que lee el archivo de configuración. Lo siento.) El archivo de configuración se ve así:</p>
+
+<pre class="snippet" data-language="null"><a class="c_ident" id="c-sNjz/ec/W5" href="https://www.eloquentjavascript.es/09_regexp.html#c-sNjz/ec/W5" tabindex="-1" role="presentation"></a>motorbusqueda=https://duckduckgo.com/?q=$1
+rencor=9.7
+
+; comentarios precedidos por un punto y coma...
+; cada sección se refiere a un enemigo individual
+[larry]
+fullname=Larry Doe
+type=matón de jardín de infantes
+website=http://www.geocities.com/CapeCanaveral/11451
+
+[davaeorn]
+fullname=Davaeorn
+type=mago malvado
+outputdir=/home/marijn/enemies/davaeorn</pre>
+
+<p><a class="p_ident" id="p-2XRX7atQld" href="https://www.eloquentjavascript.es/09_regexp.html#p-2XRX7atQld" tabindex="-1" role="presentation"></a>Las reglas exactas para este formato (que es un formato ampliamente utilizado, generalmente llamado un archivo <em>INI</em>) son las siguientes:</p>
+
+<ul>
+
+<li>
+
+<p><a class="p_ident" id="p-Of3fAfBjo/" href="https://www.eloquentjavascript.es/09_regexp.html#p-Of3fAfBjo/" tabindex="-1" role="presentation"></a>Las líneas en blanco y las líneas que comienzan con punto y coma son ignoradas.</p></li>
+
+<li>
+
+<p><a class="p_ident" id="p-aZL0fMSaMp" href="https://www.eloquentjavascript.es/09_regexp.html#p-aZL0fMSaMp" tabindex="-1" role="presentation"></a>Las líneas envueltas en <code>[</code> y <code>]</code> inician una nueva sección.</p></li>
+
+<li>
+
+<p><a class="p_ident" id="p-A63YtLp+/Z" href="https://www.eloquentjavascript.es/09_regexp.html#p-A63YtLp+/Z" tabindex="-1" role="presentation"></a>Las líneas que contienen un identificador alfanumérico seguido de un caracter <code>=</code> agregan una configuración a la sección actual.</p></li>
+
+<li>
+
+<p><a class="p_ident" id="p-2qriKCQvre" href="https://www.eloquentjavascript.es/09_regexp.html#p-2qriKCQvre" tabindex="-1" role="presentation"></a>Cualquier otra cosa es inválida.</p></li></ul>
+
+<p><a class="p_ident" id="p-g7nzf3T0qT" href="https://www.eloquentjavascript.es/09_regexp.html#p-g7nzf3T0qT" tabindex="-1" role="presentation"></a>Nuestra tarea es convertir una cadena como esta en un objeto cuyas propiedades contienen cadenas para las configuraciones escritas antes del primer encabezado de sección y subobjetos para las secciones, con esos subobjetos conteniendo las configuraciones de la sección.</p>
+
+<p><a class="p_ident" id="p-7z9fdAqy4R" href="https://www.eloquentjavascript.es/09_regexp.html#p-7z9fdAqy4R" tabindex="-1" role="presentation"></a>Dado que el formato debe procesarse línea por línea, dividir el archivo en líneas separadas es un buen comienzo. Vimos el método <code>split</code> en el <a href="https://www.eloquentjavascript.es/04_data.html#split">Capítulo 4</a>. Sin embargo, algunos sistemas operativos utilizan no solo un carácter de nueva línea para separar líneas sino un carácter de retorno de carro seguido de una nueva línea (<code>"\r\n"</code>). Dado que el método <code>split</code> también permite una expresión regular como argumento, podemos usar una expresión regular como <code>/\r?\n/</code> para dividir de una manera que permita tanto <code>"\n"</code> como <code>"\r\n"</code> entre líneas.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-WalMuQxa8W" href="https://www.eloquentjavascript.es/09_regexp.html#c-WalMuQxa8W" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">parseINI</span>(<span class="tok-definition">string</span>) {
+  <span class="tok-comment">// Comenzar con un objeto para contener los campos de nivel superior</span>
+  <span class="tok-keyword">let</span> <span class="tok-definition">result</span> = {};
+  <span class="tok-keyword">let</span> <span class="tok-definition">section</span> = result;
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">line</span> <span class="tok-keyword">of</span> string.split(<span class="tok-string2">/\r?\n/</span>)) {
+    <span class="tok-keyword">let</span> <span class="tok-definition">match</span>;
+    <span class="tok-keyword">if</span> (match = line.match(<span class="tok-string2">/^(\w+)=(.*)$/</span>)) {
+      section[match[<span class="tok-number">1</span>]] = match[<span class="tok-number">2</span>];
+    } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (match = line.match(<span class="tok-string2">/^\[(.*)\]$/</span>)) {
+      section = result[match[<span class="tok-number">1</span>]] = {};
+    } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (!<span class="tok-string2">/^\s*(;|$)/</span>.test(line)) {
+      <span class="tok-keyword">throw</span> <span class="tok-keyword">new</span> Error(<span class="tok-string">"La línea '"</span> + line + <span class="tok-string">"' no es válida."</span>);
+    }
+  };
+  <span class="tok-keyword">return</span> result;
+}
+
+console.log(parseINI(<span class="tok-string2">`</span>
+<span class="tok-string2">name=Vasilis</span>
+<span class="tok-string2">[address]</span>
+<span class="tok-string2">city=Tessaloniki`</span>));
+<span class="tok-comment">// → {name: "Vasilis", address: {city: "Tessaloniki"}}</span></pre>
+
+<p><a class="p_ident" id="p-LsLS8mCe4B" href="https://www.eloquentjavascript.es/09_regexp.html#p-LsLS8mCe4B" tabindex="-1" role="presentation"></a>El código recorre las líneas del archivo y construye un objeto. Las propiedades en la parte superior se almacenan directamente en ese objeto, mientras que las propiedades encontradas en secciones se almacenan en un objeto de sección separado. El enlace <code>section</code> apunta al objeto para la sección actual.</p>
+
+<p><a class="p_ident" id="p-W38Z15dwza" href="https://www.eloquentjavascript.es/09_regexp.html#p-W38Z15dwza" tabindex="-1" role="presentation"></a>Hay dos tipos de líneas significativas: encabezados de sección o líneas de propiedades. Cuando una línea es una propiedad regular, se almacena en la sección actual. Cuando es un encabezado de sección, se crea un nuevo objeto de sección y <code>section</code> se establece para apuntar a él.</p>
+
+<p><a class="p_ident" id="p-WRi9IuRJQq" href="https://www.eloquentjavascript.es/09_regexp.html#p-WRi9IuRJQq" tabindex="-1" role="presentation"></a>Observa el uso recurrente de <code>^</code> y <code>$</code> para asegurarse de que la expresión coincida con toda la línea, no solo parte de ella. Dejarlos fuera resulta en un código que funciona en su mayor parte pero se comporta de manera extraña para algunas entradas, lo que puede ser un error difícil de rastrear.</p>
+
+<p><a class="p_ident" id="p-w+p65GaQlw" href="https://www.eloquentjavascript.es/09_regexp.html#p-w+p65GaQlw" tabindex="-1" role="presentation"></a>```El patrón <code>if (match = string.<wbr>match(.<wbr>.<wbr>.<wbr>))</code> hace uso del hecho de que el valor de una expresión de asignación (<code>=</code>) es el valor asignado. A menudo no estás seguro de que tu llamada a <code>match</code> tendrá éxito, por lo que solo puedes acceder al objeto resultante dentro de una declaración <code>if</code> que comprueba esto. Para no romper la agradable cadena de formas de <code>else if</code>, asignamos el resultado de la coincidencia a un enlace y usamos inmediatamente esa asignación como la prueba para la declaración <code>if</code>.</p>
+
+<p><a class="p_ident" id="p-zg+5BDK7MN" href="https://www.eloquentjavascript.es/09_regexp.html#p-zg+5BDK7MN" tabindex="-1" role="presentation"></a>Si una línea no es un encabezado de sección o una propiedad, la función verifica si es un comentario o una línea vacía usando la expresión <code>/^\s*(;|$)/</code> para hacer coincidir líneas que solo contienen espacio o espacio seguido de un punto y coma (haciendo que el resto de la línea sea un comentario). Cuando una línea no coincide con ninguna de las formas esperadas, la función lanza una excepción.</p>
+
+<h2><a class="h_ident" id="h-boAsI3PiWP" href="https://www.eloquentjavascript.es/09_regexp.html#h-boAsI3PiWP" tabindex="-1" role="presentation"></a>Unidades de código y caracteres</h2>
+
+<p><a class="p_ident" id="p-CzHGvvAVs9" href="https://www.eloquentjavascript.es/09_regexp.html#p-CzHGvvAVs9" tabindex="-1" role="presentation"></a>Otro error de diseño que se ha estandarizado en las expresiones regulares de JavaScript es que, por defecto, operadores como <code>.</code> o <code>?</code> trabajan en unidades de código, como se discute en el <a href="https://www.eloquentjavascript.es/05_higher_order.html#code_units">Capítulo 5</a>, no en caracteres reales. Esto significa que los caracteres que están compuestos por dos unidades de código se comportan de manera extraña.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-CfMTYxun8D" href="https://www.eloquentjavascript.es/09_regexp.html#c-CfMTYxun8D" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string2">/🍎{3}/</span>.test(<span class="tok-string">"🍎🍎🍎"</span>));
+<span class="tok-comment">// → false</span>
+console.log(<span class="tok-string2">/&lt;.&gt;/</span>.test(<span class="tok-string">"&lt;🌹&gt;"</span>));
+<span class="tok-comment">// → false</span>
+console.log(<span class="tok-string2">/&lt;.&gt;/u</span>.test(<span class="tok-string">"&lt;🌹&gt;"</span>));
+<span class="tok-comment">// → true</span></pre>
+
+<p><a class="p_ident" id="p-tkZzF4g00f" href="https://www.eloquentjavascript.es/09_regexp.html#p-tkZzF4g00f" tabindex="-1" role="presentation"></a>El problema es que el 🍎 en la primera línea se trata como dos unidades de código, y la parte <code>{3}</code> se aplica solo al segundo. Del mismo modo, el punto coincidirá con una sola unidad de código, no con las dos que componen la rosa emoji.</p>
+
+<p><a class="p_ident" id="p-u0Yir1kR27" href="https://www.eloquentjavascript.es/09_regexp.html#p-u0Yir1kR27" tabindex="-1" role="presentation"></a>Debes agregar la opción <code>u</code> (Unicode) a tu expresión regular para que trate correctamente este tipo de caracteres.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-3HTiC3yQKP" href="https://www.eloquentjavascript.es/09_regexp.html#c-3HTiC3yQKP" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string2">/🍎{3}/u</span>.test(<span class="tok-string">"🍎🍎🍎"</span>));
+<span class="tok-comment">// → true</span></pre>
+
+<h2 id="summary_regexp"><a class="h_ident" id="h-NUFOUyK+lw" href="https://www.eloquentjavascript.es/09_regexp.html#h-NUFOUyK+lw" tabindex="-1" role="presentation"></a>Resumen</h2>
+
+<p><a class="p_ident" id="p-Odk02sNpX4" href="https://www.eloquentjavascript.es/09_regexp.html#p-Odk02sNpX4" tabindex="-1" role="presentation"></a>Las expresiones regulares son objetos que representan patrones en cadenas. Utilizan su propio lenguaje para expresar estos patrones.</p>
+
+<table>
+
+<tbody><tr><td><code>/abc/</code></td><td>Una secuencia de caracteres</td>
+
+</tr>
+
+<tr><td><code>/[abc]/</code></td><td>Cualquier carácter de un conjunto de caracteres</td>
+
+</tr>
+
+<tr><td><code>/[^abc]/</code></td><td>Cualquier carácter <em>que no esté</em> en un conjunto de caracteres</td>
+
+</tr>
+
+<tr><td><code>/[0-9]/</code></td><td>Cualquier carácter en un rango de caracteres</td>
+
+</tr>
+
+<tr><td><code>/x+/</code></td><td>Una o más ocurrencias del patrón <code>x</code></td>
+
+</tr>
+
+<tr><td><code>/x+?/</code></td><td>Una o más ocurrencias, perezoso</td>
+
+</tr>
+
+<tr><td><code>/x*/</code></td><td>Cero o más ocurrencias</td>
+
+</tr>
+
+<tr><td><code>/x?/</code></td><td>Cero o una ocurrencia</td>
+
+</tr>
+
+<tr><td><code>/x{2,4}/</code></td><td>Dos a cuatro ocurrencias</td>
+
+</tr>
+
+<tr><td><code>/(abc)/</code></td><td>Un grupo</td>
+
+</tr>
+
+<tr><td><code>/a|b|c/</code></td><td>Cualquiera de varias combinaciones de patrones</td>
+
+</tr>
+
+<tr><td><code>/\d/</code></td><td>Cualquier carácter de dígito</td>
+
+</tr>
+
+<tr><td><code>/\w/</code></td><td>Un carácter alfanumérico (“carácter de palabra”)</td>
+
+</tr>
+
+<tr><td><code>/\s/</code></td><td>Cualquier carácter de espacio en blanco</td>
+
+</tr>
+
+<tr><td><code>/./</code></td><td>Cualquier carácter excepto saltos de línea</td>
+
+</tr>
+
+<tr><td><code>/\p{L}/u</code></td><td>Cualquier carácter de letra</td>
+
+</tr>
+
+<tr><td><code>/^/</code></td><td>Inicio de entrada</td>
+
+</tr>
+
+<tr><td><code>/$/</code></td><td>Fin de entrada</td>
+
+</tr>
+
+<tr><td><code>/(?=a)/</code></td><td>Una prueba de vistazo hacia adelante</td>
+
+</tr>
+
+</tbody></table>
+
+<p><a class="p_ident" id="p-CFboyM9HDn" href="https://www.eloquentjavascript.es/09_regexp.html#p-CFboyM9HDn" tabindex="-1" role="presentation"></a>Una expresión regular tiene un método <code>test</code> para comprobar si una cadena dada coincide con ella. También tiene un método <code>exec</code> que, cuando se encuentra una coincidencia, devuelve un array que contiene todos los grupos coincidentes. Dicho array tiene una propiedad <code>index</code> que indica dónde empezó la coincidencia.Las cadenas tienen un método <code>match</code> para compararlas con una expresión regular y un método <code>search</code> para buscar una, devolviendo solo la posición de inicio de la coincidencia. Su método <code>replace</code> puede reemplazar coincidencias de un patrón con una cadena o función de reemplazo.</p>
+
+<p><a class="p_ident" id="p-5tlP70sWEp" href="https://www.eloquentjavascript.es/09_regexp.html#p-5tlP70sWEp" tabindex="-1" role="presentation"></a>Las expresiones regulares pueden tener opciones, que se escriben después de la barra de cierre. La opción <code>i</code> hace que la coincidencia no distinga entre mayúsculas y minúsculas. La opción <code>g</code> hace que la expresión sea <em>global</em>, lo que, entre otras cosas, hace que el método <code>replace</code> reemplace todas las instancias en lugar de solo la primera. La opción <code>y</code> la hace persistente, lo que significa que no buscará por delante ni omitirá parte de la cadena al buscar una coincidencia. La opción <code>u</code> activa el modo Unicode, que habilita la sintaxis <code>\p</code> y soluciona varios problemas en torno al manejo de caracteres que ocupan dos unidades de código.</p>
+
+<p><a class="p_ident" id="p-Hw5k4JvKlE" href="https://www.eloquentjavascript.es/09_regexp.html#p-Hw5k4JvKlE" tabindex="-1" role="presentation"></a>Las expresiones regulares son una herramienta afilada con un mango incómodo. Simplifican enormemente algunas tareas, pero pueden volverse rápidamente ingobernables cuando se aplican a problemas complejos. Parte de saber cómo usarlas es resistir la tentación de intentar forzar cosas que no pueden expresarse de forma clara en ellas.</p>
+
+<h2><a class="h_ident" id="h-tkm7ntLto1" href="https://www.eloquentjavascript.es/09_regexp.html#h-tkm7ntLto1" tabindex="-1" role="presentation"></a>Ejercicios</h2>
+
+<p><a class="p_ident" id="p-7luPllNrX9" href="https://www.eloquentjavascript.es/09_regexp.html#p-7luPllNrX9" tabindex="-1" role="presentation"></a>Es casi inevitable que, al trabajar en estos ejercicios, te sientas confundido y frustrado por el comportamiento inexplicable de algunas expresiones regulares. A veces ayuda introducir tu expresión en una herramienta en línea como <a href="https://www.debuggex.com/"><em>debuggex.com</em></a> para ver si su visualización corresponde a lo que pretendías y para experimentar con la forma en que responde a diferentes cadenas de entrada.</p>
+
+<h3><a class="i_ident" id="i-vDM8PzwQWU" href="https://www.eloquentjavascript.es/09_regexp.html#i-vDM8PzwQWU" tabindex="-1" role="presentation"></a>Regexp golf</h3>
+
+<p><a class="p_ident" id="p-f3iYNNsbiL" href="https://www.eloquentjavascript.es/09_regexp.html#p-f3iYNNsbiL" tabindex="-1" role="presentation"></a><em>Code golf</em> es un término utilizado para el juego de intentar expresar un programa en particular con la menor cantidad de caracteres posible. De manera similar, <em>regexp golf</em> es la práctica de escribir una expresión regular lo más pequeña posible para que coincida con un patrón dado, y <em>solo</em> ese patrón.</p>
+
+<p><a class="p_ident" id="p-74bE61d3fk" href="https://www.eloquentjavascript.es/09_regexp.html#p-74bE61d3fk" tabindex="-1" role="presentation"></a>Para cada uno de los siguientes elementos, escribe una expresión regular para comprobar si el patrón dado ocurre en una cadena. La expresión regular debe coincidir solo con cadenas que contengan el patrón. Cuando tu expresión funcione, verifica si puedes hacerla más pequeña.</p>
+
+<ol>
+
+<li>
+
+<p><a class="p_ident" id="p-G1x4eWBRd+" href="https://www.eloquentjavascript.es/09_regexp.html#p-G1x4eWBRd+" tabindex="-1" role="presentation"></a><em>car</em> y <em>cat</em></p></li>
+
+<li>
+
+<p><a class="p_ident" id="p-LUL5rXROVp" href="https://www.eloquentjavascript.es/09_regexp.html#p-LUL5rXROVp" tabindex="-1" role="presentation"></a><em>pop</em> y <em>prop</em></p></li>
+
+<li>
+
+<p><a class="p_ident" id="p-4grj7sKuEe" href="https://www.eloquentjavascript.es/09_regexp.html#p-4grj7sKuEe" tabindex="-1" role="presentation"></a><em>ferret</em>, <em>ferry</em> y <em>ferrari</em></p></li>
+
+<li>
+
+<p><a class="p_ident" id="p-QQ5/lZXIIE" href="https://www.eloquentjavascript.es/09_regexp.html#p-QQ5/lZXIIE" tabindex="-1" role="presentation"></a>Cualquier palabra que termine en <em>ious</em></p></li>
+
+<li>
+
+<p><a class="p_ident" id="p-3zcZI8F3XE" href="https://www.eloquentjavascript.es/09_regexp.html#p-3zcZI8F3XE" tabindex="-1" role="presentation"></a>Un carácter de espacio en blanco seguido de un punto, coma, dos puntos o punto y coma</p></li>
+
+<li>
+
+<p><a class="p_ident" id="p-ElfdU/EyTI" href="https://www.eloquentjavascript.es/09_regexp.html#p-ElfdU/EyTI" tabindex="-1" role="presentation"></a>Una palabra con más de seis letras</p></li>
+
+<li>
+
+<p><a class="p_ident" id="p-ex6we1EAMv" href="https://www.eloquentjavascript.es/09_regexp.html#p-ex6we1EAMv" tabindex="-1" role="presentation"></a>Una palabra sin la letra <em>e</em> (o <em>E</em>)</p></li>
+
+</ol>
+
+<p><a class="p_ident" id="p-sw+R4CLmjK" href="https://www.eloquentjavascript.es/09_regexp.html#p-sw+R4CLmjK" tabindex="-1" role="presentation"></a>Consulta la tabla en el <a href="https://www.eloquentjavascript.es/09_regexp.html#summary_regexp">resumen del capítulo</a> para obtener ayuda. Prueba cada solución con algunas cadenas de prueba.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-V69VVjpD/G" href="https://www.eloquentjavascript.es/09_regexp.html#c-V69VVjpD/G" tabindex="-1" role="presentation"></a><span class="tok-comment">// Fill in the regular expressions</span>
+
+verify(<span class="tok-string2">/.../</span>,
+       [<span class="tok-string">"my car"</span>, <span class="tok-string">"bad cats"</span>],
+       [<span class="tok-string">"camper"</span>, <span class="tok-string">"high art"</span>]);
+
+verify(<span class="tok-string2">/.../</span>,
+       [<span class="tok-string">"pop culture"</span>, <span class="tok-string">"mad props"</span>],
+       [<span class="tok-string">"plop"</span>, <span class="tok-string">"prrrop"</span>]);
+
+verify(<span class="tok-string2">/.../</span>,
+       [<span class="tok-string">"ferret"</span>, <span class="tok-string">"ferry"</span>, <span class="tok-string">"ferrari"</span>],
+       [<span class="tok-string">"ferrum"</span>, <span class="tok-string">"transfer A"</span>]);
+
+verify(<span class="tok-string2">/.../</span>,
+       [<span class="tok-string">"how delicious"</span>, <span class="tok-string">"spacious room"</span>],
+       [<span class="tok-string">"ruinous"</span>, <span class="tok-string">"consciousness"</span>]);
+
+verify(<span class="tok-string2">/.../</span>,
+       [<span class="tok-string">"bad punctuation ."</span>],
+       [<span class="tok-string">"escape the period"</span>]);
+
+verify(<span class="tok-string2">/.../</span>,
+       [<span class="tok-string">"Siebentausenddreihundertzweiundzwanzig"</span>],
+       [<span class="tok-string">"no"</span>, <span class="tok-string">"three small words"</span>]);
+
+verify(<span class="tok-string2">/.../</span>,
+       [<span class="tok-string">"red platypus"</span>, <span class="tok-string">"wobbling nest"</span>],
+       [<span class="tok-string">"earth bed"</span>, <span class="tok-string">"bedrøvet abe"</span>, <span class="tok-string">"BEET"</span>]);
+
+
+<span class="tok-keyword">function</span> <span class="tok-definition">verify</span>(<span class="tok-definition">regexp</span>, <span class="tok-definition">yes</span>, <span class="tok-definition">no</span>) {
+  <span class="tok-comment">// Ignore unfinished exercises</span>
+  <span class="tok-keyword">if</span> (regexp.source == <span class="tok-string">"..."</span>) <span class="tok-keyword">return</span>;
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">str</span> <span class="tok-keyword">of</span> yes) <span class="tok-keyword">if</span> (!regexp.test(str)) {
+    console.log(<span class="tok-string2">`Failure to match '</span>${str}<span class="tok-string2">'`</span>);
+  }
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">str</span> <span class="tok-keyword">of</span> no) <span class="tok-keyword">if</span> (regexp.test(str)) {
+    console.log(<span class="tok-string2">`Unexpected match for '</span>${str}<span class="tok-string2">'`</span>);
+  }
+}</pre>
+
+<h3><a class="i_ident" id="i-efCNhNV5nJ" href="https://www.eloquentjavascript.es/09_regexp.html#i-efCNhNV5nJ" tabindex="-1" role="presentation"></a>Estilo de comillas</h3>
+
+<p><a class="p_ident" id="p-Vlm4WMQc9O" href="https://www.eloquentjavascript.es/09_regexp.html#p-Vlm4WMQc9O" tabindex="-1" role="presentation"></a>Imagina que has escrito una historia y usaste comillas simples single-quote character para marcar piezas de diálogo. Ahora quieres reemplazar todas las comillas de diálogo con comillas dobles, manteniendo las comillas simples utilizadas en contracciones como <em>aren’t</em>.</p>
+
+<p><a class="p_ident" id="p-6mNToRPnum" href="https://www.eloquentjavascript.es/09_regexp.html#p-6mNToRPnum" tabindex="-1" role="presentation"></a>Piensa en un patrón que distinga estos dos tipos de uso de comillas y crea una llamada al método <code>replace</code> que realice el reemplazo adecuado.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-2AAfiUdDr8" href="https://www.eloquentjavascript.es/09_regexp.html#c-2AAfiUdDr8" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">text</span> = <span class="tok-string">"'I'm the cook,' he said, 'it's my job.'"</span>;
+<span class="tok-comment">// Cambia esta llamada.</span>
+console.log(text.replace(<span class="tok-string2">/A/g</span>, <span class="tok-string">"B"</span>));
+<span class="tok-comment">// → "I'm the cook," he said, "it's my job."</span></pre>
+
+<details class="solution"><summary>Mostrar pistas...</summary><div class="solution-text">
+
+<p><a class="p_ident" id="p-F9p3rrsc74" href="https://www.eloquentjavascript.es/09_regexp.html#p-F9p3rrsc74" tabindex="-1" role="presentation"></a>La solución más obvia es reemplazar solo las comillas que tienen un carácter que no sea una letra en al menos un lado, algo como <code>/\P{L}'|'\P{L}/</code>. Pero también debes tener en cuenta el inicio y el final de la línea.</p>
+
+<p><a class="p_ident" id="p-qbGJneI2P1" href="https://www.eloquentjavascript.es/09_regexp.html#p-qbGJneI2P1" tabindex="-1" role="presentation"></a>Además, debes asegurarte de que la sustitución también incluya los caracteres que coincidieron con el patrón <code>\P{L}</code> para que no se eliminen. Esto se puede hacer envolviéndolos entre paréntesis e incluyendo sus grupos en la cadena de reemplazo (<code>$1</code>, <code>$2</code>). Los grupos que no se emparejen se reemplazarán por nada.</p>
+
+</div></details>
+
+<h3><a class="i_ident" id="i-YSgOufjbNE" href="https://www.eloquentjavascript.es/09_regexp.html#i-YSgOufjbNE" tabindex="-1" role="presentation"></a>Números nuevamente</h3>
+
+<p><a class="p_ident" id="p-oeGH9sXraQ" href="https://www.eloquentjavascript.es/09_regexp.html#p-oeGH9sXraQ" tabindex="-1" role="presentation"></a>Escribe una expresión que coincida solo con los números al estilo de JavaScript. Debe admitir un signo menos <em>o</em> más opcional delante del número, el punto decimal y la notación de exponente—<code>5e-3</code> o <code>1E10</code>—de nuevo con un signo opcional delante del exponente. También ten en cuenta que no es necesario que haya dígitos delante o después del punto, pero el número no puede ser solo un punto. Es decir, <code>.5</code> y <code>5.</code> son números de JavaScript válidos, pero un punto solitario <em>no</em> lo es.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-gXUEPT1mXR" href="https://www.eloquentjavascript.es/09_regexp.html#c-gXUEPT1mXR" tabindex="-1" role="presentation"></a><span class="tok-comment">// Completa esta expresión regular.</span>
+<span class="tok-keyword">let</span> <span class="tok-definition">number</span> = <span class="tok-string2">/^...$/</span>;
+
+<span class="tok-comment">// Pruebas:</span>
+<span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">str</span> <span class="tok-keyword">of</span> [<span class="tok-string">"1"</span>, <span class="tok-string">"-1"</span>, <span class="tok-string">"+15"</span>, <span class="tok-string">"1.55"</span>, <span class="tok-string">".5"</span>, <span class="tok-string">"5."</span>,
+                 <span class="tok-string">"1.3e2"</span>, <span class="tok-string">"1E-4"</span>, <span class="tok-string">"1e+12"</span>]) {
+  <span class="tok-keyword">if</span> (!number.test(str)) {
+    console.log(<span class="tok-string2">`Failed to match '</span>${str}<span class="tok-string2">'`</span>);
+  }
+}
+<span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">str</span> <span class="tok-keyword">of</span> [<span class="tok-string">"1a"</span>, <span class="tok-string">"+-1"</span>, <span class="tok-string">"1.2.3"</span>, <span class="tok-string">"1+1"</span>, <span class="tok-string">"1e4.5"</span>,
+                 <span class="tok-string">".5."</span>, <span class="tok-string">"1f5"</span>, <span class="tok-string">"."</span>]) {
+  <span class="tok-keyword">if</span> (number.test(str)) {
+    console.log(<span class="tok-string2">`Incorrectly accepted '</span>${str}<span class="tok-string2">'`</span>);
+  }
+}</pre>
+
+<details class="solution"><summary>Mostrar pistas...</summary><div class="solution-text">
+
+<p><a class="p_ident" id="p-4VDCgxohNU" href="https://www.eloquentjavascript.es/09_regexp.html#p-4VDCgxohNU" tabindex="-1" role="presentation"></a>Primero, no olvides la barra invertida delante del punto.</p>
+
+<p><a class="p_ident" id="p-aGz24Obe10" href="https://www.eloquentjavascript.es/09_regexp.html#p-aGz24Obe10" tabindex="-1" role="presentation"></a>Para hacer coincidir el signo opcional delante del número, así como delante del exponente, se puede hacer con <code>[+\-]?</code> o <code>(\+|-|)</code> (más, menos, o nada).</p>
+
+<p><a class="p_ident" id="p-+Tjzh9qDET" href="https://www.eloquentjavascript.es/09_regexp.html#p-+Tjzh9qDET" tabindex="-1" role="presentation"></a>La parte más complicada del ejercicio es el problema de hacer coincidir tanto <code>"5."</code> como <code>".5"</code> sin hacer coincidir también <code>"."</code>. Para esto, una buena solución es usar el operador <code>|</code> para separar los dos casos: uno o más dígitos seguidos opcionalmente por un punto y cero o más dígitos <em>o</em> un punto seguido por uno o más dígitos.</p>
+
+<p><a class="p_ident" id="p-6x0vWl69bT" href="https://www.eloquentjavascript.es/09_regexp.html#p-6x0vWl69bT" tabindex="-1" role="presentation"></a>Finalmente, para hacer que el caso de la <em>e</em> sea insensible a mayúsculas y minúsculas, añade una opción <code>i</code> a la expresión regular o usa <code>[eE]</code>.</p>
+
+</div></details><nav><a href="https://www.eloquentjavascript.es/08_error.html" title="previous chapter" aria-label="previous chapter">◂</a>&nbsp;<a href="https://www.eloquentjavascript.es/index.html" title="cover" aria-label="cover">●</a>&nbsp;<a href="https://www.eloquentjavascript.es/10_modules.html" title="next chapter" aria-label="next chapter">▸</a>&nbsp;<button class="help" title="help" aria-label="help" style="display: inline;"><strong>?</strong></button>
+</nav>
+</article>
+
+<script src="./Expresiones regulares __ Eloquent JavaScript_files/ejs.js.descarga"></script>
+<div><template shadowrootmode="closed"><link rel="stylesheet" href="chrome-extension://lilckelmopbcffmglfmfhelaajhjpcff/assets/index.css"><link rel="stylesheet" href="chrome-extension://lilckelmopbcffmglfmfhelaajhjpcff/assets/anything-copilot.css"><div id="app" data-v-app="" class="dark"><!----><!----><!----><!----><!----><!----><!----><!----></div></template></div></body></html>

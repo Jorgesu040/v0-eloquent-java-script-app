@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://www.eloquentjavascript.es/07_robot.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Proyecto: Un Robot :: Eloquent JavaScript</title>
+  <link rel="stylesheet" href="./Proyecto_ Un Robot __ Eloquent JavaScript_files/ejs.css"><script>
+      var page = {"type":"chapter","number":7,"load_files":["code/chapter/07_robot.js","code/animatevillage.js"]}</script><style>.swal2-popup.swal2-toast{box-sizing:border-box;grid-column:1/4 !important;grid-row:1/4 !important;grid-template-columns:min-content auto min-content;padding:1em;overflow-y:hidden;background:#fff;box-shadow:0 0 1px rgba(0,0,0,.075),0 1px 2px rgba(0,0,0,.075),1px 2px 4px rgba(0,0,0,.075),1px 3px 8px rgba(0,0,0,.075),2px 4px 16px rgba(0,0,0,.075);pointer-events:all}.swal2-popup.swal2-toast>*{grid-column:2}.swal2-popup.swal2-toast .swal2-title{margin:.5em 1em;padding:0;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-loading{justify-content:center}.swal2-popup.swal2-toast .swal2-input{height:2em;margin:.5em;font-size:1em}.swal2-popup.swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{grid-column:3/3;grid-row:1/99;align-self:center;width:.8em;height:.8em;margin:0;font-size:2em}.swal2-popup.swal2-toast .swal2-html-container{margin:.5em 1em;padding:0;overflow:initial;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-html-container:empty{padding:0}.swal2-popup.swal2-toast .swal2-loader{grid-column:1;grid-row:1/99;align-self:center;width:2em;height:2em;margin:.25em}.swal2-popup.swal2-toast .swal2-icon{grid-column:1;grid-row:1/99;align-self:center;width:2em;min-width:2em;height:2em;margin:0 .5em 0 0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:bold}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{justify-content:flex-start;height:auto;margin:0;margin-top:.5em;padding:0 .5em}.swal2-popup.swal2-toast .swal2-styled{margin:.25em .5em;padding:.4em .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.8em;left:-0.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{animation:swal2-toast-hide .1s forwards}div:where(.swal2-container){display:grid;position:fixed;z-index:1060;inset:0;box-sizing:border-box;grid-template-areas:"top-start     top            top-end" "center-start  center         center-end" "bottom-start  bottom-center  bottom-end";grid-template-rows:minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);height:100%;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}div:where(.swal2-container).swal2-backdrop-show,div:where(.swal2-container).swal2-noanimation{background:rgba(0,0,0,.4)}div:where(.swal2-container).swal2-backdrop-hide{background:rgba(0,0,0,0) !important}div:where(.swal2-container).swal2-top-start,div:where(.swal2-container).swal2-center-start,div:where(.swal2-container).swal2-bottom-start{grid-template-columns:minmax(0, 1fr) auto auto}div:where(.swal2-container).swal2-top,div:where(.swal2-container).swal2-center,div:where(.swal2-container).swal2-bottom{grid-template-columns:auto minmax(0, 1fr) auto}div:where(.swal2-container).swal2-top-end,div:where(.swal2-container).swal2-center-end,div:where(.swal2-container).swal2-bottom-end{grid-template-columns:auto auto minmax(0, 1fr)}div:where(.swal2-container).swal2-top-start>.swal2-popup{align-self:start}div:where(.swal2-container).swal2-top>.swal2-popup{grid-column:2;align-self:start;justify-self:center}div:where(.swal2-container).swal2-top-end>.swal2-popup,div:where(.swal2-container).swal2-top-right>.swal2-popup{grid-column:3;align-self:start;justify-self:end}div:where(.swal2-container).swal2-center-start>.swal2-popup,div:where(.swal2-container).swal2-center-left>.swal2-popup{grid-row:2;align-self:center}div:where(.swal2-container).swal2-center>.swal2-popup{grid-column:2;grid-row:2;align-self:center;justify-self:center}div:where(.swal2-container).swal2-center-end>.swal2-popup,div:where(.swal2-container).swal2-center-right>.swal2-popup{grid-column:3;grid-row:2;align-self:center;justify-self:end}div:where(.swal2-container).swal2-bottom-start>.swal2-popup,div:where(.swal2-container).swal2-bottom-left>.swal2-popup{grid-column:1;grid-row:3;align-self:end}div:where(.swal2-container).swal2-bottom>.swal2-popup{grid-column:2;grid-row:3;justify-self:center;align-self:end}div:where(.swal2-container).swal2-bottom-end>.swal2-popup,div:where(.swal2-container).swal2-bottom-right>.swal2-popup{grid-column:3;grid-row:3;align-self:end;justify-self:end}div:where(.swal2-container).swal2-grow-row>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-column:1/4;width:100%}div:where(.swal2-container).swal2-grow-column>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-row:1/4;align-self:stretch}div:where(.swal2-container).swal2-no-transition{transition:none !important}div:where(.swal2-container) div:where(.swal2-popup){display:none;position:relative;box-sizing:border-box;grid-template-columns:minmax(0, 100%);width:32em;max-width:100%;padding:0 0 1.25em;border:none;border-radius:5px;background:#fff;color:#545454;font-family:inherit;font-size:1rem}div:where(.swal2-container) div:where(.swal2-popup):focus{outline:none}div:where(.swal2-container) div:where(.swal2-popup).swal2-loading{overflow-y:hidden}div:where(.swal2-container) h2:where(.swal2-title){position:relative;max-width:100%;margin:0;padding:.8em 1em 0;color:inherit;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}div:where(.swal2-container) div:where(.swal2-actions){display:flex;z-index:1;box-sizing:border-box;flex-wrap:wrap;align-items:center;justify-content:center;width:auto;margin:1.25em auto 0;padding:0}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))}div:where(.swal2-container) div:where(.swal2-loader){display:none;align-items:center;justify-content:center;width:2.2em;height:2.2em;margin:0 1.875em;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border-width:.25em;border-style:solid;border-radius:100%;border-color:#2778c4 rgba(0,0,0,0) #2778c4 rgba(0,0,0,0)}div:where(.swal2-container) button:where(.swal2-styled){margin:.3125em;padding:.625em 1.1em;transition:box-shadow .1s;box-shadow:0 0 0 3px rgba(0,0,0,0);font-weight:500}div:where(.swal2-container) button:where(.swal2-styled):not([disabled]){cursor:pointer}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#7066e0;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus{box-shadow:0 0 0 3px rgba(112,102,224,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny{border:0;border-radius:.25em;background:initial;background-color:#dc3741;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny:focus{box-shadow:0 0 0 3px rgba(220,55,65,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#6e7881;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel:focus{box-shadow:0 0 0 3px rgba(110,120,129,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:focus{box-shadow:0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-styled):focus{outline:none}div:where(.swal2-container) button:where(.swal2-styled)::-moz-focus-inner{border:0}div:where(.swal2-container) div:where(.swal2-footer){margin:1em 0 0;padding:1em 1em 0;border-top:1px solid #eee;color:inherit;font-size:1em;text-align:center}div:where(.swal2-container) .swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;grid-column:auto !important;overflow:hidden;border-bottom-right-radius:5px;border-bottom-left-radius:5px}div:where(.swal2-container) div:where(.swal2-timer-progress-bar){width:100%;height:.25em;background:rgba(0,0,0,.2)}div:where(.swal2-container) img:where(.swal2-image){max-width:100%;margin:2em auto 1em}div:where(.swal2-container) button:where(.swal2-close){z-index:2;align-items:center;justify-content:center;width:1.2em;height:1.2em;margin-top:0;margin-right:0;margin-bottom:-1.2em;padding:0;overflow:hidden;transition:color .1s,box-shadow .1s;border:none;border-radius:5px;background:rgba(0,0,0,0);color:#ccc;font-family:monospace;font-size:2.5em;cursor:pointer;justify-self:end}div:where(.swal2-container) button:where(.swal2-close):hover{transform:none;background:rgba(0,0,0,0);color:#f27474}div:where(.swal2-container) button:where(.swal2-close):focus{outline:none;box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-close)::-moz-focus-inner{border:0}div:where(.swal2-container) .swal2-html-container{z-index:1;justify-content:center;margin:1em 1.6em .3em;padding:0;overflow:auto;color:inherit;font-size:1.125em;font-weight:normal;line-height:normal;text-align:center;word-wrap:break-word;word-break:break-word}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea),div:where(.swal2-container) select:where(.swal2-select),div:where(.swal2-container) div:where(.swal2-radio),div:where(.swal2-container) label:where(.swal2-checkbox){margin:1em 2em 3px}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea){box-sizing:border-box;width:auto;transition:border-color .1s,box-shadow .1s;border:1px solid #d9d9d9;border-radius:.1875em;background:rgba(0,0,0,0);box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) input:where(.swal2-input).swal2-inputerror,div:where(.swal2-container) input:where(.swal2-file).swal2-inputerror,div:where(.swal2-container) textarea:where(.swal2-textarea).swal2-inputerror{border-color:#f27474 !important;box-shadow:0 0 2px #f27474 !important}div:where(.swal2-container) input:where(.swal2-input):focus,div:where(.swal2-container) input:where(.swal2-file):focus,div:where(.swal2-container) textarea:where(.swal2-textarea):focus{border:1px solid #b4dbed;outline:none;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) input:where(.swal2-input)::placeholder,div:where(.swal2-container) input:where(.swal2-file)::placeholder,div:where(.swal2-container) textarea:where(.swal2-textarea)::placeholder{color:#ccc}div:where(.swal2-container) .swal2-range{margin:1em 2em 3px;background:#fff}div:where(.swal2-container) .swal2-range input{width:80%}div:where(.swal2-container) .swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}div:where(.swal2-container) .swal2-range input,div:where(.swal2-container) .swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}div:where(.swal2-container) .swal2-input{height:2.625em;padding:0 .75em}div:where(.swal2-container) .swal2-file{width:75%;margin-right:auto;margin-left:auto;background:rgba(0,0,0,0);font-size:1.125em}div:where(.swal2-container) .swal2-textarea{height:6.75em;padding:.75em}div:where(.swal2-container) .swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) .swal2-radio,div:where(.swal2-container) .swal2-checkbox{align-items:center;justify-content:center;background:#fff;color:inherit}div:where(.swal2-container) .swal2-radio label,div:where(.swal2-container) .swal2-checkbox label{margin:0 .6em;font-size:1.125em}div:where(.swal2-container) .swal2-radio input,div:where(.swal2-container) .swal2-checkbox input{flex-shrink:0;margin:0 .4em}div:where(.swal2-container) label:where(.swal2-input-label){display:flex;justify-content:center;margin:1em auto 0}div:where(.swal2-container) div:where(.swal2-validation-message){align-items:center;justify-content:center;margin:1em 0 0;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}div:where(.swal2-container) div:where(.swal2-validation-message)::before{content:"!";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}div:where(.swal2-container) .swal2-progress-steps{flex-wrap:wrap;align-items:center;max-width:100%;margin:1.25em auto;padding:0;background:rgba(0,0,0,0);font-weight:600}div:where(.swal2-container) .swal2-progress-steps li{display:inline-block;position:relative}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step{z-index:20;flex-shrink:0;width:2em;height:2em;border-radius:2em;background:#2778c4;color:#fff;line-height:2em;text-align:center}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#2778c4}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step-line{z-index:10;flex-shrink:0;width:2.5em;height:.4em;margin:0 -1px;background:#2778c4}div:where(.swal2-icon){position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:2.5em auto .6em;border:0.25em solid rgba(0,0,0,0);border-radius:50%;border-color:#000;font-family:inherit;line-height:5em;cursor:default;user-select:none}div:where(.swal2-icon) .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}div:where(.swal2-icon).swal2-error{border-color:#f27474;color:#f27474}div:where(.swal2-icon).swal2-error .swal2-x-mark{position:relative;flex-grow:1}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-error.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-error.swal2-icon-show .swal2-x-mark{animation:swal2-animate-error-x-mark .5s}div:where(.swal2-icon).swal2-warning{border-color:#facea8;color:#f8bb86}div:where(.swal2-icon).swal2-warning.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-warning.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .5s}div:where(.swal2-icon).swal2-info{border-color:#9de0f6;color:#3fc3ee}div:where(.swal2-icon).swal2-info.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-info.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .8s}div:where(.swal2-icon).swal2-question{border-color:#c9dae1;color:#87adbd}div:where(.swal2-icon).swal2-question.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-question.swal2-icon-show .swal2-icon-content{animation:swal2-animate-question-mark .8s}div:where(.swal2-icon).swal2-success{border-color:#a5dc86;color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;transform:rotate(45deg);border-radius:50%}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}div:where(.swal2-icon).swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-0.25em;left:-0.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}div:where(.swal2-icon).swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-animate-success-line-tip .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-animate-success-line-long .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-line-right{animation:swal2-rotate-success-circular-line 4.25s ease-in}[class^=swal2]{-webkit-tap-highlight-color:rgba(0,0,0,0)}.swal2-show{animation:swal2-show .3s}.swal2-hide{animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{margin-right:initial;margin-left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}@keyframes swal2-toast-show{0%{transform:translateY(-0.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(0.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0deg)}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-0.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-show{0%{transform:scale(0.7)}45%{transform:scale(1.05)}80%{transform:scale(0.95)}100%{transform:scale(1)}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(0.5);opacity:0}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-0.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(0.4);opacity:0}50%{margin-top:1.625em;transform:scale(0.4);opacity:0}80%{margin-top:-0.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0deg);opacity:1}}@keyframes swal2-rotate-loading{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}@keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto !important}body.swal2-no-backdrop .swal2-container{background-color:rgba(0,0,0,0) !important;pointer-events:none}body.swal2-no-backdrop .swal2-container .swal2-popup{pointer-events:all}body.swal2-no-backdrop .swal2-container .swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll !important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static !important}}body.swal2-toast-shown .swal2-container{box-sizing:border-box;width:360px;max-width:100%;background-color:rgba(0,0,0,0);pointer-events:none}body.swal2-toast-shown .swal2-container.swal2-top{inset:0 auto auto 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{inset:0 0 auto auto}body.swal2-toast-shown .swal2-container.swal2-top-start,body.swal2-toast-shown .swal2-container.swal2-top-left{inset:0 auto auto 0}body.swal2-toast-shown .swal2-container.swal2-center-start,body.swal2-toast-shown .swal2-container.swal2-center-left{inset:50% auto auto 0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{inset:50% auto auto 50%;transform:translate(-50%, -50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{inset:50% 0 auto auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-start,body.swal2-toast-shown .swal2-container.swal2-bottom-left{inset:auto auto 0 0}body.swal2-toast-shown .swal2-container.swal2-bottom{inset:auto auto 0 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{inset:auto 0 0 auto}</style></head>
+
+<body><article>
+<nav><a href="https://www.eloquentjavascript.es/06_object.html" title="previous chapter" aria-label="previous chapter">◂</a>&nbsp;<a href="https://www.eloquentjavascript.es/index.html" title="cover" aria-label="cover">●</a>&nbsp;<a href="https://www.eloquentjavascript.es/08_error.html" title="next chapter" aria-label="next chapter">▸</a>&nbsp;<button class="help" title="help" aria-label="help" style="display: inline;"><strong>?</strong></button>
+</nav>
+
+<h1>Proyecto: Un Robot</h1>
+
+<blockquote>
+
+<p><a class="p_ident" id="p-/Oc+pQbX3S" href="https://www.eloquentjavascript.es/07_robot.html#p-/Oc+pQbX3S" tabindex="-1" role="presentation"></a>[...] la pregunta de si las Máquinas Pueden Pensar [...] es tan relevante como la pregunta de si los Submarinos Pueden Nadar.</p>
+
+<footer>Edsger Dijkstra, <cite>Las amenazas a la ciencia informática</cite></footer>
+
+</blockquote><figure class="chapter framed"><img src="./Proyecto_ Un Robot __ Eloquent JavaScript_files/chapter_picture_7.jpg" alt="Ilustración de un robot sosteniendo una pila de paquetes"></figure>
+
+<p><a class="p_ident" id="p-0PBWKq6GYO" href="https://www.eloquentjavascript.es/07_robot.html#p-0PBWKq6GYO" tabindex="-1" role="presentation"></a>En los capítulos del “proyecto”, dejaré de golpearte con nueva teoría por un breve momento, y en su lugar trabajaremos en un programa juntos. La teoría es necesaria para aprender a programar, pero leer y entender programas reales es igual de importante.</p>
+
+<p><a class="p_ident" id="p-1ftX4jVXFE" href="https://www.eloquentjavascript.es/07_robot.html#p-1ftX4jVXFE" tabindex="-1" role="presentation"></a>Nuestro proyecto en este capítulo es construir un autómata, un pequeño programa que realiza una tarea en un mundo virtual. Nuestro autómata será un robot de entrega de correo que recoge y deja paquetes.</p>
+
+<h2><a class="h_ident" id="h-UmFK5fYed8" href="https://www.eloquentjavascript.es/07_robot.html#h-UmFK5fYed8" tabindex="-1" role="presentation"></a>Meadowfield</h2>
+
+<p><a class="p_ident" id="p-CoFPYYp5Q2" href="https://www.eloquentjavascript.es/07_robot.html#p-CoFPYYp5Q2" tabindex="-1" role="presentation"></a>El pueblo de Meadowfield no es muy grande. Consiste en 11 lugares con 14 carreteras entre ellos. Se puede describir con este array de carreteras:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-NplCaNzuvn" href="https://www.eloquentjavascript.es/07_robot.html#c-NplCaNzuvn" tabindex="-1" role="presentation"></a><span class="tok-keyword">const</span> <span class="tok-definition">roads</span> = [
+  <span class="tok-string">"Casa de Alice-Casa de Bob"</span>,<span class="tok-string">"Casa de Alice-Cabaña"</span>,
+  <span class="tok-string">"Casa de Alice-Oficina de Correos"</span>,<span class="tok-string">"Casa de Bob-Ayuntamiento"</span>,
+  <span class="tok-string">"Casa de Daria-Casa de Ernie"</span>,<span class="tok-string">"Casa de Daria-Ayuntamiento"</span>,
+  <span class="tok-string">"Casa de Ernie-Casa de Grete"</span>,<span class="tok-string">"Casa de Grete-Granja"</span>,
+  <span class="tok-string">"Casa de Grete-Tienda"</span>,<span class="tok-string">"Plaza del Mercado-Granja"</span>,
+  <span class="tok-string">"Plaza del Mercado-Oficina de Correos"</span>,<span class="tok-string">"Plaza del Mercado-Tienda"</span>,
+  <span class="tok-string">"Plaza del Mercado-Ayuntamiento"</span>,<span class="tok-string">"Tienda-Ayuntamiento"</span>
+];</pre><figure><img src="./Proyecto_ Un Robot __ Eloquent JavaScript_files/village2x.png" alt="Ilustración de arte pixelado de un pequeño pueblo con 11 ubicaciones, etiquetadas con letras, y carreteras entre ellas"></figure>
+
+<p><a class="p_ident" id="p-z97coTX23j" href="https://www.eloquentjavascript.es/07_robot.html#p-z97coTX23j" tabindex="-1" role="presentation"></a>La red de carreteras en el pueblo forma un <em>gráfico</em>. Un gráfico es una colección de puntos (lugares en el pueblo) con líneas entre ellos (carreteras). Este gráfico será el mundo por el que se moverá nuestro robot.</p>
+
+<p><a class="p_ident" id="p-Hw3WY9bviH" href="https://www.eloquentjavascript.es/07_robot.html#p-Hw3WY9bviH" tabindex="-1" role="presentation"></a>El array de cadenas no es muy fácil de trabajar. Lo que nos interesa son los destinos a los que podemos llegar desde un lugar dado. Vamos a convertir la lista de carreteras en una estructura de datos que, para cada lugar, nos diga qué se puede alcanzar desde allí.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-k8seJpRr5W" href="https://www.eloquentjavascript.es/07_robot.html#c-k8seJpRr5W" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">buildGraph</span>(<span class="tok-definition">edges</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">graph</span> = Object.create(<span class="tok-keyword">null</span>);
+  <span class="tok-keyword">function</span> <span class="tok-definition">addEdge</span>(<span class="tok-definition">from</span>, <span class="tok-definition">to</span>) {
+    <span class="tok-keyword">if</span> (from <span class="tok-keyword">in</span> graph) {
+      graph[from].push(to);
+    } <span class="tok-keyword">else</span> {
+      graph[from] = [to];
+    }
+  }
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> [<span class="tok-definition">from</span>, <span class="tok-definition">to</span>] <span class="tok-keyword">of</span> edges.map(<span class="tok-definition">r</span> =&gt; r.split(<span class="tok-string">"-"</span>))) {
+    addEdge(from, to);
+    addEdge(to, from);
+  }
+  <span class="tok-keyword">return</span> graph;
+}
+
+<span class="tok-keyword">const</span> <span class="tok-definition">roadGraph</span> = buildGraph(roads);</pre>
+
+<p><a class="p_ident" id="p-jL6/RvPMt+" href="https://www.eloquentjavascript.es/07_robot.html#p-jL6/RvPMt+" tabindex="-1" role="presentation"></a>Dado un array de aristas, <code>buildGraph</code> crea un objeto de mapa que, para cada nodo, almacena un array de nodos conectados.</p>
+
+<p><a class="p_ident" id="p-ibN0Rbh4w2" href="https://www.eloquentjavascript.es/07_robot.html#p-ibN0Rbh4w2" tabindex="-1" role="presentation"></a>Utiliza el método <code>split</code> para pasar de las cadenas de carreteras, que tienen la forma <code>"Inicio-Fin"</code>, a arrays de dos elementos que contienen el inicio y el fin como cadenas separadas.</p>
+
+<h2><a class="h_ident" id="h-ZcNPR9BKaF" href="https://www.eloquentjavascript.es/07_robot.html#h-ZcNPR9BKaF" tabindex="-1" role="presentation"></a>La tarea</h2>
+
+<p><a class="p_ident" id="p-XsakbvETgS" href="https://www.eloquentjavascript.es/07_robot.html#p-XsakbvETgS" tabindex="-1" role="presentation"></a>Nuestro robot se moverá por el pueblo. Hay paquetes en varios lugares, cada uno dirigido a algún otro lugar. El robot recoge los paquetes cuando llega a ellos y los entrega cuando llega a sus destinos.</p>
+
+<p><a class="p_ident" id="p-Qlp0SuVjri" href="https://www.eloquentjavascript.es/07_robot.html#p-Qlp0SuVjri" tabindex="-1" role="presentation"></a>El autómata debe decidir, en cada punto, hacia dónde ir a continuación. Habrá terminado su tarea cuando todos los paquetes hayan sido entregados.</p>
+
+<p><a class="p_ident" id="p-KwKhwC7IzT" href="https://www.eloquentjavascript.es/07_robot.html#p-KwKhwC7IzT" tabindex="-1" role="presentation"></a>Para poder simular este proceso, debemos definir un mundo virtual que pueda describirlo. Este modelo nos dice dónde está el robot y dónde están los paquetes. Cuando el robot decide moverse a algún lugar, necesitamos actualizar el modelo para reflejar la nueva situación.</p>
+
+<p><a class="p_ident" id="p-ImUqv6bngP" href="https://www.eloquentjavascript.es/07_robot.html#p-ImUqv6bngP" tabindex="-1" role="presentation"></a>Si estás pensando en términos de programación orientada a objetos, tu primer impulso podría ser empezar a definir objetos para los diferentes elementos en el mundo: una clase para el robot, una para un paquete, tal vez una para lugares. Estos podrían tener propiedades que describen su estado actual, como la pila de paquetes en un lugar, que podríamos cambiar al actualizar el mundo.</p>
+
+<p><a class="p_ident" id="p-C/Z3QwwroQ" href="https://www.eloquentjavascript.es/07_robot.html#p-C/Z3QwwroQ" tabindex="-1" role="presentation"></a>Esto es incorrecto. Al menos, usualmente lo es. El hecho de que algo suene como un objeto no significa automáticamente que deba ser un objeto en tu programa. Escribir reflexivamente clases para cada concepto en tu aplicación tiende a dejarte con una colección de objetos interconectados que tienen su propio estado interno cambiable. Estos programas a menudo son difíciles de entender y, por lo tanto, fáciles de romper.</p>
+
+<p><a class="p_ident" id="p-5099+VupJV" href="https://www.eloquentjavascript.es/07_robot.html#p-5099+VupJV" tabindex="-1" role="presentation"></a>En lugar de eso, vamos a condensar el estado del pueblo en el conjunto mínimo de valores que lo define. Está la ubicación actual del robot y la colección de paquetes no entregados, cada uno de los cuales tiene una ubicación actual y una dirección de destino. Eso es todo.</p>
+
+<p><a class="p_ident" id="p-P5OPIi9FfW" href="https://www.eloquentjavascript.es/07_robot.html#p-P5OPIi9FfW" tabindex="-1" role="presentation"></a>Y mientras lo hacemos, hagamos que no <em>cambiemos</em> este estado cuando el robot se mueve, sino que calculemos un <em>nuevo</em> estado para la situación después del movimiento.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-VcDNIi1lcV" href="https://www.eloquentjavascript.es/07_robot.html#c-VcDNIi1lcV" tabindex="-1" role="presentation"></a><span class="tok-keyword">class</span> VillageState {
+  <span class="tok-definition">constructor</span>(<span class="tok-definition">place</span>, <span class="tok-definition">parcels</span>) {
+    <span class="tok-keyword">this</span>.place = place;
+    <span class="tok-keyword">this</span>.parcels = parcels;
+  }
+
+  <span class="tok-definition">move</span>(<span class="tok-definition">destination</span>) {
+    <span class="tok-keyword">if</span> (!roadGraph[<span class="tok-keyword">this</span>.place].includes(destination)) {
+      <span class="tok-keyword">return</span> <span class="tok-keyword">this</span>;
+    } <span class="tok-keyword">else</span> {
+      <span class="tok-keyword">let</span> <span class="tok-definition">parcels</span> = <span class="tok-keyword">this</span>.parcels.map(<span class="tok-definition">p</span> =&gt; {
+        <span class="tok-keyword">if</span> (p.place != <span class="tok-keyword">this</span>.place) <span class="tok-keyword">return</span> p;
+        <span class="tok-keyword">return</span> {<span class="tok-definition">place</span>: destination, <span class="tok-definition">address</span>: p.address};
+      }).filter(<span class="tok-definition">p</span> =&gt; p.place != p.address);
+      <span class="tok-keyword">return</span> <span class="tok-keyword">new</span> VillageState(destination, parcels);
+    }
+  }
+}</pre>
+
+<p><a class="p_ident" id="p-dEEiTFRt0X" href="https://www.eloquentjavascript.es/07_robot.html#p-dEEiTFRt0X" tabindex="-1" role="presentation"></a>El método <code>move</code> es donde ocurre la acción. Primero verifica si hay un camino desde el lugar actual hasta el destino, y si no lo hay, devuelve el estado anterior ya que este no es un movimiento válido.</p>
+
+<p><a class="p_ident" id="p-YeKbjqCqtC" href="https://www.eloquentjavascript.es/07_robot.html#p-YeKbjqCqtC" tabindex="-1" role="presentation"></a>Luego crea un nuevo estado con el destino como el nuevo lugar del robot. Pero también necesita crear un nuevo conjunto de paquetes: los paquetes que lleva el robot (que están en el lugar actual del robot) deben ser trasladados al nuevo lugar. Y los paquetes dirigidos al nuevo lugar deben ser entregados, es decir, deben ser eliminados del conjunto de paquetes no entregados. La llamada a <code>map</code> se encarga del traslado y la llamada a <code>filter</code> de la entrega.</p>
+
+<p><a class="p_ident" id="p-3lMuPCNKYP" href="https://www.eloquentjavascript.es/07_robot.html#p-3lMuPCNKYP" tabindex="-1" role="presentation"></a>Los objetos de parcela no se modifican cuando se mueven, sino que se vuelven a crear. El método <code>move</code> nos proporciona un nuevo estado de aldea pero deja intacto por completo el anterior.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-rRgQCtG7hr" href="https://www.eloquentjavascript.es/07_robot.html#c-rRgQCtG7hr" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">first</span> = <span class="tok-keyword">new</span> VillageState(
+  <span class="tok-string">"Oficina de Correos"</span>,
+  [{<span class="tok-definition">place</span>: <span class="tok-string">"Oficina de Correos"</span>, <span class="tok-definition">address</span>: <span class="tok-string">"Casa de Alice"</span>}]
+);
+<span class="tok-keyword">let</span> <span class="tok-definition">next</span> = first.move(<span class="tok-string">"Casa de Alice"</span>);
+
+console.log(next.place);
+<span class="tok-comment">// → Casa de Alice</span>
+console.log(next.parcels);
+<span class="tok-comment">// → []</span>
+console.log(first.place);
+<span class="tok-comment">// → Oficina de Correos</span></pre>
+
+<p><a class="p_ident" id="p-Myxbdg6oBC" href="https://www.eloquentjavascript.es/07_robot.html#p-Myxbdg6oBC" tabindex="-1" role="presentation"></a>El movimiento hace que la parcela se entregue, y esto se refleja en el siguiente estado. Pero el estado inicial sigue describiendo la situación en la que el robot está en la oficina de correos y la parcela no se ha entregado.</p>
+
+<h2><a class="h_ident" id="h-TZqUeD/4Kg" href="https://www.eloquentjavascript.es/07_robot.html#h-TZqUeD/4Kg" tabindex="-1" role="presentation"></a>Datos persistentes</h2>
+
+<p><a class="p_ident" id="p-FhP/ZMbXxd" href="https://www.eloquentjavascript.es/07_robot.html#p-FhP/ZMbXxd" tabindex="-1" role="presentation"></a>Las estructuras de datos que no cambian se llaman <em>inmutables</em> o <em>persistentes</em>. Se comportan de manera similar a las cadenas de texto y los números en el sentido de que son lo que son y se mantienen así, en lugar de contener cosas diferentes en momentos diferentes.</p>
+
+<p><a class="p_ident" id="p-jM2h5YhXld" href="https://www.eloquentjavascript.es/07_robot.html#p-jM2h5YhXld" tabindex="-1" role="presentation"></a>En JavaScript, casi todo <em>puede</em> cambiarse, por lo que trabajar con valores que se supone que son persistentes requiere cierta moderación. Existe una función llamada <code>Object.freeze</code> que cambia un objeto para que la escritura en sus propiedades sea ignorada. Podrías usar esto para asegurarte de que tus objetos no se modifiquen, si así lo deseas. Congelar requiere que la computadora realice un trabajo adicional, y que las actualizaciones se ignoren es casi tan propenso a confundir a alguien como hacer que hagan lo incorrecto. Por lo tanto, suelo preferir simplemente decirle a las personas que un objeto dado no debe ser modificado y esperar que lo recuerden.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-tzmey+74SE" href="https://www.eloquentjavascript.es/07_robot.html#c-tzmey+74SE" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">object</span> = Object.freeze({<span class="tok-definition">value</span>: <span class="tok-number">5</span>});
+object.value = <span class="tok-number">10</span>;
+console.log(object.value);
+<span class="tok-comment">// → 5</span></pre>
+
+<p><a class="p_ident" id="p-3ZcXSzHegg" href="https://www.eloquentjavascript.es/07_robot.html#p-3ZcXSzHegg" tabindex="-1" role="presentation"></a>¿Por qué me estoy esforzando tanto en no cambiar los objetos cuando el lenguaje obviamente espera que lo haga?</p>
+
+<p><a class="p_ident" id="p-1ihsgYZ82c" href="https://www.eloquentjavascript.es/07_robot.html#p-1ihsgYZ82c" tabindex="-1" role="presentation"></a>Porque me ayuda a entender mis programas. Una vez más, esto se trata de gestionar la complejidad. Cuando los objetos en mi sistema son cosas fijas y estables, puedo considerar operaciones sobre ellos de forma aislada: moverse a la casa de Alice desde un estado inicial dado siempre produce el mismo nuevo estado. Cuando los objetos cambian con el tiempo, eso añade toda una nueva dimensión de complejidad a este tipo de razonamiento.</p>
+
+<p><a class="p_ident" id="p-FW5kl43Zwa" href="https://www.eloquentjavascript.es/07_robot.html#p-FW5kl43Zwa" tabindex="-1" role="presentation"></a>Para un sistema pequeño como el que estamos construyendo en este capítulo, podríamos manejar ese poco de complejidad extra. Pero el límite más importante respecto a qué tipo de sistemas podemos construir es cuánto podemos entender. Cualquier cosa que haga que tu código sea más fácil de entender te permite construir un sistema más ambicioso.</p>
+
+<p><a class="p_ident" id="p-T1HGdD5GjP" href="https://www.eloquentjavascript.es/07_robot.html#p-T1HGdD5GjP" tabindex="-1" role="presentation"></a>Desafortunadamente, aunque entender un sistema construido sobre estructuras de datos persistentes es más fácil, <em>diseñar</em> uno, especialmente cuando tu lenguaje de programación no ayuda, puede ser un poco más difícil. Buscaremos oportunidades para usar estructuras de datos persistentes en este libro, pero también usaremos aquellas que pueden cambiar.</p>
+
+<h2><a class="h_ident" id="h-NngWObDYaj" href="https://www.eloquentjavascript.es/07_robot.html#h-NngWObDYaj" tabindex="-1" role="presentation"></a>Simulación</h2>
+
+<p><a class="p_ident" id="p-Lt1p8txGDL" href="https://www.eloquentjavascript.es/07_robot.html#p-Lt1p8txGDL" tabindex="-1" role="presentation"></a>Un robot de entrega observa el mundo y decide en qué dirección quiere moverse. Como tal, podríamos decir que un robot es una función que toma un objeto <code>VillageState</code> y devuelve el nombre de un lugar cercano.</p>
+
+<p><a class="p_ident" id="p-pbn2tWD1Al" href="https://www.eloquentjavascript.es/07_robot.html#p-pbn2tWD1Al" tabindex="-1" role="presentation"></a>Dado que queremos que los robots puedan recordar cosas, para que puedan hacer y ejecutar planes, también les pasamos su memoria y les permitimos devolver una nueva memoria. Por lo tanto, lo que un robot devuelve es un objeto que contiene tanto la dirección en la que quiere moverse como un valor de memoria que se le dará la próxima vez que se llame.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-M0YJHfzoXC" href="https://www.eloquentjavascript.es/07_robot.html#c-M0YJHfzoXC" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">runRobot</span>(<span class="tok-definition">state</span>, <span class="tok-definition">robot</span>, <span class="tok-definition">memory</span>) {
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">turn</span> = <span class="tok-number">0</span>;; turn++) {
+    <span class="tok-keyword">if</span> (state.parcels.length == <span class="tok-number">0</span>) {
+      console.log(<span class="tok-string2">`Terminado en </span>${turn}<span class="tok-string2"> turnos`</span>);
+      <span class="tok-keyword">break</span>;
+    }
+    <span class="tok-keyword">let</span> <span class="tok-definition">action</span> = robot(state, memory);
+    state = state.move(action.direction);
+    memory = action.memory;
+    console.log(<span class="tok-string2">`Movido a </span>${action.direction}<span class="tok-string2">`</span>);
+  }
+}</pre>
+
+<p><a class="p_ident" id="p-UhOLqafDmo" href="https://www.eloquentjavascript.es/07_robot.html#p-UhOLqafDmo" tabindex="-1" role="presentation"></a>Consideremos lo que un robot tiene que hacer para “resolver” un estado dado. Debe recoger todos los paquetes visitando cada ubicación que tenga un paquete y entregarlos visitando cada ubicación a la que esté dirigido un paquete, pero solo después de recoger el paquete.</p>
+
+<p><a class="p_ident" id="p-5bsdqun/8W" href="https://www.eloquentjavascript.es/07_robot.html#p-5bsdqun/8W" tabindex="-1" role="presentation"></a>¿Cuál es la estrategia más tonta que podría funcionar? El robot podría simplemente caminar en una dirección aleatoria en cada turno. Eso significa que, con gran probabilidad, eventualmente se topará con todos los paquetes y en algún momento también llegará al lugar donde deben ser entregados.</p>
+
+<p><a class="p_ident" id="p-SlxnfWOsG9" href="https://www.eloquentjavascript.es/07_robot.html#p-SlxnfWOsG9" tabindex="-1" role="presentation"></a>Esto es cómo podría lucir eso:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-eldzpwzhOB" href="https://www.eloquentjavascript.es/07_robot.html#c-eldzpwzhOB" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">randomPick</span>(<span class="tok-definition">array</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">choice</span> = Math.floor(Math.random() * array.length);
+  <span class="tok-keyword">return</span> array[choice];
+}
+
+<span class="tok-keyword">function</span> <span class="tok-definition">randomRobot</span>(<span class="tok-definition">state</span>) {
+  <span class="tok-keyword">return</span> {<span class="tok-definition">direction</span>: randomPick(roadGraph[state.place])};
+}</pre>
+
+<p><a class="p_ident" id="p-iGtbW23NAf" href="https://www.eloquentjavascript.es/07_robot.html#p-iGtbW23NAf" tabindex="-1" role="presentation"></a>Recuerda que <code>Math.random()</code> devuelve un número entre cero y uno, pero siempre por debajo de uno. Multiplicar dicho número por la longitud de un array y luego aplicarle <code>Math.floor</code> nos da un índice aleatorio para el array.</p>
+
+<p><a class="p_ident" id="p-/n/qSIuoNM" href="https://www.eloquentjavascript.es/07_robot.html#p-/n/qSIuoNM" tabindex="-1" role="presentation"></a>Dado que este robot no necesita recordar nada, ignora su segundo argumento (recuerda que las funciones de JavaScript pueden ser llamadas con argumentos adicionales sin efectos adversos) y omite la propiedad <code>memory</code> en su objeto devuelto.</p>
+
+<p><a class="p_ident" id="p-TMVPaShA18" href="https://www.eloquentjavascript.es/07_robot.html#p-TMVPaShA18" tabindex="-1" role="presentation"></a>Para poner a trabajar a este sofisticado robot, primero necesitaremos una forma de crear un nuevo estado con algunos paquetes. Un método estático (escrito aquí añadiendo directamente una propiedad al constructor) es un buen lugar para poner esa funcionalidad.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-SEyJ7YaifO" href="https://www.eloquentjavascript.es/07_robot.html#c-SEyJ7YaifO" tabindex="-1" role="presentation"></a>VillageState.random = <span class="tok-keyword">function</span>(<span class="tok-definition">parcelCount</span> = <span class="tok-number">5</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">parcels</span> = [];
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">i</span> = <span class="tok-number">0</span>; i &lt; parcelCount; i++) {
+    <span class="tok-keyword">let</span> <span class="tok-definition">address</span> = randomPick(Object.keys(roadGraph));
+    <span class="tok-keyword">let</span> <span class="tok-definition">place</span>;
+    <span class="tok-keyword">do</span> {
+      place = randomPick(Object.keys(roadGraph));
+    } <span class="tok-keyword">while</span> (place == address);
+    parcels.push({<span class="tok-definition">place</span>, <span class="tok-definition">address</span>});
+  }
+  <span class="tok-keyword">return</span> <span class="tok-keyword">new</span> VillageState(<span class="tok-string">"Oficina de Correos"</span>, parcels);
+};</pre>
+
+<p><a class="p_ident" id="p-sT2UJuipJb" href="https://www.eloquentjavascript.es/07_robot.html#p-sT2UJuipJb" tabindex="-1" role="presentation"></a>No queremos ningún paquete que sea enviado desde el mismo lugar al que está dirigido. Por esta razón, el bucle <code>do</code> sigue eligiendo nuevos lugares cuando obtiene uno que es igual a la dirección.</p>
+
+<p><a class="p_ident" id="p-3CXgjiC8tx" href="https://www.eloquentjavascript.es/07_robot.html#p-3CXgjiC8tx" tabindex="-1" role="presentation"></a>Vamos a iniciar un mundo virtual.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-Ibn5l8fm0j" href="https://www.eloquentjavascript.es/07_robot.html#c-Ibn5l8fm0j" tabindex="-1" role="presentation"></a>runRobot(VillageState.random(), randomRobot);
+<span class="tok-comment">// → Movido a Mercado</span>
+<span class="tok-comment">// → Movido a Ayuntamiento</span>
+<span class="tok-comment">// → …</span>
+<span class="tok-comment">// → Terminado en 63 turnos</span></pre>
+
+<p><a class="p_ident" id="p-VLRaDqy2QY" href="https://www.eloquentjavascript.es/07_robot.html#p-VLRaDqy2QY" tabindex="-1" role="presentation"></a>Al robot le lleva muchas vueltas entregar los paquetes porque no está planificando muy bien. Abordaremos eso pronto.</p>
+
+<p><a class="p_ident" id="p-LTO+75V071" href="https://www.eloquentjavascript.es/07_robot.html#p-LTO+75V071" tabindex="-1" role="presentation"></a>Para tener una perspectiva más agradable de la simulación, puedes usar la función <code>runRobotAnimation</code> que está disponible en <a href="https://eloquentjavascript.net/code/#7">el entorno de programación de este capítulo</a>. Esto ejecuta la simulación, pero en lugar de mostrar texto, te muestra al robot moviéndose por el mapa del pueblo.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-jWQlJ73x2Z" href="https://www.eloquentjavascript.es/07_robot.html#c-jWQlJ73x2Z" tabindex="-1" role="presentation"></a>runRobotAnimation(VillageState.random(), randomRobot);</pre>
+
+<p><a class="p_ident" id="p-wTfPDt+D+s" href="https://www.eloquentjavascript.es/07_robot.html#p-wTfPDt+D+s" tabindex="-1" role="presentation"></a>La forma en que <code>runRobotAnimation</code> está implementada permanecerá como un misterio por ahora, pero después de que hayas leído los <a href="https://www.eloquentjavascript.es/14_dom.html">capítulos posteriores</a> de este libro, que tratan sobre la integración de JavaScript en los navegadores web, podrás adivinar cómo funciona.</p>
+
+<h2><a class="h_ident" id="h-Gn9gM3o6mE" href="https://www.eloquentjavascript.es/07_robot.html#h-Gn9gM3o6mE" tabindex="-1" role="presentation"></a>Ruta del camión de correo</h2>
+
+<p><a class="p_ident" id="p-MP2rZBcQkl" href="https://www.eloquentjavascript.es/07_robot.html#p-MP2rZBcQkl" tabindex="-1" role="presentation"></a>Deberíamos poder hacerlo mucho mejor que el robot aleatorio. Una mejora sencilla sería inspirarnos en la forma en que funciona la entrega de correo en el mundo real. Si encontramos una ruta que pase por todos los lugares del pueblo, el robot podría recorrer esa ruta dos veces, momento en que se garantizaría que ha terminado. Aquí tienes una de esas rutas (comenzando desde la oficina de correos):</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-yxJq9tnQ+4" href="https://www.eloquentjavascript.es/07_robot.html#c-yxJq9tnQ+4" tabindex="-1" role="presentation"></a><span class="tok-keyword">const</span> <span class="tok-definition">mailRoute</span> = [
+  <span class="tok-string">"Casa de Alice"</span>, <span class="tok-string">"Cabaña"</span>, <span class="tok-string">"Casa de Alice"</span>, <span class="tok-string">"Casa de Bob"</span>,
+  <span class="tok-string">"Ayuntamiento"</span>, <span class="tok-string">"Casa de Daria"</span>, <span class="tok-string">"Casa de Ernie"</span>,
+  <span class="tok-string">"Casa de Grete"</span>, <span class="tok-string">"Tienda"</span>, <span class="tok-string">"Casa de Grete"</span>, <span class="tok-string">"Granja"</span>,
+  <span class="tok-string">"Plaza del Mercado"</span>, <span class="tok-string">"Oficina de Correos"</span>
+];</pre>
+
+<p><a class="p_ident" id="p-NuQQdtHsp+" href="https://www.eloquentjavascript.es/07_robot.html#p-NuQQdtHsp+" tabindex="-1" role="presentation"></a>Para implementar el robot que sigue la ruta, necesitaremos hacer uso de la memoria del robot. El robot guarda el resto de su ruta en su memoria y deja caer el primer elemento en cada turno.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-FlV5rBgCYM" href="https://www.eloquentjavascript.es/07_robot.html#c-FlV5rBgCYM" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">routeRobot</span>(<span class="tok-definition">state</span>, <span class="tok-definition">memory</span>) {
+  <span class="tok-keyword">if</span> (memory.length == <span class="tok-number">0</span>) {
+    memory = mailRoute;
+  }
+  <span class="tok-keyword">return</span> {<span class="tok-definition">direction</span>: memory[<span class="tok-number">0</span>], <span class="tok-definition">memory</span>: memory.slice(<span class="tok-number">1</span>)};
+}</pre>
+
+<p><a class="p_ident" id="p-UTRfqLt//8" href="https://www.eloquentjavascript.es/07_robot.html#p-UTRfqLt//8" tabindex="-1" role="presentation"></a>Este robot es mucho más rápido ya. Tomará un máximo de 26 vueltas (el doble de la ruta de 13 pasos) pero generalmente menos.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-EkwtJVsUrQ" href="https://www.eloquentjavascript.es/07_robot.html#c-EkwtJVsUrQ" tabindex="-1" role="presentation"></a>runRobotAnimation(VillageState.random(), routeRobot, []);</pre>
+
+<h2><a class="h_ident" id="h-Qr/SzElzir" href="https://www.eloquentjavascript.es/07_robot.html#h-Qr/SzElzir" tabindex="-1" role="presentation"></a>Búsqueda de caminos</h2>
+
+<p><a class="p_ident" id="p-+h0jpYRuOH" href="https://www.eloquentjavascript.es/07_robot.html#p-+h0jpYRuOH" tabindex="-1" role="presentation"></a>Aún así, no llamaría a seguir ciegamente una ruta fija un comportamiento inteligente. Sería más eficiente si el robot ajustara su comportamiento a la tarea real que debe realizarse.</p>
+
+<p><a class="p_ident" id="p-Qq4JUaMcE0" href="https://www.eloquentjavascript.es/07_robot.html#p-Qq4JUaMcE0" tabindex="-1" role="presentation"></a>Para hacer eso, tiene que poder moverse deliberadamente hacia un paquete dado o hacia la ubicación donde se debe entregar un paquete. Hacer eso, incluso cuando el objetivo está a más de un movimiento de distancia, requerirá algún tipo de función de búsqueda de ruta.</p>
+
+<p><a class="p_ident" id="p-PxJJwn/RDt" href="https://www.eloquentjavascript.es/07_robot.html#p-PxJJwn/RDt" tabindex="-1" role="presentation"></a>El problema de encontrar una ruta a través de un grafo es un <em>problema de búsqueda</em> típico. Podemos determinar si una solución dada (una ruta) es una solución válida, pero no podemos calcular directamente la solución como podríamos hacerlo para 2 + 2. En su lugar, debemos seguir creando soluciones potenciales hasta encontrar una que funcione.</p>
+
+<p><a class="p_ident" id="p-shDyhu90T5" href="https://www.eloquentjavascript.es/07_robot.html#p-shDyhu90T5" tabindex="-1" role="presentation"></a>El número de rutas posibles a través de un grafo es infinito. Pero al buscar una ruta de <em>A</em> a <em>B</em>, solo estamos interesados en aquellas que comienzan en <em>A</em>. Además, no nos importan las rutas que visiten el mismo lugar dos veces, esas definitivamente no son las rutas más eficientes en ningún lugar. Así que eso reduce la cantidad de rutas que el buscador de rutas debe considerar.De hecho, estamos mayormente interesados en la ruta <em>más corta</em>. Por lo tanto, queremos asegurarnos de buscar rutas cortas antes de mirar las más largas. Un buen enfoque sería “expandir” rutas desde el punto de inicio, explorando cada lugar alcanzable que aún no haya sido visitado, hasta que una ruta llegue al objetivo. De esta manera, solo exploraremos rutas que sean potencialmente interesantes, y sabremos que la primera ruta que encontremos es la ruta más corta (o una de las rutas más cortas, si hay más de una).</p>
+
+<p id="findRoute"><a class="p_ident" id="p-HzB02WYPFY" href="https://www.eloquentjavascript.es/07_robot.html#p-HzB02WYPFY" tabindex="-1" role="presentation"></a>Aquí hay una función que hace esto:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-qT/+IETEgM" href="https://www.eloquentjavascript.es/07_robot.html#c-qT/+IETEgM" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">findRoute</span>(<span class="tok-definition">graph</span>, <span class="tok-definition">from</span>, <span class="tok-definition">to</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">work</span> = [{<span class="tok-definition">at</span>: from, <span class="tok-definition">route</span>: []}];
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">i</span> = <span class="tok-number">0</span>; i &lt; work.length; i++) {
+    <span class="tok-keyword">let</span> {at, route} = work[i];
+    <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">place</span> <span class="tok-keyword">of</span> graph[at]) {
+      <span class="tok-keyword">if</span> (place == to) <span class="tok-keyword">return</span> route.concat(place);
+      <span class="tok-keyword">if</span> (!work.some(<span class="tok-definition">w</span> =&gt; w.at == place)) {
+        work.push({<span class="tok-definition">at</span>: place, <span class="tok-definition">route</span>: route.concat(place)});
+      }
+    }
+  }
+}</pre>
+
+<p><a class="p_ident" id="p-xVUWEP9k6b" href="https://www.eloquentjavascript.es/07_robot.html#p-xVUWEP9k6b" tabindex="-1" role="presentation"></a>La exploración debe realizarse en el orden correcto: los lugares que se alcanzaron primero deben explorarse primero. No podemos explorar de inmediato un lugar tan pronto como lleguemos a él porque eso significaría que los lugares alcanzados <em>desde allí</em> también se explorarían de inmediato, y así sucesivamente, incluso si puede haber otros caminos más cortos que aún no se han explorado.</p>
+
+<p><a class="p_ident" id="p-9iy0XgVHaG" href="https://www.eloquentjavascript.es/07_robot.html#p-9iy0XgVHaG" tabindex="-1" role="presentation"></a>Por lo tanto, la función mantiene una <em>lista de trabajo</em>. Esta es una matriz de lugares que deben ser explorados a continuación, junto con la ruta que nos llevó allí. Comienza con solo la posición de inicio y una ruta vacía.</p>
+
+<p><a class="p_ident" id="p-vY5At+m4ct" href="https://www.eloquentjavascript.es/07_robot.html#p-vY5At+m4ct" tabindex="-1" role="presentation"></a>La búsqueda luego opera tomando el siguiente elemento en la lista y explorándolo, lo que significa que se ven todas las rutas que salen de ese lugar. Si una de ellas es el objetivo, se puede devolver una ruta terminada. De lo contrario, si no hemos mirado este lugar antes, se agrega un nuevo elemento a la lista. Si lo hemos mirado antes, dado que estamos buscando rutas cortas primero, hemos encontrado o bien una ruta más larga a ese lugar o una exactamente tan larga como la existente, y no necesitamos explorarla.</p>
+
+<p><a class="p_ident" id="p-nSmvyFJjX5" href="https://www.eloquentjavascript.es/07_robot.html#p-nSmvyFJjX5" tabindex="-1" role="presentation"></a>Puedes imaginar visualmente esto como una red de rutas conocidas que se extienden desde la ubicación de inicio, creciendo de manera uniforme en todos los lados (pero nunca enredándose de nuevo en sí misma). Tan pronto como el primer hilo alcance la ubicación objetivo, ese hilo se rastrea de vuelta al inicio, dándonos nuestra ruta.</p>
+
+<p><a class="p_ident" id="p-8xtuFs30lw" href="https://www.eloquentjavascript.es/07_robot.html#p-8xtuFs30lw" tabindex="-1" role="presentation"></a>Nuestro código no maneja la situación en la que no hay más elementos de trabajo en la lista de trabajo porque sabemos que nuestro gráfico está <em>conectado</em>, lo que significa que se puede llegar a cada ubicación desde todas las demás ubicaciones. Siempre podremos encontrar una ruta entre dos puntos, y la búsqueda no puede fallar.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-RJgvG9cgxq" href="https://www.eloquentjavascript.es/07_robot.html#c-RJgvG9cgxq" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">goalOrientedRobot</span>({place, parcels}, <span class="tok-definition">route</span>) {
+  <span class="tok-keyword">if</span> (route.length == <span class="tok-number">0</span>) {
+    <span class="tok-keyword">let</span> <span class="tok-definition">parcel</span> = parcels[<span class="tok-number">0</span>];
+    <span class="tok-keyword">if</span> (parcel.place != place) {
+      route = findRoute(roadGraph, place, parcel.place);
+    } <span class="tok-keyword">else</span> {
+      route = findRoute(roadGraph, place, parcel.address);
+    }
+  }
+  <span class="tok-keyword">return</span> {<span class="tok-definition">direction</span>: route[<span class="tok-number">0</span>], <span class="tok-definition">memory</span>: route.slice(<span class="tok-number">1</span>)};
+}</pre>
+
+<p><a class="p_ident" id="p-SgSFCewRHC" href="https://www.eloquentjavascript.es/07_robot.html#p-SgSFCewRHC" tabindex="-1" role="presentation"></a>Este robot utiliza el valor de su memoria como una lista de direcciones en las que moverse, al igual que el robot que sigue la ruta. Cuando esa lista está vacía, debe averiguar qué hacer a continuación. Toma el primer paquete no entregado del conjunto y, si ese paquete aún no ha sido recogido, traza una ruta hacia él. Si el paquete ya ha sido recogido, todavía necesita ser entregado, por lo que el robot crea una ruta hacia la dirección de entrega.</p>
+
+<p><a class="p_ident" id="p-HSmURF+mCI" href="https://www.eloquentjavascript.es/07_robot.html#p-HSmURF+mCI" tabindex="-1" role="presentation"></a>Veamos cómo lo hace.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-yYuNlgXLX9" href="https://www.eloquentjavascript.es/07_robot.html#c-yYuNlgXLX9" tabindex="-1" role="presentation"></a>runRobotAnimation(VillageState.random(),
+                  goalOrientedRobot, []);</pre>
+
+<p><a class="p_ident" id="p-+YpJ1wVO73" href="https://www.eloquentjavascript.es/07_robot.html#p-+YpJ1wVO73" tabindex="-1" role="presentation"></a>Este robot suele terminar la tarea de entregar 5 paquetes en aproximadamente 16 turnos. Eso es ligeramente mejor que <code>routeRobot</code> pero definitivamente no es óptimo.</p>
+
+<h2><a class="h_ident" id="h-tkm7ntLto1" href="https://www.eloquentjavascript.es/07_robot.html#h-tkm7ntLto1" tabindex="-1" role="presentation"></a>Ejercicios</h2>
+
+<h3><a class="i_ident" id="i-nSYnmkjC8T" href="https://www.eloquentjavascript.es/07_robot.html#i-nSYnmkjC8T" tabindex="-1" role="presentation"></a>Medición de un robot</h3>
+
+<p><a class="p_ident" id="p-lyukeUuD6v" href="https://www.eloquentjavascript.es/07_robot.html#p-lyukeUuD6v" tabindex="-1" role="presentation"></a>Es difícil comparar de manera objetiva los robots solo dejando que resuelvan algunos escenarios. Tal vez un robot simplemente tuvo tareas más fáciles o el tipo de tareas en las que es bueno, mientras que el otro no.</p>
+
+<p><a class="p_ident" id="p-vvltSTdEem" href="https://www.eloquentjavascript.es/07_robot.html#p-vvltSTdEem" tabindex="-1" role="presentation"></a>Escribe una función <code>compareRobots</code> que tome dos robots (y su memoria inicial). Debería generar 100 tareas y permitir que cada uno de los robots resuelva cada una de estas tareas. Cuando termine, debería mostrar el número promedio de pasos que cada robot dio por tarea.</p>
+
+<p><a class="p_ident" id="p-Y+3Np8UuLO" href="https://www.eloquentjavascript.es/07_robot.html#p-Y+3Np8UuLO" tabindex="-1" role="presentation"></a>Por el bien de la equidad, asegúrate de darle a cada tarea a ambos robots, en lugar de generar tareas diferentes por robot.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-kWSW2DNAYZ" href="https://www.eloquentjavascript.es/07_robot.html#c-kWSW2DNAYZ" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">compareRobots</span>(<span class="tok-definition">robot1</span>, <span class="tok-definition">memory1</span>, <span class="tok-definition">robot2</span>, <span class="tok-definition">memory2</span>) {
+  <span class="tok-comment">// Tu código aquí</span>
+}
+
+compareRobots(routeRobot, [], goalOrientedRobot, []);</pre>
+
+<details class="solution"><summary>Mostrar pistas...</summary><div class="solution-text">
+
+<p><a class="p_ident" id="p-kcCXvCKFts" href="https://www.eloquentjavascript.es/07_robot.html#p-kcCXvCKFts" tabindex="-1" role="presentation"></a>Tendrás que escribir una variante de la función <code>runRobot</code> que, en lugar de registrar los eventos en la consola, devuelva el número de pasos que el robot tomó para completar la tarea.</p>
+
+<p><a class="p_ident" id="p-Xr248zBbAN" href="https://www.eloquentjavascript.es/07_robot.html#p-Xr248zBbAN" tabindex="-1" role="presentation"></a>Tu función de medición puede, entonces, en un bucle, generar nuevos estados y contar los pasos que toma cada uno de los robots. Cuando haya generado suficientes mediciones, puede usar <code>console.log</code> para mostrar el promedio de cada robot, que es el número total de pasos tomados dividido por el número de mediciones.</p>
+
+</div></details>
+
+<h3><a class="i_ident" id="i-XtZPo4zIj3" href="https://www.eloquentjavascript.es/07_robot.html#i-XtZPo4zIj3" tabindex="-1" role="presentation"></a>Eficiencia del robot</h3>
+
+<p><a class="p_ident" id="p-ekiPq8jgZ7" href="https://www.eloquentjavascript.es/07_robot.html#p-ekiPq8jgZ7" tabindex="-1" role="presentation"></a>¿Puedes escribir un robot que termine la tarea de entrega más rápido que <code>goalOrientedRobot</code>? Si observas el comportamiento de ese robot, ¿qué cosas claramente absurdas hace? ¿Cómo podrían mejorarse?</p>
+
+<p><a class="p_ident" id="p-WHsjtdy1wY" href="https://www.eloquentjavascript.es/07_robot.html#p-WHsjtdy1wY" tabindex="-1" role="presentation"></a>Si resolviste el ejercicio anterior, es posible que desees utilizar tu función <code>compareRobots</code> para verificar si mejoraste el robot.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-20FhVkI8K3" href="https://www.eloquentjavascript.es/07_robot.html#c-20FhVkI8K3" tabindex="-1" role="presentation"></a><span class="tok-comment">// Tu código aquí</span>
+
+runRobotAnimation(VillageState.random(), tuRobot, memoria);</pre>
+
+<details class="solution"><summary>Mostrar pistas...</summary><div class="solution-text">
+
+<p><a class="p_ident" id="p-sRXTWyzdOx" href="https://www.eloquentjavascript.es/07_robot.html#p-sRXTWyzdOx" tabindex="-1" role="presentation"></a>La principal limitación de <code>goalOrientedRobot</code> es que solo considera un paquete a la vez. A menudo caminará de un lado a otro del pueblo porque el paquete en el que está centrando su atención sucede que está en el otro lado del mapa, incluso si hay otros mucho más cerca.</p>
+
+<p><a class="p_ident" id="p-h8Mq8+DtKj" href="https://www.eloquentjavascript.es/07_robot.html#p-h8Mq8+DtKj" tabindex="-1" role="presentation"></a>Una posible solución sería calcular rutas para todos paquetes y luego tomar la más corta. Se pueden obtener resultados aún mejores, si hay múltiples rutas más cortas, al preferir aquellas que van a recoger un paquete en lugar de entregarlo.</p>
+
+</div></details>
+
+<h3><a class="i_ident" id="i-4PUyGyQ+OK" href="https://www.eloquentjavascript.es/07_robot.html#i-4PUyGyQ+OK" tabindex="-1" role="presentation"></a>Grupo persistente</h3>
+
+<p><a class="p_ident" id="p-m/Epe5YFy9" href="https://www.eloquentjavascript.es/07_robot.html#p-m/Epe5YFy9" tabindex="-1" role="presentation"></a>La mayoría de las estructuras de datos proporcionadas en un entorno estándar de JavaScript no son muy adecuadas para un uso persistente. Los Arrays tienen métodos <code>slice</code> y <code>concat</code>, que nos permiten crear fácilmente nuevos arrays sin dañar el antiguo. Pero <code>Set</code>, por ejemplo, no tiene métodos para crear un nuevo conjunto con un elemento añadido o eliminado.</p>
+
+<p><a class="p_ident" id="p-b4vxX/99GB" href="https://www.eloquentjavascript.es/07_robot.html#p-b4vxX/99GB" tabindex="-1" role="presentation"></a>Escribe una nueva clase <code>PGroup</code>, similar a la clase <code>Grupo</code> del <a href="https://www.eloquentjavascript.es/06_object.html#groups">Capítulo 6</a>, que almacena un conjunto de valores. Al igual que <code>Grupo</code>, tiene métodos <code>add</code>, <code>delete</code>, y <code>has</code>.</p>
+
+<p><a class="p_ident" id="p-3XYr611b0/" href="https://www.eloquentjavascript.es/07_robot.html#p-3XYr611b0/" tabindex="-1" role="presentation"></a>Sin embargo, su método <code>add</code> debería devolver una <em>nueva</em> instancia de <code>PGroup</code> con el miembro dado añadido y dejar la anterior sin cambios. De manera similar, <code>delete</code> crea una nueva instancia sin un miembro dado.</p>
+
+<p><a class="p_ident" id="p-OqTz+KTGUf" href="https://www.eloquentjavascript.es/07_robot.html#p-OqTz+KTGUf" tabindex="-1" role="presentation"></a>La clase debería funcionar para valores de cualquier tipo, no solo para strings. No tiene que ser eficiente cuando se utiliza con grandes cantidades de valores.</p>
+
+<p><a class="p_ident" id="p-xZHWaBEuTQ" href="https://www.eloquentjavascript.es/07_robot.html#p-xZHWaBEuTQ" tabindex="-1" role="presentation"></a>El constructor no debería ser parte de la interfaz de la clase (aunque definitivamente querrás usarlo internamente). En su lugar, hay una instancia vacía, <code>PGroup.empty</code>, que se puede usar como valor inicial.</p>
+
+<p><a class="p_ident" id="p-G0rIQr0dv6" href="https://www.eloquentjavascript.es/07_robot.html#p-G0rIQr0dv6" tabindex="-1" role="presentation"></a>¿Por qué necesitas solo un valor <code>PGroup.empty</code>, en lugar de tener una función que cree un nuevo mapa vacío cada vez?</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-3WddMCmfM4" href="https://www.eloquentjavascript.es/07_robot.html#c-3WddMCmfM4" tabindex="-1" role="presentation"></a><span class="tok-keyword">class</span> PGroup {
+  <span class="tok-comment">// Tu código aquí</span>
+}
+
+<span class="tok-keyword">let</span> <span class="tok-definition">a</span> = PGroup.empty.add(<span class="tok-string">"a"</span>);
+<span class="tok-keyword">let</span> <span class="tok-definition">ab</span> = a.add(<span class="tok-string">"b"</span>);
+<span class="tok-keyword">let</span> <span class="tok-definition">b</span> = ab.delete(<span class="tok-string">"a"</span>);
+
+console.log(b.has(<span class="tok-string">"b"</span>));
+<span class="tok-comment">// → true</span>
+console.log(a.has(<span class="tok-string">"b"</span>));
+<span class="tok-comment">// → false</span>
+console.log(b.has(<span class="tok-string">"a"</span>));
+<span class="tok-comment">// → false</span></pre>
+
+<details class="solution"><summary>Mostrar pistas...</summary><div class="solution-text">
+
+<p><a class="p_ident" id="p-8KXK9HpVPD" href="https://www.eloquentjavascript.es/07_robot.html#p-8KXK9HpVPD" tabindex="-1" role="presentation"></a>La forma más conveniente de representar el conjunto de valores miembro sigue siendo como un array, ya que los arrays son fáciles de copiar.</p>
+
+<p><a class="p_ident" id="p-5syhZ/mTkb" href="https://www.eloquentjavascript.es/07_robot.html#p-5syhZ/mTkb" tabindex="-1" role="presentation"></a>Cuando se añade un valor al grupo, puedes crear un nuevo grupo con una copia del array original que tenga el valor añadido (por ejemplo, usando <code>concat</code>). Cuando se elimina un valor, puedes filtrarlo del array.</p>
+
+<p><a class="p_ident" id="p-8sn5vlOB4z" href="https://www.eloquentjavascript.es/07_robot.html#p-8sn5vlOB4z" tabindex="-1" role="presentation"></a>El constructor de la clase puede tomar dicho array como argumento y almacenarlo como propiedad única de la instancia. Este array nunca se actualiza.</p>
+
+<p><a class="p_ident" id="p-2Pl6kVkkBf" href="https://www.eloquentjavascript.es/07_robot.html#p-2Pl6kVkkBf" tabindex="-1" role="presentation"></a>Para añadir la propiedad <code>empty</code> al constructor, puedes declararla como una propiedad estática.</p>
+
+<p><a class="p_ident" id="p-ELnDcpRm2E" href="https://www.eloquentjavascript.es/07_robot.html#p-ELnDcpRm2E" tabindex="-1" role="presentation"></a>Solo necesitas una instancia <code>empty</code> porque todos los grupos vacíos son iguales y las instancias de la clase no cambian. Puedes crear muchos grupos diferentes a partir de ese único grupo vacío sin afectarlo.</p>
+
+</div></details><nav><a href="https://www.eloquentjavascript.es/06_object.html" title="previous chapter" aria-label="previous chapter">◂</a>&nbsp;<a href="https://www.eloquentjavascript.es/index.html" title="cover" aria-label="cover">●</a>&nbsp;<a href="https://www.eloquentjavascript.es/08_error.html" title="next chapter" aria-label="next chapter">▸</a>&nbsp;<button class="help" title="help" aria-label="help" style="display: inline;"><strong>?</strong></button>
+</nav>
+</article>
+
+<script src="./Proyecto_ Un Robot __ Eloquent JavaScript_files/ejs.js.descarga"></script>
+<div><template shadowrootmode="closed"><link rel="stylesheet" href="chrome-extension://lilckelmopbcffmglfmfhelaajhjpcff/assets/index.css"><link rel="stylesheet" href="chrome-extension://lilckelmopbcffmglfmfhelaajhjpcff/assets/anything-copilot.css"><div id="app" data-v-app="" class="dark"><!----><!----><!----><!----><!----><!----><!----><!----></div></template></div></body></html>

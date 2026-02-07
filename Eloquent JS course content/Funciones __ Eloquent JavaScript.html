@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://www.eloquentjavascript.es/03_functions.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Funciones :: Eloquent JavaScript</title>
+  <link rel="stylesheet" href="./Funciones __ Eloquent JavaScript_files/ejs.css"><script>
+      var page = {"type":"chapter","number":3}</script><style>.swal2-popup.swal2-toast{box-sizing:border-box;grid-column:1/4 !important;grid-row:1/4 !important;grid-template-columns:min-content auto min-content;padding:1em;overflow-y:hidden;background:#fff;box-shadow:0 0 1px rgba(0,0,0,.075),0 1px 2px rgba(0,0,0,.075),1px 2px 4px rgba(0,0,0,.075),1px 3px 8px rgba(0,0,0,.075),2px 4px 16px rgba(0,0,0,.075);pointer-events:all}.swal2-popup.swal2-toast>*{grid-column:2}.swal2-popup.swal2-toast .swal2-title{margin:.5em 1em;padding:0;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-loading{justify-content:center}.swal2-popup.swal2-toast .swal2-input{height:2em;margin:.5em;font-size:1em}.swal2-popup.swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{grid-column:3/3;grid-row:1/99;align-self:center;width:.8em;height:.8em;margin:0;font-size:2em}.swal2-popup.swal2-toast .swal2-html-container{margin:.5em 1em;padding:0;overflow:initial;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-html-container:empty{padding:0}.swal2-popup.swal2-toast .swal2-loader{grid-column:1;grid-row:1/99;align-self:center;width:2em;height:2em;margin:.25em}.swal2-popup.swal2-toast .swal2-icon{grid-column:1;grid-row:1/99;align-self:center;width:2em;min-width:2em;height:2em;margin:0 .5em 0 0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:bold}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{justify-content:flex-start;height:auto;margin:0;margin-top:.5em;padding:0 .5em}.swal2-popup.swal2-toast .swal2-styled{margin:.25em .5em;padding:.4em .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.8em;left:-0.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{animation:swal2-toast-hide .1s forwards}div:where(.swal2-container){display:grid;position:fixed;z-index:1060;inset:0;box-sizing:border-box;grid-template-areas:"top-start     top            top-end" "center-start  center         center-end" "bottom-start  bottom-center  bottom-end";grid-template-rows:minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);height:100%;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}div:where(.swal2-container).swal2-backdrop-show,div:where(.swal2-container).swal2-noanimation{background:rgba(0,0,0,.4)}div:where(.swal2-container).swal2-backdrop-hide{background:rgba(0,0,0,0) !important}div:where(.swal2-container).swal2-top-start,div:where(.swal2-container).swal2-center-start,div:where(.swal2-container).swal2-bottom-start{grid-template-columns:minmax(0, 1fr) auto auto}div:where(.swal2-container).swal2-top,div:where(.swal2-container).swal2-center,div:where(.swal2-container).swal2-bottom{grid-template-columns:auto minmax(0, 1fr) auto}div:where(.swal2-container).swal2-top-end,div:where(.swal2-container).swal2-center-end,div:where(.swal2-container).swal2-bottom-end{grid-template-columns:auto auto minmax(0, 1fr)}div:where(.swal2-container).swal2-top-start>.swal2-popup{align-self:start}div:where(.swal2-container).swal2-top>.swal2-popup{grid-column:2;align-self:start;justify-self:center}div:where(.swal2-container).swal2-top-end>.swal2-popup,div:where(.swal2-container).swal2-top-right>.swal2-popup{grid-column:3;align-self:start;justify-self:end}div:where(.swal2-container).swal2-center-start>.swal2-popup,div:where(.swal2-container).swal2-center-left>.swal2-popup{grid-row:2;align-self:center}div:where(.swal2-container).swal2-center>.swal2-popup{grid-column:2;grid-row:2;align-self:center;justify-self:center}div:where(.swal2-container).swal2-center-end>.swal2-popup,div:where(.swal2-container).swal2-center-right>.swal2-popup{grid-column:3;grid-row:2;align-self:center;justify-self:end}div:where(.swal2-container).swal2-bottom-start>.swal2-popup,div:where(.swal2-container).swal2-bottom-left>.swal2-popup{grid-column:1;grid-row:3;align-self:end}div:where(.swal2-container).swal2-bottom>.swal2-popup{grid-column:2;grid-row:3;justify-self:center;align-self:end}div:where(.swal2-container).swal2-bottom-end>.swal2-popup,div:where(.swal2-container).swal2-bottom-right>.swal2-popup{grid-column:3;grid-row:3;align-self:end;justify-self:end}div:where(.swal2-container).swal2-grow-row>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-column:1/4;width:100%}div:where(.swal2-container).swal2-grow-column>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-row:1/4;align-self:stretch}div:where(.swal2-container).swal2-no-transition{transition:none !important}div:where(.swal2-container) div:where(.swal2-popup){display:none;position:relative;box-sizing:border-box;grid-template-columns:minmax(0, 100%);width:32em;max-width:100%;padding:0 0 1.25em;border:none;border-radius:5px;background:#fff;color:#545454;font-family:inherit;font-size:1rem}div:where(.swal2-container) div:where(.swal2-popup):focus{outline:none}div:where(.swal2-container) div:where(.swal2-popup).swal2-loading{overflow-y:hidden}div:where(.swal2-container) h2:where(.swal2-title){position:relative;max-width:100%;margin:0;padding:.8em 1em 0;color:inherit;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}div:where(.swal2-container) div:where(.swal2-actions){display:flex;z-index:1;box-sizing:border-box;flex-wrap:wrap;align-items:center;justify-content:center;width:auto;margin:1.25em auto 0;padding:0}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))}div:where(.swal2-container) div:where(.swal2-loader){display:none;align-items:center;justify-content:center;width:2.2em;height:2.2em;margin:0 1.875em;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border-width:.25em;border-style:solid;border-radius:100%;border-color:#2778c4 rgba(0,0,0,0) #2778c4 rgba(0,0,0,0)}div:where(.swal2-container) button:where(.swal2-styled){margin:.3125em;padding:.625em 1.1em;transition:box-shadow .1s;box-shadow:0 0 0 3px rgba(0,0,0,0);font-weight:500}div:where(.swal2-container) button:where(.swal2-styled):not([disabled]){cursor:pointer}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#7066e0;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus{box-shadow:0 0 0 3px rgba(112,102,224,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny{border:0;border-radius:.25em;background:initial;background-color:#dc3741;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny:focus{box-shadow:0 0 0 3px rgba(220,55,65,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#6e7881;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel:focus{box-shadow:0 0 0 3px rgba(110,120,129,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:focus{box-shadow:0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-styled):focus{outline:none}div:where(.swal2-container) button:where(.swal2-styled)::-moz-focus-inner{border:0}div:where(.swal2-container) div:where(.swal2-footer){margin:1em 0 0;padding:1em 1em 0;border-top:1px solid #eee;color:inherit;font-size:1em;text-align:center}div:where(.swal2-container) .swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;grid-column:auto !important;overflow:hidden;border-bottom-right-radius:5px;border-bottom-left-radius:5px}div:where(.swal2-container) div:where(.swal2-timer-progress-bar){width:100%;height:.25em;background:rgba(0,0,0,.2)}div:where(.swal2-container) img:where(.swal2-image){max-width:100%;margin:2em auto 1em}div:where(.swal2-container) button:where(.swal2-close){z-index:2;align-items:center;justify-content:center;width:1.2em;height:1.2em;margin-top:0;margin-right:0;margin-bottom:-1.2em;padding:0;overflow:hidden;transition:color .1s,box-shadow .1s;border:none;border-radius:5px;background:rgba(0,0,0,0);color:#ccc;font-family:monospace;font-size:2.5em;cursor:pointer;justify-self:end}div:where(.swal2-container) button:where(.swal2-close):hover{transform:none;background:rgba(0,0,0,0);color:#f27474}div:where(.swal2-container) button:where(.swal2-close):focus{outline:none;box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-close)::-moz-focus-inner{border:0}div:where(.swal2-container) .swal2-html-container{z-index:1;justify-content:center;margin:1em 1.6em .3em;padding:0;overflow:auto;color:inherit;font-size:1.125em;font-weight:normal;line-height:normal;text-align:center;word-wrap:break-word;word-break:break-word}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea),div:where(.swal2-container) select:where(.swal2-select),div:where(.swal2-container) div:where(.swal2-radio),div:where(.swal2-container) label:where(.swal2-checkbox){margin:1em 2em 3px}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea){box-sizing:border-box;width:auto;transition:border-color .1s,box-shadow .1s;border:1px solid #d9d9d9;border-radius:.1875em;background:rgba(0,0,0,0);box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) input:where(.swal2-input).swal2-inputerror,div:where(.swal2-container) input:where(.swal2-file).swal2-inputerror,div:where(.swal2-container) textarea:where(.swal2-textarea).swal2-inputerror{border-color:#f27474 !important;box-shadow:0 0 2px #f27474 !important}div:where(.swal2-container) input:where(.swal2-input):focus,div:where(.swal2-container) input:where(.swal2-file):focus,div:where(.swal2-container) textarea:where(.swal2-textarea):focus{border:1px solid #b4dbed;outline:none;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) input:where(.swal2-input)::placeholder,div:where(.swal2-container) input:where(.swal2-file)::placeholder,div:where(.swal2-container) textarea:where(.swal2-textarea)::placeholder{color:#ccc}div:where(.swal2-container) .swal2-range{margin:1em 2em 3px;background:#fff}div:where(.swal2-container) .swal2-range input{width:80%}div:where(.swal2-container) .swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}div:where(.swal2-container) .swal2-range input,div:where(.swal2-container) .swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}div:where(.swal2-container) .swal2-input{height:2.625em;padding:0 .75em}div:where(.swal2-container) .swal2-file{width:75%;margin-right:auto;margin-left:auto;background:rgba(0,0,0,0);font-size:1.125em}div:where(.swal2-container) .swal2-textarea{height:6.75em;padding:.75em}div:where(.swal2-container) .swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) .swal2-radio,div:where(.swal2-container) .swal2-checkbox{align-items:center;justify-content:center;background:#fff;color:inherit}div:where(.swal2-container) .swal2-radio label,div:where(.swal2-container) .swal2-checkbox label{margin:0 .6em;font-size:1.125em}div:where(.swal2-container) .swal2-radio input,div:where(.swal2-container) .swal2-checkbox input{flex-shrink:0;margin:0 .4em}div:where(.swal2-container) label:where(.swal2-input-label){display:flex;justify-content:center;margin:1em auto 0}div:where(.swal2-container) div:where(.swal2-validation-message){align-items:center;justify-content:center;margin:1em 0 0;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}div:where(.swal2-container) div:where(.swal2-validation-message)::before{content:"!";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}div:where(.swal2-container) .swal2-progress-steps{flex-wrap:wrap;align-items:center;max-width:100%;margin:1.25em auto;padding:0;background:rgba(0,0,0,0);font-weight:600}div:where(.swal2-container) .swal2-progress-steps li{display:inline-block;position:relative}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step{z-index:20;flex-shrink:0;width:2em;height:2em;border-radius:2em;background:#2778c4;color:#fff;line-height:2em;text-align:center}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#2778c4}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step-line{z-index:10;flex-shrink:0;width:2.5em;height:.4em;margin:0 -1px;background:#2778c4}div:where(.swal2-icon){position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:2.5em auto .6em;border:0.25em solid rgba(0,0,0,0);border-radius:50%;border-color:#000;font-family:inherit;line-height:5em;cursor:default;user-select:none}div:where(.swal2-icon) .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}div:where(.swal2-icon).swal2-error{border-color:#f27474;color:#f27474}div:where(.swal2-icon).swal2-error .swal2-x-mark{position:relative;flex-grow:1}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-error.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-error.swal2-icon-show .swal2-x-mark{animation:swal2-animate-error-x-mark .5s}div:where(.swal2-icon).swal2-warning{border-color:#facea8;color:#f8bb86}div:where(.swal2-icon).swal2-warning.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-warning.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .5s}div:where(.swal2-icon).swal2-info{border-color:#9de0f6;color:#3fc3ee}div:where(.swal2-icon).swal2-info.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-info.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .8s}div:where(.swal2-icon).swal2-question{border-color:#c9dae1;color:#87adbd}div:where(.swal2-icon).swal2-question.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-question.swal2-icon-show .swal2-icon-content{animation:swal2-animate-question-mark .8s}div:where(.swal2-icon).swal2-success{border-color:#a5dc86;color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;transform:rotate(45deg);border-radius:50%}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}div:where(.swal2-icon).swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-0.25em;left:-0.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}div:where(.swal2-icon).swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-animate-success-line-tip .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-animate-success-line-long .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-line-right{animation:swal2-rotate-success-circular-line 4.25s ease-in}[class^=swal2]{-webkit-tap-highlight-color:rgba(0,0,0,0)}.swal2-show{animation:swal2-show .3s}.swal2-hide{animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{margin-right:initial;margin-left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}@keyframes swal2-toast-show{0%{transform:translateY(-0.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(0.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0deg)}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-0.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-show{0%{transform:scale(0.7)}45%{transform:scale(1.05)}80%{transform:scale(0.95)}100%{transform:scale(1)}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(0.5);opacity:0}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-0.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(0.4);opacity:0}50%{margin-top:1.625em;transform:scale(0.4);opacity:0}80%{margin-top:-0.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0deg);opacity:1}}@keyframes swal2-rotate-loading{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}@keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto !important}body.swal2-no-backdrop .swal2-container{background-color:rgba(0,0,0,0) !important;pointer-events:none}body.swal2-no-backdrop .swal2-container .swal2-popup{pointer-events:all}body.swal2-no-backdrop .swal2-container .swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll !important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static !important}}body.swal2-toast-shown .swal2-container{box-sizing:border-box;width:360px;max-width:100%;background-color:rgba(0,0,0,0);pointer-events:none}body.swal2-toast-shown .swal2-container.swal2-top{inset:0 auto auto 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{inset:0 0 auto auto}body.swal2-toast-shown .swal2-container.swal2-top-start,body.swal2-toast-shown .swal2-container.swal2-top-left{inset:0 auto auto 0}body.swal2-toast-shown .swal2-container.swal2-center-start,body.swal2-toast-shown .swal2-container.swal2-center-left{inset:50% auto auto 0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{inset:50% auto auto 50%;transform:translate(-50%, -50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{inset:50% 0 auto auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-start,body.swal2-toast-shown .swal2-container.swal2-bottom-left{inset:auto auto 0 0}body.swal2-toast-shown .swal2-container.swal2-bottom{inset:auto auto 0 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{inset:auto 0 0 auto}</style></head>
+
+<body><article>
+<nav><a href="https://www.eloquentjavascript.es/02_program_structure.html" title="previous chapter" aria-label="previous chapter">◂</a>&nbsp;<a href="https://www.eloquentjavascript.es/index.html" title="cover" aria-label="cover">●</a>&nbsp;<a href="https://www.eloquentjavascript.es/04_data.html" title="next chapter" aria-label="next chapter">▸</a>&nbsp;<button class="help" title="help" aria-label="help" style="display: inline;"><strong>?</strong></button>
+</nav>
+
+<h1>Funciones</h1>
+
+<blockquote>
+
+<p><a class="p_ident" id="p-SZ6RJ5C7yk" href="https://www.eloquentjavascript.es/03_functions.html#p-SZ6RJ5C7yk" tabindex="-1" role="presentation"></a>La gente piensa que la informática es el arte de los genios, pero la realidad actual es la opuesta, simplemente muchas personas haciendo cosas que se construyen unas sobre otras, como un muro de mini piedras.</p>
+
+<footer>Donald Knuth</footer>
+
+</blockquote><figure class="chapter framed"><img src="./Funciones __ Eloquent JavaScript_files/chapter_picture_3.jpg" alt="Ilustración de hojas de helecho con una forma fractal, abejas en el fondo"></figure>
+
+<p><a class="p_ident" id="p-CgSvbtVPMF" href="https://www.eloquentjavascript.es/03_functions.html#p-CgSvbtVPMF" tabindex="-1" role="presentation"></a>Las funciones son una de las herramientas más centrales en la programación en JavaScript. El concepto de envolver un fragmento de programa en un valor tiene muchos usos. Nos proporciona una manera de estructurar programas más grandes, de reducir la repetición, de asociar nombres con subprogramas y de aislar estos subprogramas entre sí.</p>
+
+<p><a class="p_ident" id="p-5S1r7LDeWB" href="https://www.eloquentjavascript.es/03_functions.html#p-5S1r7LDeWB" tabindex="-1" role="presentation"></a>La aplicación más evidente de las funciones es definir nuevo vocabulario. Crear palabras nuevas en el lenguaje escrito suele ser de mal gusto, pero en programación es indispensable.</p>
+
+<p><a class="p_ident" id="p-9hTHeO/PZx" href="https://www.eloquentjavascript.es/03_functions.html#p-9hTHeO/PZx" tabindex="-1" role="presentation"></a>Los hablantes de inglés adultos típicos tienen alrededor de 20,000 palabras en su vocabulario. Pocos lenguajes de programación vienen con 20,000 comandos incorporados. Y el vocabulario que <em>está</em> disponible tiende a estar más precisamente definido, y por lo tanto menos flexible, que en el lenguaje humano. Por lo tanto, <em>tenemos</em> que introducir nuevas palabras para evitar la verbosidad excesiva.</p>
+
+<h2><a class="h_ident" id="h-eHXd+T1Ezs" href="https://www.eloquentjavascript.es/03_functions.html#h-eHXd+T1Ezs" tabindex="-1" role="presentation"></a>Definir una función</h2>
+
+<p><a class="p_ident" id="p-5jo0JygqfX" href="https://www.eloquentjavascript.es/03_functions.html#p-5jo0JygqfX" tabindex="-1" role="presentation"></a>Una definición de función es un enlace habitual donde el valor del enlace es una función. Por ejemplo, este código define <code>square</code> para que se refiera a una función que produce el cuadrado de un número dado:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-JW7vLBZMWv" href="https://www.eloquentjavascript.es/03_functions.html#c-JW7vLBZMWv" tabindex="-1" role="presentation"></a><span class="tok-keyword">const</span> <span class="tok-definition">square</span> = <span class="tok-keyword">function</span>(<span class="tok-definition">x</span>) {
+  <span class="tok-keyword">return</span> x * x;
+};
+
+console.log(square(<span class="tok-number">12</span>));
+<span class="tok-comment">// → 144</span></pre>
+
+<p><a class="p_ident" id="p-Wttl/7EpwM" href="https://www.eloquentjavascript.es/03_functions.html#p-Wttl/7EpwM" tabindex="-1" role="presentation"></a>Una función se crea con una expresión que comienza con la palabra clave <code>function</code>. Las funciones tienen un conjunto de <em>parámetros</em> (en este caso, solo <code>x</code>) y un <em>cuerpo</em>, que contiene las declaraciones que se ejecutarán cuando se llame a la función. El cuerpo de una función creada de esta manera siempre debe estar envuelto entre llaves, incluso cuando consiste en una única declaración.</p>
+
+<p><a class="p_ident" id="p-vrjpkACz/x" href="https://www.eloquentjavascript.es/03_functions.html#p-vrjpkACz/x" tabindex="-1" role="presentation"></a>Una función puede tener varios parámetros o ninguno en absoluto. En el siguiente ejemplo, <code>makeNoise</code> no enumera nombres de parámetros, mientras que <code>roundTo</code> (que redondea <code>n</code> al múltiplo más cercano de <code>step</code>) enumera dos:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-vbZSOJZXVS" href="https://www.eloquentjavascript.es/03_functions.html#c-vbZSOJZXVS" tabindex="-1" role="presentation"></a><span class="tok-keyword">const</span> <span class="tok-definition">makeNoise</span> = <span class="tok-keyword">function</span>() {
+  console.log(<span class="tok-string">"¡Pling!"</span>);
+};
+
+makeNoise();
+<span class="tok-comment">// → ¡Pling!</span>
+
+<span class="tok-keyword">const</span> <span class="tok-definition">roundTo</span> = <span class="tok-keyword">function</span>(<span class="tok-definition">n</span>, <span class="tok-definition">step</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">resto</span> = n % step;
+  <span class="tok-keyword">return</span> n - resto + (resto &lt; step / <span class="tok-number">2</span> ? <span class="tok-number">0</span> : step);
+};
+
+console.log(roundTo(<span class="tok-number">23</span>, <span class="tok-number">10</span>));
+<span class="tok-comment">// → 20</span></pre>
+
+<p><a class="p_ident" id="p-1DcRwWewzX" href="https://www.eloquentjavascript.es/03_functions.html#p-1DcRwWewzX" tabindex="-1" role="presentation"></a>Algunas funciones, como <code>roundTo</code> y <code>square</code>, producen un valor, y otras no, como <code>makeNoise</code>, cuyo único resultado es un efecto secundario. Una instrucción <code>return</code> determina el valor que devuelve la función. Cuando el control llega a una instrucción de ese tipo, salta inmediatamente fuera de la función actual y le da el valor devuelto al código que llamó a la función. Una palabra clave <code>return</code> sin una expresión después de ella hará que la función devuelva <code>undefined</code>. Las funciones que no tienen ninguna instrucción <code>return</code> en absoluto, como <code>makeNoise</code>, devuelven igualmente <code>undefined</code>.</p>
+
+<p><a class="p_ident" id="p-skIegUpOjB" href="https://www.eloquentjavascript.es/03_functions.html#p-skIegUpOjB" tabindex="-1" role="presentation"></a>Los parámetros de una función se comportan como enlaces habituales, pero sus valores iniciales son dados por el <em>llamador</em> de la función, no por el código en la función en sí misma.</p>
+
+<h2><a class="h_ident" id="h-wxzpzC5WZf" href="https://www.eloquentjavascript.es/03_functions.html#h-wxzpzC5WZf" tabindex="-1" role="presentation"></a>Enlaces y ámbitos</h2>
+
+<p><a class="p_ident" id="p-whOg6+ORvy" href="https://www.eloquentjavascript.es/03_functions.html#p-whOg6+ORvy" tabindex="-1" role="presentation"></a>Cada enlace tiene un <em>ámbito</em>, que es la parte del programa en la que el enlace es visible. Para los enlaces definidos fuera de cualquier función, bloque o módulo (ver <a href="https://www.eloquentjavascript.es/10_modules.html">Capítulo 10</a>), el ámbito es todo el programa—puedes hacer referencia a esos enlaces donde quieras. Estos se llaman <em>globales</em>.</p>
+
+<p><a class="p_ident" id="p-Otbmqgy70v" href="https://www.eloquentjavascript.es/03_functions.html#p-Otbmqgy70v" tabindex="-1" role="presentation"></a>Los enlaces creados para los parámetros de una función o declarados dentro de una función solo pueden ser referenciados en esa función, por lo que se conocen como enlaces <em>locales</em>. Cada vez que se llama a la función, se crean nuevas instancias de estos enlaces. Esto proporciona cierto aislamiento entre funciones—cada llamada a función actúa en su propio pequeño mundo (su entorno local) y a menudo se puede entender sin saber mucho sobre lo que está sucediendo en el entorno global.</p>
+
+<p><a class="p_ident" id="p-a0Kzjls2fD" href="https://www.eloquentjavascript.es/03_functions.html#p-a0Kzjls2fD" tabindex="-1" role="presentation"></a>Los enlaces declarados con <code>let</code> y <code>const</code> en realidad son locales al <em>bloque</em> en el que se declaran, por lo que si creas uno de ellos dentro de un bucle, el código antes y después del bucle no puede “verlo”. En JavaScript anterior a 2015, solo las funciones creaban nuevos ámbitos, por lo que los enlaces de estilo antiguo, creados con la palabra clave <code>var</code>, son visibles en toda función en la que aparecen—o en todo el ámbito global, si no están dentro de una función.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-IoDSUUCl/U" href="https://www.eloquentjavascript.es/03_functions.html#c-IoDSUUCl/U" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">x</span> = <span class="tok-number">10</span>;   <span class="tok-comment">// global</span>
+<span class="tok-keyword">if</span> (true) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">y</span> = <span class="tok-number">20</span>; <span class="tok-comment">// local al bloque</span>
+  <span class="tok-keyword">var</span> <span class="tok-definition">z</span> = <span class="tok-number">30</span>; <span class="tok-comment">// también global</span>
+}</pre>
+
+<p><a class="p_ident" id="p-9qwZVGX4rL" href="https://www.eloquentjavascript.es/03_functions.html#p-9qwZVGX4rL" tabindex="-1" role="presentation"></a>Cada ámbito puede “mirar hacia afuera” al ámbito que lo rodea, por lo que <code>x</code> es visible dentro del bloque en el ejemplo. La excepción es cuando múltiples enlaces tienen el mismo nombre—en ese caso, el código solo puede ver el más interno. Por ejemplo, cuando el código dentro de la función <code>halve</code> hace referencia a <code>n</code>, está viendo su <em>propio</em> <code>n</code>, no el <code>n</code> global.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-5g6POeoiQv" href="https://www.eloquentjavascript.es/03_functions.html#c-5g6POeoiQv" tabindex="-1" role="presentation"></a><span class="tok-keyword">const</span> <span class="tok-definition">halve</span> = <span class="tok-keyword">function</span>(<span class="tok-definition">n</span>) {
+  <span class="tok-keyword">return</span> n / <span class="tok-number">2</span>;
+};
+
+<span class="tok-keyword">let</span> <span class="tok-definition">n</span> = <span class="tok-number">10</span>;
+console.log(halve(<span class="tok-number">100</span>));
+<span class="tok-comment">// → 50</span>
+console.log(n);
+<span class="tok-comment">// → 10</span></pre>
+
+<h2 id="alcance"><a class="h_ident" id="h-Bb1XV2UFNf" href="https://www.eloquentjavascript.es/03_functions.html#h-Bb1XV2UFNf" tabindex="-1" role="presentation"></a>Ámbito anidado</h2>
+
+<p><a class="p_ident" id="p-WQPriPynnr" href="https://www.eloquentjavascript.es/03_functions.html#p-WQPriPynnr" tabindex="-1" role="presentation"></a>JavaScript distingue no solo entre enlaces globales y locales. Bloques y funciones pueden ser creados dentro de otros bloques y funciones, produciendo múltiples grados de localidad.</p>
+
+<p><a class="p_ident" id="p-ET4L8vHq9N" href="https://www.eloquentjavascript.es/03_functions.html#p-ET4L8vHq9N" tabindex="-1" role="presentation"></a>Por ejemplo, esta función—que muestra los ingredientes necesarios para hacer un lote de hummus—tiene otra función dentro de ella:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-o16pCCxu1S" href="https://www.eloquentjavascript.es/03_functions.html#c-o16pCCxu1S" tabindex="-1" role="presentation"></a><span class="tok-keyword">const</span> <span class="tok-definition">hummus</span> = <span class="tok-keyword">function</span>(<span class="tok-definition">factor</span>) {
+  <span class="tok-keyword">const</span> <span class="tok-definition">ingredient</span> = <span class="tok-keyword">function</span>(<span class="tok-definition">amount</span>, <span class="tok-definition">unit</span>, <span class="tok-definition">name</span>) {
+    <span class="tok-keyword">let</span> <span class="tok-definition">ingredientAmount</span> = amount * factor;
+    <span class="tok-keyword">if</span> (ingredientAmount &gt; <span class="tok-number">1</span>) {
+      unit += <span class="tok-string">"s"</span>;
+    }
+    console.log(<span class="tok-string2">`</span>${ingredientAmount}<span class="tok-string2"> </span>${unit}<span class="tok-string2"> </span>${name}<span class="tok-string2">`</span>);
+  };
+  ingredient(<span class="tok-number">1</span>, <span class="tok-string">"lata"</span>, <span class="tok-string">"garbanzos"</span>);
+  ingredient(<span class="tok-number">0.25</span>, <span class="tok-string">"taza"</span>, <span class="tok-string">"tahini"</span>);
+  ingredient(<span class="tok-number">0.25</span>, <span class="tok-string">"taza"</span>, <span class="tok-string">"jugo de limón"</span>);
+  ingredient(<span class="tok-number">1</span>, <span class="tok-string">"diente"</span>, <span class="tok-string">"ajo"</span>);
+  ingredient(<span class="tok-number">2</span>, <span class="tok-string">"cucharada"</span>, <span class="tok-string">"aceite de oliva"</span>);
+  ingredient(<span class="tok-number">0.5</span>, <span class="tok-string">"cucharadita"</span>, <span class="tok-string">"comino"</span>);
+};</pre>
+
+<p><a class="p_ident" id="p-Rmy1dhc5eP" href="https://www.eloquentjavascript.es/03_functions.html#p-Rmy1dhc5eP" tabindex="-1" role="presentation"></a>El código dentro de la función <code>ingredient</code> puede ver el enlace <code>factor</code> de la función exterior, pero sus enlaces locales, como <code>unit</code> o <code>ingredientAmount</code>, no son visibles en la función exterior.</p>
+
+<p><a class="p_ident" id="p-DoPmP2HGVl" href="https://www.eloquentjavascript.es/03_functions.html#p-DoPmP2HGVl" tabindex="-1" role="presentation"></a>El conjunto de enlaces visibles dentro de un bloque está determinado por el lugar de ese bloque en el texto del programa. Cada bloque local también puede ver todos los bloques locales que lo contienen, y todos los bloques pueden ver el bloque global. Este enfoque de visibilidad de enlaces se llama <em>ámbito léxico</em>.</p>
+
+<h2><a class="h_ident" id="h-3mNEhIfF61" href="https://www.eloquentjavascript.es/03_functions.html#h-3mNEhIfF61" tabindex="-1" role="presentation"></a>Funciones como valores</h2>
+
+<p><a class="p_ident" id="p-9SOeUnXtuP" href="https://www.eloquentjavascript.es/03_functions.html#p-9SOeUnXtuP" tabindex="-1" role="presentation"></a>Generalmente un enlace de función simplemente actúa como un nombre para una parte específica del programa. Este enlace se define una vez y nunca se cambia. Esto hace que sea fácil confundir la función y su nombre.</p>
+
+<p><a class="p_ident" id="p-Z3YsDzJ9JG" href="https://www.eloquentjavascript.es/03_functions.html#p-Z3YsDzJ9JG" tabindex="-1" role="presentation"></a>Pero los dos son diferentes. Un valor de función puede hacer todas las cosas que pueden hacer otros valores: se puede utilizar en expresiones arbitrarias, no solo llamarlo. Es posible almacenar un valor de función en un nuevo enlace, pasarlo como argumento a una función, etc. De manera similar, un enlace que contiene una función sigue siendo solo un enlace habitual y, si no es constante, se le puede asignar un nuevo valor, así:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-lz0sp2Utto" href="https://www.eloquentjavascript.es/03_functions.html#c-lz0sp2Utto" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">launchMissiles</span> = <span class="tok-keyword">function</span>() {
+  missileSystem.launch(<span class="tok-string">"now"</span>);
+};
+<span class="tok-keyword">if</span> (safeMode) {
+  launchMissiles = <span class="tok-keyword">function</span>() {<span class="tok-comment">/* no hacer nada */</span>};
+}</pre>
+
+<p><a class="p_ident" id="p-mYurbU9/K8" href="https://www.eloquentjavascript.es/03_functions.html#p-mYurbU9/K8" tabindex="-1" role="presentation"></a>En el <a href="https://www.eloquentjavascript.es/05_higher_order.html">Capítulo 5</a>, discutiremos las cosas interesantes que podemos hacer al pasar valores de función a otras funciones.</p>
+
+<h2><a class="h_ident" id="h-tewMxJao9I" href="https://www.eloquentjavascript.es/03_functions.html#h-tewMxJao9I" tabindex="-1" role="presentation"></a>Notación de declaración</h2>
+
+<p><a class="p_ident" id="p-8B3Xt7iB35" href="https://www.eloquentjavascript.es/03_functions.html#p-8B3Xt7iB35" tabindex="-1" role="presentation"></a>Hay una manera ligeramente más corta de crear un enlace de función. Cuando se utiliza la palabra clave <code>function</code> al inicio de una declaración, funciona de manera diferente:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-4uHhsg+h7S" href="https://www.eloquentjavascript.es/03_functions.html#c-4uHhsg+h7S" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">square</span>(<span class="tok-definition">x</span>) {
+  <span class="tok-keyword">return</span> x * x;
+}</pre>
+
+<p><a class="p_ident" id="p-VyKvVyRYQV" href="https://www.eloquentjavascript.es/03_functions.html#p-VyKvVyRYQV" tabindex="-1" role="presentation"></a>Esta es una función <em>declarativa</em>. La declaración define el enlace <code>square</code> y lo apunta a la función dada. Es un poco más fácil de escribir y no requiere un punto y coma después de la función.</p>
+
+<p><a class="p_ident" id="p-xfJkZVJQEh" href="https://www.eloquentjavascript.es/03_functions.html#p-xfJkZVJQEh" tabindex="-1" role="presentation"></a>Hay una sutileza con esta forma de definición de función.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-Uq3EWZNFOJ" href="https://www.eloquentjavascript.es/03_functions.html#c-Uq3EWZNFOJ" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string">"El futuro dice:"</span>, future());
+
+<span class="tok-keyword">function</span> <span class="tok-definition">future</span>() {
+  <span class="tok-keyword">return</span> <span class="tok-string">"Nunca tendrás autos voladores"</span>;
+}</pre>
+
+<p><a class="p_ident" id="p-4dZZ8ocV0I" href="https://www.eloquentjavascript.es/03_functions.html#p-4dZZ8ocV0I" tabindex="-1" role="presentation"></a>El código anterior funciona, incluso aunque la función esté definida <em>debajo</em> del código que la usa. Las declaraciones de función no forman parte del flujo de control regular de arriba hacia abajo. Conceptualmente se mueven al principio de su alcance y pueden ser utilizadas por todo el código en ese alcance. A veces esto es útil porque ofrece la libertad de ordenar el código de una manera que parezca más clara, sin tener que preocuparse por definir todas las funciones antes de que se utilicen.</p>
+
+<h2><a class="h_ident" id="h-7gP0M6nUCF" href="https://www.eloquentjavascript.es/03_functions.html#h-7gP0M6nUCF" tabindex="-1" role="presentation"></a>Funciones de flecha</h2>
+
+<p><a class="p_ident" id="p-qp+SShPV+r" href="https://www.eloquentjavascript.es/03_functions.html#p-qp+SShPV+r" tabindex="-1" role="presentation"></a>Hay una tercera notación para funciones, que se ve muy diferente de las otras. En lugar de la palabra clave <code>function</code>, utiliza una flecha (<code>=&gt;</code>) compuesta por un signo igual y un caracter mayor que (no confundir con el operador mayor o igual, que se escribe <code>&gt;=</code>):</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-5zMRAvLyub" href="https://www.eloquentjavascript.es/03_functions.html#c-5zMRAvLyub" tabindex="-1" role="presentation"></a><span class="tok-keyword">const</span> <span class="tok-definition">roundTo</span> = (<span class="tok-definition">n</span>, <span class="tok-definition">step</span>) =&gt; {
+  <span class="tok-keyword">let</span> <span class="tok-definition">remainder</span> = n % step;
+  <span class="tok-keyword">return</span> n - remainder + (remainder &lt; step / <span class="tok-number">2</span> ? <span class="tok-number">0</span> : step);
+};</pre>
+
+<p><a class="p_ident" id="p-4wRZ32fVtv" href="https://www.eloquentjavascript.es/03_functions.html#p-4wRZ32fVtv" tabindex="-1" role="presentation"></a>La flecha viene <em>después</em> de la lista de parámetros y es seguida por el cuerpo de la función. Expresa algo así como “esta entrada (los parámetros) produce este resultado (el cuerpo)”.</p>
+
+<p><a class="p_ident" id="p-B2W8hY/asG" href="https://www.eloquentjavascript.es/03_functions.html#p-B2W8hY/asG" tabindex="-1" role="presentation"></a>Cuando solo hay un nombre de parámetro, puedes omitir los paréntesis alrededor de la lista de parámetros. Si el cuerpo es una sola expresión, en lugar de un bloque entre llaves, esa expresión será devuelta por la función. Por lo tanto, estas dos definiciones de <code>exponente</code> hacen lo mismo:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-yDV8N1C3lB" href="https://www.eloquentjavascript.es/03_functions.html#c-yDV8N1C3lB" tabindex="-1" role="presentation"></a><span class="tok-keyword">const</span> <span class="tok-definition">exponente1</span> = (<span class="tok-definition">x</span>) =&gt; { <span class="tok-keyword">return</span> x * x; };
+<span class="tok-keyword">const</span> <span class="tok-definition">exponente2</span> = <span class="tok-definition">x</span> =&gt; x * x;</pre>
+
+<p><a class="p_ident" id="p-PvxM25s0zB" href="https://www.eloquentjavascript.es/03_functions.html#p-PvxM25s0zB" tabindex="-1" role="presentation"></a>Cuando una función de flecha no tiene parámetros en absoluto, su lista de parámetros es simplemente un conjunto vacío de paréntesis.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-WTImn5yQuM" href="https://www.eloquentjavascript.es/03_functions.html#c-WTImn5yQuM" tabindex="-1" role="presentation"></a><span class="tok-keyword">const</span> <span class="tok-definition">cuerno</span> = () =&gt; {
+  console.log(<span class="tok-string">"Toot"</span>);
+};</pre>
+
+<p><a class="p_ident" id="p-q9uDkTN2Zd" href="https://www.eloquentjavascript.es/03_functions.html#p-q9uDkTN2Zd" tabindex="-1" role="presentation"></a>No hay una razón profunda para tener tanto funciones de flecha como expresiones <code>function</code> en el lenguaje. Aparte de un detalle menor, que discutiremos en el <a href="https://www.eloquentjavascript.es/06_object.html">Capítulo 6</a>, hacen lo mismo. Las funciones de flecha se agregaron en 2015, principalmente para hacer posible escribir expresiones de función pequeñas de una manera menos verbosa. Las usaremos a menudo en el <a href="https://www.eloquentjavascript.es/05_higher_order.html">Capítulo 5</a> .</p>
+
+<h2 id="pila"><a class="h_ident" id="h-nePB5S+L1Q" href="https://www.eloquentjavascript.es/03_functions.html#h-nePB5S+L1Q" tabindex="-1" role="presentation"></a>La pila de llamadas</h2>
+
+<p><a class="p_ident" id="p-aMmoKkJUw3" href="https://www.eloquentjavascript.es/03_functions.html#p-aMmoKkJUw3" tabindex="-1" role="presentation"></a>La forma en que el control fluye a través de las funciones es un tanto complicada. Echemos un vistazo más de cerca. Aquí hay un programa simple que realiza algunas llamadas de función:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-qJyPTKyGmO" href="https://www.eloquentjavascript.es/03_functions.html#c-qJyPTKyGmO" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">saludar</span>(<span class="tok-definition">quien</span>) {
+  console.log(<span class="tok-string">"Hola "</span> + quien);
+}
+saludar(<span class="tok-string">"Harry"</span>);
+console.log(<span class="tok-string">"Adiós"</span>);</pre>
+
+<p><a class="p_ident" id="p-Dn5Off5HVf" href="https://www.eloquentjavascript.es/03_functions.html#p-Dn5Off5HVf" tabindex="-1" role="presentation"></a>Una ejecución de este programa va más o menos así: la llamada a <code>saludar</code> hace que el control salte al inicio de esa función (línea 2). La función llama a <code>console.log</code>, que toma el control, hace su trabajo, y luego devuelve el control a la línea 2. Allí, llega al final de la función <code>saludar</code>, por lo que regresa al lugar que la llamó, línea 4. La línea siguiente llama a <code>console.log</code> nuevamente. Después de ese retorno, el programa llega a su fin.</p>
+
+<p><a class="p_ident" id="p-EhJguRxP1B" href="https://www.eloquentjavascript.es/03_functions.html#p-EhJguRxP1B" tabindex="-1" role="presentation"></a>Podríamos mostrar el flujo de control esquemáticamente de esta manera:</p>
+
+<pre class="snippet" data-language="null"><a class="c_ident" id="c-P67GeEPWC+" href="https://www.eloquentjavascript.es/03_functions.html#c-P67GeEPWC+" tabindex="-1" role="presentation"></a>no en función
+   en saludar
+        en console.log
+   en saludar
+no en función
+   en console.log
+no en función</pre>
+
+<p><a class="p_ident" id="p-M5sgy1Ouv/" href="https://www.eloquentjavascript.es/03_functions.html#p-M5sgy1Ouv/" tabindex="-1" role="presentation"></a>Dado que una función tiene que regresar al lugar que la llamó cuando termina, la computadora debe recordar el contexto desde el cual se realizó la llamada. En un caso, <code>console.log</code> tiene que regresar a la función <code>saludar</code> cuando haya terminado. En el otro caso, regresa al final del programa.</p>
+
+<p><a class="p_ident" id="p-xHR55l4E6j" href="https://www.eloquentjavascript.es/03_functions.html#p-xHR55l4E6j" tabindex="-1" role="presentation"></a>El lugar donde la computadora almacena este contexto es la <em>pila de llamadas</em>. Cada vez que se llama a una función, el contexto actual se almacena en la parte superior de esta pila. Cuando una función devuelve, elimina el contexto superior de la pila y usa ese contexto para continuar la ejecución.</p>
+
+<p><a class="p_ident" id="p-SB1hzp8Fcw" href="https://www.eloquentjavascript.es/03_functions.html#p-SB1hzp8Fcw" tabindex="-1" role="presentation"></a>Almacenar esta pila requiere espacio en la memoria de la computadora. Cuando la pila crece demasiado, la computadora fallará con un mensaje como “sin espacio en la pila” o “demasiada recursividad”. El siguiente código ilustra esto al hacerle a la computadora una pregunta realmente difícil que causa un vaivén infinito entre dos funciones. O más bien, <em>sería</em> infinito, si la computadora tuviera una pila infinita. Como no la tiene, nos quedaremos sin espacio o “reventaremos la pila”.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-u9bb1xDgwe" href="https://www.eloquentjavascript.es/03_functions.html#c-u9bb1xDgwe" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">chicken</span>() {
+  <span class="tok-keyword">return</span> egg();
+}
+<span class="tok-keyword">function</span> <span class="tok-definition">egg</span>() {
+  <span class="tok-keyword">return</span> chicken();
+}
+console.log(chicken() + <span class="tok-string">" salió primero."</span>);
+<span class="tok-comment">// → ??</span></pre>
+
+<h2><a class="h_ident" id="h-jNCGCF3rFb" href="https://www.eloquentjavascript.es/03_functions.html#h-jNCGCF3rFb" tabindex="-1" role="presentation"></a>Argumentos Opcionales</h2>
+
+<p><a class="p_ident" id="p-H9TL95isqo" href="https://www.eloquentjavascript.es/03_functions.html#p-H9TL95isqo" tabindex="-1" role="presentation"></a>El siguiente código está permitido y se ejecuta sin ningún problema:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-T8m5axnp1h" href="https://www.eloquentjavascript.es/03_functions.html#c-T8m5axnp1h" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">square</span>(<span class="tok-definition">x</span>) { <span class="tok-keyword">return</span> x * x; }
+console.log(square(<span class="tok-number">4</span>, true, <span class="tok-string">"erizo"</span>));
+<span class="tok-comment">// → 16</span></pre>
+
+<p><a class="p_ident" id="p-qSFz2Cu3MP" href="https://www.eloquentjavascript.es/03_functions.html#p-qSFz2Cu3MP" tabindex="-1" role="presentation"></a>Hemos definido <code>square</code> con solo un parámetro. Sin embargo, cuando lo llamamos con tres, el lenguaje no se queja. Ignora los argumentos adicionales y calcula el cuadrado del primero.</p>
+
+<p><a class="p_ident" id="p-xQJ7gf7nbn" href="https://www.eloquentjavascript.es/03_functions.html#p-xQJ7gf7nbn" tabindex="-1" role="presentation"></a>JavaScript es extremadamente flexible en cuanto al número de argumentos que puedes pasar a una función. Si pasas demasiados, los extras son ignorados. Si pasas muy pocos, los parámetros faltantes se les asigna el valor <code>undefined</code>.</p>
+
+<p><a class="p_ident" id="p-+8VZwoywj9" href="https://www.eloquentjavascript.es/03_functions.html#p-+8VZwoywj9" tabindex="-1" role="presentation"></a>El inconveniente de esto es que es posible —incluso probable— que pases accidentalmente el número incorrecto de argumentos a las funciones. Y nadie te dirá nada al respecto. La ventaja es que puedes utilizar este comportamiento para permitir que una función sea llamada con diferentes números de argumentos. Por ejemplo, esta función <code>minus</code> intenta imitar al operador <code>-</code> actuando sobre uno o dos argumentos:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-8zGcY0SKdo" href="https://www.eloquentjavascript.es/03_functions.html#c-8zGcY0SKdo" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">minus</span>(<span class="tok-definition">a</span>, <span class="tok-definition">b</span>) {
+  <span class="tok-keyword">if</span> (b === undefined) <span class="tok-keyword">return</span> -a;
+  <span class="tok-keyword">else</span> <span class="tok-keyword">return</span> a - b;
+}
+
+console.log(minus(<span class="tok-number">10</span>));
+<span class="tok-comment">// → -10</span>
+console.log(minus(<span class="tok-number">10</span>, <span class="tok-number">5</span>));
+<span class="tok-comment">// → 5</span></pre>
+
+<p id="roundTo"><a class="p_ident" id="p-tcju9YOu56" href="https://www.eloquentjavascript.es/03_functions.html#p-tcju9YOu56" tabindex="-1" role="presentation"></a>Si escribes un operador <code>=</code> después de un parámetro, seguido de una expresión, el valor de esa expresión reemplazará al argumento cuando no se le dé. Por ejemplo, esta versión de <code>roundTo</code> hace que su segundo argumento sea opcional. Si no lo proporcionas o pasas el valor <code>undefined</code>, por defecto será uno:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-lf5l9+817Y" href="https://www.eloquentjavascript.es/03_functions.html#c-lf5l9+817Y" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">roundTo</span>(<span class="tok-definition">n</span>, <span class="tok-definition">step</span> = <span class="tok-number">1</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">remainder</span> = n % step;
+  <span class="tok-keyword">return</span> n - remainder + (remainder &lt; step / <span class="tok-number">2</span> ? <span class="tok-number">0</span> : step);
+};
+
+console.log(roundTo(<span class="tok-number">4.5</span>));
+<span class="tok-comment">// → 5</span>
+console.log(roundTo(<span class="tok-number">4.5</span>, <span class="tok-number">2</span>));
+<span class="tok-comment">// → 4</span></pre>
+
+<p><a class="p_ident" id="p-0QAhU0olKv" href="https://www.eloquentjavascript.es/03_functions.html#p-0QAhU0olKv" tabindex="-1" role="presentation"></a><a href="https://www.eloquentjavascript.es/04_data.html#rest_parameters">El próximo capítulo</a> introducirá una forma en que un cuerpo de función puede acceder a la lista completa de argumentos que se le pasaron. Esto es útil porque le permite a una función aceptar cualquier número de argumentos. Por ejemplo, <code>console.log</code> lo hace, mostrando todos los valores que se le dan:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-RvkwVkcUZ7" href="https://www.eloquentjavascript.es/03_functions.html#c-RvkwVkcUZ7" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string">"C"</span>, <span class="tok-string">"O"</span>, <span class="tok-number">2</span>);
+<span class="tok-comment">// → C O 2</span></pre>
+
+<h2><a class="h_ident" id="h-KU8YojAGul" href="https://www.eloquentjavascript.es/03_functions.html#h-KU8YojAGul" tabindex="-1" role="presentation"></a>Clausura</h2>
+
+<p><a class="p_ident" id="p-hi0pjIyB2g" href="https://www.eloquentjavascript.es/03_functions.html#p-hi0pjIyB2g" tabindex="-1" role="presentation"></a>La capacidad de tratar las funciones como valores, combinada con el hecho de que los enlaces locales se recrean cada vez que se llama a una función, plantea una pregunta interesante: ¿qué sucede con los enlaces locales cuando la llamada a la función que los creó ya no está activa?El siguiente código muestra un ejemplo de esto. Define una función, <code>wrapValue</code>, que crea un enlace local. Luego devuelve una función que accede a este enlace local y lo devuelve:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-DF70h3opbx" href="https://www.eloquentjavascript.es/03_functions.html#c-DF70h3opbx" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">wrapValue</span>(<span class="tok-definition">n</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">local</span> = n;
+  <span class="tok-keyword">return</span> () =&gt; local;
+}
+
+<span class="tok-keyword">let</span> <span class="tok-definition">wrap1</span> = wrapValue(<span class="tok-number">1</span>);
+<span class="tok-keyword">let</span> <span class="tok-definition">wrap2</span> = wrapValue(<span class="tok-number">2</span>);
+console.log(wrap1());
+<span class="tok-comment">// → 1</span>
+console.log(wrap2());
+<span class="tok-comment">// → 2</span></pre>
+
+<p><a class="p_ident" id="p-YU/l50hrdL" href="https://www.eloquentjavascript.es/03_functions.html#p-YU/l50hrdL" tabindex="-1" role="presentation"></a>Esto está permitido y funciona como esperarías: ambas instancias del enlace aún pueden accederse. Esta situación es una buena demostración de que los enlaces locales se crean nuevamente para cada llamada, y las diferentes llamadas no afectan los enlaces locales de los demás.</p>
+
+<p><a class="p_ident" id="p-HTFaO7CfSD" href="https://www.eloquentjavascript.es/03_functions.html#p-HTFaO7CfSD" tabindex="-1" role="presentation"></a>Esta característica, poder hacer referencia a una instancia específica de un enlace local en un ámbito superior, se llama <em>clausura</em>. Una función que hace referencia a enlaces de ámbitos locales a su alrededor se llama <em>una</em> clausura. Este comportamiento no solo te libera de tener que preocuparte por la vida útil de los enlaces, sino que también hace posible usar valores de función de formas creativas.</p>
+
+<p><a class="p_ident" id="p-dqvi9Q/A+9" href="https://www.eloquentjavascript.es/03_functions.html#p-dqvi9Q/A+9" tabindex="-1" role="presentation"></a>Con un ligero cambio, podemos convertir el ejemplo anterior en una forma de crear funciones que multiplican por una cantidad arbitraria:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-iIlCVmvMSs" href="https://www.eloquentjavascript.es/03_functions.html#c-iIlCVmvMSs" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">multiplier</span>(<span class="tok-definition">factor</span>) {
+  <span class="tok-keyword">return</span> <span class="tok-definition">number</span> =&gt; number * factor;
+}
+
+<span class="tok-keyword">let</span> <span class="tok-definition">twice</span> = multiplier(<span class="tok-number">2</span>);
+console.log(twice(<span class="tok-number">5</span>));
+<span class="tok-comment">// → 10</span></pre>
+
+<p><a class="p_ident" id="p-W9UeLQ7s8n" href="https://www.eloquentjavascript.es/03_functions.html#p-W9UeLQ7s8n" tabindex="-1" role="presentation"></a>El enlace explícito <code>local</code> del ejemplo <code>wrapValue</code> realmente no es necesario, ya que un parámetro es en sí mismo un enlace local.</p>
+
+<p><a class="p_ident" id="p-xoKKzht2cB" href="https://www.eloquentjavascript.es/03_functions.html#p-xoKKzht2cB" tabindex="-1" role="presentation"></a>Pensar en programas de esta manera requiere algo de práctica. Un buen modelo mental es pensar en los valores de función como que contienen tanto el código en su cuerpo como el entorno en el que fueron creados. Cuando se llama, el cuerpo de la función ve el entorno en el que fue creado, no el entorno en el que se llama.</p>
+
+<p><a class="p_ident" id="p-FbEnVK1PeW" href="https://www.eloquentjavascript.es/03_functions.html#p-FbEnVK1PeW" tabindex="-1" role="presentation"></a>En el ejemplo anterior, se llama a <code>multiplier</code> y crea un entorno en el que su parámetro <code>factor</code> está vinculado a 2. El valor de función que devuelve, que se almacena en <code>twice</code>, recuerda este entorno para que cuando se llame, multiplique su argumento por 2.</p>
+
+<h2><a class="h_ident" id="h-ge3a45K3m3" href="https://www.eloquentjavascript.es/03_functions.html#h-ge3a45K3m3" tabindex="-1" role="presentation"></a>Recursión</h2>
+
+<p><a class="p_ident" id="p-OGtTx+fur4" href="https://www.eloquentjavascript.es/03_functions.html#p-OGtTx+fur4" tabindex="-1" role="presentation"></a>Es perfectamente válido que una función se llame a sí misma, siempre y cuando no lo haga tan a menudo que desborde la pila. Una función que se llama a sí misma se llama <em>recursiva</em>. La recursión permite que algunas funciones se escriban de una manera diferente. Toma, por ejemplo, esta función <code>power</code>, que hace lo mismo que el operador <code>**</code> (potenciación):</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-agdELfiRGm" href="https://www.eloquentjavascript.es/03_functions.html#c-agdELfiRGm" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">power</span>(<span class="tok-definition">base</span>, <span class="tok-definition">exponent</span>) {
+  <span class="tok-keyword">if</span> (exponent == <span class="tok-number">0</span>) {
+    <span class="tok-keyword">return</span> <span class="tok-number">1</span>;
+  } <span class="tok-keyword">else</span> {
+    <span class="tok-keyword">return</span> base * power(base, exponent - <span class="tok-number">1</span>);
+  }
+}
+
+console.log(power(<span class="tok-number">2</span>, <span class="tok-number">3</span>));
+<span class="tok-comment">// → 8</span></pre>
+
+<p><a class="p_ident" id="p-ZH6kc3lXYd" href="https://www.eloquentjavascript.es/03_functions.html#p-ZH6kc3lXYd" tabindex="-1" role="presentation"></a>Esto se asemeja bastante a la forma en que los matemáticos definen la potenciación y describe el concepto de manera más clara que el bucle que usamos en el <a href="https://www.eloquentjavascript.es/02_program_structure.html">Capítulo 2</a>. La función se llama a sí misma varias veces con exponentes cada vez más pequeños para lograr la multiplicación repetida.</p>
+
+<p><a class="p_ident" id="p-vuRF5znTGo" href="https://www.eloquentjavascript.es/03_functions.html#p-vuRF5znTGo" tabindex="-1" role="presentation"></a>Sin embargo, esta implementación tiene un problema: en implementaciones típicas de JavaScript, es aproximadamente tres veces más lenta que una versión que utiliza un bucle <code>for</code>. Recorrer un simple bucle suele ser más económico que llamar a una función múltiples veces.</p>
+
+<p><a class="p_ident" id="p-HyK1Oztn84" href="https://www.eloquentjavascript.es/03_functions.html#p-HyK1Oztn84" tabindex="-1" role="presentation"></a>El dilema de velocidad versus elegancia es interesante. Se puede ver como una especie de continuo entre la compatibilidad con los humanos y las máquinas. Casi cualquier programa puede ser acelerado haciendo que sea más extenso y complicado. El programador debe encontrar un equilibrio apropiado.</p>
+
+<p><a class="p_ident" id="p-UUCfSx41Ze" href="https://www.eloquentjavascript.es/03_functions.html#p-UUCfSx41Ze" tabindex="-1" role="presentation"></a>En el caso de la función <code>power</code>, una versión poco elegante (con bucles) sigue siendo bastante simple y fácil de leer. No tiene mucho sentido reemplazarla con una función recursiva. Sin embargo, a menudo un programa trata con conceptos tan complejos que es útil renunciar a algo de eficiencia para hacer que el programa sea más sencillo.</p>
+
+<p><a class="p_ident" id="p-qQ0sf4nZdt" href="https://www.eloquentjavascript.es/03_functions.html#p-qQ0sf4nZdt" tabindex="-1" role="presentation"></a>Preocuparse por la eficiencia puede ser una distracción. Es otro factor que complica el diseño del programa y cuando estás haciendo algo que ya es difícil, ese extra en lo que preocuparse puede llegar a ser paralizante.</p>
+
+<p><a class="p_ident" id="p-W1/mlcain4" href="https://www.eloquentjavascript.es/03_functions.html#p-W1/mlcain4" tabindex="-1" role="presentation"></a>Por lo tanto, generalmente deberías comenzar escribiendo algo que sea correcto y fácil de entender. Si te preocupa que sea demasiado lento—lo cual suele ser raro, ya que la mayoría del código simplemente no se ejecuta lo suficiente como para tomar una cantidad significativa de tiempo—puedes medir después y mejorarlo si es necesario.</p>
+
+<p><a class="p_ident" id="p-oNzYWF+2hF" href="https://www.eloquentjavascript.es/03_functions.html#p-oNzYWF+2hF" tabindex="-1" role="presentation"></a>La recursión no siempre es simplemente una alternativa ineficiente a los bucles. Algunos problemas realmente son más fáciles de resolver con recursión que con bucles. Con mayor frecuencia, estos son problemas que requieren explorar o procesar varias “ramas”, cada una de las cuales podría ramificarse nuevamente en aún más ramas.</p>
+
+<p id="rompecabezas_recursivo"><a class="p_ident" id="p-z8AgKvwZXc" href="https://www.eloquentjavascript.es/03_functions.html#p-z8AgKvwZXc" tabindex="-1" role="presentation"></a>Considera este rompecabezas: al comenzar desde el número 1 y repetidamente sumar 5 o multiplicar por 3, se puede producir un conjunto infinito de números. ¿Cómo escribirías una función que, dado un número, intente encontrar una secuencia de tales sumas y multiplicaciones que produzcan ese número? Por ejemplo, el número 13 podría alcanzarse al multiplicar por 3 y luego sumar 5 dos veces, mientras que el número 15 no podría alcanzarse en absoluto.</p>
+
+<p><a class="p_ident" id="p-HOoTgs7o63" href="https://www.eloquentjavascript.es/03_functions.html#p-HOoTgs7o63" tabindex="-1" role="presentation"></a>Aquí tienes una solución recursiva:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-g4e2T0l3Uf" href="https://www.eloquentjavascript.es/03_functions.html#c-g4e2T0l3Uf" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">encontrarSolucion</span>(<span class="tok-definition">objetivo</span>) {
+  <span class="tok-keyword">function</span> <span class="tok-definition">encontrar</span>(<span class="tok-definition">actual</span>, <span class="tok-definition">historial</span>) {
+    <span class="tok-keyword">if</span> (actual === objetivo) {
+      <span class="tok-keyword">return</span> historial;
+    } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (actual &gt; objetivo) {
+      <span class="tok-keyword">return</span> <span class="tok-keyword">null</span>;
+    } <span class="tok-keyword">else</span> {
+      <span class="tok-keyword">return</span> encontrar(actual + <span class="tok-number">5</span>, <span class="tok-string2">`(</span>${historial}<span class="tok-string2"> + 5)`</span>) ??
+             encontrar(actual * <span class="tok-number">3</span>, <span class="tok-string2">`(</span>${historial}<span class="tok-string2"> * 3)`</span>);
+    }
+  }
+  <span class="tok-keyword">return</span> encontrar(<span class="tok-number">1</span>, <span class="tok-string">"1"</span>);
+}
+
+console.log(encontrarSolucion(<span class="tok-number">24</span>));
+<span class="tok-comment">// → (((1 * 3) + 5) * 3)</span></pre>
+
+<p><a class="p_ident" id="p-pHOyC25qCR" href="https://www.eloquentjavascript.es/03_functions.html#p-pHOyC25qCR" tabindex="-1" role="presentation"></a>Ten en cuenta que este programa no necesariamente encuentra la secuencia de operaciones más <em>corta</em>. Se conforma con encontrar cualquier secuencia.</p>
+
+<p><a class="p_ident" id="p-j6YcJ9M71I" href="https://www.eloquentjavascript.es/03_functions.html#p-j6YcJ9M71I" tabindex="-1" role="presentation"></a>No te preocupes si no ves cómo funciona este código de inmediato. Vamos a trabajar juntos, ya que es un gran ejercicio de pensamiento recursivo. La función interna <code>encontrar</code> es la que realiza la recursión real. Toma dos argumentos: el número actual y una cadena que registra cómo llegamos a este número. Si encuentra una solución, devuelve una cadena que muestra cómo llegar al objetivo. Si no puede encontrar una solución comenzando desde este número, devuelve <code>null</code>.</p>
+
+<p><a class="p_ident" id="p-bRYy2wuEMy" href="https://www.eloquentjavascript.es/03_functions.html#p-bRYy2wuEMy" tabindex="-1" role="presentation"></a>Para hacer esto, la función realiza una de tres acciones. Si el número actual es el número objetivo, el historial actual es una forma de alcanzar ese objetivo, por lo que se devuelve. Si el número actual es mayor que el objetivo, no tiene sentido explorar más esta rama porque tanto la suma como la multiplicación solo harán que el número sea más grande, por lo que devuelve <code>null</code>. Finalmente, si aún estamos por debajo del número objetivo, la función prueba ambas rutas posibles que parten del número actual llamándose a sí misma dos veces, una vez para la suma y otra vez para la multiplicación. Si la primera llamada devuelve algo que no es <code>null</code>, se devuelve. De lo contrario, se devuelve la segunda llamada, independientemente de si produce una cadena o <code>null</code>.</p>
+
+<p><a class="p_ident" id="p-87C75eNTfr" href="https://www.eloquentjavascript.es/03_functions.html#p-87C75eNTfr" tabindex="-1" role="presentation"></a>Para entender mejor cómo esta función produce el efecto que estamos buscando, veamos todas las llamadas a <code>encontrar</code> que se hacen al buscar una solución para el número 13:</p>
+
+<pre class="snippet" data-language="null"><a class="c_ident" id="c-S7wN3j0XMZ" href="https://www.eloquentjavascript.es/03_functions.html#c-S7wN3j0XMZ" tabindex="-1" role="presentation"></a>encontrar(1, "1")
+  encontrar(6, "(1 + 5)")
+    encontrar(11, "((1 + 5) + 5)")
+      encontrar(16, "(((1 + 5) + 5) + 5)")
+        demasiado grande
+      encontrar(33, "(((1 + 5) + 5) * 3)")
+        demasiado grande
+    encontrar(18, "((1 + 5) * 3)")
+      demasiado grande
+  encontrar(3, "(1 * 3)")
+    encontrar(8, "((1 * 3) + 5)")
+      encontrar(13, "(((1 * 3) + 5) + 5)")
+        ¡encontrado!</pre>
+
+<p><a class="p_ident" id="p-DHJBtGEOXF" href="https://www.eloquentjavascript.es/03_functions.html#p-DHJBtGEOXF" tabindex="-1" role="presentation"></a>La sangría indica la profundidad de la pila de llamadas. La primera vez que se llama a <code>encontrar</code>, la función comienza llamándose a sí misma para explorar la solución que comienza con <code>(1 + 5)</code>. Esa llamada seguirá recursivamente para explorar <em>cada</em> solución a continuación que produzca un número menor o igual al número objetivo. Como no encuentra uno que alcance el objetivo, devuelve <code>null</code> a la primera llamada. Allí, el operador <code>??</code> hace que ocurra la llamada que explora <code>(1 * 3)</code>. Esta búsqueda tiene más suerte: su primera llamada recursiva, a través de otra llamada recursiva, alcanza el número objetivo. Esa llamada más interna devuelve una cadena, y cada uno de los operadores <code>??</code> en las llamadas intermedias pasa esa cadena, devolviendo en última instancia la solución.</p>
+
+<h2><a class="h_ident" id="h-uZ0juDUWOs" href="https://www.eloquentjavascript.es/03_functions.html#h-uZ0juDUWOs" tabindex="-1" role="presentation"></a>Crecimiento de funciones</h2>
+
+<p><a class="p_ident" id="p-n9cGqWi0db" href="https://www.eloquentjavascript.es/03_functions.html#p-n9cGqWi0db" tabindex="-1" role="presentation"></a>Hay dos formas más o menos naturales de introducir funciones en los programas.</p>
+
+<p><a class="p_ident" id="p-B8XV+CLjOF" href="https://www.eloquentjavascript.es/03_functions.html#p-B8XV+CLjOF" tabindex="-1" role="presentation"></a>La primera ocurre cuando te encuentras escribiendo código similar varias veces. Preferirías no hacer eso, ya que tener más código significa más espacio para que se escondan los errores y más material para que las personas que intentan entender el programa lo lean. Por lo tanto, tomas la funcionalidad repetida, encuentras un buen nombre para ella y la colocas en una función.</p>
+
+<p><a class="p_ident" id="p-cOAhBy6EBv" href="https://www.eloquentjavascript.es/03_functions.html#p-cOAhBy6EBv" tabindex="-1" role="presentation"></a>La segunda forma es que te das cuenta de que necesitas alguna funcionalidad que aún no has escrito y que suena como si mereciera su propia función. Comienzas por nombrar la función, luego escribes su cuerpo. Incluso podrías comenzar a escribir código que use la función antes de definir la función en sí.</p>
+
+<p><a class="p_ident" id="p-YZ4JKo/kXS" href="https://www.eloquentjavascript.es/03_functions.html#p-YZ4JKo/kXS" tabindex="-1" role="presentation"></a>Lo difícil que es encontrar un buen nombre para una función es una buena indicación de lo claro que es el concepto que estás tratando de envolver con ella. Vamos a través de un ejemplo.</p>
+
+<p><a class="p_ident" id="p-eV6abyHMYu" href="https://www.eloquentjavascript.es/03_functions.html#p-eV6abyHMYu" tabindex="-1" role="presentation"></a>Queremos escribir un programa que imprima dos números: el número de vacas y de pollos en una granja, con las palabras <code>Vacas</code> y <code>Pollos</code> después de ellos y ceros rellenados antes de ambos números para que siempre tengan tres dígitos:</p>
+
+<pre class="snippet" data-language="null"><a class="c_ident" id="c-XuqI7+Jck5" href="https://www.eloquentjavascript.es/03_functions.html#c-XuqI7+Jck5" tabindex="-1" role="presentation"></a>007 Vacas
+011 Pollos</pre>
+
+<p><a class="p_ident" id="p-SWekUgpMBV" href="https://www.eloquentjavascript.es/03_functions.html#p-SWekUgpMBV" tabindex="-1" role="presentation"></a>Esto pide una función con dos argumentos: el número de vacas y el número de pollos. ¡Vamos a programar!</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-/gtNyE5+K6" href="https://www.eloquentjavascript.es/03_functions.html#c-/gtNyE5+K6" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">imprimirInventarioGranja</span>(<span class="tok-definition">vacas</span>, <span class="tok-definition">pollos</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">cadenaVaca</span> = String(vacas);
+  <span class="tok-keyword">while</span> (cadenaVaca.length &lt; <span class="tok-number">3</span>) {
+    cadenaVaca = <span class="tok-string">"0"</span> + cadenaVaca;
+  }
+  console.log(<span class="tok-string2">`</span>${cadenaVaca}<span class="tok-string2"> Vacas`</span>);
+  <span class="tok-keyword">let</span> <span class="tok-definition">cadenaPollo</span> = String(pollos);
+  <span class="tok-keyword">while</span> (cadenaPollo.length &lt; <span class="tok-number">3</span>) {
+    cadenaPollo = <span class="tok-string">"0"</span> + cadenaPollo;
+  }
+  console.log(<span class="tok-string2">`</span>${cadenaPollo}<span class="tok-string2"> Pollos`</span>);
+}
+imprimirInventarioGranja(<span class="tok-number">7</span>, <span class="tok-number">11</span>);</pre>
+
+<p><a class="p_ident" id="p-WwhdZ7dyBy" href="https://www.eloquentjavascript.es/03_functions.html#p-WwhdZ7dyBy" tabindex="-1" role="presentation"></a>Escribir <code>.length</code> después de una expresión de cadena nos dará la longitud de esa cadena. Por lo tanto, los bucles <code>while</code> siguen añadiendo ceros delante de las cadenas de números hasta que tengan al menos tres caracteres de longitud.</p>
+
+<p><a class="p_ident" id="p-/FAYGLBZga" href="https://www.eloquentjavascript.es/03_functions.html#p-/FAYGLBZga" tabindex="-1" role="presentation"></a>¡Misión cumplida! Pero justo cuando estamos a punto de enviarle a la granjera el código (junto con una jugosa factura), ella llama y nos dice que también ha comenzado a criar cerdos, ¿podríamos extender el software para imprimir también los cerdos?</p>
+
+<p><a class="p_ident" id="p-lZT8zKVcfS" href="https://www.eloquentjavascript.es/03_functions.html#p-lZT8zKVcfS" tabindex="-1" role="presentation"></a>¡Claro que podemos! Pero justo cuando estamos en el proceso de copiar y pegar esas cuatro líneas una vez más, nos detenemos y reconsideramos. Tiene que haber una mejor manera. Aquí está un primer intento:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-dq2WbXrkyX" href="https://www.eloquentjavascript.es/03_functions.html#c-dq2WbXrkyX" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">imprimirConRellenoYEtiqueta</span>(<span class="tok-definition">numero</span>, <span class="tok-definition">etiqueta</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">cadenaNumero</span> = String(numero);
+  <span class="tok-keyword">while</span> (cadenaNumero.length &lt; <span class="tok-number">3</span>) {
+    cadenaNumero = <span class="tok-string">"0"</span> + cadenaNumero;
+  }
+  console.log(<span class="tok-string2">`</span>${cadenaNumero}<span class="tok-string2"> </span>${etiqueta}<span class="tok-string2">`</span>);
+}
+
+<span class="tok-keyword">function</span> <span class="tok-definition">imprimirInventarioGranja</span>(<span class="tok-definition">vacas</span>, <span class="tok-definition">pollos</span>, <span class="tok-definition">cerdos</span>) {
+  imprimirConRellenoYEtiqueta(vacas, <span class="tok-string">"Vacas"</span>);
+  imprimirConRellenoYEtiqueta(pollos, <span class="tok-string">"Pollos"</span>);
+  imprimirConRellenoYEtiqueta(cerdos, <span class="tok-string">"Cerdos"</span>);
+}
+
+imprimirInventarioGranja(<span class="tok-number">7</span>, <span class="tok-number">11</span>, <span class="tok-number">3</span>);</pre>
+
+<p><a class="p_ident" id="p-t15OmMTGO1" href="https://www.eloquentjavascript.es/03_functions.html#p-t15OmMTGO1" tabindex="-1" role="presentation"></a>¡Funciona! Pero ese nombre, <code>imprimirConRellenoYEtiqueta</code>, es un poco incómodo. Confluye tres cosas: imprimir, rellenar con ceros y añadir una etiqueta, en una sola función.</p>
+
+<p><a class="p_ident" id="p-86HqtiCBvL" href="https://www.eloquentjavascript.es/03_functions.html#p-86HqtiCBvL" tabindex="-1" role="presentation"></a>En lugar de sacar la parte repetida de nuestro programa completamente, intentemos sacar un solo <em>concepto</em>:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-2LDxPR7isA" href="https://www.eloquentjavascript.es/03_functions.html#c-2LDxPR7isA" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">rellenarConCeros</span>(<span class="tok-definition">numero</span>, <span class="tok-definition">ancho</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">cadena</span> = String(numero);
+  <span class="tok-keyword">while</span> (cadena.length &lt; ancho) {
+    cadena = <span class="tok-string">"0"</span> + cadena;
+  }
+  <span class="tok-keyword">return</span> cadena;
+}
+
+<span class="tok-keyword">function</span> <span class="tok-definition">imprimirInventarioGranja</span>(<span class="tok-definition">vacas</span>, <span class="tok-definition">pollos</span>, <span class="tok-definition">cerdos</span>) {
+  console.log(<span class="tok-string2">`</span>${rellenarConCeros(vacas, <span class="tok-number">3</span>)}<span class="tok-string2"> Vacas`</span>);
+  console.log(<span class="tok-string2">`</span>${rellenarConCeros(pollos, <span class="tok-number">3</span>)}<span class="tok-string2"> Pollos`</span>);
+  console.log(<span class="tok-string2">`</span>${rellenarConCeros(cerdos, <span class="tok-number">3</span>)}<span class="tok-string2"> Cerdos`</span>);
+}
+
+imprimirInventarioGranja(<span class="tok-number">7</span>, <span class="tok-number">16</span>, <span class="tok-number">3</span>);</pre>
+
+<p><a class="p_ident" id="p-Pp4JWQb2Da" href="https://www.eloquentjavascript.es/03_functions.html#p-Pp4JWQb2Da" tabindex="-1" role="presentation"></a>Una función con un nombre claro y obvio como <code>rellenarConCeros</code> hace que sea más fácil para alguien que lee el código entender qué hace. Además, una función así es útil en más situaciones que solo este programa específico. Por ejemplo, podrías usarla para ayudar a imprimir tablas de números alineadas correctamente.</p>
+
+<p><a class="p_ident" id="p-Pe3o8sCfTl" href="https://www.eloquentjavascript.es/03_functions.html#p-Pe3o8sCfTl" tabindex="-1" role="presentation"></a>¿Qué tan inteligente y versátil <em>debería</em> ser nuestra función? Podríamos escribir cualquier cosa, desde una función terriblemente simple que solo puede rellenar un número para que tenga tres caracteres de ancho hasta un sistema complejo de formato de números general que maneje números fraccionarios, números negativos, alineación de puntos decimales, relleno con diferentes caracteres y más.</p>
+
+<p><a class="p_ident" id="p-CvP+uxDh/X" href="https://www.eloquentjavascript.es/03_functions.html#p-CvP+uxDh/X" tabindex="-1" role="presentation"></a>Un principio útil es abstenerse de agregar ingenio a menos que estés absolutamente seguro de que lo vas a necesitar. Puede ser tentador escribir “frameworks” genéricos para cada trozo de funcionalidad que te encuentres. Resiste esa tentación. No lograrás hacer ningún trabajo real: estarás demasiado ocupado escribiendo código que nunca usarás.</p>
+
+<h2 id="puro"><a class="h_ident" id="h-FYE5dPFb4a" href="https://www.eloquentjavascript.es/03_functions.html#h-FYE5dPFb4a" tabindex="-1" role="presentation"></a>Funciones y efectos secundarios</h2>
+
+<p><a class="p_ident" id="p-WDphrqGwmP" href="https://www.eloquentjavascript.es/03_functions.html#p-WDphrqGwmP" tabindex="-1" role="presentation"></a>Las funciones pueden dividirse aproximadamente en aquellas que se llaman por sus efectos secundarios y aquellas que se llaman por su valor de retorno (aunque también es posible tener efectos secundarios y devolver un valor).</p>
+
+<p><a class="p_ident" id="p-HhXOUWHo2Y" href="https://www.eloquentjavascript.es/03_functions.html#p-HhXOUWHo2Y" tabindex="-1" role="presentation"></a>La primera función auxiliar en el ejemplo de la granja, <code>imprimirConRellenoYEtiqueta</code>, se llama por su efecto secundario: imprime una línea. La segunda versión, <code>rellenarConCeros</code>, se llama por su valor de retorno. No es casualidad que la segunda sea útil en más situaciones que la primera. Las funciones que crean valores son más fáciles de combinar de nuevas formas que las funciones que realizan efectos secundarios directamente.</p>
+
+<p><a class="p_ident" id="p-ZQPtksrZZc" href="https://www.eloquentjavascript.es/03_functions.html#p-ZQPtksrZZc" tabindex="-1" role="presentation"></a>Una función <em>pura</em> es un tipo específico de función productora de valor que no solo no tiene efectos secundarios, sino que tampoco depende de efectos secundarios de otro código, por ejemplo, no lee enlaces globales cuyo valor podría cambiar. Una función pura tiene la agradable propiedad de que, al llamarla con los mismos argumentos, siempre produce el mismo valor (y no hace nada más). Una llamada a tal función puede sustituirse por su valor de retorno sin cambiar el significado del código. Cuando no estás seguro de si una función pura está funcionando correctamente, puedes probarla llamándola y saber que si funciona en ese contexto, funcionará en cualquier otro. Las funciones no puras tienden a requerir más andamiaje para probarlas.</p>
+
+<p><a class="p_ident" id="p-3s9sqQnXFN" href="https://www.eloquentjavascript.es/03_functions.html#p-3s9sqQnXFN" tabindex="-1" role="presentation"></a>Aún así, no hay necesidad de sentirse mal al escribir funciones que no son puras. Los efectos secundarios a menudo son útiles. No hay forma de escribir una versión pura de <code>console.log</code>, por ejemplo, y es bueno tener <code>console.log</code>. Algunas operaciones también son más fáciles de expresar de manera eficiente cuando usamos efectos secundarios.</p>
+
+<h2><a class="h_ident" id="h-NUFOUyK+lw" href="https://www.eloquentjavascript.es/03_functions.html#h-NUFOUyK+lw" tabindex="-1" role="presentation"></a>Resumen</h2>
+
+<p><a class="p_ident" id="p-/BH7LujdnN" href="https://www.eloquentjavascript.es/03_functions.html#p-/BH7LujdnN" tabindex="-1" role="presentation"></a>Este capítulo te enseñó cómo escribir tus propias funciones. La palabra clave <code>function</code>, cuando se usa como expresión, puede crear un valor de función. Cuando se usa como una declaración, puede usarse para declarar un enlace y darle una función como su valor. Las funciones de flecha son otra forma de crear funciones.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-nraStLDxcy" href="https://www.eloquentjavascript.es/03_functions.html#c-nraStLDxcy" tabindex="-1" role="presentation"></a><span class="tok-comment">// Definir f para contener un valor de función</span>
+<span class="tok-keyword">const</span> <span class="tok-definition">f</span> = <span class="tok-keyword">function</span>(<span class="tok-definition">a</span>) {
+  console.log(a + <span class="tok-number">2</span>);
+};
+
+<span class="tok-comment">// Declarar g como una función</span>
+<span class="tok-keyword">function</span> <span class="tok-definition">g</span>(<span class="tok-definition">a</span>, <span class="tok-definition">b</span>) {
+  <span class="tok-keyword">return</span> a * b * <span class="tok-number">3.5</span>;
+}
+
+<span class="tok-comment">// Un valor de función menos verboso</span>
+<span class="tok-keyword">let</span> <span class="tok-definition">h</span> = <span class="tok-definition">a</span> =&gt; a % <span class="tok-number">3</span>;</pre>
+
+<p><a class="p_ident" id="p-0ZGPiC9ulA" href="https://www.eloquentjavascript.es/03_functions.html#p-0ZGPiC9ulA" tabindex="-1" role="presentation"></a>Una parte clave para entender las funciones es comprender los ámbitos (scopes). Cada bloque crea un nuevo ámbito. Los parámetros y los enlaces declarados en un ámbito dado son locales y no son visibles desde el exterior. Los enlaces declarados con <code>var</code> se comportan de manera diferente: terminan en el ámbito de la función más cercana o en el ámbito global.</p>
+
+<p><a class="p_ident" id="p-rUVLw2xd6X" href="https://www.eloquentjavascript.es/03_functions.html#p-rUVLw2xd6X" tabindex="-1" role="presentation"></a>Separar las tareas que realiza tu programa en diferentes funciones es útil. No tendrás que repetirte tanto, y las funciones pueden ayudar a organizar un programa agrupando el código en piezas que hacen cosas específicas.</p>
+
+<h2><a class="h_ident" id="h-tkm7ntLto1" href="https://www.eloquentjavascript.es/03_functions.html#h-tkm7ntLto1" tabindex="-1" role="presentation"></a>Ejercicios</h2>
+
+<h3><a class="i_ident" id="i-mzHH/MSSBA" href="https://www.eloquentjavascript.es/03_functions.html#i-mzHH/MSSBA" tabindex="-1" role="presentation"></a>Mínimo</h3>
+
+<p><a class="p_ident" id="p-F1St/b+Tyk" href="https://www.eloquentjavascript.es/03_functions.html#p-F1St/b+Tyk" tabindex="-1" role="presentation"></a>El <a href="https://www.eloquentjavascript.es/02_program_structure.html#return_values">capítulo previo</a> presentó la función estándar <code>Math.min</code> que devuelve su menor argumento. Ahora podemos escribir una función como esa nosotros mismos. Define la función <code>min</code> que toma dos argumentos y devuelve su mínimo.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-YPzD49JsIQ" href="https://www.eloquentjavascript.es/03_functions.html#c-YPzD49JsIQ" tabindex="-1" role="presentation"></a><span class="tok-comment">// Tu código aquí.</span>
+
+console.log(min(<span class="tok-number">0</span>, <span class="tok-number">10</span>));
+<span class="tok-comment">// → 0</span>
+console.log(min(<span class="tok-number">0</span>, -<span class="tok-number">10</span>));
+<span class="tok-comment">// → -10</span></pre>
+
+<details class="solution"><summary>Mostrar pistas...</summary><div class="solution-text">
+
+<p><a class="p_ident" id="p-/a3wyCwq6P" href="https://www.eloquentjavascript.es/03_functions.html#p-/a3wyCwq6P" tabindex="-1" role="presentation"></a>Si tienes problemas para colocar llaves y paréntesis en el lugar correcto para obtener una definición de función válida, comienza copiando uno de los ejemplos de este capítulo y modifícalo.</p>
+
+<p><a class="p_ident" id="p-lcSp8UwPFN" href="https://www.eloquentjavascript.es/03_functions.html#p-lcSp8UwPFN" tabindex="-1" role="presentation"></a>Una función puede contener múltiples declaraciones <code>return</code>.</p>
+
+</div></details>
+
+<h3><a class="i_ident" id="i-ge3a45K3m3" href="https://www.eloquentjavascript.es/03_functions.html#i-ge3a45K3m3" tabindex="-1" role="presentation"></a>Recursión</h3>
+
+<p><a class="p_ident" id="p-BzLEOgMptN" href="https://www.eloquentjavascript.es/03_functions.html#p-BzLEOgMptN" tabindex="-1" role="presentation"></a>Hemos visto que podemos usar <code>%</code> (el operador de resto) para verificar si un número es par o impar al usar <code>% 2</code> para ver si es divisible por dos. Aquí hay otra forma de definir si un número entero positivo es par o impar:</p>
+
+<ul>
+
+<li>
+
+<p><a class="p_ident" id="p-ba/fxNiN56" href="https://www.eloquentjavascript.es/03_functions.html#p-ba/fxNiN56" tabindex="-1" role="presentation"></a>El cero es par.</p></li>
+
+<li>
+
+<p><a class="p_ident" id="p-A5rVPAWrHm" href="https://www.eloquentjavascript.es/03_functions.html#p-A5rVPAWrHm" tabindex="-1" role="presentation"></a>El uno es impar.</p></li>
+
+<li>
+
+<p><a class="p_ident" id="p-7c1vmInqwj" href="https://www.eloquentjavascript.es/03_functions.html#p-7c1vmInqwj" tabindex="-1" role="presentation"></a>Para cualquier otro número <em>N</em>, su paridad es la misma que <em>N</em> - 2.</p></li></ul>
+
+<p><a class="p_ident" id="p-1AgC7/UeM8" href="https://www.eloquentjavascript.es/03_functions.html#p-1AgC7/UeM8" tabindex="-1" role="presentation"></a>Define una función recursiva <code>isEven</code> que corresponda a esta descripción. La función debe aceptar un solo parámetro (un número entero positivo) y devolver un booleano.</p>
+
+<p><a class="p_ident" id="p-31CyWM+ggI" href="https://www.eloquentjavascript.es/03_functions.html#p-31CyWM+ggI" tabindex="-1" role="presentation"></a>Pruébalo con 50 y 75. Observa cómo se comporta con -1. ¿Por qué? ¿Puedes pensar en una forma de solucionarlo?</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-C/0z/P0DFi" href="https://www.eloquentjavascript.es/03_functions.html#c-C/0z/P0DFi" tabindex="-1" role="presentation"></a><span class="tok-comment">// Tu código aquí.</span>
+
+console.log(isEven(<span class="tok-number">50</span>));
+<span class="tok-comment">// → true</span>
+console.log(isEven(<span class="tok-number">75</span>));
+<span class="tok-comment">// → false</span>
+console.log(isEven(-<span class="tok-number">1</span>));
+<span class="tok-comment">// → ??</span></pre>
+
+<details class="solution"><summary>Mostrar pistas...</summary><div class="solution-text">
+
+<p><a class="p_ident" id="p-9dAuiITSNm" href="https://www.eloquentjavascript.es/03_functions.html#p-9dAuiITSNm" tabindex="-1" role="presentation"></a>Es probable que tu función se parezca en cierta medida a la función interna <code>encontrar</code> en el ejemplo recursivo <code>encontrarSolucion</code> <a href="https://www.eloquentjavascript.es/03_functions.html#recursive_puzzle">ejemplo</a> de este capítulo, con una cadena <code>if</code>/<code>else if</code>/<code>else</code> que prueba cuál de los tres casos aplica. El <code>else</code> final, correspondiente al tercer caso, realiza la llamada recursiva. Cada una de las ramas debe contener una declaración <code>return</code> o de alguna otra manera asegurarse de que se devuelva un valor específico.</p>
+
+<p><a class="p_ident" id="p-GSq+lWAHif" href="https://www.eloquentjavascript.es/03_functions.html#p-GSq+lWAHif" tabindex="-1" role="presentation"></a>Cuando se le da un número negativo, la función se llamará recursivamente una y otra vez, pasándose a sí misma un número cada vez más negativo, alejándose así más y más de devolver un resultado. Eventualmente se quedará sin espacio en la pila y se abortará.</p>
+
+</div></details>
+
+<h3><a class="i_ident" id="i-zSH1twIVoz" href="https://www.eloquentjavascript.es/03_functions.html#i-zSH1twIVoz" tabindex="-1" role="presentation"></a>Contando frijoles</h3>
+
+<p><a class="p_ident" id="p-oTwY6Ez8Oj" href="https://www.eloquentjavascript.es/03_functions.html#p-oTwY6Ez8Oj" tabindex="-1" role="presentation"></a>Puedes obtener el *ésimo carácter, o letra, de una cadena escribiendo <code>[N]</code> después de la cadena (por ejemplo, <code>cadena[2]</code>). El valor resultante será una cadena que contiene solo un carácter (por ejemplo, <code>"b"</code>). El primer carácter tiene la posición 0, lo que hace que el último se encuentre en la posición <code>cadena.<wbr>length - 1</code>. En otras palabras, una cadena de dos caracteres tiene longitud 2, y sus caracteres tienen posiciones 0 y 1.</p>
+
+<p><a class="p_ident" id="p-w7W3kFYAvT" href="https://www.eloquentjavascript.es/03_functions.html#p-w7W3kFYAvT" tabindex="-1" role="presentation"></a>Escribe una función <code>contarBs</code> que tome una cadena como único argumento y devuelva un número que indique cuántos caracteres B en mayúscula hay en la cadena.</p>
+
+<p><a class="p_ident" id="p-ogbJyesqnN" href="https://www.eloquentjavascript.es/03_functions.html#p-ogbJyesqnN" tabindex="-1" role="presentation"></a>A continuación, escribe una función llamada <code>contarCaracter</code> que se comporte como <code>contarBs</code>, excepto que toma un segundo argumento que indica el carácter que se va a contar (en lugar de contar solo caracteres B en mayúscula). Reescribe <code>contarBs</code> para hacer uso de esta nueva función.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-fTMxwrQQBV" href="https://www.eloquentjavascript.es/03_functions.html#c-fTMxwrQQBV" tabindex="-1" role="presentation"></a><span class="tok-comment">// Your code here.</span>
+
+console.log(countBs(<span class="tok-string">"BOB"</span>));
+<span class="tok-comment">// → 2</span>
+console.log(countChar(<span class="tok-string">"kakkerlak"</span>, <span class="tok-string">"k"</span>));
+<span class="tok-comment">// → 4</span></pre>
+
+<details class="solution"><summary>Mostrar pistas...</summary><div class="solution-text">
+
+<p><a class="p_ident" id="p-N+elrvhLar" href="https://www.eloquentjavascript.es/03_functions.html#p-N+elrvhLar" tabindex="-1" role="presentation"></a>Tu función necesida un bucle que mire cada carácter en la cadena. Puede ejecutar un índice desde cero hasta uno menos que su longitud (<code>&lt; string.<wbr>length</code>). Si el carácter en la posición actual es el mismo que el que la función está buscando, agrega 1 a una variable de contador. Una vez que el bucle ha terminado, el contador puede ser devuelto.</p>
+
+<p><a class="p_ident" id="p-DijC5CkxO1" href="https://www.eloquentjavascript.es/03_functions.html#p-DijC5CkxO1" tabindex="-1" role="presentation"></a>Ten cuidado de que todas las vinculaciones utilizadas en la función sean <em>locales</em> a la función, declarándolas correctamente con la palabra clave <code>let</code> o <code>const</code>.</p>
+
+</div></details><nav><a href="https://www.eloquentjavascript.es/02_program_structure.html" title="previous chapter" aria-label="previous chapter">◂</a>&nbsp;<a href="https://www.eloquentjavascript.es/index.html" title="cover" aria-label="cover">●</a>&nbsp;<a href="https://www.eloquentjavascript.es/04_data.html" title="next chapter" aria-label="next chapter">▸</a>&nbsp;<button class="help" title="help" aria-label="help" style="display: inline;"><strong>?</strong></button>
+</nav>
+</article>
+
+<script src="./Funciones __ Eloquent JavaScript_files/ejs.js.descarga"></script>
+<div><template shadowrootmode="closed"><link rel="stylesheet" href="chrome-extension://lilckelmopbcffmglfmfhelaajhjpcff/assets/index.css"><link rel="stylesheet" href="chrome-extension://lilckelmopbcffmglfmfhelaajhjpcff/assets/anything-copilot.css"><div id="app" data-v-app="" class="dark"><!----><!----><!----><!----><!----><!----><!----><!----></div></template></div></body></html>
