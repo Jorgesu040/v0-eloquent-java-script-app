@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://www.eloquentjavascript.es/21_skillsharing.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Proyecto: Sitio web de intercambio de habilidades :: Eloquent JavaScript</title>
+  <link rel="stylesheet" href="./Proyecto_ Sitio web de intercambio de habilidades __ Eloquent JavaScript_files/ejs.css"><script>
+      var page = {"type":"chapter","number":21}</script><style>.swal2-popup.swal2-toast{box-sizing:border-box;grid-column:1/4 !important;grid-row:1/4 !important;grid-template-columns:min-content auto min-content;padding:1em;overflow-y:hidden;background:#fff;box-shadow:0 0 1px rgba(0,0,0,.075),0 1px 2px rgba(0,0,0,.075),1px 2px 4px rgba(0,0,0,.075),1px 3px 8px rgba(0,0,0,.075),2px 4px 16px rgba(0,0,0,.075);pointer-events:all}.swal2-popup.swal2-toast>*{grid-column:2}.swal2-popup.swal2-toast .swal2-title{margin:.5em 1em;padding:0;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-loading{justify-content:center}.swal2-popup.swal2-toast .swal2-input{height:2em;margin:.5em;font-size:1em}.swal2-popup.swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{grid-column:3/3;grid-row:1/99;align-self:center;width:.8em;height:.8em;margin:0;font-size:2em}.swal2-popup.swal2-toast .swal2-html-container{margin:.5em 1em;padding:0;overflow:initial;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-html-container:empty{padding:0}.swal2-popup.swal2-toast .swal2-loader{grid-column:1;grid-row:1/99;align-self:center;width:2em;height:2em;margin:.25em}.swal2-popup.swal2-toast .swal2-icon{grid-column:1;grid-row:1/99;align-self:center;width:2em;min-width:2em;height:2em;margin:0 .5em 0 0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:bold}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{justify-content:flex-start;height:auto;margin:0;margin-top:.5em;padding:0 .5em}.swal2-popup.swal2-toast .swal2-styled{margin:.25em .5em;padding:.4em .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.8em;left:-0.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{animation:swal2-toast-hide .1s forwards}div:where(.swal2-container){display:grid;position:fixed;z-index:1060;inset:0;box-sizing:border-box;grid-template-areas:"top-start     top            top-end" "center-start  center         center-end" "bottom-start  bottom-center  bottom-end";grid-template-rows:minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);height:100%;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}div:where(.swal2-container).swal2-backdrop-show,div:where(.swal2-container).swal2-noanimation{background:rgba(0,0,0,.4)}div:where(.swal2-container).swal2-backdrop-hide{background:rgba(0,0,0,0) !important}div:where(.swal2-container).swal2-top-start,div:where(.swal2-container).swal2-center-start,div:where(.swal2-container).swal2-bottom-start{grid-template-columns:minmax(0, 1fr) auto auto}div:where(.swal2-container).swal2-top,div:where(.swal2-container).swal2-center,div:where(.swal2-container).swal2-bottom{grid-template-columns:auto minmax(0, 1fr) auto}div:where(.swal2-container).swal2-top-end,div:where(.swal2-container).swal2-center-end,div:where(.swal2-container).swal2-bottom-end{grid-template-columns:auto auto minmax(0, 1fr)}div:where(.swal2-container).swal2-top-start>.swal2-popup{align-self:start}div:where(.swal2-container).swal2-top>.swal2-popup{grid-column:2;align-self:start;justify-self:center}div:where(.swal2-container).swal2-top-end>.swal2-popup,div:where(.swal2-container).swal2-top-right>.swal2-popup{grid-column:3;align-self:start;justify-self:end}div:where(.swal2-container).swal2-center-start>.swal2-popup,div:where(.swal2-container).swal2-center-left>.swal2-popup{grid-row:2;align-self:center}div:where(.swal2-container).swal2-center>.swal2-popup{grid-column:2;grid-row:2;align-self:center;justify-self:center}div:where(.swal2-container).swal2-center-end>.swal2-popup,div:where(.swal2-container).swal2-center-right>.swal2-popup{grid-column:3;grid-row:2;align-self:center;justify-self:end}div:where(.swal2-container).swal2-bottom-start>.swal2-popup,div:where(.swal2-container).swal2-bottom-left>.swal2-popup{grid-column:1;grid-row:3;align-self:end}div:where(.swal2-container).swal2-bottom>.swal2-popup{grid-column:2;grid-row:3;justify-self:center;align-self:end}div:where(.swal2-container).swal2-bottom-end>.swal2-popup,div:where(.swal2-container).swal2-bottom-right>.swal2-popup{grid-column:3;grid-row:3;align-self:end;justify-self:end}div:where(.swal2-container).swal2-grow-row>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-column:1/4;width:100%}div:where(.swal2-container).swal2-grow-column>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-row:1/4;align-self:stretch}div:where(.swal2-container).swal2-no-transition{transition:none !important}div:where(.swal2-container) div:where(.swal2-popup){display:none;position:relative;box-sizing:border-box;grid-template-columns:minmax(0, 100%);width:32em;max-width:100%;padding:0 0 1.25em;border:none;border-radius:5px;background:#fff;color:#545454;font-family:inherit;font-size:1rem}div:where(.swal2-container) div:where(.swal2-popup):focus{outline:none}div:where(.swal2-container) div:where(.swal2-popup).swal2-loading{overflow-y:hidden}div:where(.swal2-container) h2:where(.swal2-title){position:relative;max-width:100%;margin:0;padding:.8em 1em 0;color:inherit;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}div:where(.swal2-container) div:where(.swal2-actions){display:flex;z-index:1;box-sizing:border-box;flex-wrap:wrap;align-items:center;justify-content:center;width:auto;margin:1.25em auto 0;padding:0}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))}div:where(.swal2-container) div:where(.swal2-loader){display:none;align-items:center;justify-content:center;width:2.2em;height:2.2em;margin:0 1.875em;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border-width:.25em;border-style:solid;border-radius:100%;border-color:#2778c4 rgba(0,0,0,0) #2778c4 rgba(0,0,0,0)}div:where(.swal2-container) button:where(.swal2-styled){margin:.3125em;padding:.625em 1.1em;transition:box-shadow .1s;box-shadow:0 0 0 3px rgba(0,0,0,0);font-weight:500}div:where(.swal2-container) button:where(.swal2-styled):not([disabled]){cursor:pointer}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#7066e0;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus{box-shadow:0 0 0 3px rgba(112,102,224,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny{border:0;border-radius:.25em;background:initial;background-color:#dc3741;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny:focus{box-shadow:0 0 0 3px rgba(220,55,65,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#6e7881;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel:focus{box-shadow:0 0 0 3px rgba(110,120,129,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:focus{box-shadow:0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-styled):focus{outline:none}div:where(.swal2-container) button:where(.swal2-styled)::-moz-focus-inner{border:0}div:where(.swal2-container) div:where(.swal2-footer){margin:1em 0 0;padding:1em 1em 0;border-top:1px solid #eee;color:inherit;font-size:1em;text-align:center}div:where(.swal2-container) .swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;grid-column:auto !important;overflow:hidden;border-bottom-right-radius:5px;border-bottom-left-radius:5px}div:where(.swal2-container) div:where(.swal2-timer-progress-bar){width:100%;height:.25em;background:rgba(0,0,0,.2)}div:where(.swal2-container) img:where(.swal2-image){max-width:100%;margin:2em auto 1em}div:where(.swal2-container) button:where(.swal2-close){z-index:2;align-items:center;justify-content:center;width:1.2em;height:1.2em;margin-top:0;margin-right:0;margin-bottom:-1.2em;padding:0;overflow:hidden;transition:color .1s,box-shadow .1s;border:none;border-radius:5px;background:rgba(0,0,0,0);color:#ccc;font-family:monospace;font-size:2.5em;cursor:pointer;justify-self:end}div:where(.swal2-container) button:where(.swal2-close):hover{transform:none;background:rgba(0,0,0,0);color:#f27474}div:where(.swal2-container) button:where(.swal2-close):focus{outline:none;box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-close)::-moz-focus-inner{border:0}div:where(.swal2-container) .swal2-html-container{z-index:1;justify-content:center;margin:1em 1.6em .3em;padding:0;overflow:auto;color:inherit;font-size:1.125em;font-weight:normal;line-height:normal;text-align:center;word-wrap:break-word;word-break:break-word}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea),div:where(.swal2-container) select:where(.swal2-select),div:where(.swal2-container) div:where(.swal2-radio),div:where(.swal2-container) label:where(.swal2-checkbox){margin:1em 2em 3px}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea){box-sizing:border-box;width:auto;transition:border-color .1s,box-shadow .1s;border:1px solid #d9d9d9;border-radius:.1875em;background:rgba(0,0,0,0);box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) input:where(.swal2-input).swal2-inputerror,div:where(.swal2-container) input:where(.swal2-file).swal2-inputerror,div:where(.swal2-container) textarea:where(.swal2-textarea).swal2-inputerror{border-color:#f27474 !important;box-shadow:0 0 2px #f27474 !important}div:where(.swal2-container) input:where(.swal2-input):focus,div:where(.swal2-container) input:where(.swal2-file):focus,div:where(.swal2-container) textarea:where(.swal2-textarea):focus{border:1px solid #b4dbed;outline:none;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) input:where(.swal2-input)::placeholder,div:where(.swal2-container) input:where(.swal2-file)::placeholder,div:where(.swal2-container) textarea:where(.swal2-textarea)::placeholder{color:#ccc}div:where(.swal2-container) .swal2-range{margin:1em 2em 3px;background:#fff}div:where(.swal2-container) .swal2-range input{width:80%}div:where(.swal2-container) .swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}div:where(.swal2-container) .swal2-range input,div:where(.swal2-container) .swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}div:where(.swal2-container) .swal2-input{height:2.625em;padding:0 .75em}div:where(.swal2-container) .swal2-file{width:75%;margin-right:auto;margin-left:auto;background:rgba(0,0,0,0);font-size:1.125em}div:where(.swal2-container) .swal2-textarea{height:6.75em;padding:.75em}div:where(.swal2-container) .swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) .swal2-radio,div:where(.swal2-container) .swal2-checkbox{align-items:center;justify-content:center;background:#fff;color:inherit}div:where(.swal2-container) .swal2-radio label,div:where(.swal2-container) .swal2-checkbox label{margin:0 .6em;font-size:1.125em}div:where(.swal2-container) .swal2-radio input,div:where(.swal2-container) .swal2-checkbox input{flex-shrink:0;margin:0 .4em}div:where(.swal2-container) label:where(.swal2-input-label){display:flex;justify-content:center;margin:1em auto 0}div:where(.swal2-container) div:where(.swal2-validation-message){align-items:center;justify-content:center;margin:1em 0 0;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}div:where(.swal2-container) div:where(.swal2-validation-message)::before{content:"!";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}div:where(.swal2-container) .swal2-progress-steps{flex-wrap:wrap;align-items:center;max-width:100%;margin:1.25em auto;padding:0;background:rgba(0,0,0,0);font-weight:600}div:where(.swal2-container) .swal2-progress-steps li{display:inline-block;position:relative}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step{z-index:20;flex-shrink:0;width:2em;height:2em;border-radius:2em;background:#2778c4;color:#fff;line-height:2em;text-align:center}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#2778c4}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step-line{z-index:10;flex-shrink:0;width:2.5em;height:.4em;margin:0 -1px;background:#2778c4}div:where(.swal2-icon){position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:2.5em auto .6em;border:0.25em solid rgba(0,0,0,0);border-radius:50%;border-color:#000;font-family:inherit;line-height:5em;cursor:default;user-select:none}div:where(.swal2-icon) .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}div:where(.swal2-icon).swal2-error{border-color:#f27474;color:#f27474}div:where(.swal2-icon).swal2-error .swal2-x-mark{position:relative;flex-grow:1}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-error.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-error.swal2-icon-show .swal2-x-mark{animation:swal2-animate-error-x-mark .5s}div:where(.swal2-icon).swal2-warning{border-color:#facea8;color:#f8bb86}div:where(.swal2-icon).swal2-warning.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-warning.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .5s}div:where(.swal2-icon).swal2-info{border-color:#9de0f6;color:#3fc3ee}div:where(.swal2-icon).swal2-info.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-info.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .8s}div:where(.swal2-icon).swal2-question{border-color:#c9dae1;color:#87adbd}div:where(.swal2-icon).swal2-question.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-question.swal2-icon-show .swal2-icon-content{animation:swal2-animate-question-mark .8s}div:where(.swal2-icon).swal2-success{border-color:#a5dc86;color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;transform:rotate(45deg);border-radius:50%}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}div:where(.swal2-icon).swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-0.25em;left:-0.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}div:where(.swal2-icon).swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-animate-success-line-tip .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-animate-success-line-long .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-line-right{animation:swal2-rotate-success-circular-line 4.25s ease-in}[class^=swal2]{-webkit-tap-highlight-color:rgba(0,0,0,0)}.swal2-show{animation:swal2-show .3s}.swal2-hide{animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{margin-right:initial;margin-left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}@keyframes swal2-toast-show{0%{transform:translateY(-0.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(0.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0deg)}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-0.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-show{0%{transform:scale(0.7)}45%{transform:scale(1.05)}80%{transform:scale(0.95)}100%{transform:scale(1)}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(0.5);opacity:0}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-0.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(0.4);opacity:0}50%{margin-top:1.625em;transform:scale(0.4);opacity:0}80%{margin-top:-0.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0deg);opacity:1}}@keyframes swal2-rotate-loading{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}@keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto !important}body.swal2-no-backdrop .swal2-container{background-color:rgba(0,0,0,0) !important;pointer-events:none}body.swal2-no-backdrop .swal2-container .swal2-popup{pointer-events:all}body.swal2-no-backdrop .swal2-container .swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll !important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static !important}}body.swal2-toast-shown .swal2-container{box-sizing:border-box;width:360px;max-width:100%;background-color:rgba(0,0,0,0);pointer-events:none}body.swal2-toast-shown .swal2-container.swal2-top{inset:0 auto auto 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{inset:0 0 auto auto}body.swal2-toast-shown .swal2-container.swal2-top-start,body.swal2-toast-shown .swal2-container.swal2-top-left{inset:0 auto auto 0}body.swal2-toast-shown .swal2-container.swal2-center-start,body.swal2-toast-shown .swal2-container.swal2-center-left{inset:50% auto auto 0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{inset:50% auto auto 50%;transform:translate(-50%, -50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{inset:50% 0 auto auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-start,body.swal2-toast-shown .swal2-container.swal2-bottom-left{inset:auto auto 0 0}body.swal2-toast-shown .swal2-container.swal2-bottom{inset:auto auto 0 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{inset:auto 0 0 auto}</style></head>
+
+<body><article>
+<nav><a href="https://www.eloquentjavascript.es/20_node.html" title="previous chapter" aria-label="previous chapter">◂</a>&nbsp;<a href="https://www.eloquentjavascript.es/index.html" title="cover" aria-label="cover">●</a>&nbsp;<button class="help" title="help" aria-label="help" style="display: inline;"><strong>?</strong></button>
+</nav>
+
+<h1>Proyecto: Sitio web de intercambio de habilidades</h1>
+
+<blockquote>
+
+<p><a class="p_ident" id="p-poXcUSI7vO" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-poXcUSI7vO" tabindex="-1" role="presentation"></a>Si tienes conocimiento, permite que otros enciendan sus velas en él.</p>
+
+<footer>Margaret Fuller</footer>
+
+</blockquote><figure class="chapter framed"><img src="./Proyecto_ Sitio web de intercambio de habilidades __ Eloquent JavaScript_files/chapter_picture_21.jpg" alt="Ilustración que muestra dos monociclos apoyados en un buzón"></figure>
+
+<p><a class="p_ident" id="p-+g+6iPOOgI" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-+g+6iPOOgI" tabindex="-1" role="presentation"></a>Una reunión de intercambio de habilidades es un evento en el que personas con un interés compartido se reúnen y dan pequeñas presentaciones informales sobre cosas que saben. En una reunión de intercambio de habilidades de jardinería, alguien podría explicar cómo cultivar apio. O en un grupo de intercambio de habilidades de programación, podrías pasar y contarles a la gente sobre Node.js.</p>
+
+<p><a class="p_ident" id="p-RGBud2T7DO" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-RGBud2T7DO" tabindex="-1" role="presentation"></a>En este último capítulo del proyecto, nuestro objetivo es configurar un sitio web para gestionar las charlas impartidas en una reunión de intercambio de habilidades. Imagina un pequeño grupo de personas que se reúnen regularmente en la oficina de uno de los miembros para hablar sobre monociclos. El organizador anterior de las reuniones se mudó a otra ciudad y nadie se ofreció a asumir esta tarea. Queremos un sistema que permita a los participantes proponer y discutir charlas entre ellos, sin un organizador activo.</p>
+
+<p><a class="p_ident" id="p-OXFL+WFEZc" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-OXFL+WFEZc" tabindex="-1" role="presentation"></a>Al igual que en el <a href="https://www.eloquentjavascript.es/20_node.html">capítulo anterior</a>, parte del código en este capítulo está escrito para Node.js y es poco probable que funcione si se ejecuta directamente en la página HTML que estás viendo. El código completo del proyecto se puede descargar desde <a href="https://eloquentjavascript.net/code/skillsharing.zip"><em>https://eloquentjavascript.net/code/skillsharing.zip</em></a>.</p>
+
+<h2><a class="h_ident" id="h-3+hJ1EAoa5" href="https://www.eloquentjavascript.es/21_skillsharing.html#h-3+hJ1EAoa5" tabindex="-1" role="presentation"></a>Diseño</h2>
+
+<p><a class="p_ident" id="p-Jk7z/ajGt7" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-Jk7z/ajGt7" tabindex="-1" role="presentation"></a>Este proyecto tiene una parte de <em>servidor</em>, escrita para Node.js, y una parte de <em>cliente</em>, escrita para el navegador. El servidor almacena los datos del sistema y los proporciona al cliente. También sirve los archivos que implementan el sistema del lado del cliente.</p>
+
+<p><a class="p_ident" id="p-jc0lnz5w+z" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-jc0lnz5w+z" tabindex="-1" role="presentation"></a>El servidor mantiene la lista de charlas propuestas para la próxima reunión, y el cliente muestra esta lista. Cada charla tiene un nombre de presentador, un título, un resumen y una matriz de comentarios asociados. El cliente permite a los usuarios proponer nuevas charlas (agregándolas a la lista), eliminar charlas y comentar en charlas existentes. Cada vez que el usuario realiza un cambio de este tipo, el cliente realiza una solicitud HTTP para informar al servidor al respecto.</p><figure><img src="./Proyecto_ Sitio web de intercambio de habilidades __ Eloquent JavaScript_files/skillsharing.png" alt="Captura de pantalla del sitio web de intercambio de habilidades"></figure>
+
+<p><a class="p_ident" id="p-oateJBFpXz" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-oateJBFpXz" tabindex="-1" role="presentation"></a>La aplicación se configurará para mostrar una vista <em>en vivo</em> de las charlas propuestas actuales y sus comentarios. Cada vez que alguien, en algún lugar, envíe una nueva charla o agregue un comentario, todas las personas que tengan la página abierta en sus navegadores deberían ver el cambio de inmediato. Esto plantea un desafío—no hay forma de que un servidor web abra una conexión a un cliente, ni hay una buena forma de saber qué clientes están viendo actualmente un sitio web dado.</p>
+
+<p><a class="p_ident" id="p-UaD3BZk280" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-UaD3BZk280" tabindex="-1" role="presentation"></a>Una solución común a este problema se llama <em>long polling</em>, que resulta ser una de las motivaciones del diseño de Node.</p>
+
+<h2><a class="h_ident" id="h-Yxu7U155Cs" href="https://www.eloquentjavascript.es/21_skillsharing.html#h-Yxu7U155Cs" tabindex="-1" role="presentation"></a>Long polling</h2>
+
+<p><a class="p_ident" id="p-+gpJ1YoH6p" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-+gpJ1YoH6p" tabindex="-1" role="presentation"></a>Para poder notificar inmediatamente a un cliente que algo ha cambiado, necesitamos una conexión con ese cliente. Dado que los navegadores web tradicionalmente no aceptan conexiones y los clientes a menudo están detrás de routers que bloquearían tales conexiones de todos modos, no es práctico que sea el servidor quien inicie esta conexión.</p>
+
+<p><a class="p_ident" id="p-XeGPkQ0uyB" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-XeGPkQ0uyB" tabindex="-1" role="presentation"></a>Podemos hacer que el cliente abra la conexión y la mantenga activa para que el servidor pueda usarla para enviar información cuando sea necesario.</p>
+
+<p><a class="p_ident" id="p-5rJbNzHJV5" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-5rJbNzHJV5" tabindex="-1" role="presentation"></a>Sin embargo, una solicitud HTTP permite solo un flujo simple de información: el cliente envía una solicitud, el servidor responde una sola vez, y eso es todo. Existe una tecnología llamada <em>WebSockets</em> que permite abrir conexiones para el intercambio arbitrario de datos. Pero usarlas adecuadamente es algo complicado.</p>
+
+<p><a class="p_ident" id="p-1TWbmtIAKU" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-1TWbmtIAKU" tabindex="-1" role="presentation"></a>En este capítulo, utilizamos una técnica más sencilla—long polling—donde los clientes preguntan continuamente al servidor por nueva información mediante solicitudes HTTP regulares, y el servidor retiene su respuesta cuando no tiene nada nuevo que informar.</p>
+
+<p><a class="p_ident" id="p-t91Kzn6g95" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-t91Kzn6g95" tabindex="-1" role="presentation"></a>Mientras el cliente se asegure de tener una solicitud de sondeo abierta constantemente, recibirá información del servidor rápidamente cuando esté disponible. Por ejemplo, si Fatma tiene nuestra aplicación de intercambio de habilidades abierta en su navegador, ese navegador habrá solicitado actualizaciones y estará esperando una respuesta a esa solicitud. Cuando Iman envía una charla sobre “Extreme Downhill Unicycling”, el servidor notará que Fatma está esperando actualizaciones y enviará una respuesta que contiene la nueva charla a su solicitud pendiente. El navegador de Fatma recibirá los datos y actualizará la pantalla para mostrar la charla.</p>
+
+<p><a class="p_ident" id="p-EqaPXn25K7" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-EqaPXn25K7" tabindex="-1" role="presentation"></a>Para evitar que las conexiones se agoten por tiempo (se aborten debido a una falta de actividad), las técnicas de long polling suelen establecer un tiempo máximo para cada solicitud, tras el cual el servidor responderá de todos modos, aunque no tenga nada que informar. Entonces, el cliente puede iniciar una nueva solicitud. Reiniciar periódicamente la solicitud también hace que la técnica sea más robusta, permitiendo a los clientes recuperarse de fallos temporales de conexión o problemas de servidor.</p>
+
+<p><a class="p_ident" id="p-QyoyMuc05C" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-QyoyMuc05C" tabindex="-1" role="presentation"></a>Un servidor ocupado que utiliza long polling puede tener miles de solicitudes en espera, y por lo tanto conexiones TCP abiertas. Node, que facilita la gestión de muchas conexiones sin crear un hilo de control separado para cada una, es ideal para este tipo de sistema.</p>
+
+<h2><a class="h_ident" id="h-zB2BkFIqom" href="https://www.eloquentjavascript.es/21_skillsharing.html#h-zB2BkFIqom" tabindex="-1" role="presentation"></a>Interfaz HTTP</h2>
+
+<p><a class="p_ident" id="p-GMlJy93L9x" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-GMlJy93L9x" tabindex="-1" role="presentation"></a>Antes de comenzar a diseñar el servidor o el cliente, pensemos en el punto donde se conectan: la interfaz HTTP a través de la cual se comunican.</p>
+
+<p><a class="p_ident" id="p-NRA737W3IG" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-NRA737W3IG" tabindex="-1" role="presentation"></a>Utilizaremos JSON como formato de nuestro cuerpo de solicitud y respuesta. Al igual que en el servidor de archivos del <a href="https://www.eloquentjavascript.es/20_node.html#file_server">Capítulo 20</a>, intentaremos hacer un buen uso de los métodos y cabeceras HTTP. La interfaz se centra en la ruta <code>/talks</code>. Las rutas que no comienzan con <code>/talks</code> se utilizarán para servir archivos estáticos—el código HTML y JavaScript para el sistema del lado del cliente.</p>
+
+<p><a class="p_ident" id="p-z2nHTSSYsb" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-z2nHTSSYsb" tabindex="-1" role="presentation"></a>Una solicitud <code>GET</code> a <code>/talks</code> devuelve un documento JSON como este:</p>
+
+<pre class="snippet" data-language="json"><a class="c_ident" id="c-7u2gZXiBb3" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-7u2gZXiBb3" tabindex="-1" role="presentation"></a>[{<span class="tok-string">"title"</span>: <span class="tok-string">"Unituning"</span>,
+  <span class="tok-string">"presenter"</span>: <span class="tok-string">"Jamal"</span>,
+  <span class="tok-string">"summary"</span>: <span class="tok-string">"Modificando tu bicicleta para darle más estilo"</span>,
+  <span class="tok-string">"comments"</span>: []}]</pre>
+
+<p><a class="p_ident" id="p-gjETc1D443" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-gjETc1D443" tabindex="-1" role="presentation"></a>Crear una nueva charla se hace haciendo una solicitud <code>PUT</code> a una URL como <code>/talks/Unituning</code>, donde la parte después de la segunda barra es el título de la charla. El cuerpo de la solicitud <code>PUT</code> debe contener un objeto JSON que tenga propiedades <code>presenter</code> y <code>summary</code>.</p>
+
+<p><a class="p_ident" id="p-KimDuHu+7+" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-KimDuHu+7+" tabindex="-1" role="presentation"></a>Dado que los títulos de las charlas pueden contener espacios y otros caracteres que normalmente no aparecen en una URL, las cadenas de título deben ser codificadas con la función <code>encodeURIComponent</code> al construir una URL de ese tipo.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-q6yi4iCtdj" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-q6yi4iCtdj" tabindex="-1" role="presentation"></a>console.log(<span class="tok-string">"/talks/"</span> + encodeURIComponent(<span class="tok-string">"Cómo hacer el caballito"</span>));
+<span class="tok-comment">// → /talks/Cómo%20hacer%20el%20caballito</span></pre>
+
+<p><a class="p_ident" id="p-wTqsGckkEn" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-wTqsGckkEn" tabindex="-1" role="presentation"></a>Una solicitud para crear una charla sobre hacer el caballito podría ser algo así:</p>
+
+<pre class="snippet" data-language="http"><a class="c_ident" id="c-8jTK6TIW2A" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-8jTK6TIW2A" tabindex="-1" role="presentation"></a><span class="tok-keyword">PUT</span> <span class="tok-string2">/talks/Cómo%20hacer%20el%20caballito</span> <span class="tok-keyword">HTTP/1.1</span>
+<span class="tok-atom">Content-Type:</span><span class="tok-string"> application/json</span>
+<span class="tok-atom">Content-Length:</span><span class="tok-string"> 92</span>
+
+{"presenter": "Maureen",
+ "summary": "Permanecer quieto sobre un monociclo"}</pre>
+
+<p><a class="p_ident" id="p-N/i1a9WVQQ" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-N/i1a9WVQQ" tabindex="-1" role="presentation"></a>Estas URLs también admiten solicitudes <code>GET</code> para recuperar la representación JSON de una charla y solicitudes <code>DELETE</code> para eliminar una charla.</p>
+
+<p><a class="p_ident" id="p-oXduuDcQBO" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-oXduuDcQBO" tabindex="-1" role="presentation"></a>Agregar un comentario a una charla se hace con una solicitud <code>POST</code> a una URL como <code>/<wbr>talks/<wbr>Unituning/<wbr>comments</code>, con un cuerpo JSON que tiene propiedades <code>author</code> y <code>message</code>.</p>
+
+<pre class="snippet" data-language="http"><a class="c_ident" id="c-FuvYZMKcwn" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-FuvYZMKcwn" tabindex="-1" role="presentation"></a><span class="tok-keyword">POST</span> <span class="tok-string2">/talks/Unituning/comments</span> <span class="tok-keyword">HTTP/1.1</span>
+<span class="tok-atom">Content-Type:</span><span class="tok-string"> application/json</span>
+<span class="tok-atom">Content-Length:</span><span class="tok-string"> 72</span>
+
+{"author": "Iman",
+ "message": "¿Vas a hablar sobre cómo levantar una bicicleta?"}</pre>
+
+<p><a class="p_ident" id="p-NgQyT9G11r" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-NgQyT9G11r" tabindex="-1" role="presentation"></a>Para soportar encuestas prolongadas, las solicitudes <code>GET</code> a <code>/talks</code> pueden incluir encabezados adicionales que informen al servidor para retrasar la respuesta si no hay nueva información disponible. Usaremos un par de encabezados normalmente destinados a gestionar el almacenamiento en caché: <code>ETag</code> y <code>If-None-Match</code>.</p>
+
+<p><a class="p_ident" id="p-wI/PFtLZun" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-wI/PFtLZun" tabindex="-1" role="presentation"></a>Los servidores pueden incluir un encabezado <code>ETag</code> (“etiqueta de entidad”) en una respuesta. Su valor es una cadena que identifica la versión actual del recurso. Los clientes, al solicitar posteriormente ese recurso de nuevo, pueden hacer una <em>solicitud condicional</em> incluyendo un encabezado <code>If-None-Match</code> cuyo valor contenga esa misma cadena. Si el recurso no ha cambiado, el servidor responderá con el código de estado 304, que significa “no modificado”, indicando al cliente que su versión en caché sigue siendo actual. Cuando la etiqueta no coincide, el servidor responde como de costumbre.</p>
+
+<p><a class="p_ident" id="p-Dah18ap9qG" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-Dah18ap9qG" tabindex="-1" role="presentation"></a>Necesitamos algo como esto, donde el cliente puede decirle al servidor qué versión de la lista de charlas tiene, y el servidor responde solo cuando esa lista ha cambiado. Pero en lugar de devolver inmediatamente una respuesta 304, el servidor debería demorar la respuesta y devolverla solo cuando haya algo nuevo disponible o haya transcurrido una cantidad de tiempo determinada. Para distinguir las solicitudes de encuestas prolongadas de las solicitudes condicionales normales, les damos otro encabezado, <code>Prefer: wait=90</code>, que le indica al servidor que el cliente está dispuesto a esperar hasta 90 segundos por la respuesta.El servidor mantendrá un número de versión que actualiza cada vez que cambian las charlas y lo utilizará como valor <code>ETag</code>. Los clientes pueden hacer solicitudes como esta para ser notificados cuando las charlas cambien:</p>
+
+<pre class="snippet" data-language="null"><a class="c_ident" id="c-MFF1bCg8y6" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-MFF1bCg8y6" tabindex="-1" role="presentation"></a>GET /talks HTTP/1.1
+If-None-Match: "4"
+Prefer: wait=90
+
+(pasa el tiempo)
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+ETag: "5"
+Content-Length: 295
+
+[....]</pre>
+
+<p><a class="p_ident" id="p-Q/X5dgPjtl" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-Q/X5dgPjtl" tabindex="-1" role="presentation"></a>El protocolo descrito aquí no realiza ningún control de acceso. Cualquiera puede comentar, modificar charlas e incluso eliminarlas. (Dado que Internet está lleno de matones, poner un sistema en línea sin una protección adicional probablemente no terminaría bien).</p>
+
+<h2><a class="h_ident" id="h-ws+ngSuF7H" href="https://www.eloquentjavascript.es/21_skillsharing.html#h-ws+ngSuF7H" tabindex="-1" role="presentation"></a>El servidor</h2>
+
+<p><a class="p_ident" id="p-2FUAACQEai" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-2FUAACQEai" tabindex="-1" role="presentation"></a>Comencemos construyendo la parte del programa del lado del servidor. El código en esta sección se ejecuta en Node.js.</p>
+
+<h3><a class="i_ident" id="i-939KJHgV2o" href="https://www.eloquentjavascript.es/21_skillsharing.html#i-939KJHgV2o" tabindex="-1" role="presentation"></a>Enrutamiento</h3>
+
+<p><a class="p_ident" id="p-dOksxO97TB" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-dOksxO97TB" tabindex="-1" role="presentation"></a>Nuestro servidor utilizará <code>createServer</code> de Node para iniciar un servidor HTTP. En la función que maneja una nueva solicitud, debemos distinguir entre los diferentes tipos de solicitudes (como se determina por el método y la ruta) que soportamos. Esto se puede hacer con una larga cadena de declaraciones <code>if</code>, pero hay una manera más elegante.</p>
+
+<p><a class="p_ident" id="p-zXEf+YLpW2" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-zXEf+YLpW2" tabindex="-1" role="presentation"></a>Un <em>enrutador</em> es un componente que ayuda a despachar una solicitud a la función que puede manejarla. Puedes indicarle al enrutador, por ejemplo, que las solicitudes <code>PUT</code> con una ruta que coincida con la expresión regular <code>/<wbr>^\/<wbr>talks\/<wbr>([^\/<wbr>]+)$/<wbr></code> (<code>/talks/</code> seguido de un título de charla) pueden ser manejadas por una función dada. Además, puede ayudar a extraer las partes significativas de la ruta (en este caso el título de la charla), envueltas en paréntesis en la expresión regular, y pasarlas a la función manejadora.</p>
+
+<p><a class="p_ident" id="p-GRDOfoyc6J" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-GRDOfoyc6J" tabindex="-1" role="presentation"></a>Hay varios paquetes de enrutadores buenos en NPM, pero aquí escribiremos uno nosotros mismos para ilustrar el principio.</p>
+
+<p><a class="p_ident" id="p-f+1c52SwUl" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-f+1c52SwUl" tabindex="-1" role="presentation"></a>Este es <code>router.mjs</code>, que luego <code>importaremos</code> desde nuestro módulo del servidor:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-DdjroKRGYC" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-DdjroKRGYC" tabindex="-1" role="presentation"></a><span class="tok-keyword">export</span> <span class="tok-keyword">class</span> Router {
+  <span class="tok-definition">constructor</span>() {
+    <span class="tok-keyword">this</span>.routes = [];
+  }
+  <span class="tok-definition">add</span>(<span class="tok-definition">method</span>, <span class="tok-definition">url</span>, <span class="tok-definition">handler</span>) {
+    <span class="tok-keyword">this</span>.routes.push({<span class="tok-definition">method</span>, <span class="tok-definition">url</span>, <span class="tok-definition">handler</span>});
+  }
+  <span class="tok-keyword">async</span> <span class="tok-definition">resolve</span>(<span class="tok-definition">request</span>, <span class="tok-definition">context</span>) {
+    <span class="tok-keyword">let</span> {pathname} = <span class="tok-keyword">new</span> URL(request.url, <span class="tok-string">"http://d"</span>);
+    <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> {method, url, handler} <span class="tok-keyword">of</span> <span class="tok-keyword">this</span>.routes) {
+      <span class="tok-keyword">let</span> <span class="tok-definition">match</span> = url.exec(pathname);
+      <span class="tok-keyword">if</span> (!match || request.method != method) <span class="tok-keyword">continue</span>;
+      <span class="tok-keyword">let</span> <span class="tok-definition">parts</span> = match.slice(<span class="tok-number">1</span>).map(decodeURIComponent);
+      <span class="tok-keyword">return</span> handler(context, ...parts, request);
+    }
+  }
+}</pre>
+
+<p><a class="p_ident" id="p-/ptohdwIb9" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-/ptohdwIb9" tabindex="-1" role="presentation"></a>El módulo exporta la clase <code>Router</code>. Un objeto de enrutador te permite registrar manejadores para métodos específicos y patrones de URL con su método <code>add</code>. Cuando una solicitud se resuelve con el método <code>resolve</code>, el enrutador llama al manejador cuyo método y URL coinciden con la solicitud y devuelve su resultado.</p>
+
+<p><a class="p_ident" id="p-MsWktv3ojr" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-MsWktv3ojr" tabindex="-1" role="presentation"></a>Las funciones manejadoras se llaman con el valor <code>context</code> dado a <code>resolve</code>. Utilizaremos esto para darles acceso al estado de nuestro servidor. Además, reciben las cadenas coincidentes para cualquier grupo que hayan definido en su expresión regular, y el objeto de solicitud. Las cadenas deben ser decodificadas de la URL ya que la URL cruda puede contener códigos estilo <code>%20</code>.</p>
+
+<h3><a class="i_ident" id="i-ZUbq5VoJDs" href="https://www.eloquentjavascript.es/21_skillsharing.html#i-ZUbq5VoJDs" tabindex="-1" role="presentation"></a>Sirviendo archivos</h3>
+
+<p><a class="p_ident" id="p-Qfuyl7XyA7" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-Qfuyl7XyA7" tabindex="-1" role="presentation"></a>Cuando una solicitud no coincide con ninguno de los tipos de solicitud definidos en nuestro enrutador, el servidor debe interpretarlo como una solicitud de un archivo en el directorio <code>public</code>. Sería posible usar el servidor de archivos definido en el <a href="https://www.eloquentjavascript.es/20_node.html#file_server">Capítulo 20</a> para servir dichos archivos, pero ni necesitamos ni queremos admitir solicitudes <code>PUT</code> y <code>DELETE</code> en archivos, y nos gustaría tener funciones avanzadas como el soporte para almacenamiento en caché. Así que usemos en cambio un servidor de archivos estático sólido y bien probado de NPM.</p>
+
+<p><a class="p_ident" id="p-RmKAuAnSZo" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-RmKAuAnSZo" tabindex="-1" role="presentation"></a>Opté por <code>serve-static</code>. Este no es el único servidor de este tipo en NPM, pero funciona bien y se ajusta a nuestros propósitos. El paquete <code>serve-static</code> exporta una función que puede ser llamada con un directorio raíz para producir una función manipuladora de solicitudes. La función manipuladora acepta los argumentos <code>request</code> y <code>response</code> proporcionados por el servidor de <code>"node:http"</code>, y un tercer argumento, una función que se llamará si ningún archivo coincide con la solicitud. Queremos que nuestro servidor primero compruebe las solicitudes que deberíamos manejar de manera especial, según lo definido en el enrutador, por lo que lo envolvemos en otra función.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-lpYEW+IClx" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-lpYEW+IClx" tabindex="-1" role="presentation"></a><span class="tok-keyword">import</span> {<span class="tok-definition">createServer</span>} <span class="tok-keyword">from</span> <span class="tok-string">"node:http"</span>;
+<span class="tok-keyword">import</span> <span class="tok-definition">serveStatic</span> <span class="tok-keyword">from</span> <span class="tok-string">"serve-static"</span>;
+
+<span class="tok-keyword">function</span> <span class="tok-definition">notFound</span>(<span class="tok-definition">request</span>, <span class="tok-definition">response</span>) {
+  response.writeHead(<span class="tok-number">404</span>, <span class="tok-string">"Not found"</span>);
+  response.end(<span class="tok-string">"&lt;h1&gt;Not found&lt;/h1&gt;"</span>);
+}
+
+<span class="tok-keyword">class</span> SkillShareServer {
+  <span class="tok-definition">constructor</span>(<span class="tok-definition">talks</span>) {
+    <span class="tok-keyword">this</span>.talks = talks;
+    <span class="tok-keyword">this</span>.version = <span class="tok-number">0</span>;
+    <span class="tok-keyword">this</span>.waiting = [];
+
+    <span class="tok-keyword">let</span> <span class="tok-definition">fileServer</span> = serveStatic(<span class="tok-string">"./public"</span>);
+    <span class="tok-keyword">this</span>.server = createServer((<span class="tok-definition">request</span>, <span class="tok-definition">response</span>) =&gt; {
+      serveFromRouter(<span class="tok-keyword">this</span>, request, response, () =&gt; {
+        fileServer(request, response,
+                   () =&gt; notFound(request, response));
+      });
+    });
+  }
+  <span class="tok-definition">start</span>(<span class="tok-definition">port</span>) {
+    <span class="tok-keyword">this</span>.server.listen(port);
+  }
+  <span class="tok-definition">stop</span>() {
+    <span class="tok-keyword">this</span>.server.close();
+  }
+}</pre>
+
+<p><a class="p_ident" id="p-WcsQxVDR10" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-WcsQxVDR10" tabindex="-1" role="presentation"></a>La función <code>serveFromRouter</code> tiene la misma interfaz que <code>fileServer</code>, tomando los argumentos <code>(request, response, next)</code>. Esto nos permite “encadenar” varios manipuladores de solicitudes, permitiendo que cada uno maneje la solicitud o pase la responsabilidad de eso al siguiente manejador. El manejador final, <code>notFound</code>, simplemente responde con un error de “no encontrado”.</p>
+
+<p><a class="p_ident" id="p-HVx8AlKtha" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-HVx8AlKtha" tabindex="-1" role="presentation"></a>Nuestra función <code>serveFromRouter</code> utiliza una convención similar a la del servidor de archivos del <a href="https://www.eloquentjavascript.es/20_node.html">capítulo anterior</a> para las respuestas: los manejadores en el enrutador devuelven promesas que se resuelven en objetos que describen la respuesta.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-pOBp3UhLkD" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-pOBp3UhLkD" tabindex="-1" role="presentation"></a><span class="tok-keyword">import</span> {<span class="tok-definition">Router</span>} <span class="tok-keyword">from</span> <span class="tok-string">"./router.mjs"</span>;
+
+<span class="tok-keyword">const</span> <span class="tok-definition">router</span> = <span class="tok-keyword">new</span> Router();
+<span class="tok-keyword">const</span> <span class="tok-definition">defaultHeaders</span> = {<span class="tok-string">"Content-Type"</span>: <span class="tok-string">"text/plain"</span>};
+
+<span class="tok-keyword">async</span> <span class="tok-keyword">function</span> <span class="tok-definition">serveFromRouter</span>(<span class="tok-definition">server</span>, <span class="tok-definition">request</span>,
+                               <span class="tok-definition">response</span>, <span class="tok-definition">next</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">resolved</span> = <span class="tok-keyword">await</span> router.resolve(request, server)
+    .catch(<span class="tok-definition">error</span> =&gt; {
+      <span class="tok-keyword">if</span> (error.status != <span class="tok-keyword">null</span>) <span class="tok-keyword">return</span> error;
+      <span class="tok-keyword">return</span> {<span class="tok-definition">body</span>: String(error), <span class="tok-definition">status</span>: <span class="tok-number">500</span>};
+    });
+  <span class="tok-keyword">if</span> (!resolved) <span class="tok-keyword">return</span> next();
+  <span class="tok-keyword">let</span> {body, status = <span class="tok-number">200</span>, headers = defaultHeaders} =
+    <span class="tok-keyword">await</span> resolved;
+  response.writeHead(status, headers);
+  response.end(body);
+}</pre>
+
+<h3><a class="i_ident" id="i-ufH3WCBBxA" href="https://www.eloquentjavascript.es/21_skillsharing.html#i-ufH3WCBBxA" tabindex="-1" role="presentation"></a>Charlas como recursos</h3>
+
+<p><a class="p_ident" id="p-1W52Huo5gE" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-1W52Huo5gE" tabindex="-1" role="presentation"></a>Las charlas que se han propuesto se almacenan en la propiedad <code>talks</code> del servidor, un objeto cuyas propiedades son los títulos de las charlas. Agregaremos algunos controladores a nuestro enrutador que expongan estos como recursos HTTP bajo <code>/<wbr>charlas/<wbr>[título]</code>.</p>
+
+<p><a class="p_ident" id="p-KVcSbBGYSx" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-KVcSbBGYSx" tabindex="-1" role="presentation"></a>El controlador para las solicitudes que <code>GET</code> una sola charla debe buscar la charla y responder ya sea con los datos JSON de la charla o con una respuesta de error 404.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-LtnGtXI6eR" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-LtnGtXI6eR" tabindex="-1" role="presentation"></a><span class="tok-keyword">const</span> <span class="tok-definition">talkPath</span> = <span class="tok-string2">/^\/charlas\/([^\/]+)$/</span>;
+
+router.add(<span class="tok-string">"GET"</span>, talkPath, <span class="tok-keyword">async</span> (<span class="tok-definition">server</span>, <span class="tok-definition">title</span>) =&gt; {
+  <span class="tok-keyword">if</span> (Object.hasOwn(server.talks, title)) {
+    <span class="tok-keyword">return</span> {<span class="tok-definition">body</span>: JSON.stringify(server.talks[title]),
+            <span class="tok-definition">headers</span>: {<span class="tok-string">"Content-Type"</span>: <span class="tok-string">"application/json"</span>}};
+  } <span class="tok-keyword">else</span> {
+    <span class="tok-keyword">return</span> {<span class="tok-definition">status</span>: <span class="tok-number">404</span>, <span class="tok-definition">body</span>: <span class="tok-string2">`No se encontró la charla '</span>${title}<span class="tok-string2">'`</span>};
+  }
+});</pre>
+
+<p><a class="p_ident" id="p-bJpProgQwk" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-bJpProgQwk" tabindex="-1" role="presentation"></a>Eliminar una charla se hace eliminándola del objeto <code>talks</code>.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-hHVMqh7is7" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-hHVMqh7is7" tabindex="-1" role="presentation"></a>router.add(<span class="tok-string">"DELETE"</span>, talkPath, <span class="tok-keyword">async</span> (<span class="tok-definition">server</span>, <span class="tok-definition">title</span>) =&gt; {
+  <span class="tok-keyword">if</span> (Object.hasOwn(server.talks, title)) {
+    <span class="tok-keyword">delete</span> server.talks[title];
+    server.updated();
+  }
+  <span class="tok-keyword">return</span> {<span class="tok-definition">status</span>: <span class="tok-number">204</span>};
+});</pre>
+
+<p><a class="p_ident" id="p-pjcjDMRuxA" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-pjcjDMRuxA" tabindex="-1" role="presentation"></a>El método <code>updated</code>, que definiremos <a href="https://www.eloquentjavascript.es/21_skillsharing.html#updated">más adelante</a>, notifica a las solicitudes de espera larga sobre el cambio.</p>
+
+<p><a class="p_ident" id="p-e83CFc66FM" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-e83CFc66FM" tabindex="-1" role="presentation"></a>Un controlador que necesita leer cuerpos de solicitud es el controlador <code>PUT</code>, que se utiliza para crear nuevas charlas. Debe verificar si los datos que se le proporcionaron tienen propiedades <code>presentador</code> y <code>resumen</code>, que son cadenas de texto. Cualquier dato que provenga de fuera del sistema podría ser un sinsentido y no queremos corromper nuestro modelo de datos interno o fallar cuando lleguen solicitudes incorrectas.</p>
+
+<p><a class="p_ident" id="p-staaYNoCZ/" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-staaYNoCZ/" tabindex="-1" role="presentation"></a>Si los datos parecen válidos, el controlador almacena un objeto que representa la nueva charla en el objeto <code>talks</code>, posiblemente sobrescribiendo una charla existente con este título, y nuevamente llama a <code>updated</code>.</p>
+
+<p><a class="p_ident" id="p-+8INWPaDVV" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-+8INWPaDVV" tabindex="-1" role="presentation"></a>Para leer el cuerpo del flujo de solicitud, utilizaremos la función <code>json</code> de <code>"node:stream/<wbr>consumers"</code>, que recopila los datos en el flujo y luego los analiza como JSON. Hay exportaciones similares llamadas <code>text</code> (para leer el contenido como una cadena) y <code>buffer</code> (para leerlo como datos binarios) en este paquete. Dado que <code>json</code> es un nombre genérico, la importación lo renombra a <code>readJSON</code> para evitar confusiones.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-Ix+LWD1WCY" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-Ix+LWD1WCY" tabindex="-1" role="presentation"></a><span class="tok-keyword">import</span> {json <span class="tok-keyword">as</span> <span class="tok-definition">readJSON</span>} <span class="tok-keyword">from</span> <span class="tok-string">"node:stream/consumers"</span>
+
+router.add(<span class="tok-string">"PUT"</span>, talkPath,
+           <span class="tok-keyword">async</span> (<span class="tok-definition">server</span>, <span class="tok-definition">title</span>, <span class="tok-definition">request</span>) =&gt; {
+  <span class="tok-keyword">let</span> <span class="tok-definition">talk</span> = <span class="tok-keyword">await</span> readJSON(request);
+  <span class="tok-keyword">if</span> (!talk ||
+      <span class="tok-keyword">typeof</span> talk.presenter != <span class="tok-string">"string"</span> ||
+      <span class="tok-keyword">typeof</span> talk.summary != <span class="tok-string">"string"</span>) {
+    <span class="tok-keyword">return</span> {<span class="tok-definition">status</span>: <span class="tok-number">400</span>, <span class="tok-definition">body</span>: <span class="tok-string">"Datos de charla incorrectos"</span>};
+  }
+  server.talks[title] = {
+    <span class="tok-definition">title</span>,
+    <span class="tok-definition">presenter</span>: talk.presenter,
+    <span class="tok-definition">summary</span>: talk.summary,
+    <span class="tok-definition">comments</span>: []
+  };
+  server.updated();
+  <span class="tok-keyword">return</span> {<span class="tok-definition">status</span>: <span class="tok-number">204</span>};
+});
+<span class="tok-string2">``</span><span class="tok-string2">`Agregar un ((comentario)) a una ((charla)) funciona de manera similar. Usamos `</span>readJSON<span class="tok-string2">` para obtener el contenido de la solicitud, validamos los datos resultantes y los almacenamos como un comentario cuando parecen válidos.</span>
+
+<span class="tok-string2">`</span><span class="tok-string2">``</span>{includeCode: <span class="tok-string">"&gt;code/skillsharing/skillsharing_server.mjs"</span>}
+router.add(<span class="tok-string">"POST"</span>, <span class="tok-string2">/^\/talks\/([^\/]+)\/comments$/</span>,
+           <span class="tok-keyword">async</span> (<span class="tok-definition">server</span>, <span class="tok-definition">title</span>, <span class="tok-definition">request</span>) =&gt; {
+  <span class="tok-keyword">let</span> <span class="tok-definition">comment</span> = <span class="tok-keyword">await</span> readJSON(request);
+  <span class="tok-keyword">if</span> (!comment ||
+      <span class="tok-keyword">typeof</span> comment.author != <span class="tok-string">"string"</span> ||
+      <span class="tok-keyword">typeof</span> comment.message != <span class="tok-string">"string"</span>) {
+    <span class="tok-keyword">return</span> {<span class="tok-definition">status</span>: <span class="tok-number">400</span>, <span class="tok-definition">body</span>: <span class="tok-string">"Datos de comentario incorrectos"</span>};
+  } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (Object.hasOwn(server.talks, title)) {
+    server.talks[title].comments.push(comment);
+    server.updated();
+    <span class="tok-keyword">return</span> {<span class="tok-definition">status</span>: <span class="tok-number">204</span>};
+  } <span class="tok-keyword">else</span> {
+    <span class="tok-keyword">return</span> {<span class="tok-definition">status</span>: <span class="tok-number">404</span>, <span class="tok-definition">body</span>: <span class="tok-string2">`No se encontró la charla '</span>${title}<span class="tok-string2">'`</span>};
+  }
+});</pre>
+
+<p><a class="p_ident" id="p-A4Y3JVemOr" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-A4Y3JVemOr" tabindex="-1" role="presentation"></a>Intentar agregar un comentario a una charla inexistente devuelve un error 404.</p>
+
+<h3><a class="i_ident" id="i-uX0TYu9umo" href="https://www.eloquentjavascript.es/21_skillsharing.html#i-uX0TYu9umo" tabindex="-1" role="presentation"></a>Soporte para larga espera</h3>
+
+<p><a class="p_ident" id="p-laDMjH8FTx" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-laDMjH8FTx" tabindex="-1" role="presentation"></a>El aspecto más interesante del servidor es la parte que maneja la larga espera. Cuando llega una solicitud <code>GET</code> para <code>/charlas</code>, puede ser una solicitud regular o una solicitud de larga espera.</p>
+
+<p><a class="p_ident" id="p-HOEdzyAw2w" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-HOEdzyAw2w" tabindex="-1" role="presentation"></a>Habrá varios lugares en los que debamos enviar una matriz de charlas al cliente, por lo que primero definimos un método auxiliar que construya dicha matriz e incluya un encabezado <code>ETag</code> en la respuesta.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-XiOFQSm9fc" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-XiOFQSm9fc" tabindex="-1" role="presentation"></a>SkillShareServer.prototype.talkResponse = <span class="tok-keyword">function</span>() {
+  <span class="tok-keyword">let</span> <span class="tok-definition">talks</span> = Object.keys(<span class="tok-keyword">this</span>.talks)
+    .map(<span class="tok-definition">title</span> =&gt; <span class="tok-keyword">this</span>.talks[title]);
+  <span class="tok-keyword">return</span> {
+    <span class="tok-definition">body</span>: JSON.stringify(talks),
+    <span class="tok-definition">headers</span>: {<span class="tok-string">"Content-Type"</span>: <span class="tok-string">"application/json"</span>,
+              <span class="tok-string">"ETag"</span>: <span class="tok-string2">`"</span>${<span class="tok-keyword">this</span>.version}<span class="tok-string2">"`</span>,
+              <span class="tok-string">"Cache-Control"</span>: <span class="tok-string">"no-store"</span>}
+  };
+};</pre>
+
+<p><a class="p_ident" id="p-zS6RSzsTLW" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-zS6RSzsTLW" tabindex="-1" role="presentation"></a>El controlador en sí mismo necesita examinar los encabezados de la solicitud para ver si están presentes los encabezados <code>If-None-Match</code> y <code>Prefer</code>. Node almacena los encabezados, cuyos nombres se especifican como insensibles a mayúsculas y minúsculas, bajo sus nombres en minúsculas.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-/t9cPK34U3" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-/t9cPK34U3" tabindex="-1" role="presentation"></a>router.add(<span class="tok-string">"GET"</span>, <span class="tok-string2">/^\/talks$/</span>, <span class="tok-keyword">async</span> (<span class="tok-definition">server</span>, <span class="tok-definition">request</span>) =&gt; {
+  <span class="tok-keyword">let</span> <span class="tok-definition">tag</span> = <span class="tok-string2">/"(.*)"/</span>.exec(request.headers[<span class="tok-string">"if-none-match"</span>]);
+  <span class="tok-keyword">let</span> <span class="tok-definition">wait</span> = <span class="tok-string2">/\bwait=(\d+)/</span>.exec(request.headers[<span class="tok-string">"prefer"</span>]);
+  <span class="tok-keyword">if</span> (!tag || tag[<span class="tok-number">1</span>] != server.version) {
+    <span class="tok-keyword">return</span> server.talkResponse();
+  } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (!wait) {
+    <span class="tok-keyword">return</span> {<span class="tok-definition">status</span>: <span class="tok-number">304</span>};
+  } <span class="tok-keyword">else</span> {
+    <span class="tok-keyword">return</span> server.waitForChanges(Number(wait[<span class="tok-number">1</span>]));
+  }
+});</pre>
+
+<p><a class="p_ident" id="p-pT8IDjdsPB" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-pT8IDjdsPB" tabindex="-1" role="presentation"></a>Si no se proporcionó ninguna etiqueta o se proporcionó una etiqueta que no coincide con la versión actual del servidor, el controlador responde con la lista de charlas. Si la solicitud es condicional y las charlas no han cambiado, consultamos el encabezado <code>Prefer</code> para ver si debemos retrasar la respuesta o responder de inmediato.</p>
+
+<p><a class="p_ident" id="p-YGvJuvHlww" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-YGvJuvHlww" tabindex="-1" role="presentation"></a>Las funciones de devolución de llamada para solicitudes retardadas se almacenan en la matriz <code>waiting</code> del servidor para que puedan ser notificadas cuando ocurra algo. El método <code>waitForChanges</code> también establece inmediatamente un temporizador para responder con un estado 304 cuando la solicitud haya esperado el tiempo suficiente.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-4a/A2U+gT3" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-4a/A2U+gT3" tabindex="-1" role="presentation"></a>SkillShareServer.prototype.waitForChanges = <span class="tok-keyword">function</span>(<span class="tok-definition">time</span>) {
+  <span class="tok-keyword">return</span> <span class="tok-keyword">new</span> Promise(<span class="tok-definition">resolve</span> =&gt; {
+    <span class="tok-keyword">this</span>.waiting.push(resolve);
+    setTimeout(() =&gt; {
+      <span class="tok-keyword">if</span> (!<span class="tok-keyword">this</span>.waiting.includes(resolve)) <span class="tok-keyword">return</span>;
+      <span class="tok-keyword">this</span>.waiting = <span class="tok-keyword">this</span>.waiting.filter(<span class="tok-definition">r</span> =&gt; r != resolve);
+      resolve({<span class="tok-definition">status</span>: <span class="tok-number">304</span>});
+    }, time * <span class="tok-number">1000</span>);
+  });
+};</pre>
+
+<p id="updated"><a class="p_ident" id="p-ytA6+142s8" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-ytA6+142s8" tabindex="-1" role="presentation"></a>Registrar un cambio con <code>updated</code> incrementa la propiedad <code>versión</code> y despierta todas las solicitudes en espera.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-mZ7p2D8VNW" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-mZ7p2D8VNW" tabindex="-1" role="presentation"></a>SkillShareServer.prototype.updated = <span class="tok-keyword">function</span>() {
+  <span class="tok-keyword">this</span>.version++;
+  <span class="tok-keyword">let</span> <span class="tok-definition">response</span> = <span class="tok-keyword">this</span>.talkResponse();
+  <span class="tok-keyword">this</span>.waiting.forEach(<span class="tok-definition">resolve</span> =&gt; resolve(response));
+  <span class="tok-keyword">this</span>.waiting = [];
+};</pre>
+
+<p><a class="p_ident" id="p-GETCDP1v5q" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-GETCDP1v5q" tabindex="-1" role="presentation"></a>Eso concluye el código del servidor. Si creamos una instancia de <code>SkillShareServer</code> y la iniciamos en el puerto 8000, el servidor HTTP resultante servirá archivos desde el subdirectorio <code>public</code> junto con una interfaz para manejar charlas bajo la URL <code>/talks</code>.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-aaqy/FYjqn" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-aaqy/FYjqn" tabindex="-1" role="presentation"></a><span class="tok-keyword">new</span> SkillShareServer({}).start(<span class="tok-number">8000</span>);</pre>
+
+<h2><a class="h_ident" id="h-89YUl2IhC9" href="https://www.eloquentjavascript.es/21_skillsharing.html#h-89YUl2IhC9" tabindex="-1" role="presentation"></a>El cliente</h2>
+
+<p><a class="p_ident" id="p-wtw0eg9iUp" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-wtw0eg9iUp" tabindex="-1" role="presentation"></a>La parte del cliente del sitio web de intercambio de habilidades consiste en tres archivos: una pequeña página HTML, una hoja de estilos y un archivo JavaScript.</p>
+
+<h3><a class="i_ident" id="i-n3OM6EV/KR" href="https://www.eloquentjavascript.es/21_skillsharing.html#i-n3OM6EV/KR" tabindex="-1" role="presentation"></a>HTML</h3>
+
+<p><a class="p_ident" id="p-rYuavmgG93" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-rYuavmgG93" tabindex="-1" role="presentation"></a>Es una convención ampliamente utilizada para servidores web intentar servir un archivo llamado <code>index.html</code> cuando se realiza una solicitud directamente a una ruta que corresponde a un directorio. El módulo de servidor de archivos que utilizamos, <code>serve-static</code>, soporta esta convención. Cuando se realiza una solicitud a la ruta <code>/</code>, el servidor busca el archivo <code>./<wbr>public/<wbr>index.<wbr>html</code> (<code>./public</code> siendo la raíz que le dimos) y devuelve ese archivo si se encuentra.</p>
+
+<p><a class="p_ident" id="p-qrTeFznkLy" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-qrTeFznkLy" tabindex="-1" role="presentation"></a>Por lo tanto, si queremos que una página aparezca cuando un navegador apunta a nuestro servidor, deberíamos colocarla en <code>public/<wbr>index.<wbr>html</code>. Este es nuestro archivo de índice:</p>
+
+<pre tabindex="0" class="snippet" data-language="html"><a class="c_ident" id="c-/r8K6Wm5bv" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-/r8K6Wm5bv" tabindex="-1" role="presentation"></a><span class="tok-meta">&lt;!doctype html&gt;</span>
+&lt;<span class="tok-typeName">meta</span> charset=<span class="tok-string">"utf-8"</span>&gt;
+&lt;<span class="tok-typeName">title</span>&gt;Intercambio de habilidades&lt;/<span class="tok-typeName">title</span>&gt;
+&lt;<span class="tok-typeName">link</span> rel=<span class="tok-string">"stylesheet"</span> href=<span class="tok-string">"skillsharing.css"</span>&gt;
+
+&lt;<span class="tok-typeName">h1</span>&gt;Intercambio de habilidades&lt;/<span class="tok-typeName">h1</span>&gt;
+
+&lt;<span class="tok-typeName">script</span> src=<span class="tok-string">"skillsharing_client.js"</span>&gt;&lt;/<span class="tok-typeName">script</span>&gt;</pre>
+
+<p><a class="p_ident" id="p-LHLe/6F2Bj" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-LHLe/6F2Bj" tabindex="-1" role="presentation"></a>Define el título del documento e incluye una hoja de estilos, que define algunos estilos para, entre otras cosas, asegurarse de que haya algo de espacio entre las charlas. Luego agrega un encabezado en la parte superior de la página y carga el script que contiene la aplicación del cliente.</p>
+
+<h3><a class="i_ident" id="i-eb0O2RLD25" href="https://www.eloquentjavascript.es/21_skillsharing.html#i-eb0O2RLD25" tabindex="-1" role="presentation"></a>Acciones</h3>
+
+<p><a class="p_ident" id="p-QVOaRxytMq" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-QVOaRxytMq" tabindex="-1" role="presentation"></a>El estado de la aplicación consiste en la lista de charlas y el nombre del usuario, y lo almacenaremos en un objeto <code>{charlas, usuario}</code>. No permitimos que la interfaz de usuario manipule directamente el estado ni envíe solicitudes HTTP. En cambio, puede emitir <em>acciones</em> que describen lo que el usuario está intentando hacer.</p>
+
+<p><a class="p_ident" id="p-TAiYXUsGw+" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-TAiYXUsGw+" tabindex="-1" role="presentation"></a>La función <code>handleAction</code> toma una acción de este tipo y la lleva a cabo. Debido a que nuestras actualizaciones de estado son tan simples, los cambios de estado se manejan en la misma función.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-TZfLAx6p12" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-TZfLAx6p12" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">handleAction</span>(<span class="tok-definition">state</span>, <span class="tok-definition">action</span>) {
+  <span class="tok-keyword">if</span> (action.type == <span class="tok-string">"setUser"</span>) {
+    localStorage.setItem(<span class="tok-string">"userName"</span>, action.user);
+    <span class="tok-keyword">return</span> {...state, <span class="tok-definition">user</span>: action.user};
+  } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (action.type == <span class="tok-string">"setTalks"</span>) {
+    <span class="tok-keyword">return</span> {...state, <span class="tok-definition">talks</span>: action.talks};
+  } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (action.type == <span class="tok-string">"newTalk"</span>) {
+    fetchOK(talkURL(action.title), {
+      <span class="tok-definition">method</span>: <span class="tok-string">"PUT"</span>,
+      <span class="tok-definition">headers</span>: {<span class="tok-string">"Content-Type"</span>: <span class="tok-string">"application/json"</span>},
+      <span class="tok-definition">body</span>: JSON.stringify({
+        <span class="tok-definition">presenter</span>: state.user,
+        <span class="tok-definition">summary</span>: action.summary
+      })
+    }).catch(reportError);
+  } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (action.type == <span class="tok-string">"deleteTalk"</span>) {
+    fetchOK(talkURL(action.talk), {<span class="tok-definition">method</span>: <span class="tok-string">"DELETE"</span>})
+      .catch(reportError);
+  } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (action.type == <span class="tok-string">"newComment"</span>) {
+    fetchOK(talkURL(action.talk) + <span class="tok-string">"/comments"</span>, {
+      <span class="tok-definition">method</span>: <span class="tok-string">"POST"</span>,
+      <span class="tok-definition">headers</span>: {<span class="tok-string">"Content-Type"</span>: <span class="tok-string">"application/json"</span>},
+      <span class="tok-definition">body</span>: JSON.stringify({
+        <span class="tok-definition">author</span>: state.user,
+        <span class="tok-definition">message</span>: action.message
+      })
+    }).catch(reportError);
+  }
+  <span class="tok-keyword">return</span> state;
+}</pre>
+
+<p><a class="p_ident" id="p-Eqtvh6MDT4" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-Eqtvh6MDT4" tabindex="-1" role="presentation"></a>Almacenaremos el nombre del usuario en <code>localStorage</code> para que pueda ser restaurado cuando se cargue la página.</p>
+
+<p><a class="p_ident" id="p-xZU8661i5R" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-xZU8661i5R" tabindex="-1" role="presentation"></a>Las acciones que necesitan involucrar al servidor realizan peticiones a la red, utilizando <code>fetch</code>, a la interfaz HTTP descrita anteriormente. Utilizamos una función de envoltura, <code>fetchOK</code>, que se asegura de que la promesa devuelta sea rechazada cuando el servidor devuelve un código de error.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-IM58YE2b7h" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-IM58YE2b7h" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">fetchOK</span>(<span class="tok-definition">url</span>, <span class="tok-definition">options</span>) {
+  <span class="tok-keyword">return</span> fetch(url, options).then(<span class="tok-definition">response</span> =&gt; {
+    <span class="tok-keyword">if</span> (response.status &lt; <span class="tok-number">400</span>) <span class="tok-keyword">return</span> response;
+    <span class="tok-keyword">else</span> <span class="tok-keyword">throw</span> <span class="tok-keyword">new</span> Error(response.statusText);
+  });
+}</pre>
+
+<p><a class="p_ident" id="p-x0pviGUgx7" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-x0pviGUgx7" tabindex="-1" role="presentation"></a>Esta función auxiliar se utiliza para construir una URL para una charla con un título dado.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-KDfsRI9rOO" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-KDfsRI9rOO" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">talkURL</span>(<span class="tok-definition">title</span>) {
+  <span class="tok-keyword">return</span> <span class="tok-string">"talks/"</span> + encodeURIComponent(title);
+}</pre>
+
+<p><a class="p_ident" id="p-nE9YcWo4cI" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-nE9YcWo4cI" tabindex="-1" role="presentation"></a>Cuando la petición falla, no queremos que nuestra página simplemente se quede ahí, sin hacer nada sin explicación. Así que definimos una función llamada <code>reportError</code>, que al menos muestra al usuario un cuadro de diálogo que le informa que algo salió mal.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-upWq63EA/j" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-upWq63EA/j" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">reportError</span>(<span class="tok-definition">error</span>) {
+  alert(String(error));
+}</pre>
+
+<h3><a class="i_ident" id="i-Xb+LQLgwP6" href="https://www.eloquentjavascript.es/21_skillsharing.html#i-Xb+LQLgwP6" tabindex="-1" role="presentation"></a>Renderización de componentes</h3>
+
+<p><a class="p_ident" id="p-Q/3k0gUdfJ" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-Q/3k0gUdfJ" tabindex="-1" role="presentation"></a>Utilizaremos un enfoque similar al que vimos en el <a href="https://www.eloquentjavascript.es/19_paint.html">Capítulo 19</a>, dividiendo la aplicación en componentes. Pero dado que algunos de los componentes nunca necesitan actualizarse o siempre se redibujan por completo cuando se actualizan, definiremos aquellos no como clases, sino como funciones que devuelven directamente un nodo DOM. Por ejemplo, aquí hay un componente que muestra el campo donde el usuario puede ingresar su nombre:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-whT+DkjYvZ" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-whT+DkjYvZ" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">renderUserField</span>(<span class="tok-definition">name</span>, <span class="tok-definition">dispatch</span>) {
+  <span class="tok-keyword">return</span> elt(<span class="tok-string">"label"</span>, {}, <span class="tok-string">"Tu nombre: "</span>, elt(<span class="tok-string">"input"</span>, {
+    <span class="tok-definition">type</span>: <span class="tok-string">"text"</span>,
+    <span class="tok-definition">value</span>: name,
+    <span class="tok-definition">onchange</span>(<span class="tok-definition">event</span>) {
+      dispatch({<span class="tok-definition">type</span>: <span class="tok-string">"setUser"</span>, <span class="tok-definition">user</span>: event.target.value});
+    }
+  }));
+}</pre>
+
+<p><a class="p_ident" id="p-WsiiGyRrRE" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-WsiiGyRrRE" tabindex="-1" role="presentation"></a>La función <code>elt</code> utilizada para construir elementos DOM es la misma que usamos en el <a href="https://www.eloquentjavascript.es/19_paint.html">Capítulo 19</a>.</p>
+
+<p><a class="p_ident" id="p-ANM2bG067I" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-ANM2bG067I" tabindex="-1" role="presentation"></a>Se utiliza una función similar para renderizar charlas, que incluyen una lista de comentarios y un formulario para agregar un nuevo comentario.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-18QxMufj4p" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-18QxMufj4p" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">renderTalk</span>(<span class="tok-definition">talk</span>, <span class="tok-definition">dispatch</span>) {
+  <span class="tok-keyword">return</span> elt(
+    <span class="tok-string">"section"</span>, {<span class="tok-definition">className</span>: <span class="tok-string">"talk"</span>},
+    elt(<span class="tok-string">"h2"</span>, <span class="tok-keyword">null</span>, talk.title, <span class="tok-string">" "</span>, elt(<span class="tok-string">"button"</span>, {
+      <span class="tok-definition">type</span>: <span class="tok-string">"button"</span>,
+      <span class="tok-definition">onclick</span>() {
+        dispatch({<span class="tok-definition">type</span>: <span class="tok-string">"deleteTalk"</span>, <span class="tok-definition">talk</span>: talk.title});
+      }
+    }, <span class="tok-string">"Eliminar"</span>)),
+    elt(<span class="tok-string">"div"</span>, <span class="tok-keyword">null</span>, <span class="tok-string">"por "</span>,
+        elt(<span class="tok-string">"strong"</span>, <span class="tok-keyword">null</span>, talk.presenter)),
+    elt(<span class="tok-string">"p"</span>, <span class="tok-keyword">null</span>, talk.summary),
+    ...talk.comments.map(renderComment),
+    elt(<span class="tok-string">"form"</span>, {
+      <span class="tok-definition">onsubmit</span>(<span class="tok-definition">event</span>) {
+        event.preventDefault();
+        <span class="tok-keyword">let</span> <span class="tok-definition">form</span> = event.target;
+        dispatch({<span class="tok-definition">type</span>: <span class="tok-string">"newComment"</span>,
+                  <span class="tok-definition">talk</span>: talk.title,
+                  <span class="tok-definition">message</span>: form.elements.comment.value});
+        form.reset();
+      }
+    }, elt(<span class="tok-string">"input"</span>, {<span class="tok-definition">type</span>: <span class="tok-string">"text"</span>, <span class="tok-definition">name</span>: <span class="tok-string">"comment"</span>}), <span class="tok-string">" "</span>,
+       elt(<span class="tok-string">"button"</span>, {<span class="tok-definition">type</span>: <span class="tok-string">"submit"</span>}, <span class="tok-string">"Añadir comentario"</span>)));
+}</pre>
+
+<p><a class="p_ident" id="p-zWBsJsWqrO" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-zWBsJsWqrO" tabindex="-1" role="presentation"></a>El controlador de evento <code>"submit"</code> llama a <code>form.reset</code> para limpiar el contenido del formulario después de crear una acción <code>"newComment"</code>.</p>
+
+<p><a class="p_ident" id="p-ZbV8V68t7Z" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-ZbV8V68t7Z" tabindex="-1" role="presentation"></a>Cuando se crean piezas moderadamente complejas del DOM, este estilo de programación comienza a verse bastante desordenado. Para evitar esto, a menudo la gente utiliza un <em>lenguaje de plantillas</em>, que permite escribir la interfaz como un archivo HTML con algunos marcadores especiales para indicar dónde van los elementos dinámicos. O utilizan <em>JSX</em>, un dialecto de JavaScript no estándar que te permite escribir algo muy parecido a etiquetas HTML en tu programa como si fueran expresiones JavaScript. Ambos enfoques utilizan herramientas adicionales para preprocesar el código antes de que pueda ser ejecutado, lo cual evitaremos en este capítulo.</p>
+
+<p><a class="p_ident" id="p-92uR7ZfPQ+" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-92uR7ZfPQ+" tabindex="-1" role="presentation"></a>Los comentarios son simples de renderizar.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-N9+wrVgBuY" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-N9+wrVgBuY" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">renderComment</span>(<span class="tok-definition">comment</span>) {
+  <span class="tok-keyword">return</span> elt(<span class="tok-string">"p"</span>, {<span class="tok-definition">className</span>: <span class="tok-string">"comment"</span>},
+             elt(<span class="tok-string">"strong"</span>, <span class="tok-keyword">null</span>, comment.author),
+             <span class="tok-string">": "</span>, comment.message);
+}</pre>
+
+<p><a class="p_ident" id="p-ORWbCmi6gc" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-ORWbCmi6gc" tabindex="-1" role="presentation"></a>Finalmente, el formulario que el usuario puede usar para crear una nueva charla se representa de la siguiente manera:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-wxCOfM4XMy" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-wxCOfM4XMy" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">renderTalkForm</span>(<span class="tok-definition">dispatch</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">title</span> = elt(<span class="tok-string">"input"</span>, {<span class="tok-definition">type</span>: <span class="tok-string">"text"</span>});
+  <span class="tok-keyword">let</span> <span class="tok-definition">summary</span> = elt(<span class="tok-string">"input"</span>, {<span class="tok-definition">type</span>: <span class="tok-string">"text"</span>});
+  <span class="tok-keyword">return</span> elt(<span class="tok-string">"form"</span>, {
+    <span class="tok-definition">onsubmit</span>(<span class="tok-definition">event</span>) {
+      event.preventDefault();
+      dispatch({<span class="tok-definition">type</span>: <span class="tok-string">"newTalk"</span>,
+                <span class="tok-definition">title</span>: title.value,
+                <span class="tok-definition">summary</span>: summary.value});
+      event.target.reset();
+    }
+  }, elt(<span class="tok-string">"h3"</span>, <span class="tok-keyword">null</span>, <span class="tok-string">"Enviar una charla"</span>),
+     elt(<span class="tok-string">"label"</span>, <span class="tok-keyword">null</span>, <span class="tok-string">"Título: "</span>, title),
+     elt(<span class="tok-string">"label"</span>, <span class="tok-keyword">null</span>, <span class="tok-string">"Resumen: "</span>, summary),
+     elt(<span class="tok-string">"button"</span>, {<span class="tok-definition">type</span>: <span class="tok-string">"submit"</span>}, <span class="tok-string">"Enviar"</span>));
+}</pre>
+
+<h3><a class="i_ident" id="i-J1GeO6SRk6" href="https://www.eloquentjavascript.es/21_skillsharing.html#i-J1GeO6SRk6" tabindex="-1" role="presentation"></a>Sondeo</h3>
+
+<p><a class="p_ident" id="p-qSoi5wePE3" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-qSoi5wePE3" tabindex="-1" role="presentation"></a>Para iniciar la aplicación necesitamos la lista actual de charlas. Dado que la carga inicial está estrechamente relacionada con el proceso de sondeo prolongado, el <code>ETag</code> de la carga debe ser utilizado al sondear, escribiremos una función que siga sondeando al servidor en busca de <code>/charlas</code> y llame a una función de devolución de llamada cuando un nuevo conjunto de charlas esté disponible.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-k+Yrvp6Xiy" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-k+Yrvp6Xiy" tabindex="-1" role="presentation"></a><span class="tok-keyword">async</span> <span class="tok-keyword">function</span> <span class="tok-definition">pollTalks</span>(<span class="tok-definition">update</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">tag</span> = undefined;
+  <span class="tok-keyword">for</span> (;;) {
+    <span class="tok-keyword">let</span> <span class="tok-definition">response</span>;
+    <span class="tok-keyword">try</span> {
+      response = <span class="tok-keyword">await</span> fetchOK(<span class="tok-string">"/charlas"</span>, {
+        <span class="tok-definition">headers</span>: tag &amp;&amp; {<span class="tok-string">"If-None-Match"</span>: tag,
+                         <span class="tok-string">"Prefer"</span>: <span class="tok-string">"wait=90"</span>}
+      });
+    } <span class="tok-keyword">catch</span> (<span class="tok-definition">e</span>) {
+      console.log(<span class="tok-string">"La solicitud falló: "</span> + e);
+      <span class="tok-keyword">await</span> <span class="tok-keyword">new</span> Promise(<span class="tok-definition">resolve</span> =&gt; setTimeout(resolve, <span class="tok-number">500</span>));
+      <span class="tok-keyword">continue</span>;
+    }
+    <span class="tok-keyword">if</span> (response.status == <span class="tok-number">304</span>) <span class="tok-keyword">continue</span>;
+    tag = response.headers.get(<span class="tok-string">"ETag"</span>);
+    update(<span class="tok-keyword">await</span> response.json());
+  }
+}</pre>
+
+<p><a class="p_ident" id="p-iXkxvTCO59" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-iXkxvTCO59" tabindex="-1" role="presentation"></a>Esta es una función <code>async</code> para facilitar el bucle y la espera de la solicitud. Ejecuta un bucle infinito que, en cada iteración, recupera la lista de charlas, ya sea normalmente o, si esta no es la primera solicitud, con las cabeceras incluidas que la convierten en una solicitud de sondeo prolongado.</p>
+
+<p><a class="p_ident" id="p-2TjP6xQV7g" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-2TjP6xQV7g" tabindex="-1" role="presentation"></a>Cuando una solicitud falla, la función espera un momento y luego intenta nuevamente. De esta manera, si tu conexión de red se interrumpe por un tiempo y luego vuelve, la aplicación puede recuperarse y continuar actualizándose. La promesa resuelta a través de <code>setTimeout</code> es una forma de forzar a la función <code>async</code> a esperar.</p>
+
+<p><a class="p_ident" id="p-jL8JC5aQsh" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-jL8JC5aQsh" tabindex="-1" role="presentation"></a>Cuando el servidor devuelve una respuesta 304, eso significa que una solicitud de intercambio de larga duración expiró, por lo que la función debería comenzar inmediatamente la siguiente solicitud. Si la respuesta es un estado 200 normal, su cuerpo se lee como JSON y se pasa a la devolución de llamada, y el valor del encabezado <code>ETag</code> se almacena para la próxima iteración.</p>
+
+<h3><a class="i_ident" id="i-dYAceDsj0Z" href="https://www.eloquentjavascript.es/21_skillsharing.html#i-dYAceDsj0Z" tabindex="-1" role="presentation"></a>La aplicación</h3>
+
+<p><a class="p_ident" id="p-LFDIQcKx5s" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-LFDIQcKx5s" tabindex="-1" role="presentation"></a>El siguiente componente une toda la interfaz de usuario:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-PzYGJXojtl" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-PzYGJXojtl" tabindex="-1" role="presentation"></a><span class="tok-keyword">class</span> SkillShareApp {
+  <span class="tok-definition">constructor</span>(<span class="tok-definition">state</span>, <span class="tok-definition">dispatch</span>) {
+    <span class="tok-keyword">this</span>.dispatch = dispatch;
+    <span class="tok-keyword">this</span>.talkDOM = elt(<span class="tok-string">"div"</span>, {<span class="tok-definition">className</span>: <span class="tok-string">"talks"</span>});
+    <span class="tok-keyword">this</span>.dom = elt(<span class="tok-string">"div"</span>, <span class="tok-keyword">null</span>,
+                   renderUserField(state.user, dispatch),
+                   <span class="tok-keyword">this</span>.talkDOM,
+                   renderTalkForm(dispatch));
+    <span class="tok-keyword">this</span>.syncState(state);
+  }
+
+  <span class="tok-definition">syncState</span>(<span class="tok-definition">state</span>) {
+    <span class="tok-keyword">if</span> (state.talks != <span class="tok-keyword">this</span>.talks) {
+      <span class="tok-keyword">this</span>.talkDOM.textContent = <span class="tok-string">""</span>;
+      <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">talk</span> <span class="tok-keyword">of</span> state.talks) {
+        <span class="tok-keyword">this</span>.talkDOM.appendChild(
+          renderTalk(talk, <span class="tok-keyword">this</span>.dispatch));
+      }
+      <span class="tok-keyword">this</span>.talks = state.talks;
+    }
+  }
+}</pre>
+
+<p><a class="p_ident" id="p-Q8LoG2UUP1" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-Q8LoG2UUP1" tabindex="-1" role="presentation"></a>Cuando las charlas cambian, este componente las vuelve a dibujar todas. Esto es simple pero también derrochador. Hablaremos sobre eso en los ejercicios.</p>
+
+<p><a class="p_ident" id="p-CNi4dF2DTL" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-CNi4dF2DTL" tabindex="-1" role="presentation"></a>Podemos iniciar la aplicación de esta manera:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-6Z6pm4dZOv" href="https://www.eloquentjavascript.es/21_skillsharing.html#c-6Z6pm4dZOv" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">runApp</span>() {
+  <span class="tok-keyword">let</span> <span class="tok-definition">user</span> = localStorage.getItem(<span class="tok-string">"userName"</span>) || <span class="tok-string">"Anon"</span>;
+  <span class="tok-keyword">let</span> <span class="tok-definition">state</span>, <span class="tok-definition">app</span>;
+  <span class="tok-keyword">function</span> <span class="tok-definition">dispatch</span>(<span class="tok-definition">action</span>) {
+    state = handleAction(state, action);
+    app.syncState(state);
+  }
+
+  pollTalks(<span class="tok-definition">talks</span> =&gt; {
+    <span class="tok-keyword">if</span> (!app) {
+      state = {<span class="tok-definition">user</span>, <span class="tok-definition">talks</span>};
+      app = <span class="tok-keyword">new</span> SkillShareApp(state, dispatch);
+      document.body.appendChild(app.dom);
+    } <span class="tok-keyword">else</span> {
+      dispatch({<span class="tok-definition">type</span>: <span class="tok-string">"setTalks"</span>, <span class="tok-definition">talks</span>});
+    }
+  }).catch(reportError);
+}
+
+runApp();</pre>
+
+<p><a class="p_ident" id="p-NkyF0QYQ6t" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-NkyF0QYQ6t" tabindex="-1" role="presentation"></a>Si ejecutas el servidor y abres dos ventanas del navegador para <a href="http://localhost:8000/"><em>http://localhost:8000</em></a> una al lado de la otra, puedes ver que las acciones que realizas en una ventana son inmediatamente visibles en la otra.</p>
+
+<h2><a class="h_ident" id="h-tkm7ntLto1" href="https://www.eloquentjavascript.es/21_skillsharing.html#h-tkm7ntLto1" tabindex="-1" role="presentation"></a>Ejercicios</h2>
+
+<p><a class="p_ident" id="p-t80LR1aRtP" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-t80LR1aRtP" tabindex="-1" role="presentation"></a>Los siguientes ejercicios implicarán modificar el sistema definido en este capítulo. Para trabajar en ellos, asegúrate de descargar primero el código (<a href="https://eloquentjavascript.net/code/skillsharing.zip"><em>https://eloquentjavascript.net/code/skillsharing.zip</em></a>), tener Node instalado (<a href="https://nodejs.org/"><em>https://nodejs.org</em></a>), e instalar la dependencia del proyecto con <code>npm install</code>.</p>
+
+<h3><a class="i_ident" id="i-Wzk4TuX1PT" href="https://www.eloquentjavascript.es/21_skillsharing.html#i-Wzk4TuX1PT" tabindex="-1" role="presentation"></a>Persistencia en disco</h3>
+
+<p><a class="p_ident" id="p-ZLeedVXBoa" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-ZLeedVXBoa" tabindex="-1" role="presentation"></a>El servidor de intercambio de habilidades mantiene sus datos puramente en memoria. Esto significa que cuando se produce un fallo o se reinicia por cualquier motivo, se pierden todas las charlas y comentarios.</p>
+
+<p><a class="p_ident" id="p-vXZfoI1M8e" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-vXZfoI1M8e" tabindex="-1" role="presentation"></a>Extiende el servidor para que almacene los datos de las charlas en disco y vuelva a cargar automáticamente los datos cuando se reinicie. No te preocupes por la eficiencia, haz lo más simple que funcione.</p>
+
+<details class="solution"><summary>Mostrar pistas...</summary><div class="solution-text">
+
+<p><a class="p_ident" id="p-sZqaaJ9i56" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-sZqaaJ9i56" tabindex="-1" role="presentation"></a>La solución más simple que se me ocurre es codificar todo el objeto <code>talks</code> como JSON y volcarlo en un archivo con <code>writeFile</code>. Ya existe un método (<code>updated</code>) que se llama cada vez que cambian los datos del servidor. Se puede ampliar para escribir los nuevos datos en el disco.</p>
+
+<p><a class="p_ident" id="p-UDrUMk3v6j" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-UDrUMk3v6j" tabindex="-1" role="presentation"></a>Elige un nombre de archivo, por ejemplo <code>./talks.json</code>. Cuando el servidor se inicie, puede intentar leer ese archivo con <code>readFile</code>, y si tiene éxito, el servidor puede usar el contenido del archivo como sus datos iniciales.</p>
+
+</div></details>
+
+<h3><a class="i_ident" id="i-E0mEUMJc+G" href="https://www.eloquentjavascript.es/21_skillsharing.html#i-E0mEUMJc+G" tabindex="-1" role="presentation"></a>Restablecimiento del campo de comentarios</h3>
+
+<p><a class="p_ident" id="p-LMd9/ZyRfW" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-LMd9/ZyRfW" tabindex="-1" role="presentation"></a>La remodelación completa de las charlas funciona bastante bien porque generalmente no se puede distinguir entre un nodo de DOM y su sustitución idéntica. Pero hay excepciones. Si empiezas a escribir algo en el campo de comentarios para una charla en una ventana del navegador y luego, en otra, añades un comentario a esa charla, el campo en la primera ventana se volverá a dibujar, eliminando tanto su contenido como su enfoque.</p>
+
+<p><a class="p_ident" id="p-/CzcYyU2Wd" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-/CzcYyU2Wd" tabindex="-1" role="presentation"></a>Cuando varias personas están añadiendo comentarios al mismo tiempo, esto podría resultar molesto. ¿Puedes idear una manera de resolverlo?</p>
+
+<details class="solution"><summary>Mostrar pistas...</summary><div class="solution-text">
+
+<p><a class="p_ident" id="p-DtiTOgpCkK" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-DtiTOgpCkK" tabindex="-1" role="presentation"></a>La mejor manera de hacerlo probablemente sea convertir el componente de la charla en un objeto, con un método <code>syncState</code>, para que se puedan actualizar para mostrar una versión modificada de la charla. Durante el funcionamiento normal, la única forma en que una charla puede cambiar es añadiendo más comentarios, por lo que el método <code>syncState</code> puede ser relativamente sencillo.</p>
+
+<p><a class="p_ident" id="p-LNba5pl/wP" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-LNba5pl/wP" tabindex="-1" role="presentation"></a>La parte difícil es que, cuando llega una lista modificada de charlas, tenemos que conciliar la lista existente de componentes de DOM con las charlas de la nueva lista: eliminar los componentes cuya charla fue eliminada y actualizar los componentes cuya charla cambió.</p>
+
+<p><a class="p_ident" id="p-Weztd66azd" href="https://www.eloquentjavascript.es/21_skillsharing.html#p-Weztd66azd" tabindex="-1" role="presentation"></a>Para hacer esto, podría ser útil mantener una estructura de datos que almacene los componentes de las charlas bajo los títulos de las charlas para que puedas averiguar fácilmente si existe un componente para una charla dada. Luego puedes recorrer la nueva matriz de charlas y, para cada una de ellas, sincronizar un componente existente o crear uno nuevo. Para eliminar los componentes de charlas eliminadas, también tendrás que recorrer los componentes y comprobar si las charlas correspondientes aún existen.</p>
+
+</div></details><nav><a href="https://www.eloquentjavascript.es/20_node.html" title="previous chapter" aria-label="previous chapter">◂</a>&nbsp;<a href="https://www.eloquentjavascript.es/index.html" title="cover" aria-label="cover">●</a>&nbsp;<button class="help" title="help" aria-label="help" style="display: inline;"><strong>?</strong></button>
+</nav>
+</article>
+
+<script src="./Proyecto_ Sitio web de intercambio de habilidades __ Eloquent JavaScript_files/ejs.js.descarga"></script>
+<div><template shadowrootmode="closed"><link rel="stylesheet" href="chrome-extension://lilckelmopbcffmglfmfhelaajhjpcff/assets/index.css"><link rel="stylesheet" href="chrome-extension://lilckelmopbcffmglfmfhelaajhjpcff/assets/anything-copilot.css"><div id="app" data-v-app="" class="dark"><!----><!----><!----><!----><!----><!----><!----><!----></div></template></div></body></html>

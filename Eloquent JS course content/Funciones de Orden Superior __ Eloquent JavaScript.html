@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://www.eloquentjavascript.es/05_higher_order.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Funciones de Orden Superior :: Eloquent JavaScript</title>
+  <link rel="stylesheet" href="./Funciones de Orden Superior __ Eloquent JavaScript_files/ejs.css"><script>
+      var page = {"type":"chapter","number":5,"load_files":["code/scripts.js","code/chapter/05_higher_order.js","code/intro.js"]}</script><style>.swal2-popup.swal2-toast{box-sizing:border-box;grid-column:1/4 !important;grid-row:1/4 !important;grid-template-columns:min-content auto min-content;padding:1em;overflow-y:hidden;background:#fff;box-shadow:0 0 1px rgba(0,0,0,.075),0 1px 2px rgba(0,0,0,.075),1px 2px 4px rgba(0,0,0,.075),1px 3px 8px rgba(0,0,0,.075),2px 4px 16px rgba(0,0,0,.075);pointer-events:all}.swal2-popup.swal2-toast>*{grid-column:2}.swal2-popup.swal2-toast .swal2-title{margin:.5em 1em;padding:0;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-loading{justify-content:center}.swal2-popup.swal2-toast .swal2-input{height:2em;margin:.5em;font-size:1em}.swal2-popup.swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{grid-column:3/3;grid-row:1/99;align-self:center;width:.8em;height:.8em;margin:0;font-size:2em}.swal2-popup.swal2-toast .swal2-html-container{margin:.5em 1em;padding:0;overflow:initial;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-html-container:empty{padding:0}.swal2-popup.swal2-toast .swal2-loader{grid-column:1;grid-row:1/99;align-self:center;width:2em;height:2em;margin:.25em}.swal2-popup.swal2-toast .swal2-icon{grid-column:1;grid-row:1/99;align-self:center;width:2em;min-width:2em;height:2em;margin:0 .5em 0 0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:bold}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{justify-content:flex-start;height:auto;margin:0;margin-top:.5em;padding:0 .5em}.swal2-popup.swal2-toast .swal2-styled{margin:.25em .5em;padding:.4em .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.8em;left:-0.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{animation:swal2-toast-hide .1s forwards}div:where(.swal2-container){display:grid;position:fixed;z-index:1060;inset:0;box-sizing:border-box;grid-template-areas:"top-start     top            top-end" "center-start  center         center-end" "bottom-start  bottom-center  bottom-end";grid-template-rows:minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);height:100%;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}div:where(.swal2-container).swal2-backdrop-show,div:where(.swal2-container).swal2-noanimation{background:rgba(0,0,0,.4)}div:where(.swal2-container).swal2-backdrop-hide{background:rgba(0,0,0,0) !important}div:where(.swal2-container).swal2-top-start,div:where(.swal2-container).swal2-center-start,div:where(.swal2-container).swal2-bottom-start{grid-template-columns:minmax(0, 1fr) auto auto}div:where(.swal2-container).swal2-top,div:where(.swal2-container).swal2-center,div:where(.swal2-container).swal2-bottom{grid-template-columns:auto minmax(0, 1fr) auto}div:where(.swal2-container).swal2-top-end,div:where(.swal2-container).swal2-center-end,div:where(.swal2-container).swal2-bottom-end{grid-template-columns:auto auto minmax(0, 1fr)}div:where(.swal2-container).swal2-top-start>.swal2-popup{align-self:start}div:where(.swal2-container).swal2-top>.swal2-popup{grid-column:2;align-self:start;justify-self:center}div:where(.swal2-container).swal2-top-end>.swal2-popup,div:where(.swal2-container).swal2-top-right>.swal2-popup{grid-column:3;align-self:start;justify-self:end}div:where(.swal2-container).swal2-center-start>.swal2-popup,div:where(.swal2-container).swal2-center-left>.swal2-popup{grid-row:2;align-self:center}div:where(.swal2-container).swal2-center>.swal2-popup{grid-column:2;grid-row:2;align-self:center;justify-self:center}div:where(.swal2-container).swal2-center-end>.swal2-popup,div:where(.swal2-container).swal2-center-right>.swal2-popup{grid-column:3;grid-row:2;align-self:center;justify-self:end}div:where(.swal2-container).swal2-bottom-start>.swal2-popup,div:where(.swal2-container).swal2-bottom-left>.swal2-popup{grid-column:1;grid-row:3;align-self:end}div:where(.swal2-container).swal2-bottom>.swal2-popup{grid-column:2;grid-row:3;justify-self:center;align-self:end}div:where(.swal2-container).swal2-bottom-end>.swal2-popup,div:where(.swal2-container).swal2-bottom-right>.swal2-popup{grid-column:3;grid-row:3;align-self:end;justify-self:end}div:where(.swal2-container).swal2-grow-row>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-column:1/4;width:100%}div:where(.swal2-container).swal2-grow-column>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-row:1/4;align-self:stretch}div:where(.swal2-container).swal2-no-transition{transition:none !important}div:where(.swal2-container) div:where(.swal2-popup){display:none;position:relative;box-sizing:border-box;grid-template-columns:minmax(0, 100%);width:32em;max-width:100%;padding:0 0 1.25em;border:none;border-radius:5px;background:#fff;color:#545454;font-family:inherit;font-size:1rem}div:where(.swal2-container) div:where(.swal2-popup):focus{outline:none}div:where(.swal2-container) div:where(.swal2-popup).swal2-loading{overflow-y:hidden}div:where(.swal2-container) h2:where(.swal2-title){position:relative;max-width:100%;margin:0;padding:.8em 1em 0;color:inherit;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}div:where(.swal2-container) div:where(.swal2-actions){display:flex;z-index:1;box-sizing:border-box;flex-wrap:wrap;align-items:center;justify-content:center;width:auto;margin:1.25em auto 0;padding:0}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))}div:where(.swal2-container) div:where(.swal2-loader){display:none;align-items:center;justify-content:center;width:2.2em;height:2.2em;margin:0 1.875em;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border-width:.25em;border-style:solid;border-radius:100%;border-color:#2778c4 rgba(0,0,0,0) #2778c4 rgba(0,0,0,0)}div:where(.swal2-container) button:where(.swal2-styled){margin:.3125em;padding:.625em 1.1em;transition:box-shadow .1s;box-shadow:0 0 0 3px rgba(0,0,0,0);font-weight:500}div:where(.swal2-container) button:where(.swal2-styled):not([disabled]){cursor:pointer}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#7066e0;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus{box-shadow:0 0 0 3px rgba(112,102,224,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny{border:0;border-radius:.25em;background:initial;background-color:#dc3741;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny:focus{box-shadow:0 0 0 3px rgba(220,55,65,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#6e7881;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel:focus{box-shadow:0 0 0 3px rgba(110,120,129,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:focus{box-shadow:0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-styled):focus{outline:none}div:where(.swal2-container) button:where(.swal2-styled)::-moz-focus-inner{border:0}div:where(.swal2-container) div:where(.swal2-footer){margin:1em 0 0;padding:1em 1em 0;border-top:1px solid #eee;color:inherit;font-size:1em;text-align:center}div:where(.swal2-container) .swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;grid-column:auto !important;overflow:hidden;border-bottom-right-radius:5px;border-bottom-left-radius:5px}div:where(.swal2-container) div:where(.swal2-timer-progress-bar){width:100%;height:.25em;background:rgba(0,0,0,.2)}div:where(.swal2-container) img:where(.swal2-image){max-width:100%;margin:2em auto 1em}div:where(.swal2-container) button:where(.swal2-close){z-index:2;align-items:center;justify-content:center;width:1.2em;height:1.2em;margin-top:0;margin-right:0;margin-bottom:-1.2em;padding:0;overflow:hidden;transition:color .1s,box-shadow .1s;border:none;border-radius:5px;background:rgba(0,0,0,0);color:#ccc;font-family:monospace;font-size:2.5em;cursor:pointer;justify-self:end}div:where(.swal2-container) button:where(.swal2-close):hover{transform:none;background:rgba(0,0,0,0);color:#f27474}div:where(.swal2-container) button:where(.swal2-close):focus{outline:none;box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-close)::-moz-focus-inner{border:0}div:where(.swal2-container) .swal2-html-container{z-index:1;justify-content:center;margin:1em 1.6em .3em;padding:0;overflow:auto;color:inherit;font-size:1.125em;font-weight:normal;line-height:normal;text-align:center;word-wrap:break-word;word-break:break-word}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea),div:where(.swal2-container) select:where(.swal2-select),div:where(.swal2-container) div:where(.swal2-radio),div:where(.swal2-container) label:where(.swal2-checkbox){margin:1em 2em 3px}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea){box-sizing:border-box;width:auto;transition:border-color .1s,box-shadow .1s;border:1px solid #d9d9d9;border-radius:.1875em;background:rgba(0,0,0,0);box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) input:where(.swal2-input).swal2-inputerror,div:where(.swal2-container) input:where(.swal2-file).swal2-inputerror,div:where(.swal2-container) textarea:where(.swal2-textarea).swal2-inputerror{border-color:#f27474 !important;box-shadow:0 0 2px #f27474 !important}div:where(.swal2-container) input:where(.swal2-input):focus,div:where(.swal2-container) input:where(.swal2-file):focus,div:where(.swal2-container) textarea:where(.swal2-textarea):focus{border:1px solid #b4dbed;outline:none;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) input:where(.swal2-input)::placeholder,div:where(.swal2-container) input:where(.swal2-file)::placeholder,div:where(.swal2-container) textarea:where(.swal2-textarea)::placeholder{color:#ccc}div:where(.swal2-container) .swal2-range{margin:1em 2em 3px;background:#fff}div:where(.swal2-container) .swal2-range input{width:80%}div:where(.swal2-container) .swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}div:where(.swal2-container) .swal2-range input,div:where(.swal2-container) .swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}div:where(.swal2-container) .swal2-input{height:2.625em;padding:0 .75em}div:where(.swal2-container) .swal2-file{width:75%;margin-right:auto;margin-left:auto;background:rgba(0,0,0,0);font-size:1.125em}div:where(.swal2-container) .swal2-textarea{height:6.75em;padding:.75em}div:where(.swal2-container) .swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) .swal2-radio,div:where(.swal2-container) .swal2-checkbox{align-items:center;justify-content:center;background:#fff;color:inherit}div:where(.swal2-container) .swal2-radio label,div:where(.swal2-container) .swal2-checkbox label{margin:0 .6em;font-size:1.125em}div:where(.swal2-container) .swal2-radio input,div:where(.swal2-container) .swal2-checkbox input{flex-shrink:0;margin:0 .4em}div:where(.swal2-container) label:where(.swal2-input-label){display:flex;justify-content:center;margin:1em auto 0}div:where(.swal2-container) div:where(.swal2-validation-message){align-items:center;justify-content:center;margin:1em 0 0;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}div:where(.swal2-container) div:where(.swal2-validation-message)::before{content:"!";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}div:where(.swal2-container) .swal2-progress-steps{flex-wrap:wrap;align-items:center;max-width:100%;margin:1.25em auto;padding:0;background:rgba(0,0,0,0);font-weight:600}div:where(.swal2-container) .swal2-progress-steps li{display:inline-block;position:relative}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step{z-index:20;flex-shrink:0;width:2em;height:2em;border-radius:2em;background:#2778c4;color:#fff;line-height:2em;text-align:center}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#2778c4}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step-line{z-index:10;flex-shrink:0;width:2.5em;height:.4em;margin:0 -1px;background:#2778c4}div:where(.swal2-icon){position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:2.5em auto .6em;border:0.25em solid rgba(0,0,0,0);border-radius:50%;border-color:#000;font-family:inherit;line-height:5em;cursor:default;user-select:none}div:where(.swal2-icon) .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}div:where(.swal2-icon).swal2-error{border-color:#f27474;color:#f27474}div:where(.swal2-icon).swal2-error .swal2-x-mark{position:relative;flex-grow:1}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-error.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-error.swal2-icon-show .swal2-x-mark{animation:swal2-animate-error-x-mark .5s}div:where(.swal2-icon).swal2-warning{border-color:#facea8;color:#f8bb86}div:where(.swal2-icon).swal2-warning.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-warning.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .5s}div:where(.swal2-icon).swal2-info{border-color:#9de0f6;color:#3fc3ee}div:where(.swal2-icon).swal2-info.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-info.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .8s}div:where(.swal2-icon).swal2-question{border-color:#c9dae1;color:#87adbd}div:where(.swal2-icon).swal2-question.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-question.swal2-icon-show .swal2-icon-content{animation:swal2-animate-question-mark .8s}div:where(.swal2-icon).swal2-success{border-color:#a5dc86;color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;transform:rotate(45deg);border-radius:50%}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}div:where(.swal2-icon).swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-0.25em;left:-0.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}div:where(.swal2-icon).swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-animate-success-line-tip .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-animate-success-line-long .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-line-right{animation:swal2-rotate-success-circular-line 4.25s ease-in}[class^=swal2]{-webkit-tap-highlight-color:rgba(0,0,0,0)}.swal2-show{animation:swal2-show .3s}.swal2-hide{animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{margin-right:initial;margin-left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}@keyframes swal2-toast-show{0%{transform:translateY(-0.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(0.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0deg)}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-0.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-show{0%{transform:scale(0.7)}45%{transform:scale(1.05)}80%{transform:scale(0.95)}100%{transform:scale(1)}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(0.5);opacity:0}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-0.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(0.4);opacity:0}50%{margin-top:1.625em;transform:scale(0.4);opacity:0}80%{margin-top:-0.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0deg);opacity:1}}@keyframes swal2-rotate-loading{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}@keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto !important}body.swal2-no-backdrop .swal2-container{background-color:rgba(0,0,0,0) !important;pointer-events:none}body.swal2-no-backdrop .swal2-container .swal2-popup{pointer-events:all}body.swal2-no-backdrop .swal2-container .swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll !important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static !important}}body.swal2-toast-shown .swal2-container{box-sizing:border-box;width:360px;max-width:100%;background-color:rgba(0,0,0,0);pointer-events:none}body.swal2-toast-shown .swal2-container.swal2-top{inset:0 auto auto 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{inset:0 0 auto auto}body.swal2-toast-shown .swal2-container.swal2-top-start,body.swal2-toast-shown .swal2-container.swal2-top-left{inset:0 auto auto 0}body.swal2-toast-shown .swal2-container.swal2-center-start,body.swal2-toast-shown .swal2-container.swal2-center-left{inset:50% auto auto 0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{inset:50% auto auto 50%;transform:translate(-50%, -50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{inset:50% 0 auto auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-start,body.swal2-toast-shown .swal2-container.swal2-bottom-left{inset:auto auto 0 0}body.swal2-toast-shown .swal2-container.swal2-bottom{inset:auto auto 0 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{inset:auto 0 0 auto}</style></head>
+
+<body><article>
+<nav><a href="https://www.eloquentjavascript.es/04_data.html" title="previous chapter" aria-label="previous chapter">◂</a>&nbsp;<a href="https://www.eloquentjavascript.es/index.html" title="cover" aria-label="cover">●</a>&nbsp;<a href="https://www.eloquentjavascript.es/06_object.html" title="next chapter" aria-label="next chapter">▸</a>&nbsp;<button class="help" title="help" aria-label="help" style="display: inline;"><strong>?</strong></button>
+</nav>
+
+<h1>Funciones de Orden Superior</h1>
+
+<p><a class="p_ident" id="p-vkRKropLCL" href="https://www.eloquentjavascript.es/05_higher_order.html#p-vkRKropLCL" tabindex="-1" role="presentation"></a><em>“Hay dos formas de construir un diseño de software: Una forma es hacerlo tan simple que obviamente no haya deficiencias, y la otra forma es hacerlo tan complicado que no haya deficiencias obvias.”</em></p>
+
+<p><a class="p_ident" id="p-rComRYoME7" href="https://www.eloquentjavascript.es/05_higher_order.html#p-rComRYoME7" tabindex="-1" role="presentation"></a>— C.A.R. Hoare, <em>Discurso de Recepción del Premio Turing de la ACM de 1980</em></p>
+
+<p><a class="p_ident" id="p-UkjkuKBNDn" href="https://www.eloquentjavascript.es/05_higher_order.html#p-UkjkuKBNDn" tabindex="-1" role="presentation"></a>Un programa grande es un programa costoso, y no solo por el tiempo que lleva construirlo. El tamaño casi siempre implica complejidad, y la complejidad confunde a los programadores. Los programadores confundidos, a su vez, introducen errores (<em>bugs</em>) en los programas. Un programa grande proporciona mucho espacio para que estos errores se escondan, lo que los hace difíciles de encontrar.</p>
+
+<p><a class="p_ident" id="p-JH/k/etNiT" href="https://www.eloquentjavascript.es/05_higher_order.html#p-JH/k/etNiT" tabindex="-1" role="presentation"></a>Volviendo brevemente a los dos ejemplos finales de programas en la introducción. El primero es autocontenido y tiene seis líneas:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-uIkg9pj99q" href="https://www.eloquentjavascript.es/05_higher_order.html#c-uIkg9pj99q" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">total</span> = <span class="tok-number">0</span>, <span class="tok-definition">count</span> = <span class="tok-number">1</span>;
+<span class="tok-keyword">while</span> (count &lt;= <span class="tok-number">10</span>) {
+  total += count;
+  count += <span class="tok-number">1</span>;
+}
+console.log(total);</pre>
+
+<p><a class="p_ident" id="p-XpPbbvrjf7" href="https://www.eloquentjavascript.es/05_higher_order.html#p-XpPbbvrjf7" tabindex="-1" role="presentation"></a>El segundo depende de dos funciones externas y tiene una línea:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-pxsnyeb5dE" href="https://www.eloquentjavascript.es/05_higher_order.html#c-pxsnyeb5dE" tabindex="-1" role="presentation"></a>console.log(suma(rango(<span class="tok-number">1</span>, <span class="tok-number">10</span>)));</pre>
+
+<p><a class="p_ident" id="p-mQkKtUTj8f" href="https://www.eloquentjavascript.es/05_higher_order.html#p-mQkKtUTj8f" tabindex="-1" role="presentation"></a>¿Cuál es más probable que contenga un error?</p>
+
+<p><a class="p_ident" id="p-kr8iBt6cDE" href="https://www.eloquentjavascript.es/05_higher_order.html#p-kr8iBt6cDE" tabindex="-1" role="presentation"></a>Si contamos el tamaño de las definiciones de <code>suma</code> y <code>rango</code>, el segundo programa también es grande, incluso más que el primero. Pero, aún así, argumentaría que es más probable que sea correcto.</p>
+
+<p><a class="p_ident" id="p-sdRHhhOglU" href="https://www.eloquentjavascript.es/05_higher_order.html#p-sdRHhhOglU" tabindex="-1" role="presentation"></a>Esto se debe a que la solución se expresa en un vocabulary que corresponde al problema que se está resolviendo. Sumar un rango de números no se trata de bucles y contadores. Se trata de rangos y sumas.</p>
+
+<p><a class="p_ident" id="p-ZVaOtVwzgJ" href="https://www.eloquentjavascript.es/05_higher_order.html#p-ZVaOtVwzgJ" tabindex="-1" role="presentation"></a>Las definiciones de este vocabulario (las funciones <code>suma</code> y <code>rango</code>) seguirán involucrando bucles, contadores y otros detalles incidentales. Pero debido a que expresan conceptos más simples que el programa en su totalidad, son más fáciles de hacer correctamente.</p>
+
+<h2><a class="h_ident" id="h-jeqhU5hoax" href="https://www.eloquentjavascript.es/05_higher_order.html#h-jeqhU5hoax" tabindex="-1" role="presentation"></a>Abstracción</h2>
+
+<p><a class="p_ident" id="p-b96WneVaDi" href="https://www.eloquentjavascript.es/05_higher_order.html#p-b96WneVaDi" tabindex="-1" role="presentation"></a>En el contexto de la programación, este tipo de vocabularios se suelen llamar <em>abstractions</em>. Las abstracciones nos brindan la capacidad de hablar sobre problemas a un nivel superior (o más abstracto), sin distraernos con detalles no interesantes.</p>
+
+<p><a class="p_ident" id="p-vujVr5jCqZ" href="https://www.eloquentjavascript.es/05_higher_order.html#p-vujVr5jCqZ" tabindex="-1" role="presentation"></a>Como analogía, compara estas dos recetas de sopa de guisantes. La primera es así:</p>
+
+<p><a class="p_ident" id="p-fxkqqXVuPN" href="https://www.eloquentjavascript.es/05_higher_order.html#p-fxkqqXVuPN" tabindex="-1" role="presentation"></a>_”Pon 1 taza de guisantes secos por persona en un recipiente. Agrega agua hasta que los guisantes estén bien cubiertos. Deja los guisantes en agua durante al menos 12 horas. Saca los guisantes del agua y ponlos en una olla. Agrega 4 tazas de agua por persona. Cubre la olla y deja que los guisantes hiervan a fuego lento durante dos horas. Toma media cebolla por persona. Córtala en trozos con un cuchillo. Agrégala a los guisantes. Toma un tallo de apio por persona. Córtalo en trozos con un cuchillo. Agrégalo a los guisantes. Toma una zanahoria por persona. ¡Córtala en trozos! ¡Con un cuchillo! Agrégala a los guisantes. Cocina durante 10 minutos más.”_Cita:</p>
+
+<p><a class="p_ident" id="p-dL6mnA4R6A" href="https://www.eloquentjavascript.es/05_higher_order.html#p-dL6mnA4R6A" tabindex="-1" role="presentation"></a>Y esta es la segunda receta:</p>
+
+<p><a class="p_ident" id="p-tZ51jSgceM" href="https://www.eloquentjavascript.es/05_higher_order.html#p-tZ51jSgceM" tabindex="-1" role="presentation"></a>Por persona: 1 taza de guisantes partidos secos, 4 tazas de agua, media cebolla picada, un tallo de apio y una zanahoria.</p>
+
+<p><a class="p_ident" id="p-pWLdoICo3H" href="https://www.eloquentjavascript.es/05_higher_order.html#p-pWLdoICo3H" tabindex="-1" role="presentation"></a>Remoja los guisantes durante 12 horas. Cocina a fuego lento durante 2 horas. Pica y agrega las verduras. Cocina durante 10 minutos más.</p>
+
+<p><a class="p_ident" id="p-TaRmoVsqmE" href="https://www.eloquentjavascript.es/05_higher_order.html#p-TaRmoVsqmE" tabindex="-1" role="presentation"></a>El segundo es más corto y más fácil de interpretar. Pero necesitas entender algunas palabras más relacionadas con la cocina, como <em>remojar</em>, <em>cocinar a fuego lento</em>, <em>picar</em>, y, supongo, <em>verdura</em>.</p>
+
+<p><a class="p_ident" id="p-qhHkdQl/il" href="https://www.eloquentjavascript.es/05_higher_order.html#p-qhHkdQl/il" tabindex="-1" role="presentation"></a>Cuando se programa, no podemos depender de que todas las palabras que necesitamos estén esperándonos en el diccionario. Por lo tanto, podríamos caer en el patrón de la primera receta: trabajar en los pasos precisos que la computadora tiene que realizar, uno por uno, ciegos a los conceptos de más alto nivel que expresan.</p>
+
+<p><a class="p_ident" id="p-NUMaFMlENr" href="https://www.eloquentjavascript.es/05_higher_order.html#p-NUMaFMlENr" tabindex="-1" role="presentation"></a>Abstraer la repetición</p>
+
+<p><a class="p_ident" id="p-+yKMsSOH6s" href="https://www.eloquentjavascript.es/05_higher_order.html#p-+yKMsSOH6s" tabindex="-1" role="presentation"></a>Las funciones simples, como las hemos visto hasta ahora, son una buena manera de construir abstracciones. Pero a veces se quedan cortas.</p>
+
+<p><a class="p_ident" id="p-S9ZNhpazRV" href="https://www.eloquentjavascript.es/05_higher_order.html#p-S9ZNhpazRV" tabindex="-1" role="presentation"></a>Es común que un programa haga algo un número determinado de veces. Puedes escribir un <code>for</code> para eso, así:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-5c+C2+9IG1" href="https://www.eloquentjavascript.es/05_higher_order.html#c-5c+C2+9IG1" tabindex="-1" role="presentation"></a><span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">i</span> = <span class="tok-number">0</span>; i &lt; <span class="tok-number">10</span>; i++) {
+  console.log(i);
+}</pre>
+
+<p><a class="p_ident" id="p-mYLOzu14uu" href="https://www.eloquentjavascript.es/05_higher_order.html#p-mYLOzu14uu" tabindex="-1" role="presentation"></a>¿Podemos abstraer “hacer algo <em>N</em> veces” como una función? Bueno, es fácil escribir una función que llame a <code>console.log</code> <em>N</em> veces:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-/gKhlra9P+" href="https://www.eloquentjavascript.es/05_higher_order.html#c-/gKhlra9P+" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">repeatLog</span>(<span class="tok-definition">n</span>) {
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">i</span> = <span class="tok-number">0</span>; i &lt; n; i++) {
+    console.log(i);
+  }
+}</pre>
+
+<p><a class="p_ident" id="p-aHRJYV9dtZ" href="https://www.eloquentjavascript.es/05_higher_order.html#p-aHRJYV9dtZ" tabindex="-1" role="presentation"></a>¿Y si queremos hacer algo que no sea solo registrar los números? Dado que “hacer algo” se puede representar como una función y las funciones son solo valores, podemos pasar nuestra acción como un valor de función:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-7IqCeYcKwP" href="https://www.eloquentjavascript.es/05_higher_order.html#c-7IqCeYcKwP" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">repetir</span>(<span class="tok-definition">n</span>, <span class="tok-definition">action</span>) {
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">i</span> = <span class="tok-number">0</span>; i &lt; n; i++) {
+    action(i);
+  }
+}
+
+repetir(<span class="tok-number">3</span>, console.log);
+<span class="tok-comment">// → 0</span>
+<span class="tok-comment">// → 1</span>
+<span class="tok-comment">// → 2</span></pre>
+
+<p><a class="p_ident" id="p-MZU1WHGlo3" href="https://www.eloquentjavascript.es/05_higher_order.html#p-MZU1WHGlo3" tabindex="-1" role="presentation"></a>No tenemos que pasar una función predefinida a <code>repetir</code>. A menudo, es más fácil crear un valor de función en el momento:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-s8RST25oGA" href="https://www.eloquentjavascript.es/05_higher_order.html#c-s8RST25oGA" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">etiquetas</span> = [];
+repetir(<span class="tok-number">5</span>, <span class="tok-definition">i</span> =&gt; {
+  etiquetas.push(<span class="tok-string2">`Unidad </span>${i + <span class="tok-number">1</span>}<span class="tok-string2">`</span>);
+});
+console.log(etiquetas);
+<span class="tok-comment">// → ["Unidad 1", "Unidad 2", "Unidad 3", "Unidad 4", "Unidad 5"]</span></pre>
+
+<p><a class="p_ident" id="p-ZaxR2WEHob" href="https://www.eloquentjavascript.es/05_higher_order.html#p-ZaxR2WEHob" tabindex="-1" role="presentation"></a>Esto está estructurado un poco como un <code>for</code> loop: primero describe el tipo de loop y luego proporciona un cuerpo. Sin embargo, el cuerpo ahora está escrito como un valor de función, que está envuelto entre los paréntesis de la llamada a <code>repetir</code>. Por eso tiene que cerrarse con el corchete de cierre y el paréntesis de cierre. En casos como este ejemplo donde el cuerpo es una sola expresión pequeña, también podrías omitir los corchetes y escribir el bucle en una sola línea.</p>
+
+<p><a class="p_ident" id="p-sBm/RoOmVE" href="https://www.eloquentjavascript.es/05_higher_order.html#p-sBm/RoOmVE" tabindex="-1" role="presentation"></a>Funciones de orden superior</p>
+
+<p><a class="p_ident" id="p-mB+p2eklnH" href="https://www.eloquentjavascript.es/05_higher_order.html#p-mB+p2eklnH" tabindex="-1" role="presentation"></a>Las funciones que operan en otras funciones, ya sea tomandolas como argumentos o devolviéndolas, se llaman <em>funciones de orden superior</em>. Dado que ya hemos visto que las funciones son valores regulares, no hay nada particularmente notable sobre el hecho de que existan tales funciones. El término proviene de las matemáticas, donde se toma más en serio la distinción entre funciones y otros valores.</p>
+
+<p><a class="p_ident" id="p-sGlpxAbe6R" href="https://www.eloquentjavascript.es/05_higher_order.html#p-sGlpxAbe6R" tabindex="-1" role="presentation"></a>Las funciones de orden superior nos permiten abstraer sobre <em>acciones</em>, no solo sobre valores. Vienen en varias formas. Por ejemplo, podemos tener funciones que crean nuevas funciones:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-yl26zgd/Q+" href="https://www.eloquentjavascript.es/05_higher_order.html#c-yl26zgd/Q+" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">mayorQue</span>(<span class="tok-definition">n</span>) {
+  <span class="tok-keyword">return</span> <span class="tok-definition">m</span> =&gt; m &gt; n;
+}
+<span class="tok-keyword">let</span> <span class="tok-definition">mayorQue10</span> = mayorQue(<span class="tok-number">10</span>);
+console.log(mayorQue10(<span class="tok-number">11</span>));
+<span class="tok-comment">// → true</span></pre>
+
+<p><a class="p_ident" id="p-ZzQufg6k7a" href="https://www.eloquentjavascript.es/05_higher_order.html#p-ZzQufg6k7a" tabindex="-1" role="presentation"></a>También podemos tener funciones que modifican otras funciones:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-x5IWKK9iS2" href="https://www.eloquentjavascript.es/05_higher_order.html#c-x5IWKK9iS2" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">ruidosa</span>(<span class="tok-definition">f</span>) {
+  <span class="tok-keyword">return</span> (...<span class="tok-definition">args</span>) =&gt; {
+    console.log(<span class="tok-string">"llamando con"</span>, args);
+    <span class="tok-keyword">let</span> <span class="tok-definition">resultado</span> = f(...args);
+    console.log(<span class="tok-string">"llamado con"</span>, args, <span class="tok-string">", devolvió"</span>, resultado);
+    <span class="tok-keyword">return</span> resultado;
+  };
+}
+ruidosa(Math.min)(<span class="tok-number">3</span>, <span class="tok-number">2</span>, <span class="tok-number">1</span>);
+<span class="tok-comment">// → llamando con [3, 2, 1]</span>
+<span class="tok-comment">// → llamado con [3, 2, 1] , devolvió 1</span></pre>
+
+<p><a class="p_ident" id="p-XsceS57yr8" href="https://www.eloquentjavascript.es/05_higher_order.html#p-XsceS57yr8" tabindex="-1" role="presentation"></a>Incluso podemos escribir funciones que proveen nuevos tipos de flujo de control:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-nuRXUnBX/r" href="https://www.eloquentjavascript.es/05_higher_order.html#c-nuRXUnBX/r" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">aMenosQue</span>(<span class="tok-definition">prueba</span>, <span class="tok-definition">entonces</span>) {
+  <span class="tok-keyword">if</span> (!prueba) entonces();
+}
+
+repetir(<span class="tok-number">3</span>, <span class="tok-definition">n</span> =&gt; {
+  aMenosQue(n % <span class="tok-number">2</span> == <span class="tok-number">1</span>, () =&gt; {
+    console.log(n, <span class="tok-string">"es par"</span>);
+  });
+});
+<span class="tok-comment">// → 0 es par</span>
+<span class="tok-comment">// → 2 es par</span></pre>
+
+<p><a class="p_ident" id="p-Zjga2rFofq" href="https://www.eloquentjavascript.es/05_higher_order.html#p-Zjga2rFofq" tabindex="-1" role="presentation"></a>Existe un método incorporado de arrays, <code>forEach</code>, que proporciona algo similar a un bucle <code>for</code>/<code>of</code> como una función de orden superior:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-v9jL6NafRj" href="https://www.eloquentjavascript.es/05_higher_order.html#c-v9jL6NafRj" tabindex="-1" role="presentation"></a>[<span class="tok-string">"A"</span>, <span class="tok-string">"B"</span>].forEach(<span class="tok-definition">l</span> =&gt; console.log(l));
+<span class="tok-comment">// → A</span>
+<span class="tok-comment">// → B</span></pre>
+
+<h2 id="scripts"><a class="h_ident" id="h-1WwJcQwjxW" href="https://www.eloquentjavascript.es/05_higher_order.html#h-1WwJcQwjxW" tabindex="-1" role="presentation"></a>Conjunto de datos de script</h2>
+
+<p><a class="p_ident" id="p-nLcvnbV7JQ" href="https://www.eloquentjavascript.es/05_higher_order.html#p-nLcvnbV7JQ" tabindex="-1" role="presentation"></a>Un área donde las funciones de orden superior destacan es en el procesamiento de datos. Para procesar datos, necesitaremos algunos ejemplos de datos reales. Este capítulo utilizará un conjunto de datos sobre scripts—sistemas de escritura tales como el latín, cirílico o árabe.</p>
+
+<p><a class="p_ident" id="p-QWRc3oEeB3" href="https://www.eloquentjavascript.es/05_higher_order.html#p-QWRc3oEeB3" tabindex="-1" role="presentation"></a>¿Recuerdas Unicode del <a href="https://www.eloquentjavascript.es/01_values.html#unicode">Capítulo 1</a>, el sistema que asigna un número a cada carácter en lenguaje escrito? La mayoría de estos caracteres están asociados con un script específico. El estándar contiene 140 scripts diferentes, de los cuales 81 aún se utilizan hoy en día y 59 son históricos.</p>
+
+<p><a class="p_ident" id="p-Y+uBE+NY1X" href="https://www.eloquentjavascript.es/05_higher_order.html#p-Y+uBE+NY1X" tabindex="-1" role="presentation"></a>Aunque solo puedo leer con fluidez caracteres latinos, aprecio el hecho de que las personas estén escribiendo textos en al menos otros 80 sistemas de escritura, muchos de los cuales ni siquiera reconocería. Por ejemplo, aquí tienes una muestra de escritura Tamil:</p><figure><img src="./Funciones de Orden Superior __ Eloquent JavaScript_files/tamil.png" alt="Una línea de verso en escritura Tamil. Los caracteres son relativamente simples y separados ordenadamente, pero completamente diferentes de los caracteres latinos."></figure>
+
+<p><a class="p_ident" id="p-JQFACqGSut" href="https://www.eloquentjavascript.es/05_higher_order.html#p-JQFACqGSut" tabindex="-1" role="presentation"></a>El ejemplo del conjunto de datos contiene algunas piezas de información sobre los 140 scripts definidos en Unicode. Está disponible en el <a href="https://eloquentjavascript.net/code#5">sandbox de código</a> para este capítulo como el enlace <code>SCRIPTS</code>. El enlace contiene un array de objetos, cada uno describe un script:</p>
+
+<pre class="snippet" data-language="json"><a class="c_ident" id="c-vN789s6onO" href="https://www.eloquentjavascript.es/05_higher_order.html#c-vN789s6onO" tabindex="-1" role="presentation"></a>{
+  <span class="tok-definition">name</span>: <span class="tok-string">"Copto"</span>,
+  <span class="tok-definition">rangos</span>: [[<span class="tok-number">994</span>, <span class="tok-number">1008</span>], [<span class="tok-number">11392</span>, <span class="tok-number">11508</span>], [<span class="tok-number">11513</span>, <span class="tok-number">11520</span>]],
+  <span class="tok-definition">dirección</span>: <span class="tok-string">"ltr"</span>,
+  <span class="tok-definition">año</span>: -<span class="tok-number">200</span>,
+  <span class="tok-definition">vivo</span>: false,
+  <span class="tok-definition">enlace</span>: <span class="tok-string">"https://es.wikipedia.org/wiki/Alfabeto_copto"</span>
+}</pre>
+
+<p><a class="p_ident" id="p-ua08rL6DL0" href="https://www.eloquentjavascript.es/05_higher_order.html#p-ua08rL6DL0" tabindex="-1" role="presentation"></a>Tal objeto nos informa sobre el nombre del script, los rangos Unicode asignados a él, la dirección en la que se escribe, el tiempo de origen (aproximado), si todavía se utiliza, y un enlace a más información. La dirección puede ser <code>"ltr"</code> para izquierda a derecha, <code>"rtl"</code> para derecha a izquierda (como se escribe el texto en árabe y hebreo) o <code>"ttb"</code> para arriba hacia abajo (como en la escritura mongola).</p>
+
+<p><a class="p_ident" id="p-DoOVtob5DG" href="https://www.eloquentjavascript.es/05_higher_order.html#p-DoOVtob5DG" tabindex="-1" role="presentation"></a>La propiedad <code>ranges</code> contiene una matriz de rangos de caracteres Unicode, cada uno de los cuales es una matriz de dos elementos que contiene un límite inferior y un límite superior. Todos los códigos de caracteres dentro de estos rangos se asignan al guion. El límite inferior es inclusivo (el código 994 es un carácter copto) y el límite superior no es inclusivo (el código 1008 no lo es).</p>
+
+<h2><a class="h_ident" id="h-MtcnrMCox6" href="https://www.eloquentjavascript.es/05_higher_order.html#h-MtcnrMCox6" tabindex="-1" role="presentation"></a>Filtrado de arrays</h2>
+
+<p><a class="p_ident" id="p-HjjeDvBqja" href="https://www.eloquentjavascript.es/05_higher_order.html#p-HjjeDvBqja" tabindex="-1" role="presentation"></a>Si queremos encontrar los guiones en el conjunto de datos que todavía se utilizan, la siguiente función puede ser útil. Filtra los elementos de una matriz que no pasan una prueba.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-POEf7pMCk0" href="https://www.eloquentjavascript.es/05_higher_order.html#c-POEf7pMCk0" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">filter</span>(<span class="tok-definition">array</span>, <span class="tok-definition">test</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">passed</span> = [];
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">element</span> <span class="tok-keyword">of</span> array) {
+    <span class="tok-keyword">if</span> (test(element)) {
+      passed.push(element);
+    }
+  }
+  <span class="tok-keyword">return</span> passed;
+}
+
+console.log(filter(SCRIPTS, <span class="tok-definition">script</span> =&gt; script.living));
+<span class="tok-comment">// → [{name: "Adlam", …}, …]</span></pre>
+
+<p><a class="p_ident" id="p-vqNV3Gw5Wz" href="https://www.eloquentjavascript.es/05_higher_order.html#p-vqNV3Gw5Wz" tabindex="-1" role="presentation"></a>La función utiliza el argumento llamado <code>test</code>, un valor de función, para llenar un “vacío” en la computación, el proceso de decidir qué elementos recopilar.</p>
+
+<p><a class="p_ident" id="p-rDTRpRs2b7" href="https://www.eloquentjavascript.es/05_higher_order.html#p-rDTRpRs2b7" tabindex="-1" role="presentation"></a>Observa cómo la función <code>filter</code>, en lugar de eliminar elementos de la matriz existente, construye una nueva matriz con solo los elementos que pasan la prueba. Esta función es <em>pura</em>. No modifica la matriz que se le pasa.</p>
+
+<p><a class="p_ident" id="p-mflQRYwRQo" href="https://www.eloquentjavascript.es/05_higher_order.html#p-mflQRYwRQo" tabindex="-1" role="presentation"></a>Al igual que <code>forEach</code>, <code>filter</code> es un método de matriz estándar. El ejemplo definió la función solo para mostrar qué hace internamente. De ahora en adelante, lo usaremos de esta manera en su lugar:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-x8e0PmGGB1" href="https://www.eloquentjavascript.es/05_higher_order.html#c-x8e0PmGGB1" tabindex="-1" role="presentation"></a>console.log(SCRIPTS.filter(<span class="tok-definition">s</span> =&gt; s.direction == <span class="tok-string">"ttb"</span>));
+<span class="tok-comment">// → [{name: "Mongolian", …}, …]</span></pre>
+
+<h2 id="map"><a class="h_ident" id="h-S3rmMrmWka" href="https://www.eloquentjavascript.es/05_higher_order.html#h-S3rmMrmWka" tabindex="-1" role="presentation"></a>Transformación con map</h2>
+
+<p><a class="p_ident" id="p-ydEMpih2aw" href="https://www.eloquentjavascript.es/05_higher_order.html#p-ydEMpih2aw" tabindex="-1" role="presentation"></a>Digamos que tenemos una matriz de objetos que representan guiones, producida al filtrar la matriz <code>SCRIPTS</code> de alguna manera. Queremos una matriz de nombres en su lugar, que es más fácil de inspeccionar.</p>
+
+<p><a class="p_ident" id="p-eEu8IlZwFm" href="https://www.eloquentjavascript.es/05_higher_order.html#p-eEu8IlZwFm" tabindex="-1" role="presentation"></a>El método <code>map</code> transforma una matriz aplicando una función a todos sus elementos y construyendo una nueva matriz a partir de los valores devueltos. La nueva matriz tendrá la misma longitud que la matriz de entrada, pero su contenido habrá sido <em>mapeado</em> a una nueva forma por la función:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-03caQcQElo" href="https://www.eloquentjavascript.es/05_higher_order.html#c-03caQcQElo" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">map</span>(<span class="tok-definition">array</span>, <span class="tok-definition">transform</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">mapped</span> = [];
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">element</span> <span class="tok-keyword">of</span> array) {
+    mapped.push(transform(element));
+  }
+  <span class="tok-keyword">return</span> mapped;
+}
+
+<span class="tok-keyword">let</span> <span class="tok-definition">rtlScripts</span> = SCRIPTS.filter(<span class="tok-definition">s</span> =&gt; s.direction == <span class="tok-string">"rtl"</span>);
+console.log(map(rtlScripts, <span class="tok-definition">s</span> =&gt; s.name));
+<span class="tok-comment">// → ["Adlam", "Arabic", "Imperial Aramaic", …]</span></pre>
+
+<p><a class="p_ident" id="p-CSoEP7cmmy" href="https://www.eloquentjavascript.es/05_higher_order.html#p-CSoEP7cmmy" tabindex="-1" role="presentation"></a>Al igual que <code>forEach</code> y <code>filter</code>, <code>map</code> es un método de matriz estándar.</p>
+
+<h2><a class="h_ident" id="h-PT5vUNRTlZ" href="https://www.eloquentjavascript.es/05_higher_order.html#h-PT5vUNRTlZ" tabindex="-1" role="presentation"></a>Resumen con reduce</h2>
+
+<p><a class="p_ident" id="p-0sSdjIXjkE" href="https://www.eloquentjavascript.es/05_higher_order.html#p-0sSdjIXjkE" tabindex="-1" role="presentation"></a>Otra cosa común que hacer con matrices es calcular un único valor a partir de ellas. Nuestro ejemplo recurrente, sumar una colección de números, es una instancia de esto. Otro ejemplo es encontrar el guion con más caracteres.</p>
+
+<p><a class="p_ident" id="p-Nbb72CteP6" href="https://www.eloquentjavascript.es/05_higher_order.html#p-Nbb72CteP6" tabindex="-1" role="presentation"></a>La operación de orden superior que representa este patrón se llama <em>reduce</em> (a veces también llamada <em>fold</em>). Construye un valor tomando repetidamente un único elemento del array y combinándolo con el valor actual. Al sumar números, comenzarías con el número cero y, para cada elemento, lo sumarías al total.</p>
+
+<p><a class="p_ident" id="p-2kupqkikqu" href="https://www.eloquentjavascript.es/05_higher_order.html#p-2kupqkikqu" tabindex="-1" role="presentation"></a>Los parámetros de <code>reduce</code> son, además del array, una función de combinación y un valor inicial. Esta función es un poco menos directa que <code>filter</code> y <code>map</code>, así que obsérvala detenidamente:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-k5GDHjqpSc" href="https://www.eloquentjavascript.es/05_higher_order.html#c-k5GDHjqpSc" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">reduce</span>(<span class="tok-definition">array</span>, <span class="tok-definition">combine</span>, <span class="tok-definition">start</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">current</span> = start;
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">element</span> <span class="tok-keyword">of</span> array) {
+    current = combine(current, element);
+  }
+  <span class="tok-keyword">return</span> current;
+}
+
+console.log(reduce([<span class="tok-number">1</span>, <span class="tok-number">2</span>, <span class="tok-number">3</span>, <span class="tok-number">4</span>], (<span class="tok-definition">a</span>, <span class="tok-definition">b</span>) =&gt; a + b, <span class="tok-number">0</span>));
+<span class="tok-comment">// → 10</span></pre>
+
+<p><a class="p_ident" id="p-tSi+CnrI8e" href="https://www.eloquentjavascript.es/05_higher_order.html#p-tSi+CnrI8e" tabindex="-1" role="presentation"></a>El método estándar de arrays <code>reduce</code>, que por supuesto corresponde a esta función, tiene una conveniencia adicional. Si tu array contiene al menos un elemento, puedes omitir el argumento <code>start</code>. El método tomará el primer elemento del array como su valor inicial y comenzará a reducir en el segundo elemento.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-Dxn7muuMkk" href="https://www.eloquentjavascript.es/05_higher_order.html#c-Dxn7muuMkk" tabindex="-1" role="presentation"></a>console.log([<span class="tok-number">1</span>, <span class="tok-number">2</span>, <span class="tok-number">3</span>, <span class="tok-number">4</span>].reduce((<span class="tok-definition">a</span>, <span class="tok-definition">b</span>) =&gt; a + b));
+<span class="tok-comment">// → 10</span></pre>
+
+<p><a class="p_ident" id="p-aq58LUBIxu" href="https://www.eloquentjavascript.es/05_higher_order.html#p-aq58LUBIxu" tabindex="-1" role="presentation"></a>Para usar <code>reduce</code> (dos veces) y encontrar el script con más caracteres, podemos escribir algo así:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-x76Ukt5X+H" href="https://www.eloquentjavascript.es/05_higher_order.html#c-x76Ukt5X+H" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">characterCount</span>(<span class="tok-definition">script</span>) {
+  <span class="tok-keyword">return</span> script.ranges.reduce((<span class="tok-definition">count</span>, [<span class="tok-definition">from</span>, <span class="tok-definition">to</span>]) =&gt; {
+    <span class="tok-keyword">return</span> count + (to - from);
+  }, <span class="tok-number">0</span>);
+}
+
+console.log(SCRIPTS.reduce((<span class="tok-definition">a</span>, <span class="tok-definition">b</span>) =&gt; {
+  <span class="tok-keyword">return</span> characterCount(a) &lt; characterCount(b) ? b : a;
+}));
+<span class="tok-comment">// → {name: "Han", …}</span></pre>
+
+<p><a class="p_ident" id="p-h4Jk417+fU" href="https://www.eloquentjavascript.es/05_higher_order.html#p-h4Jk417+fU" tabindex="-1" role="presentation"></a>La función <code>characterCount</code> reduce los rangos asignados a un script sumando sus tamaños. Observa el uso de la desestructuración en la lista de parámetros de la función reductora. La segunda llamada a <code>reduce</code> luego utiliza esto para encontrar el script más grande comparando repetidamente dos scripts y devolviendo el más grande.</p>
+
+<p><a class="p_ident" id="p-g8tYIN4Bkz" href="https://www.eloquentjavascript.es/05_higher_order.html#p-g8tYIN4Bkz" tabindex="-1" role="presentation"></a>El script Han tiene más de 89,000 caracteres asignados en el estándar Unicode, convirtiéndolo en el sistema de escritura más grande en el conjunto de datos. Han es un script a veces utilizado para texto en chino, japonés y coreano. Esos idiomas comparten muchos caracteres, aunque tienden a escribirlos de manera diferente. El Consorcio Unicode (con sede en EE. UU.) decidió tratarlos como un único sistema de escritura para ahorrar códigos de caracteres. Esto se llama <em>unificación Han</em> y todavía molesta a algunas personas.</p>
+
+<h2><a class="h_ident" id="h-bzPoX82c4F" href="https://www.eloquentjavascript.es/05_higher_order.html#h-bzPoX82c4F" tabindex="-1" role="presentation"></a>Composabilidad</h2>
+
+<p><a class="p_ident" id="p-gP2bptAN2f" href="https://www.eloquentjavascript.es/05_higher_order.html#p-gP2bptAN2f" tabindex="-1" role="presentation"></a>Considera cómo hubiéramos escrito el ejemplo anterior (encontrando el script más grande) sin funciones de orden superior. El código no es mucho peor:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-1FmIKHNB24" href="https://www.eloquentjavascript.es/05_higher_order.html#c-1FmIKHNB24" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">biggest</span> = <span class="tok-keyword">null</span>;
+<span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">script</span> <span class="tok-keyword">of</span> SCRIPTS) {
+  <span class="tok-keyword">if</span> (biggest == <span class="tok-keyword">null</span> ||
+      characterCount(biggest) &lt; characterCount(script)) {
+    biggest = script;
+  }
+}
+console.log(biggest);
+<span class="tok-comment">// → {name: "Han", …}</span></pre>
+
+<p><a class="p_ident" id="p-EtVmv7i/iI" href="https://www.eloquentjavascript.es/05_higher_order.html#p-EtVmv7i/iI" tabindex="-1" role="presentation"></a>Hay algunas variables adicionales y el programa tiene cuatro líneas más, pero sigue siendo muy legible.</p>
+
+<p id="average_function"><a class="p_ident" id="p-/CzAZCG1Ww" href="https://www.eloquentjavascript.es/05_higher_order.html#p-/CzAZCG1Ww" tabindex="-1" role="presentation"></a>Las abstracciones proporcionadas por estas funciones brillan realmente cuando necesitas <em>componer</em> operaciones. Como ejemplo, escribamos un código que encuentre el año promedio de origen para scripts vivos y muertos en el conjunto de datos:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-rumPqbzokK" href="https://www.eloquentjavascript.es/05_higher_order.html#c-rumPqbzokK" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">average</span>(<span class="tok-definition">array</span>) {
+  <span class="tok-keyword">return</span> array.reduce((<span class="tok-definition">a</span>, <span class="tok-definition">b</span>) =&gt; a + b) / array.length;
+}
+
+console.log(Math.round(average(
+  SCRIPTS.filter(<span class="tok-definition">s</span> =&gt; s.living).map(<span class="tok-definition">s</span> =&gt; s.year))));
+<span class="tok-comment">// → 1165</span>
+console.log(Math.round(average(
+  SCRIPTS.filter(<span class="tok-definition">s</span> =&gt; !s.living).map(<span class="tok-definition">s</span> =&gt; s.year))));
+<span class="tok-comment">// → 204</span></pre>
+
+<p><a class="p_ident" id="p-HYrvIekBW0" href="https://www.eloquentjavascript.es/05_higher_order.html#p-HYrvIekBW0" tabindex="-1" role="presentation"></a>Como puedes ver, los scripts muertos en Unicode son, en promedio, más antiguos que los vivos. Esta no es una estadística muy significativa o sorprendente. Pero espero que estés de acuerdo en que el código utilizado para calcularlo no es difícil de leer. Puedes verlo como un pipeline: empezamos con todos los scripts, filtramos los vivos (o muertos), tomamos los años de esos scripts, calculamos el promedio y redondeamos el resultado.</p>
+
+<p><a class="p_ident" id="p-Z4jAr6ljSn" href="https://www.eloquentjavascript.es/05_higher_order.html#p-Z4jAr6ljSn" tabindex="-1" role="presentation"></a>Definitivamente también podrías escribir este cálculo como un único loop grande:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-noyYOD0Kiy" href="https://www.eloquentjavascript.es/05_higher_order.html#c-noyYOD0Kiy" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">total</span> = <span class="tok-number">0</span>, <span class="tok-definition">count</span> = <span class="tok-number">0</span>;
+<span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">script</span> <span class="tok-keyword">of</span> SCRIPTS) {
+  <span class="tok-keyword">if</span> (script.living) {
+    total += script.year;
+    count += <span class="tok-number">1</span>;
+  }
+}
+console.log(Math.round(total / count));
+<span class="tok-comment">// → 1165</span></pre>
+
+<p><a class="p_ident" id="p-z1zZ1R3oEN" href="https://www.eloquentjavascript.es/05_higher_order.html#p-z1zZ1R3oEN" tabindex="-1" role="presentation"></a>Sin embargo, es más difícil ver qué se estaba calculando y cómo. Y debido a que los resultados intermedios no se representan como valores coherentes, sería mucho más trabajo extraer algo como <code>average</code> en una función separada.</p>
+
+<p><a class="p_ident" id="p-JaB+c9Bjg2" href="https://www.eloquentjavascript.es/05_higher_order.html#p-JaB+c9Bjg2" tabindex="-1" role="presentation"></a>En términos de lo que realmente está haciendo la computadora, estos dos enfoques también son bastante diferentes. El primero construirá nuevos arrays al ejecutar <code>filter</code> y <code>map</code>, mientras que el segundo calcula solo algunos números, haciendo menos trabajo. Por lo general, puedes permitirte el enfoque legible, pero si estás procesando matrices enormes y haciéndolo muchas veces, el estilo menos abstracto podría valer la pena por la velocidad adicional.</p>
+
+<h2><a class="h_ident" id="h-XPdB1c6gdD" href="https://www.eloquentjavascript.es/05_higher_order.html#h-XPdB1c6gdD" tabindex="-1" role="presentation"></a>Cadenas y códigos de caracteres</h2>
+
+<p><a class="p_ident" id="p-MXjFCWbW9t" href="https://www.eloquentjavascript.es/05_higher_order.html#p-MXjFCWbW9t" tabindex="-1" role="presentation"></a>Un uso interesante de este conjunto de datos sería averiguar qué script está utilizando un fragmento de texto. Vamos a través de un programa que hace esto.</p>
+
+<p><a class="p_ident" id="p-GatVMstQav" href="https://www.eloquentjavascript.es/05_higher_order.html#p-GatVMstQav" tabindex="-1" role="presentation"></a>Recuerda que cada script tiene asociado un array de intervalos de códigos de caracteres. Dado un código de carácter, podríamos usar una función como esta para encontrar el script correspondiente (si lo hay):</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-Q8918ecfHn" href="https://www.eloquentjavascript.es/05_higher_order.html#c-Q8918ecfHn" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">characterScript</span>(<span class="tok-definition">code</span>) {
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">script</span> <span class="tok-keyword">of</span> SCRIPTS) {
+    <span class="tok-keyword">if</span> (script.ranges.some(([<span class="tok-definition">from</span>, <span class="tok-definition">to</span>]) =&gt; {
+      <span class="tok-keyword">return</span> code &gt;= from &amp;&amp; code &lt; to;
+    })) {
+      <span class="tok-keyword">return</span> script;
+    }
+  }
+  <span class="tok-keyword">return</span> <span class="tok-keyword">null</span>;
+}
+
+console.log(characterScript(<span class="tok-number">121</span>));
+<span class="tok-comment">// → {name: "Latin", …}</span></pre>
+
+<p><a class="p_ident" id="p-hJDL1Q3G7R" href="https://www.eloquentjavascript.es/05_higher_order.html#p-hJDL1Q3G7R" tabindex="-1" role="presentation"></a>El método <code>some</code> es otra función de orden superior. Toma una función de prueba y te dice si esa función devuelve true para alguno de los elementos en el array.</p>
+
+<p id="code_units"><a class="p_ident" id="p-xwqTjYNDg/" href="https://www.eloquentjavascript.es/05_higher_order.html#p-xwqTjYNDg/" tabindex="-1" role="presentation"></a>Pero, ¿cómo obtenemos los códigos de caracteres en una cadena?</p>
+
+<p><a class="p_ident" id="p-d3EBXodI+B" href="https://www.eloquentjavascript.es/05_higher_order.html#p-d3EBXodI+B" tabindex="-1" role="presentation"></a>En <a href="https://www.eloquentjavascript.es/01_values.html">Chapter 1</a> mencioné que las cadenas de JavaScript están codificadas como una secuencia de números de 16 bits. Estos se llaman <em>unidades de código</em>. Un código de carácter Unicode inicialmente se suponía que cabía dentro de tal unidad (lo que te da un poco más de 65,000 caracteres). Cuando quedó claro que eso no iba a ser suficiente, muchas personas se mostraron reacias a la necesidad de usar más memoria por carácter. Para abordar estas preocupaciones, se inventó UTF-16, el formato también utilizado por las cadenas de JavaScript. Describe la mayoría de los caracteres comunes usando una única unidad de código de 16 bits, pero usa un par de dos unidades de dicho tipo para otros.</p>
+
+<p><a class="p_ident" id="p-MP7gPIVpo8" href="https://www.eloquentjavascript.es/05_higher_order.html#p-MP7gPIVpo8" tabindex="-1" role="presentation"></a>UTF-16 generalmente se considera una mala idea hoy en día. Parece casi diseñado intencionalmente para invitar a errores. Es fácil escribir programas que pretendan que las unidades de código y los caracteres son lo mismo. Y si tu lenguaje no utiliza caracteres de dos unidades, eso parecerá funcionar perfectamente. Pero tan pronto como alguien intente usar dicho programa con algunos caracteres chinos menos comunes, fallará. Afortunadamente, con la llegada de los emoji, todo el mundo ha comenzado a usar caracteres de dos unidades, y la carga de tratar con tales problemas está más equitativamente distribuida.</p>
+
+<p><a class="p_ident" id="p-cIimdGgzlf" href="https://www.eloquentjavascript.es/05_higher_order.html#p-cIimdGgzlf" tabindex="-1" role="presentation"></a>Lamentablemente, las operaciones obvias en las cadenas de JavaScript, como obtener su longitud a través de la propiedad <code>length</code> y acceder a su contenido usando corchetes cuadrados, tratan solo con unidades de código.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-HNlpl48Xvg" href="https://www.eloquentjavascript.es/05_higher_order.html#c-HNlpl48Xvg" tabindex="-1" role="presentation"></a><span class="tok-comment">// Dos caracteres emoji, caballo y zapato</span>
+<span class="tok-keyword">let</span> <span class="tok-definition">horseShoe</span> = <span class="tok-string">"🐴👟"</span>;
+console.log(horseShoe.length);
+<span class="tok-comment">// → 4</span>
+console.log(horseShoe[<span class="tok-number">0</span>]);
+<span class="tok-comment">// → (Mitad de carácter inválida)</span>
+console.log(horseShoe.charCodeAt(<span class="tok-number">0</span>));
+<span class="tok-comment">// → 55357 (Código de la mitad de carácter)</span>
+console.log(horseShoe.codePointAt(<span class="tok-number">0</span>));
+<span class="tok-comment">// → 128052 (Código real para el emoji de caballo)</span></pre>
+
+<p><a class="p_ident" id="p-BS9MJRj/qW" href="https://www.eloquentjavascript.es/05_higher_order.html#p-BS9MJRj/qW" tabindex="-1" role="presentation"></a>El método <code>charCodeAt</code> de JavaScript te da una unidad de código, no un código de carácter completo. El método <code>codePointAt</code>, añadido más tarde, sí da un carácter Unicode completo, por lo que podríamos usarlo para obtener caracteres de una cadena. Pero el argumento pasado a <code>codePointAt</code> sigue siendo un índice en la secuencia de unidades de código. Para recorrer todos los caracteres en una cadena, aún necesitaríamos abordar la cuestión de si un carácter ocupa una o dos unidades de código.</p>
+
+<p><a class="p_ident" id="p-+k9Io/S3re" href="https://www.eloquentjavascript.es/05_higher_order.html#p-+k9Io/S3re" tabindex="-1" role="presentation"></a>En el <a href="https://www.eloquentjavascript.es/datos#bucle_for_of">capítulo anterior</a>, mencioné que un bucle <code>for</code>/<code>of</code> también se puede usar en cadenas. Al igual que <code>codePointAt</code>, este tipo de bucle se introdujo en un momento en que la gente era muy consciente de los problemas con UTF-16. Cuando lo usas para recorrer una cadena, te proporciona caracteres reales, no unidades de código:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-9QIfA1qjtG" href="https://www.eloquentjavascript.es/05_higher_order.html#c-9QIfA1qjtG" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">roseDragon</span> = <span class="tok-string">"🌹🐉"</span>;
+<span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">char</span> <span class="tok-keyword">of</span> roseDragon) {
+  console.log(char);
+}
+<span class="tok-comment">// → 🌹</span>
+<span class="tok-comment">// → 🐉</span></pre>
+
+<p><a class="p_ident" id="p-crnlwccTvb" href="https://www.eloquentjavascript.es/05_higher_order.html#p-crnlwccTvb" tabindex="-1" role="presentation"></a>Si tienes un carácter (que será una cadena de una o dos unidades de código), puedes usar <code>codePointAt(0)</code> para obtener su código.</p>
+
+<h2><a class="h_ident" id="h-6v14c/pbJh" href="https://www.eloquentjavascript.es/05_higher_order.html#h-6v14c/pbJh" tabindex="-1" role="presentation"></a>Reconociendo texto</h2>
+
+<p><a class="p_ident" id="p-US1jun7br4" href="https://www.eloquentjavascript.es/05_higher_order.html#p-US1jun7br4" tabindex="-1" role="presentation"></a>Tenemos una función <code>characterScript</code> y una forma de recorrer correctamente los caracteres. El próximo paso es contar los caracteres que pertenecen a cada script. La siguiente abstracción de conteo será útil para eso:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-b8ZEeu/LH5" href="https://www.eloquentjavascript.es/05_higher_order.html#c-b8ZEeu/LH5" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">countBy</span>(<span class="tok-definition">items</span>, <span class="tok-definition">groupName</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">counts</span> = [];
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">item</span> <span class="tok-keyword">of</span> items) {
+    <span class="tok-keyword">let</span> <span class="tok-definition">name</span> = groupName(item);
+    <span class="tok-keyword">let</span> <span class="tok-definition">known</span> = counts.find(<span class="tok-definition">c</span> =&gt; c.name == name);
+    <span class="tok-keyword">if</span> (!known) {
+      counts.push({<span class="tok-definition">name</span>, <span class="tok-definition">count</span>: <span class="tok-number">1</span>});
+    } <span class="tok-keyword">else</span> {
+      known.count++;
+    }
+  }
+  <span class="tok-keyword">return</span> counts;
+}
+
+console.log(countBy([<span class="tok-number">1</span>, <span class="tok-number">2</span>, <span class="tok-number">3</span>, <span class="tok-number">4</span>, <span class="tok-number">5</span>], <span class="tok-definition">n</span> =&gt; n &gt; <span class="tok-number">2</span>));
+<span class="tok-comment">// → [{name: false, count: 2}, {name: true, count: 3}]</span></pre>
+
+<p><a class="p_ident" id="p-BkGEda/6+p" href="https://www.eloquentjavascript.es/05_higher_order.html#p-BkGEda/6+p" tabindex="-1" role="presentation"></a>La función <code>countBy</code> espera una colección (cualquier cosa por la que podamos iterar con <code>for</code>/<code>of</code>) y una función que calcule un nombre de grupo para un elemento dado. Devuelve una matriz de objetos, cada uno de los cuales nombra un grupo y te dice el número de elementos que se encontraron en ese grupo.</p>
+
+<p><a class="p_ident" id="p-3D6sEDfZSV" href="https://www.eloquentjavascript.es/05_higher_order.html#p-3D6sEDfZSV" tabindex="-1" role="presentation"></a>Utiliza otro método de array, <code>find</code>, que recorre los elementos en el array y devuelve el primero para el cual una función devuelve true. Devuelve <code>undefined</code> cuando no se encuentra dicho elemento.</p>
+
+<p><a class="p_ident" id="p-cOB6KMMgRg" href="https://www.eloquentjavascript.es/05_higher_order.html#p-cOB6KMMgRg" tabindex="-1" role="presentation"></a>Usando <code>countBy</code>, podemos escribir la función que nos dice qué scripts se utilizan en un fragmento de texto:</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-i0Qwg5s1EB" href="https://www.eloquentjavascript.es/05_higher_order.html#c-i0Qwg5s1EB" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">textScripts</span>(<span class="tok-definition">text</span>) {
+  <span class="tok-keyword">let</span> <span class="tok-definition">scripts</span> = countBy(text, <span class="tok-definition">char</span> =&gt; {
+    <span class="tok-keyword">let</span> <span class="tok-definition">script</span> = characterScript(char.codePointAt(<span class="tok-number">0</span>));
+    <span class="tok-keyword">return</span> script ? script.name : <span class="tok-string">"ninguno"</span>;
+  }).filter(({name}) =&gt; name != <span class="tok-string">"ninguno"</span>);
+
+  <span class="tok-keyword">let</span> <span class="tok-definition">total</span> = scripts.reduce((<span class="tok-definition">n</span>, {count}) =&gt; n + count, <span class="tok-number">0</span>);
+  <span class="tok-keyword">if</span> (total == <span class="tok-number">0</span>) <span class="tok-keyword">return</span> <span class="tok-string">"No se encontraron scripts"</span>;
+
+  <span class="tok-keyword">return</span> scripts.map(({name, count}) =&gt; {
+    <span class="tok-keyword">return</span> <span class="tok-string2">`</span>${Math.round(count * <span class="tok-number">100</span> / total)}<span class="tok-string2">% </span>${name}<span class="tok-string2">`</span>;
+  }).join(<span class="tok-string">", "</span>);
+}
+
+console.log(textScripts(<span class="tok-string">'英国的狗说"woof", 俄罗斯的狗说"тяв"'</span>));
+<span class="tok-comment">// → 61% Han, 22% Latin, 17% Cyrillic</span></pre>
+
+<p><a class="p_ident" id="p-6ZNN+7KNVP" href="https://www.eloquentjavascript.es/05_higher_order.html#p-6ZNN+7KNVP" tabindex="-1" role="presentation"></a>La función primero cuenta los caracteres por nombre, usando <code>characterScript</code> para asignarles un nombre y retrocediendo a la cadena <code>"ninguno"</code> para los caracteres que no forman parte de ningún script. La llamada a <code>filter</code> elimina la entrada de <code>"ninguno"</code> del array resultante, ya que no nos interesan esos caracteres.</p>
+
+<p><a class="p_ident" id="p-z0FN1vM2Io" href="https://www.eloquentjavascript.es/05_higher_order.html#p-z0FN1vM2Io" tabindex="-1" role="presentation"></a>Para poder calcular porcentajes, primero necesitamos el número total de caracteres que pertenecen a un script, lo cual podemos calcular con <code>reduce</code>. Si no se encuentran dichos caracteres, la función devuelve una cadena específica. De lo contrario, transforma las entradas de conteo en cadenas legibles con <code>map</code> y luego las combina con <code>join</code>.</p>
+
+<h2><a class="h_ident" id="h-NUFOUyK+lw" href="https://www.eloquentjavascript.es/05_higher_order.html#h-NUFOUyK+lw" tabindex="-1" role="presentation"></a>Resumen</h2>
+
+<p><a class="p_ident" id="p-ua0YBHiMTm" href="https://www.eloquentjavascript.es/05_higher_order.html#p-ua0YBHiMTm" tabindex="-1" role="presentation"></a>Poder pasar valores de funciones a otras funciones es un aspecto muy útil de JavaScript. Nos permite escribir funciones que modelan cálculos con “vacíos”. El código que llama a estas funciones puede llenar los vacíos proporcionando valores de funciones.</p>
+
+<p><a class="p_ident" id="p-OvDSlYatKQ" href="https://www.eloquentjavascript.es/05_higher_order.html#p-OvDSlYatKQ" tabindex="-1" role="presentation"></a>Los arrays proporcionan diversos métodos de orden superior útiles. Puedes usar <code>forEach</code> para recorrer los elementos de un array. El método <code>filter</code> devuelve un nuevo array que contiene solo los elementos que pasan la función de predicado. Transformar un array poniendo cada elemento en una función se hace con <code>map</code>. Puedes usar <code>reduce</code> para combinar todos los elementos de un array en un único valor. El método <code>some</code> comprueba si algún elemento coincide con una función de predicado dada, mientras que <code>find</code> encuentra el primer elemento que coincide con un predicado.</p>
+
+<h2><a class="h_ident" id="h-tkm7ntLto1" href="https://www.eloquentjavascript.es/05_higher_order.html#h-tkm7ntLto1" tabindex="-1" role="presentation"></a>Ejercicios</h2>
+
+<h3><a class="i_ident" id="i-NYYN2FxNVG" href="https://www.eloquentjavascript.es/05_higher_order.html#i-NYYN2FxNVG" tabindex="-1" role="presentation"></a>Aplanamiento</h3>
+
+<p><a class="p_ident" id="p-2JTbAIwElU" href="https://www.eloquentjavascript.es/05_higher_order.html#p-2JTbAIwElU" tabindex="-1" role="presentation"></a>Utiliza el método <code>reduce</code> en combinación con el método <code>concat</code> para “aplanar” un array de arrays en un único array que contenga todos los elementos de los arrays originales.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-9vAbUnn21O" href="https://www.eloquentjavascript.es/05_higher_order.html#c-9vAbUnn21O" tabindex="-1" role="presentation"></a><span class="tok-keyword">let</span> <span class="tok-definition">arrays</span> = [[<span class="tok-number">1</span>, <span class="tok-number">2</span>, <span class="tok-number">3</span>], [<span class="tok-number">4</span>, <span class="tok-number">5</span>], [<span class="tok-number">6</span>]];
+<span class="tok-comment">// Tu código aquí.</span>
+<span class="tok-comment">// → [1, 2, 3, 4, 5, 6]</span></pre>
+
+<h3><a class="i_ident" id="i-cBnCXoHx6D" href="https://www.eloquentjavascript.es/05_higher_order.html#i-cBnCXoHx6D" tabindex="-1" role="presentation"></a>Tu propio bucle</h3>
+
+<p><a class="p_ident" id="p-eTd6UCJrnn" href="https://www.eloquentjavascript.es/05_higher_order.html#p-eTd6UCJrnn" tabindex="-1" role="presentation"></a>Escribe una función de orden superior <code>loop</code> que proporcione algo similar a una declaración <code>for</code> loop. Debería recibir un valor, una función de prueba, una función de actualización y una función de cuerpo. En cada iteración, primero debe ejecutar la función de prueba en el valor actual del bucle y detenerse si devuelve falso. Luego debe llamar a la función de cuerpo, dándole el valor actual, y finalmente llamar a la función de actualización para crear un nuevo valor y empezar de nuevo desde el principio.</p>
+
+<p><a class="p_ident" id="p-ZjRsh6UWeD" href="https://www.eloquentjavascript.es/05_higher_order.html#p-ZjRsh6UWeD" tabindex="-1" role="presentation"></a>Al definir la función, puedes usar un bucle regular para hacer el bucle real.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-Fv1rc97GEM" href="https://www.eloquentjavascript.es/05_higher_order.html#c-Fv1rc97GEM" tabindex="-1" role="presentation"></a><span class="tok-comment">// Your code here.</span>
+
+loop(<span class="tok-number">3</span>, <span class="tok-definition">n</span> =&gt; n &gt; <span class="tok-number">0</span>, <span class="tok-definition">n</span> =&gt; n - <span class="tok-number">1</span>, console.log);
+<span class="tok-comment">// → 3</span>
+<span class="tok-comment">// → 2</span>
+<span class="tok-comment">// → 1</span></pre>
+
+<h3><a class="i_ident" id="i-SmbRSAd5GA" href="https://www.eloquentjavascript.es/05_higher_order.html#i-SmbRSAd5GA" tabindex="-1" role="presentation"></a>Everything</h3>
+
+<p><a class="p_ident" id="p-4Pg9vLwvKg" href="https://www.eloquentjavascript.es/05_higher_order.html#p-4Pg9vLwvKg" tabindex="-1" role="presentation"></a>Los arrays también tienen un método <code>every</code> análogo al método <code>some</code>. Este método devuelve <code>true</code> cuando la función dada devuelve <code>true</code> para <em>cada</em> elemento en el array. En cierto modo, <code>some</code> es una versión del operador <code>||</code> que actúa en arrays, y <code>every</code> es como el operador <code>&amp;&amp;</code>.</p>
+
+<p><a class="p_ident" id="p-pg6rAnmtg7" href="https://www.eloquentjavascript.es/05_higher_order.html#p-pg6rAnmtg7" tabindex="-1" role="presentation"></a>Implementa <code>every</code> como una función que recibe un array y una función de predicado como parámetros. Escribe dos versiones, una usando un bucle y otra usando el método <code>some</code>.</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-NludaTWDls" href="https://www.eloquentjavascript.es/05_higher_order.html#c-NludaTWDls" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">every</span>(<span class="tok-definition">array</span>, <span class="tok-definition">test</span>) {
+  <span class="tok-comment">// Your code here.</span>
+}
+
+console.log(every([<span class="tok-number">1</span>, <span class="tok-number">3</span>, <span class="tok-number">5</span>], <span class="tok-definition">n</span> =&gt; n &lt; <span class="tok-number">10</span>));
+<span class="tok-comment">// → true</span>
+console.log(every([<span class="tok-number">2</span>, <span class="tok-number">4</span>, <span class="tok-number">16</span>], <span class="tok-definition">n</span> =&gt; n &lt; <span class="tok-number">10</span>));
+<span class="tok-comment">// → false</span>
+console.log(every([], <span class="tok-definition">n</span> =&gt; n &lt; <span class="tok-number">10</span>));
+<span class="tok-comment">// → true</span></pre>
+
+<details class="solution"><summary>Mostrar pistas...</summary><div class="solution-text">
+
+<p><a class="p_ident" id="p-3C1WcJRJ3U" href="https://www.eloquentjavascript.es/05_higher_order.html#p-3C1WcJRJ3U" tabindex="-1" role="presentation"></a>Como el operador <code>&amp;&amp;</code>, el método <code>every</code> puede dejar de evaluar más elementos tan pronto como encuentre uno que no coincida. Por lo tanto, la versión basada en bucle puede salir del bucle—con <code>break</code> o `return—tan pronto como encuentre un elemento para el que la función de predicado devuelva false. Si el bucle se ejecuta hasta el final sin encontrar dicho elemento, sabemos que todos los elementos coincidieron y deberíamos devolver true.</p>
+
+<p><a class="p_ident" id="p-Coa0zWQNO0" href="https://www.eloquentjavascript.es/05_higher_order.html#p-Coa0zWQNO0" tabindex="-1" role="presentation"></a>Para construir <code>every</code> sobre <code>some</code>, podemos aplicar <em>leyes de De Morgan</em>, que establecen que <code>a &amp;&amp; b</code> es igual a <code>!(!a || !b)</code>. Esto se puede generalizar a arrays, donde todos los elementos en el array coinciden si no hay ningún elemento en el array que no coincida.</p>
+
+</div></details>
+
+<h3><a class="i_ident" id="i-kUUDTvgJ6V" href="https://www.eloquentjavascript.es/05_higher_order.html#i-kUUDTvgJ6V" tabindex="-1" role="presentation"></a>Dirección de escritura dominante</h3>
+
+<p><a class="p_ident" id="p-wNkAaSiwZs" href="https://www.eloquentjavascript.es/05_higher_order.html#p-wNkAaSiwZs" tabindex="-1" role="presentation"></a>Escribe una función que calcule la dirección de escritura dominante en una cadena de texto. Recuerda que cada objeto script tiene una propiedad <code>direction</code> que puede ser <code>"ltr"</code> (de izquierda a derecha), <code>"rtl"</code> (de derecha a izquierda) o <code>"ttb"</code> (de arriba a abajo).</p>
+
+<pre tabindex="0" class="snippet" data-language="javascript"><a class="c_ident" id="c-CNawUvyti3" href="https://www.eloquentjavascript.es/05_higher_order.html#c-CNawUvyti3" tabindex="-1" role="presentation"></a><span class="tok-keyword">function</span> <span class="tok-definition">dominantDirection</span>(<span class="tok-definition">text</span>) {
+  <span class="tok-comment">// Your code here.</span>
+}
+
+console.log(dominantDirection(<span class="tok-string">"Hello!"</span>));
+<span class="tok-comment">// → ltr</span>
+console.log(dominantDirection(<span class="tok-string">"Hey, مساء الخير"</span>));
+<span class="tok-comment">// → rtl</span></pre>
+
+<details class="solution"><summary>Mostrar pistas...</summary><div class="solution-text">
+
+<p><a class="p_ident" id="p-1vPjppobMm" href="https://www.eloquentjavascript.es/05_higher_order.html#p-1vPjppobMm" tabindex="-1" role="presentation"></a>Tu solución podría parecerse mucho a la primera mitad del ejemplo de <code>textScripts</code>. De nuevo, debes contar caracteres según un criterio basado en <code>characterScript</code> y luego filtrar la parte del resultado que se refiere a caracteres no interesantes (sin script).</p>
+
+<p><a class="p_ident" id="p-FrVu7Vg3MC" href="https://www.eloquentjavascript.es/05_higher_order.html#p-FrVu7Vg3MC" tabindex="-1" role="presentation"></a>Encontrar la dirección con el recuento de caracteres más alto se puede hacer con <code>reduce</code>. Si no está claro cómo hacerlo, consulta el ejemplo anterior en el capítulo, donde se usó <code>reduce</code> para encontrar el script con más caracteres.</p>
+
+</div></details><nav><a href="https://www.eloquentjavascript.es/04_data.html" title="previous chapter" aria-label="previous chapter">◂</a>&nbsp;<a href="https://www.eloquentjavascript.es/index.html" title="cover" aria-label="cover">●</a>&nbsp;<a href="https://www.eloquentjavascript.es/06_object.html" title="next chapter" aria-label="next chapter">▸</a>&nbsp;<button class="help" title="help" aria-label="help" style="display: inline;"><strong>?</strong></button>
+</nav>
+</article>
+
+<script src="./Funciones de Orden Superior __ Eloquent JavaScript_files/ejs.js.descarga"></script>
+<div><template shadowrootmode="closed"><link rel="stylesheet" href="chrome-extension://lilckelmopbcffmglfmfhelaajhjpcff/assets/index.css"><link rel="stylesheet" href="chrome-extension://lilckelmopbcffmglfmfhelaajhjpcff/assets/anything-copilot.css"><div id="app" data-v-app="" class="dark"><!----><!----><!----><!----><!----><!----><!----><!----></div></template></div></body></html>
