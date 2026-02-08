@@ -6,7 +6,12 @@ export type ContentBlock =
   | { type: 'code'; content: string; language?: string }
   | { type: 'image'; src: string; alt: string; caption?: string }
   | { type: 'list'; content: string[] }
-  | { type: 'blockquote'; content: string };
+  | { type: 'blockquote'; content: string }
+  | { type: 'table'; content: string[][] }
+  | { type: 'heading'; level: number; content: string }
+  | { type: 'definition-list'; content: { term: string; definition: string }[] }
+  | { type: 'details'; summary: string; content: string }
+  | { type: 'divider'; content: string };
 
 export type ExerciseType = 'quiz' | 'code';
 

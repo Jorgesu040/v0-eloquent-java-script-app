@@ -95,6 +95,59 @@ function ContentRenderer({ content }: { content: ContentBlock[] }) {
                 )}
               </figure>
             )
+          case "table":
+            return (
+              <div key={index} className="my-4 overflow-x-auto">
+                <table className="w-full border-collapse border border-border rounded-lg">
+                  <tbody>
+                    {block.content.map((row: string[], rowIdx: number) => (
+                      <tr key={rowIdx} className={rowIdx === 0 ? "bg-muted/50" : ""}>
+                        {row.map((cell: string, cellIdx: number) => (
+                          <td
+                            key={cellIdx}
+                            className="border border-border px-3 py-2 text-sm"
+                          >
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )
+          case "heading":
+            return (
+              <h3 key={index} className="text-lg font-semibold text-foreground mt-6 mb-3">
+                {block.content}
+              </h3>
+            )
+          case "definition-list":
+            return (
+              <dl key={index} className="my-4 space-y-3">
+                {block.content.map((item: { term: string; definition: string }, i: number) => (
+                  <div key={i} className="border-l-2 border-primary/30 pl-4">
+                    <dt className="font-medium text-foreground">{item.term}</dt>
+                    <dd className="text-muted-foreground text-sm mt-1">{item.definition}</dd>
+                  </div>
+                ))}
+              </dl>
+            )
+          case "details":
+            return (
+              <details key={index} className="my-4 rounded-lg border border-border bg-muted/20 p-4">
+                <summary className="cursor-pointer font-medium text-foreground">
+                  {block.summary}
+                </summary>
+                <div className="mt-3 text-muted-foreground">
+                  {block.content}
+                </div>
+              </details>
+            )
+          case "divider":
+            return (
+              <hr key={index} className="my-6 border-t border-border" />
+            )
           default:
             return null
         }

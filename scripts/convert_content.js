@@ -78,12 +78,23 @@ function parseBlocks(html) {
     let currentIndex = 0;
 
     while (currentIndex < html.length) {
-        const nextTagMatch = html.substring(currentIndex).match(/<(p|pre|blockquote|ul|ol|figure)[^>]*>/i);
+        // Note: Order matters! 'pre' must come before 'p' to avoid partial match
+        const nextTagMatch = html.substring(currentIndex).match(/<(pre|blockquote|ul|ol|figure|table|dl|details|h3|hr|p)[^>]*>/i);
         if (!nextTagMatch) break;
 
         const tagName = nextTagMatch[1].toLowerCase();
         const tagStart = currentIndex + nextTagMatch.index;
         const contentStart = tagStart + nextTagMatch[0].length;
+
+        // hr is self-closing
+        if (tagName === 'hr') {
+            blocks.push({
+                type: 'divider',
+                content: ''
+            });
+            currentIndex = contentStart;
+            continue;
+        }
 
         const closeIndex = findClosingTag(html, tagName, contentStart);
 
@@ -153,8 +164,7 @@ function parseBlocks(html) {
                 type: 'list',
                 content: items
             });
-        }
-        else if (tagName === 'figure') {
+        } else if (tagName === 'figure') {
             const imgMatch = content.match(/<img[^>]*>/);
             if (imgMatch) {
                 const srcMatch = imgMatch[0].match(/src="([^"]*)"/);
@@ -172,6 +182,65 @@ function parseBlocks(html) {
                     });
                 }
             }
+        } else if (tagName === 'table') {
+            // Parse table rows and cells
+            const rows = [];
+            let rowIndex = 0;
+            while (rowIndex < content.length) {
+                const nextTr = content.indexOf('<tr', rowIndex);
+                if (nextTr === -1) break;
+                const nextTrClose = findClosingTag(content, 'tr', nextTr + 3);
+                if (nextTrClose === -1) break;
+
+                const trContent = content.substring(nextTr, nextTrClose);
+                const cells = [];
+                // Match both th and td
+                const cellMatches = trContent.matchAll(/<(th|td)[^>]*>(.*?)<\/\1>/gs);
+                for (const cellMatch of cellMatches) {
+                    cells.push(cleanText(stripTags(cellMatch[2])));
+                }
+                if (cells.length > 0) {
+                    rows.push(cells);
+                }
+                rowIndex = nextTrClose + 5;
+            }
+
+            blocks.push({
+                type: 'table',
+                content: rows
+            });
+        } else if (tagName === 'dl') {
+            // Definition list: pairs of dt/dd
+            const items = [];
+            const dtMatches = content.matchAll(/<dt[^>]*>(.*?)<\/dt>/gs);
+            const ddMatches = [...content.matchAll(/<dd[^>]*>(.*?)<\/dd>/gs)];
+            let i = 0;
+            for (const dtMatch of dtMatches) {
+                const term = cleanText(stripTags(dtMatch[1]));
+                const definition = ddMatches[i] ? cleanText(stripTags(ddMatches[i][1])) : '';
+                items.push({ term, definition });
+                i++;
+            }
+            blocks.push({
+                type: 'definition-list',
+                content: items
+            });
+        } else if (tagName === 'details') {
+            // Collapsible section with summary
+            const summaryMatch = content.match(/<summary[^>]*>(.*?)<\/summary>/s);
+            const summary = summaryMatch ? cleanText(stripTags(summaryMatch[1])) : 'Details';
+            const detailContent = content.replace(/<summary[^>]*>.*?<\/summary>/s, '');
+            blocks.push({
+                type: 'details',
+                summary: summary,
+                content: cleanText(stripTags(detailContent))
+            });
+        } else if (tagName === 'h3') {
+            blocks.push({
+                type: 'heading',
+                level: 3,
+                content: cleanText(stripTags(content))
+            });
         }
 
         currentIndex = closeIndex + tagName.length + 3;
