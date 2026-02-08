@@ -17,6 +17,16 @@ export const metadata: Metadata = {
   title: "EloquentJS - Aprende JavaScript Jugando",
   description:
     "Plataforma gamificada para aprender JavaScript con Eloquent JavaScript. Gana XP, mantiene rachas y desbloquea logros mientras dominas la programacion.",
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/android-chrome-192x192.png",
+    apple: "/android-chrome-192x192.png",
+  },
+  appleWebApp: {
+    capable: true,
+    title: "EloquentJS",
+    statusBarStyle: "default",
+  },
 }
 
 export const viewport: Viewport = {
