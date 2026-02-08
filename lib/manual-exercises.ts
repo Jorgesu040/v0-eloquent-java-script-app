@@ -52,7 +52,7 @@ export const MANUAL_EXERCISES: Record<string, Exercise> = {
         id: "ex-ch01-typeof",
         type: "code",
         prompt: "¿Cuál es el tipo de dato de 4.5?",
-        initialCode: "console.log(typeof 4.5);",
+        initialCode: "console.log( ?? 4.5);",
         expectedOutput: "number",
         solution: "console.log(typeof 4.5);",
         explanation: "En JavaScript, tanto los enteros como los decimales son del tipo 'number'.",
@@ -258,6 +258,399 @@ export const MANUAL_EXERCISES: Record<string, Exercise> = {
         ],
         correctOptionIndex: 1,
         explanation: "Al usar `new`, se crea una instancia del objeto y se ejecuta la función constructora con el contexto `this` apropiado.",
+        xpReward: 15
+    },
+
+    // --- Chapter 7: Proyecto - Un Robot ---
+    // Section: Meadowfield (estructura del grafo)
+    "ch07-l1-s0": {
+        id: "ex-ch07-graph",
+        type: "quiz",
+        prompt: "En el proyecto del robot, ¿cómo se representa el mapa del pueblo?",
+        options: [
+            "Como un array bidimensional",
+            "Como un objeto donde las llaves son lugares y los valores son arrays de lugares conectados",
+            "Como una lista enlazada",
+            "Como un árbol binario"
+        ],
+        correctOptionIndex: 1,
+        explanation: "El pueblo se representa como un grafo usando un objeto. Cada propiedad es un lugar y su valor es un array de los lugares a los que se puede ir desde allí.",
+        xpReward: 15
+    },
+    // Section: Datos persistentes (inmutabilidad)
+    "ch07-l3-s0": {
+        id: "ex-ch07-immutability",
+        type: "quiz",
+        prompt: "¿Por qué el estado del robot (VillageState) se diseña como inmutable?",
+        options: [
+            "Porque JavaScript no permite modificar objetos",
+            "Para ahorrar memoria RAM",
+            "Para poder comparar estados fácilmente y evitar efectos secundarios inesperados",
+            "Porque los robots físicos no pueden cambiar de estado"
+        ],
+        correctOptionIndex: 2,
+        explanation: "La inmutabilidad facilita razonar sobre el programa, permite comparar estados y evita bugs causados por modificaciones accidentales.",
+        xpReward: 15
+    },
+    // Section: Simulación
+    "ch07-l4-s0": {
+        id: "ex-ch07-simulation",
+        type: "code",
+        prompt: "¿Qué método usarías para ejecutar un robot hasta que entregue todos los paquetes?",
+        initialCode: "function runRobot(state, robot, memory) {\n  for (let turn = 0; ; turn++) {\n    if (state.parcels.length == 0) {\n      return turn;\n    }\n    let action = robot(state, memory);\n    state = state.move(action.direction);\n    memory = action.memory;\n  }\n}",
+        expectedOutput: "state.parcels.length == 0",
+        solution: "state.parcels.length == 0",
+        explanation: "El bucle continúa hasta que no quedan paquetes (parcels.length == 0), momento en que devuelve el número de turnos.",
+        xpReward: 20
+    },
+
+    // --- Chapter 8: Bugs y Errores ---
+    // Section: Modo estricto
+    "ch08-l2-s0": {
+        id: "ex-ch08-strict",
+        type: "quiz",
+        prompt: "¿Qué hace 'use strict' al inicio de un archivo o función?",
+        options: [
+            "Hace el código más lento pero más seguro",
+            "Activa verificaciones adicionales y prohíbe ciertas sintaxis problemáticas",
+            "Obliga a usar TypeScript",
+            "Desactiva todos los console.log"
+        ],
+        correctOptionIndex: 1,
+        explanation: "'use strict' activa el modo estricto que detecta más errores, como usar variables no declaradas o asignar a propiedades de solo lectura.",
+        xpReward: 10
+    },
+    // Section: Excepciones
+    "ch08-l7-s0": {
+        id: "ex-ch08-exceptions",
+        type: "code",
+        prompt: "Completa el bloque try-catch para manejar el error:",
+        initialCode: "function divide(a, b) {\n  if (b === 0) throw new Error('División por cero');\n  return a / b;\n}\n\ntry {\n  console.log(divide(10, 0));\n} ?? (error) {\n  console.log('Error:', error.message);\n}",
+        expectedOutput: "catch",
+        solution: "catch",
+        explanation: "La palabra clave 'catch' captura cualquier error lanzado dentro del bloque try.",
+        xpReward: 15
+    },
+    // Section: Captura selectiva
+    "ch08-l9-s0": {
+        id: "ex-ch08-selective",
+        type: "quiz",
+        prompt: "¿Por qué es importante NO capturar todos los errores con un catch genérico?",
+        options: [
+            "Porque JavaScript no lo permite",
+            "Porque podrías ocultar bugs que no esperabas, dificultando la depuración",
+            "Porque hace el código más lento",
+            "Porque consume mucha memoria"
+        ],
+        correctOptionIndex: 1,
+        explanation: "Capturar todos los errores puede ocultar bugs inesperados. Es mejor capturar solo los tipos de error que sabes manejar.",
+        xpReward: 15
+    },
+
+    // --- Chapter 9: Expresiones Regulares ---
+    // Section: Creando una expresión regular
+    "ch09-l1-s0": {
+        id: "ex-ch09-create",
+        type: "quiz",
+        prompt: "¿Cuáles son las dos formas de crear una expresión regular en JavaScript?",
+        options: [
+            "new Regex() y regex()",
+            "/patrón/ y new RegExp('patrón')",
+            "String.regex() y /patrón/",
+            "createRegex() y /patrón/"
+        ],
+        correctOptionIndex: 1,
+        explanation: "Puedes usar la notación literal /patrón/ o el constructor new RegExp('patrón'). La segunda es útil cuando el patrón es dinámico.",
+        xpReward: 10
+    },
+    // Section: Conjuntos de caracteres
+    "ch09-l3-s0": {
+        id: "ex-ch09-charset",
+        type: "code",
+        prompt: "¿Qué expresión regular coincide con cualquier dígito (0-9)?",
+        initialCode: "let digitRegex = /??/;\nconsole.log(digitRegex.test('abc5def')); // true",
+        expectedOutput: "\\d",
+        solution: "/\\d/",
+        explanation: "\\d es un atajo para [0-9] y coincide con cualquier dígito. También puedes usar [0-9] explícitamente.",
+        xpReward: 15
+    },
+    // Section: El método replace
+    "ch09-l13-s0": {
+        id: "ex-ch09-replace",
+        type: "code",
+        prompt: "Usa replace con una expresión regular para reemplazar TODAS las vocales por '*':",
+        initialCode: "let text = 'Hola Mundo';\nlet result = text.replace(/??/, '*');\nconsole.log(result); // H*l* M*nd*",
+        expectedOutput: "[aeiouAEIOU]/g",
+        solution: "/[aeiouAEIOU]/g",
+        explanation: "El flag 'g' (global) es necesario para reemplazar TODAS las coincidencias, no solo la primera.",
+        xpReward: 20
+    },
+
+    // --- Chapter 10: Módulos ---
+    "ch10-l1-s0": {
+        id: "ex-ch10-modules",
+        type: "quiz",
+        prompt: "¿Cuál es el principal beneficio de dividir un programa en módulos?",
+        options: [
+            "Hace el código más rápido",
+            "Permite reutilizar código, mantener piezas independientes y gestionar dependencias",
+            "Reduce el tamaño del archivo final",
+            "Es obligatorio en JavaScript moderno"
+        ],
+        correctOptionIndex: 1,
+        explanation: "Los módulos permiten organizar código en piezas independientes, reutilizables y con dependencias claras.",
+        xpReward: 15
+    },
+    "ch10-l2-s0": {
+        id: "ex-ch10-esmodules",
+        type: "code",
+        prompt: "¿Cómo exportas una función llamada 'formatDate' desde un módulo ES?",
+        initialCode: "function formatDate(date) {\n  return date.toLocaleDateString();\n}\n\n?? { formatDate };",
+        expectedOutput: "export",
+        solution: "export { formatDate };",
+        explanation: "Usamos 'export' para hacer disponible una función o variable a otros módulos.",
+        xpReward: 15
+    },
+
+    // --- Chapter 11: Programación Asíncrona ---
+    "ch11-l3-s0": {
+        id: "ex-ch11-promises",
+        type: "quiz",
+        prompt: "¿Qué representa una Promise en JavaScript?",
+        options: [
+            "Un valor que siempre está disponible inmediatamente",
+            "Un valor que puede estar disponible ahora, en el futuro, o nunca",
+            "Una función que se ejecuta más rápido",
+            "Un tipo especial de array"
+        ],
+        correctOptionIndex: 1,
+        explanation: "Una Promise representa una operación asíncrona que eventualmente producirá un valor o fallará.",
+        xpReward: 15
+    },
+    "ch11-l7-s0": {
+        id: "ex-ch11-async",
+        type: "code",
+        prompt: "Convierte esta función con .then() a usar async/await:",
+        initialCode: "// Versión con .then():\n// fetch(url).then(response => response.json())\n\n?? function getData(url) {\n  let response = await fetch(url);\n  return response.json();\n}",
+        expectedOutput: "async",
+        solution: "async function getData(url) {\n  let response = await fetch(url);\n  return response.json();\n}",
+        explanation: "La palabra clave 'async' permite usar 'await' dentro de la función para esperar promesas.",
+        xpReward: 20
+    },
+
+    // --- Chapter 12: Proyecto - Un Lenguaje de Programación ---
+    "ch12-l1-s0": {
+        id: "ex-ch12-parsing",
+        type: "quiz",
+        prompt: "En un intérprete, ¿qué hace el 'parser' (analizador sintáctico)?",
+        options: [
+            "Ejecuta el programa directamente",
+            "Convierte el texto del código en una estructura de datos (árbol de sintaxis)",
+            "Compila el código a binario",
+            "Verifica que no hay virus en el código"
+        ],
+        correctOptionIndex: 1,
+        explanation: "El parser lee el código fuente y construye un árbol de sintaxis abstracta (AST) que representa la estructura del programa.",
+        xpReward: 15
+    },
+    "ch12-l2-s0": {
+        id: "ex-ch12-evaluator",
+        type: "quiz",
+        prompt: "¿Qué hace el evaluador en un intérprete?",
+        options: [
+            "Convierte código a texto",
+            "Recorre el árbol de sintaxis y ejecuta las instrucciones",
+            "Formatea el código para que sea legible",
+            "Comprime el programa"
+        ],
+        correctOptionIndex: 1,
+        explanation: "El evaluador toma el AST y lo ejecuta, evaluando expresiones y ejecutando efectos.",
+        xpReward: 15
+    },
+
+    // --- Chapter 13: JavaScript y el Navegador ---
+    "ch13-l4-s0": {
+        id: "ex-ch13-html",
+        type: "code",
+        prompt: "¿Qué etiqueta HTML se usa para incluir un archivo JavaScript externo?",
+        initialCode: "<??script src=\"code.js\"></script>",
+        expectedOutput: "script",
+        solution: "<script src=\"code.js\"></script>",
+        explanation: "La etiqueta <script> con atributo 'src' carga y ejecuta un archivo JavaScript externo.",
+        xpReward: 10
+    },
+
+    // --- Chapter 14: El DOM ---
+    "ch14-l1-s0": {
+        id: "ex-ch14-dom",
+        type: "quiz",
+        prompt: "¿Qué es el DOM (Document Object Model)?",
+        options: [
+            "Un lenguaje de programación diferente a JavaScript",
+            "Una representación en forma de árbol del documento HTML que JavaScript puede manipular",
+            "Un servidor web",
+            "Un formato de archivo para guardar páginas web"
+        ],
+        correctOptionIndex: 1,
+        explanation: "El DOM es una API que representa el documento HTML como un árbol de nodos que puedes leer y modificar con JavaScript.",
+        xpReward: 15
+    },
+    "ch14-l4-s0": {
+        id: "ex-ch14-query",
+        type: "code",
+        prompt: "¿Cómo seleccionas el primer elemento con clase 'button' usando querySelector?",
+        initialCode: "let btn = document.??('.button');",
+        expectedOutput: "querySelector",
+        solution: "document.querySelector('.button')",
+        explanation: "querySelector acepta un selector CSS y devuelve el primer elemento que coincide.",
+        xpReward: 15
+    },
+
+    // --- Chapter 15: Manejo de Eventos ---
+    "ch15-l1-s0": {
+        id: "ex-ch15-events",
+        type: "code",
+        prompt: "¿Cómo añades un event listener para detectar clics en un botón?",
+        initialCode: "let button = document.querySelector('button');\nbutton.??('click', () => {\n  console.log('Clicked!');\n});",
+        expectedOutput: "addEventListener",
+        solution: "button.addEventListener('click', handler)",
+        explanation: "addEventListener registra una función que se ejecutará cada vez que ocurra el evento especificado.",
+        xpReward: 15
+    },
+    "ch15-l5-s0": {
+        id: "ex-ch15-propagation",
+        type: "quiz",
+        prompt: "¿Qué hace event.stopPropagation()?",
+        options: [
+            "Cancela la acción por defecto del evento",
+            "Impide que el evento se propague a elementos padres",
+            "Elimina el event listener",
+            "Hace que el evento se dispare dos veces"
+        ],
+        correctOptionIndex: 1,
+        explanation: "stopPropagation() evita que el evento 'burbujee' hacia los nodos padres en el DOM.",
+        xpReward: 15
+    },
+
+    // --- Chapter 16: Proyecto - Juego de Plataformas ---
+    "ch16-l1-s0": {
+        id: "ex-ch16-game",
+        type: "quiz",
+        prompt: "En un juego de plataformas, ¿por qué es importante separar el estado del juego de su visualización?",
+        options: [
+            "Para que el juego sea más lento",
+            "Para poder cambiar la forma de dibujar sin modificar la lógica del juego",
+            "Porque JavaScript lo requiere",
+            "Para usar menos memoria"
+        ],
+        correctOptionIndex: 1,
+        explanation: "Separar estado y vista permite cambiar la implementación visual (DOM, Canvas, WebGL) sin tocar la lógica.",
+        xpReward: 15
+    },
+
+    // --- Chapter 17: Dibujando en Canvas ---
+    "ch17-l2-s0": {
+        id: "ex-ch17-canvas",
+        type: "code",
+        prompt: "¿Cómo obtienes el contexto 2D de un elemento canvas?",
+        initialCode: "let canvas = document.querySelector('canvas');\nlet ctx = canvas.??('2d');",
+        expectedOutput: "getContext",
+        solution: "canvas.getContext('2d')",
+        explanation: "getContext('2d') devuelve un objeto con métodos para dibujar en 2D como fillRect, stroke, etc.",
+        xpReward: 15
+    },
+    "ch17-l4-s0": {
+        id: "ex-ch17-paths",
+        type: "quiz",
+        prompt: "¿Qué método de canvas usas para dibujar un rectángulo relleno?",
+        options: [
+            "drawRect()",
+            "fillRect(x, y, width, height)",
+            "rectangle()",
+            "createRect()"
+        ],
+        correctOptionIndex: 1,
+        explanation: "fillRect dibuja un rectángulo relleno en las coordenadas especificadas.",
+        xpReward: 10
+    },
+
+    // --- Chapter 18: HTTP y Formularios ---
+    "ch18-l3-s0": {
+        id: "ex-ch18-fetch",
+        type: "code",
+        prompt: "¿Cómo haces una petición GET con fetch?",
+        initialCode: "??('https://api.example.com/data')\n  .then(response => response.json())\n  .then(data => console.log(data));",
+        expectedOutput: "fetch",
+        solution: "fetch('url')",
+        explanation: "fetch() es la API moderna para hacer peticiones HTTP. Por defecto hace GET.",
+        xpReward: 15
+    },
+    "ch18-l5-s0": {
+        id: "ex-ch18-forms",
+        type: "quiz",
+        prompt: "¿Cómo evitas que un formulario recargue la página al enviarse?",
+        options: [
+            "Usando type='button' en el submit",
+            "Llamando event.preventDefault() en el handler del submit",
+            "Eliminando el atributo action del form",
+            "Usando CSS display: none"
+        ],
+        correctOptionIndex: 1,
+        explanation: "preventDefault() cancela el comportamiento por defecto del evento, evitando que el formulario navegue.",
+        xpReward: 15
+    },
+
+    // --- Chapter 19: Proyecto - Editor de Pixel Art ---
+    "ch19-l2-s0": {
+        id: "ex-ch19-state",
+        type: "quiz",
+        prompt: "En una arquitectura de componentes, ¿por qué es útil tener un estado centralizado?",
+        options: [
+            "Para hacer la aplicación más lenta",
+            "Para que todos los componentes lean del mismo lugar y los cambios se reflejen consistentemente",
+            "Porque es obligatorio en JavaScript",
+            "Para usar menos código"
+        ],
+        correctOptionIndex: 1,
+        explanation: "Un estado centralizado facilita la sincronización entre componentes y hace predecibles los cambios.",
+        xpReward: 15
+    },
+
+    // --- Chapter 20: Node.js ---
+    "ch20-l2-s0": {
+        id: "ex-ch20-node",
+        type: "code",
+        prompt: "¿Cómo ejecutas un archivo JavaScript con Node.js desde la terminal?",
+        initialCode: "?? script.js",
+        expectedOutput: "node",
+        solution: "node script.js",
+        explanation: "El comando 'node' seguido del nombre del archivo ejecuta el script en el entorno Node.js.",
+        xpReward: 10
+    },
+    "ch20-l5-s0": {
+        id: "ex-ch20-fs",
+        type: "code",
+        prompt: "¿Qué módulo de Node.js usas para leer y escribir archivos?",
+        initialCode: "const fs = require('??');\nfs.readFileSync('file.txt', 'utf8');",
+        expectedOutput: "fs",
+        solution: "require('fs')",
+        explanation: "El módulo 'fs' (file system) proporciona funciones para trabajar con el sistema de archivos.",
+        xpReward: 15
+    },
+
+    // --- Chapter 21: Proyecto - Sitio de Intercambio de Habilidades ---
+    "ch21-l2-s0": {
+        id: "ex-ch21-longpoll",
+        type: "quiz",
+        prompt: "¿Qué es 'long polling' y para qué se usa?",
+        options: [
+            "Una técnica para hacer el servidor más lento",
+            "Mantener una conexión HTTP abierta hasta que el servidor tenga datos nuevos",
+            "Un tipo de base de datos",
+            "Una forma de encriptar datos"
+        ],
+        correctOptionIndex: 1,
+        explanation: "Long polling permite actualizaciones en tiempo real manteniendo la petición abierta hasta que haya cambios.",
         xpReward: 15
     }
 };
