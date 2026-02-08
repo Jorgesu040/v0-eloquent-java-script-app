@@ -4,6 +4,7 @@ import { Flame, Heart, Zap, Trophy, BookOpen } from "lucide-react"
 import { getLevel, getXPForCurrentLevel, getLevelTitle, XP_PER_LEVEL } from "@/lib/course-data"
 import { cn } from "@/lib/utils"
 import { SyncSettings } from "./sync-settings"
+import { PwaInstallPrompt } from "./pwa-install-prompt"
 
 interface AppHeaderProps {
   totalXP: number
@@ -59,6 +60,7 @@ export function AppHeader({
             </div>
           </button>
           <SyncSettings sync={sync} />
+          <PwaInstallPrompt />
         </div>
 
         {/* Nav */}
