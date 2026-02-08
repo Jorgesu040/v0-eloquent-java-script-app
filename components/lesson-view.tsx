@@ -10,6 +10,8 @@ import {
   Zap,
   Lightbulb,
 } from "lucide-react"
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism"
 import type { Chapter, Lesson, UserProgress, ContentBlock, Section } from "@/lib/course-data"
 import { ExerciseCard } from "./exercise-card"
 import { cn } from "@/lib/utils"
@@ -41,24 +43,48 @@ function ContentRenderer({ content }: { content: ContentBlock[] }) {
               />
             )
           case "code":
-            // Normalize language string if needed
-            const language = block.language || "javascript"
+            // Normalize language string
+            const lang = block.language?.toLowerCase() || "javascript"
+            // Map common language aliases
+            const languageMap: Record<string, string> = {
+              js: "javascript",
+              ts: "typescript",
+              jsx: "jsx",
+              tsx: "tsx",
+              html: "html",
+              css: "css",
+              json: "json",
+              null: "text",
+              text: "text",
+            }
+            const language = languageMap[lang] || lang
+
             return (
               <div
                 key={index}
-                className="my-4 overflow-hidden rounded-lg border border-border bg-[hsl(222,25%,8%)]"
+                className="my-4 overflow-hidden rounded-lg border border-border"
               >
-                <div className="flex items-center gap-2 border-b border-border/50 px-4 py-2">
+                <div className="flex items-center gap-2 border-b border-border/50 bg-[hsl(222,25%,12%)] px-4 py-2">
                   <Code className="h-4 w-4 text-primary" />
                   <span className="text-xs font-medium text-[hsl(210,20%,70%)]">
                     {language.toUpperCase()}
                   </span>
                 </div>
-                <pre className="overflow-x-auto p-4">
-                  <code className="text-sm text-[hsl(145,63%,60%)] leading-relaxed whitespace-pre-wrap">
-                    {block.content}
-                  </code>
-                </pre>
+                <SyntaxHighlighter
+                  language={language === "text" ? "plaintext" : language}
+                  style={vscDarkPlus}
+                  customStyle={{
+                    margin: 0,
+                    padding: "1rem",
+                    fontSize: "0.875rem",
+                    lineHeight: "1.6",
+                    background: "hsl(222, 25%, 8%)",
+                  }}
+                  wrapLines={true}
+                  wrapLongLines={true}
+                >
+                  {block.content}
+                </SyntaxHighlighter>
               </div>
             )
           case "blockquote":
