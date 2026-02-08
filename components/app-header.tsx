@@ -170,16 +170,20 @@ export function AppHeader({
           </div>
         </div>
 
-        {/* Mobile Nav */}
-        <MobileNav
-          totalXP={totalXP}
-          currentStreak={currentStreak}
-          hearts={hearts}
-          dailyXP={dailyXP}
-          dailyGoal={dailyGoal}
-          onNavigate={onNavigate}
-          currentView={currentView}
-        />
+        {/* Mobile: Settings + Nav */}
+        <div className="flex md:hidden items-center gap-1">
+          <ThemeToggle />
+          <SyncSettings sync={sync} />
+          <MobileNav
+            totalXP={totalXP}
+            currentStreak={currentStreak}
+            hearts={hearts}
+            dailyXP={dailyXP}
+            dailyGoal={dailyGoal}
+            onNavigate={onNavigate}
+            currentView={currentView}
+          />
+        </div>
       </div>
     </header>
   )
