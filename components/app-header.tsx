@@ -3,6 +3,7 @@
 import { Flame, Heart, Zap, Trophy, BookOpen } from "lucide-react"
 import { getLevel, getXPForCurrentLevel, getLevelTitle, XP_PER_LEVEL } from "@/lib/course-data"
 import { cn } from "@/lib/utils"
+import { SyncSettings } from "./sync-settings"
 
 interface AppHeaderProps {
   totalXP: number
@@ -13,6 +14,13 @@ interface AppHeaderProps {
   xpAnimation: boolean
   onNavigate: (view: string) => void
   currentView: string
+  sync: {
+    status: "idle" | "syncing" | "synced" | "error"
+    lastSynced: number | null
+    isactive: boolean
+    activate: (passphrase: string) => void
+    deactivate: () => void
+  }
 }
 
 export function AppHeader({
@@ -24,6 +32,7 @@ export function AppHeader({
   xpAnimation,
   onNavigate,
   currentView,
+  sync,
 }: AppHeaderProps) {
   const level = getLevel(totalXP)
   const levelXP = getXPForCurrentLevel(totalXP)
@@ -34,20 +43,23 @@ export function AppHeader({
     <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
         {/* Logo */}
-        <button
-          onClick={() => onNavigate("dashboard")}
-          className="flex items-center gap-2 transition-opacity hover:opacity-80"
-        >
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-            <BookOpen className="h-5 w-5 text-primary-foreground" />
-          </div>
-          <div className="hidden sm:block">
-            <p className="text-sm font-bold leading-none text-foreground">
-              EloquentJS
-            </p>
-            <p className="text-xs text-muted-foreground">Aprende JavaScript</p>
-          </div>
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => onNavigate("dashboard")}
+            className="flex items-center gap-2 transition-opacity hover:opacity-80"
+          >
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
+              <BookOpen className="h-5 w-5 text-primary-foreground" />
+            </div>
+            <div className="hidden sm:block">
+              <p className="text-sm font-bold leading-none text-foreground">
+                EloquentJS
+              </p>
+              <p className="text-xs text-muted-foreground">Aprende JavaScript</p>
+            </div>
+          </button>
+          <SyncSettings sync={sync} />
+        </div>
 
         {/* Nav */}
         <nav className="flex items-center gap-1">

@@ -32,6 +32,7 @@ export default function Page() {
     completeChapter,
     loseHeart,
     dismissAchievement,
+    sync,
   } = useProgress()
 
   const handleNavigate = useCallback((view: string) => {
@@ -119,6 +120,7 @@ export default function Page() {
         xpAnimation={xpAnimation}
         onNavigate={handleNavigate}
         currentView={currentView}
+        sync={sync}
       />
 
       <main>

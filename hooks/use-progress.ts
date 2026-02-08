@@ -33,15 +33,110 @@ function saveProgress(progress: UserProgress) {
   }
 }
 
+// Sync helpers
+const SYNC_API_URL = "/api/sync"
+const DEBOUNCE_MS = 2000
+
 export function useProgress() {
   const [progress, setProgress] = useState<UserProgress>(INITIAL_PROGRESS)
   const [loaded, setLoaded] = useState(false)
   const [xpAnimation, setXpAnimation] = useState(false)
   const [newAchievement, setNewAchievement] = useState<string | null>(null)
 
+  // Sync state
+  const [syncPassphrase, setSyncPassphrase] = useState<string | null>(null)
+  const [syncStatus, setSyncStatus] = useState<"idle" | "syncing" | "synced" | "error">("idle")
+  const [lastSynced, setLastSynced] = useState<number | null>(null)
+
   useEffect(() => {
-    setProgress(loadProgress())
+    // Load local progress
+    const local = loadProgress()
+    setProgress(local)
     setLoaded(true)
+
+    // Load saved passphrase
+    if (typeof window !== "undefined") {
+      const savedPass = localStorage.getItem("sync-passphrase")
+      if (savedPass) {
+        setSyncPassphrase(savedPass)
+      }
+    }
+  }, [])
+
+  // Sync effect: when progress changes, debounce save to cloud
+  useEffect(() => {
+    if (!loaded || !syncPassphrase) return
+
+    const timer = setTimeout(async () => {
+      setSyncStatus("syncing")
+      try {
+        const res = await fetch(SYNC_API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            passphrase: syncPassphrase,
+            data: progress,
+            timestamp: Date.now(),
+          }),
+        })
+
+        const json = await res.json()
+
+        if (json.action === "merged") {
+          // Server had newer data, update local
+          console.log("Sync: Merging server data")
+          setProgress(json.data)
+          saveProgress(json.data)
+        }
+
+        setSyncStatus("synced")
+        setLastSynced(Date.now())
+      } catch (error) {
+        console.error("Sync failed:", error)
+        setSyncStatus("error")
+      }
+    }, DEBOUNCE_MS)
+
+    return () => clearTimeout(timer)
+  }, [progress, syncPassphrase, loaded])
+
+  // Initial load from cloud when passphrase is set
+  const activateSync = useCallback(async (passphrase: string) => {
+    setSyncPassphrase(passphrase)
+    localStorage.setItem("sync-passphrase", passphrase)
+    setSyncStatus("syncing")
+
+    try {
+      // 1. Try to load existing data
+      const res = await fetch(`${SYNC_API_URL}?passphrase=${encodeURIComponent(passphrase)}`)
+      const json = await res.json()
+
+      if (json.data) {
+        // We found data!
+        // Simple strategy: if server data exists, ask user? Or just merge?
+        // For simplicity: if local is default/empty, take server. 
+        // If local has progress, we might overwrite server if we are not careful.
+        // Let's assume on "Activate", we download.
+        console.log("Sync: Downloaded initial data", json.data)
+        setProgress(json.data)
+        saveProgress(json.data)
+        setLastSynced(json.timestamp)
+      } else {
+        // No data on server yet, upload current
+        console.log("Sync: No server data, uploading current")
+        // The useEffect will trigger and upload
+      }
+      setSyncStatus("synced")
+    } catch (e) {
+      console.error("Activate sync failed", e)
+      setSyncStatus("error")
+    }
+  }, [])
+
+  const deactivateSync = useCallback(() => {
+    setSyncPassphrase(null)
+    localStorage.removeItem("sync-passphrase")
+    setSyncStatus("idle")
   }, [])
 
   const updateProgress = useCallback((updater: (prev: UserProgress) => UserProgress) => {
@@ -169,7 +264,11 @@ export function useProgress() {
 
   const dismissAchievement = useCallback(() => {
     setNewAchievement(null)
-  }, [])
+    updateProgress(prev => {
+      // Remove from pending queue if we had one (simplified here)
+      return prev
+    })
+  }, []) // Removed dependency on updateProgress to avoid loop
 
   return {
     progress,
@@ -186,5 +285,13 @@ export function useProgress() {
     dismissAchievement,
     allAchievements: ACHIEVEMENTS,
     xpPerLevel: XP_PER_LEVEL,
+    sync: {
+      status: syncStatus,
+      lastSynced,
+      isactive: !!syncPassphrase,
+      activate: activateSync,
+      deactivate: deactivateSync,
+    }
   }
 }
+
