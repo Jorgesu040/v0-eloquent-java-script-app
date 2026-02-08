@@ -311,6 +311,19 @@ export function useProgress() {
     })
   }, []) // Removed dependency on updateProgress to avoid loop
 
+  const resetProgress = useCallback(() => {
+    // Clear localStorage
+    if (typeof window !== "undefined") {
+      localStorage.removeItem(STORAGE_KEY)
+      localStorage.removeItem("sync-passphrase")
+    }
+    // Reset state to initial
+    setProgress(INITIAL_PROGRESS)
+    setSyncPassphrase(null)
+    setSyncStatus("idle")
+    setLastSynced(null)
+  }, [])
+
   return {
     progress,
     loaded,
@@ -334,6 +347,7 @@ export function useProgress() {
       deactivate: deactivateSync,
       forceUpload,
       forceDownload,
+      resetProgress,
     }
   }
 }

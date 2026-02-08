@@ -2,10 +2,11 @@
 
 import { useState } from "react"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Wifi, WifiOff, RefreshCw, CheckCircle2, AlertCircle, Upload, Download } from "lucide-react"
+import { Wifi, WifiOff, RefreshCw, CheckCircle2, AlertCircle, Upload, Download, Trash2 } from "lucide-react"
 
 interface SyncSettingsProps {
     sync: {
@@ -16,6 +17,7 @@ interface SyncSettingsProps {
         deactivate: () => void
         forceUpload: () => void
         forceDownload: () => void
+        resetProgress: () => void
     }
 }
 
@@ -33,6 +35,11 @@ export function SyncSettings({ sync }: SyncSettingsProps) {
         sync.activate(passphrase)
         setOpen(false)
         setPassphrase("")
+    }
+
+    const handleReset = () => {
+        sync.resetProgress()
+        setOpen(false)
     }
 
     return (
@@ -124,8 +131,35 @@ export function SyncSettings({ sync }: SyncSettingsProps) {
                             </Button>
                         </div>
                     )}
+
+                    {/* Reset Data Section */}
+                    <div className="border-t pt-4 mt-4">
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <Button variant="outline" className="w-full gap-2 text-destructive hover:text-destructive hover:bg-destructive/10">
+                                    <Trash2 className="h-4 w-4" />
+                                    Borrar todos los datos
+                                </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>¿Estás seguro?</AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                        Esta acción eliminará permanentemente todo tu progreso, XP, logros y configuración de sincronización. Esta acción no se puede deshacer.
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                                    <AlertDialogAction onClick={handleReset} className="bg-destructive hover:bg-destructive/90">
+                                        Sí, borrar todo
+                                    </AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
+                    </div>
                 </div>
             </DialogContent>
         </Dialog>
     )
 }
+

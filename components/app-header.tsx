@@ -24,6 +24,7 @@ interface AppHeaderProps {
     deactivate: () => void
     forceUpload: () => void
     forceDownload: () => void
+    resetProgress: () => void
   }
 }
 
