@@ -54,6 +54,7 @@ export function AppHeader({
           {[
             { id: "dashboard", label: "Inicio" },
             { id: "chapters", label: "Capitulos" },
+            { id: "checklist", label: "Plan" },
             { id: "achievements", label: "Logros" },
           ].map((item) => (
             <button

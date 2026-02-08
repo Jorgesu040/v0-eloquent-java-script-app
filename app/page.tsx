@@ -8,9 +8,10 @@ import { DashboardView } from "@/components/dashboard-view"
 import { ChaptersView } from "@/components/chapters-view"
 import { LessonView } from "@/components/lesson-view"
 import { AchievementsView } from "@/components/achievements-view"
+import { CurriculumChecklist } from "@/components/curriculum-checklist"
 import { AchievementPopup } from "@/components/achievement-popup"
 
-type AppView = "dashboard" | "chapters" | "lesson" | "achievements"
+type AppView = "dashboard" | "chapters" | "lesson" | "achievements" | "checklist"
 
 interface LessonState {
   chapterId: string
@@ -73,7 +74,7 @@ export default function Page() {
         const lesson = chapter?.lessons.find((l) => l.id === activeLessonState?.lessonId)
         const exercise = lesson?.exercises.find((e) => e.id === exerciseId)
         if (exercise) {
-          addXP(exercise.xpReward)
+          addXP(exercise.xpReward || 0)
         }
       } else {
         loseHeart()
@@ -127,6 +128,9 @@ export default function Page() {
             onStartLesson={handleStartLesson}
             onNavigate={handleNavigate}
           />
+        )}
+        {currentView === "checklist" && (
+          <CurriculumChecklist progress={progress} onStartLesson={handleStartLesson} />
         )}
         {currentView === "chapters" && (
           <ChaptersView progress={progress} onStartLesson={handleStartLesson} />
