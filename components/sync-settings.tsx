@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Wifi, WifiOff, RefreshCw, CheckCircle2, AlertCircle } from "lucide-react"
+import { Wifi, WifiOff, RefreshCw, CheckCircle2, AlertCircle, Upload, Download } from "lucide-react"
 
 interface SyncSettingsProps {
     sync: {
@@ -14,6 +14,8 @@ interface SyncSettingsProps {
         isactive: boolean
         activate: (passphrase: string) => void
         deactivate: () => void
+        forceUpload: () => void
+        forceDownload: () => void
     }
 }
 
@@ -74,6 +76,28 @@ export function SyncSettings({ sync }: SyncSettingsProps) {
                                     <RefreshCw className="h-3 w-3 animate-spin" /> Guardando cambios...
                                 </div>
                             )}
+
+                            {/* Manual Sync Buttons */}
+                            <div className="grid grid-cols-2 gap-2">
+                                <Button
+                                    variant="outline"
+                                    onClick={sync.forceUpload}
+                                    disabled={sync.status === "syncing"}
+                                    className="gap-2"
+                                >
+                                    <Upload className="h-4 w-4" />
+                                    Subir
+                                </Button>
+                                <Button
+                                    variant="outline"
+                                    onClick={sync.forceDownload}
+                                    disabled={sync.status === "syncing"}
+                                    className="gap-2"
+                                >
+                                    <Download className="h-4 w-4" />
+                                    Bajar
+                                </Button>
+                            </div>
 
                             <Button variant="destructive" onClick={sync.deactivate} className="w-full">
                                 Desconectar

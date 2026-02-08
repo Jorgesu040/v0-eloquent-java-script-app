@@ -139,6 +139,47 @@ export function useProgress() {
     setSyncStatus("idle")
   }, [])
 
+  // Manual sync: Force upload current progress to cloud
+  const forceUpload = useCallback(async () => {
+    if (!syncPassphrase) return
+    setSyncStatus("syncing")
+    try {
+      await fetch(SYNC_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          passphrase: syncPassphrase,
+          data: progress,
+          timestamp: Date.now(),
+        }),
+      })
+      setSyncStatus("synced")
+      setLastSynced(Date.now())
+    } catch (error) {
+      console.error("Force upload failed:", error)
+      setSyncStatus("error")
+    }
+  }, [syncPassphrase, progress])
+
+  // Manual sync: Force download from cloud and overwrite local
+  const forceDownload = useCallback(async () => {
+    if (!syncPassphrase) return
+    setSyncStatus("syncing")
+    try {
+      const res = await fetch(`${SYNC_API_URL}?passphrase=${encodeURIComponent(syncPassphrase)}`)
+      const json = await res.json()
+      if (json.data) {
+        setProgress(json.data)
+        saveProgress(json.data)
+        setLastSynced(json.timestamp)
+      }
+      setSyncStatus("synced")
+    } catch (error) {
+      console.error("Force download failed:", error)
+      setSyncStatus("error")
+    }
+  }, [syncPassphrase])
+
   const updateProgress = useCallback((updater: (prev: UserProgress) => UserProgress) => {
     setProgress((prev) => {
       const next = updater(prev)
@@ -291,6 +332,8 @@ export function useProgress() {
       isactive: !!syncPassphrase,
       activate: activateSync,
       deactivate: deactivateSync,
+      forceUpload,
+      forceDownload,
     }
   }
 }

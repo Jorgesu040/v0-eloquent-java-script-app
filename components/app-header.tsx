@@ -5,6 +5,7 @@ import { getLevel, getXPForCurrentLevel, getLevelTitle, XP_PER_LEVEL } from "@/l
 import { cn } from "@/lib/utils"
 import { SyncSettings } from "./sync-settings"
 import { PwaInstallPrompt } from "./pwa-install-prompt"
+import { MobileNav } from "./mobile-nav"
 
 interface AppHeaderProps {
   totalXP: number
@@ -21,6 +22,8 @@ interface AppHeaderProps {
     isactive: boolean
     activate: (passphrase: string) => void
     deactivate: () => void
+    forceUpload: () => void
+    forceDownload: () => void
   }
 }
 
@@ -63,8 +66,8 @@ export function AppHeader({
           <PwaInstallPrompt />
         </div>
 
-        {/* Nav */}
-        <nav className="flex items-center gap-1">
+        {/* Nav (Desktop) */}
+        <nav className="hidden md:flex items-center gap-1">
           {[
             { id: "dashboard", label: "Inicio" },
             { id: "chapters", label: "Capitulos" },
@@ -86,8 +89,8 @@ export function AppHeader({
           ))}
         </nav>
 
-        {/* Stats bar */}
-        <div className="flex items-center gap-3">
+        {/* Stats bar (Desktop) */}
+        <div className="hidden md:flex items-center gap-3">
           {/* Daily progress */}
           <div className="hidden items-center gap-1.5 md:flex">
             <div className="h-1.5 w-16 overflow-hidden rounded-full bg-muted">
@@ -156,6 +159,17 @@ export function AppHeader({
             <span className="text-xs text-primary/70">{levelTitle}</span>
           </div>
         </div>
+
+        {/* Mobile Nav */}
+        <MobileNav
+          totalXP={totalXP}
+          currentStreak={currentStreak}
+          hearts={hearts}
+          dailyXP={dailyXP}
+          dailyGoal={dailyGoal}
+          onNavigate={onNavigate}
+          currentView={currentView}
+        />
       </div>
     </header>
   )
