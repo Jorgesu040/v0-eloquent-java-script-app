@@ -19,8 +19,8 @@ export const MANUAL_EXERCISES: Record<string, Exercise> = {
 
     // --- Chapter 1: Valores, Tipos y Operadores ---
 
-    // Section: Números
-    "ch01-l1-s0": {
+    // Section: Números (Lesson 2)
+    "ch01-l2-s0": {
         id: "ex-ch01-arithmetic",
         type: "code",
         prompt: "Calcula el resto de dividir 100 entre 13 usando JavaScript.",
@@ -31,8 +31,8 @@ export const MANUAL_EXERCISES: Record<string, Exercise> = {
         xpReward: 15
     },
 
-    // Section: Cadenas (Strings)
-    "ch01-l2-s1": {
+    // Section: Cadenas (Lesson 3)
+    "ch01-l3-s0": {
         id: "ex-ch01-strings",
         type: "quiz",
         prompt: "¿Qué resultado produce \"con\" + \"cat\" + \"e\" + \"nate\"?",
@@ -47,8 +47,8 @@ export const MANUAL_EXERCISES: Record<string, Exercise> = {
         xpReward: 10
     },
 
-    // Section: Operadores Unarios (typeof)
-    "ch01-l3-s0": {
+    // Section: Operadores Unarios (Lesson 4)
+    "ch01-l4-s0": {
         id: "ex-ch01-typeof",
         type: "code",
         prompt: "¿Cuál es el tipo de dato de 4.5?",
@@ -59,8 +59,8 @@ export const MANUAL_EXERCISES: Record<string, Exercise> = {
         xpReward: 10
     },
 
-    // Section: Valores Booleanos
-    "ch01-l4-s0": {
+    // Section: Valores Booleanos (Lesson 5)
+    "ch01-l5-s0": {
         id: "ex-ch01-bool",
         type: "quiz",
         prompt: "¿Cuál de las siguientes comparaciones es verdadera?",
