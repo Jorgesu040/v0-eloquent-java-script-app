@@ -10,6 +10,7 @@ import { LessonView } from "@/components/lesson-view"
 import { AchievementsView } from "@/components/achievements-view"
 import { CurriculumChecklist } from "@/components/curriculum-checklist"
 import { AchievementPopup } from "@/components/achievement-popup"
+import { CreditsFooter } from "@/components/credits-footer"
 
 type AppView = "dashboard" | "chapters" | "lesson" | "achievements" | "checklist"
 
@@ -156,6 +157,9 @@ export default function Page() {
       {newAchievement && (
         <AchievementPopup title={newAchievement} onDismiss={dismissAchievement} />
       )}
+
+      {/* Credits Footer */}
+      <CreditsFooter />
     </div>
   )
 }
