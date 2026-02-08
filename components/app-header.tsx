@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { SyncSettings } from "./sync-settings"
 import { PwaInstallPrompt } from "./pwa-install-prompt"
 import { MobileNav } from "./mobile-nav"
+import { ThemeToggle } from "./theme-toggle"
 
 interface AppHeaderProps {
   totalXP: number
@@ -46,9 +47,9 @@ export function AppHeader({
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-        {/* Logo */}
-        <div className="flex items-center gap-2">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2">
+        {/* Logo + Branding */}
+        <div className="flex items-center gap-3">
           <button
             onClick={() => onNavigate("dashboard")}
             className="flex items-center gap-2 transition-opacity hover:opacity-80"
@@ -63,8 +64,16 @@ export function AppHeader({
               <p className="text-xs text-muted-foreground">Aprende JavaScript</p>
             </div>
           </button>
-          <SyncSettings sync={sync} />
-          <PwaInstallPrompt />
+
+          {/* Separator */}
+          <div className="hidden md:block h-6 w-px bg-border" />
+
+          {/* Settings buttons */}
+          <div className="hidden md:flex items-center gap-1">
+            <ThemeToggle />
+            <SyncSettings sync={sync} />
+            <PwaInstallPrompt />
+          </div>
         </div>
 
         {/* Nav (Desktop) */}
