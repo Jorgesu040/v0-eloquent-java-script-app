@@ -311,18 +311,35 @@ export function useProgress() {
     })
   }, []) // Removed dependency on updateProgress to avoid loop
 
-  const resetProgress = useCallback(() => {
-    // Clear localStorage
+  const resetProgress = useCallback(async () => {
+    // Clear progress from localStorage but KEEP sync passphrase
     if (typeof window !== "undefined") {
       localStorage.removeItem(STORAGE_KEY)
-      localStorage.removeItem("sync-passphrase")
     }
     // Reset state to initial
     setProgress(INITIAL_PROGRESS)
-    setSyncPassphrase(null)
-    setSyncStatus("idle")
-    setLastSynced(null)
-  }, [])
+    saveProgress(INITIAL_PROGRESS)
+
+    // If sync is active, force upload the reset state
+    if (syncPassphrase) {
+      setSyncStatus("syncing")
+      try {
+        const res = await fetch(SYNC_API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ passphrase: syncPassphrase, progress: INITIAL_PROGRESS })
+        })
+        if (res.ok) {
+          setSyncStatus("synced")
+          setLastSynced(Date.now())
+        } else {
+          setSyncStatus("error")
+        }
+      } catch {
+        setSyncStatus("error")
+      }
+    }
+  }, [syncPassphrase])
 
   return {
     progress,
