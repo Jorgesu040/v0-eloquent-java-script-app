@@ -158,8 +158,8 @@ export default function Page() {
         <AchievementPopup title={newAchievement} onDismiss={dismissAchievement} />
       )}
 
-      {/* Credits Footer */}
-      <CreditsFooter />
+      {/* Credits Footer - only on main views, not lessons */}
+      {currentView !== "lesson" && <CreditsFooter />}
     </div>
   )
 }
