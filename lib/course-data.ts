@@ -127,27 +127,34 @@ export const ACHIEVEMENTS = [
 // 20-21: Node (Part 3)
 
 const PART_LABELS: Record<string, string> = {
+  "intro": "Inicio",
   "part1": "Parte 1: Lenguaje",
   "part2": "Parte 2: Navegador",
   "part3": "Parte 3: Node.js"
 };
 
+
 import { MANUAL_EXERCISES, MANUAL_LESSON_EXERCISES } from './manual-exercises';
+import { INTRO_CHAPTER } from './intro-data';
 
 // Cast the imported JSON to the correctly typed interface, adding any missing properties if needed
 // The JSON has most fields, but might be missing exercises
-export const CHAPTERS: Chapter[] = (ELOQUENT_CONTENT as any[]).map(c => ({
-  ...c,
-  partLabel: PART_LABELS[c.part] || "Parte 1",
-  lessons: c.lessons.map((l: any) => ({
-    ...l,
-    sections: l.sections.map((s: Section) => ({
-      ...s,
-      exercise: MANUAL_EXERCISES[s.id]
-    })),
-    exercises: (l.exercises || []).concat(MANUAL_LESSON_EXERCISES[l.id] || []) // Ensure exercises array exists and merge manual ones
+export const CHAPTERS: Chapter[] = [
+  INTRO_CHAPTER,
+  ...(ELOQUENT_CONTENT as any[]).map(c => ({
+    ...c,
+    partLabel: PART_LABELS[c.part] || "Parte 1",
+    lessons: c.lessons.map((l: any) => ({
+      ...l,
+      sections: l.sections.map((s: Section) => ({
+        ...s,
+        exercise: MANUAL_EXERCISES[s.id]
+      })),
+      exercises: (l.exercises || []).concat(MANUAL_LESSON_EXERCISES[l.id] || []) // Ensure exercises array exists and merge manual ones
+    }))
   }))
-}));
+];
+
 
 export function getPartColor(partId: string): string {
   switch (partId) {
